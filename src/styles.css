@@ -22,22 +22,24 @@ body, textarea, button {
 body {
   border: 1px solid #dee2e6;
   height: 100vh;
+  border-radius: 15px;
 }
 .nav-tabs .nav-link.active {
   border-color: transparent;
-  border-radius: 0;
+  border-radius: 15px 0 0 0;
 }
 
 .nav-tabs .nav-link:hover {
-  border-radius: 0;
   border: 1px solid transparent;
 }
 
 .nav-link.active.save-tab-pane {
   border-right: 1px solid #dee2e6;
+  border-radius: 15px 0 0 0;
 }
 
 .nav-link.active.find-tab-pane {
   border-left: 1px solid #dee2e6;
+  border-radius: 0 15px 0 0;
 }
 
