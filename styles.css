@@ -1,0 +1,43 @@
+body, textarea, button {
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.97em!important;
+  font-variation-settings:
+    "wdth" 100,
+    "YTLC" 500;
+}
+
+#links_area {
+  padding: 10px;
+  font-size: 0.97em!important;
+}
+
+.margin-5 {
+  width: calc(100% - 10px);
+  margin: 5px 5px 0 5px;
+}
+
+body {
+  border: 1px solid #dee2e6;
+  height: 100vh;
+}
+.nav-tabs .nav-link.active {
+  border-color: transparent;
+  border-radius: 0;
+}
+
+.nav-tabs .nav-link:hover {
+  border-radius: 0;
+  border: 1px solid transparent;
+}
+
+.nav-link.active.save-tab-pane {
+  border-right: 1px solid #dee2e6;
+}
+
+.nav-link.active.find-tab-pane {
+  border-left: 1px solid #dee2e6;
+}
+
