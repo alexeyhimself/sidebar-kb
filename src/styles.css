@@ -15,14 +15,14 @@ body, textarea, button {
 }
 
 .margin-5 {
-  width: calc(100% - 10px);
-  margin: 5px 5px 0 5px;
+  width: calc(100% - 16px);
+  margin: 8px 8px 0 8px;
 }
 
 body {
-  border: 1px solid #dee2e6;
-  height: 100vh;
+  border: 0px solid #dee2e6;
   border-radius: 15px;
+  background: #ebeff7;
 }
 .nav-tabs .nav-link.active {
   border-color: transparent;
@@ -43,3 +43,18 @@ body {
   border-radius: 0 15px 0 0;
 }
 
+#urgency {
+  height: 36.5px;
+  cursor: pointer;
+}
+
+#container {
+  margin: 8px;
+  background: white;
+  height: calc(100vh - 16px);
+  border-radius: 12px;
+}
+
+textarea, input, button#save {
+  border-radius: 12px!important;
+}
