@@ -42,7 +42,7 @@ body {
   border-radius: 0 15px 0 0;
 }
 
-#urgency {
+#importance {
   height: 36.5px;
   cursor: pointer;
   background: transparent;

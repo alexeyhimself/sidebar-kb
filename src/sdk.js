@@ -1,5 +1,5 @@
 const save_link_textareas_ids = ["link", "title", "summary", "time"];
-const default_current_link = {"urgency": 50, "what_to_do": "read"};
+const default_current_link = {"importance": 50, "what_to_do": "read"};
 var current_link = default_current_link;
 
 function load_links_from_local_storage() {
@@ -9,7 +9,7 @@ function load_links_from_local_storage() {
   links.forEach((item) => {
     if (!item.title)
       item.title = item.link;
-    links_html += `<p>(${item.urgency}, ${item.date_created}) <a href="${item.link}" target="_blank">${item.title}</a></p>`;
+    links_html += `<p>(${item.importance}, ${item.date_created}) <a href="${item.link}" target="_blank">${item.title}</a></p>`;
   });
   document.getElementById('links_area').innerHTML = links_html;
 }
@@ -95,7 +95,7 @@ window.onload = function() {
     "save": save_to_local_storage, 
     "find-tab": load_links_from_local_storage
   });
-  enable_range_listener("urgency");
+  enable_range_listener("importance");
   enable_radios_listener("what_to_do");
 }
 
