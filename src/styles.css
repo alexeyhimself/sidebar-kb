@@ -1,4 +1,4 @@
-body, textarea, button {
+body, textarea, button, label, input {
   font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -20,7 +20,6 @@ body, textarea, button {
 }
 
 body {
-  border: 0px solid #dee2e6;
   border-radius: 15px;
   background: #ebeff7;
 }
@@ -57,4 +56,25 @@ body {
 
 textarea, input, button#save {
   border-radius: 12px!important;
+}
+
+.btn-outline-custom {
+  border: 1px solid #dee2e6;
+}
+.btn-check:checked+.btn-outline-custom {
+  background: #ebeff7;
+  border: 1px solid #dee2e6;
+}
+
+.btn-check+.btn:hover {
+  border: 1px solid #dee2e6;
+  background: #ebeff7;
+}
+.btn-outline-custom {
+  border-radius: 12px;
+}
+
+.input-time {
+  border-left: 0;
+  border-radius: 0 12px 12px 0!important;
 }

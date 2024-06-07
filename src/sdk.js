@@ -1,4 +1,5 @@
-const default_current_link = {"urgency": 50};
+const save_link_textareas_ids = ["link", "title", "summary", "time"];
+const default_current_link = {"urgency": 50, "what_to_do": "read"};
 var current_link = default_current_link;
 
 function load_links_from_local_storage() {
@@ -8,7 +9,7 @@ function load_links_from_local_storage() {
   links.forEach((item) => {
     if (!item.title)
       item.title = item.link;
-    links_html += `<p><a href="${item.link}" target="_blank">${item.title}</a></p>`;
+    links_html += `<p>(${item.urgency}, ${item.date_created}) <a href="${item.link}" target="_blank">${item.title}</a></p>`;
   });
   document.getElementById('links_area').innerHTML = links_html;
 }
@@ -16,6 +17,7 @@ function load_links_from_local_storage() {
 function save_to_local_storage() {
   let links = localStorage.getItem("links") || "[]";
       links = JSON.parse(links);
+  current_link.date_created = Date.now();
   links.push(current_link);
   localStorage.setItem("links", JSON.stringify(links));
 
@@ -24,7 +26,10 @@ function save_to_local_storage() {
 }
 function clear_form() {
   current_link = default_current_link;
-  location.reload();
+  save_link_textareas_ids.forEach((id) => {
+    document.getElementById(id).value = "";
+  })
+  //location.reload();
 }
 
 function enable_buttons() {
@@ -74,14 +79,24 @@ function enable_range_listener(element_id) {
   });
 }
 
+function enable_radios_listener(radio_name) {
+  document.querySelectorAll(`input[name='${radio_name}']`).forEach((input) => {
+    input.addEventListener('change', function (event) {
+      current_link.what_to_do = event.target.id;
+    });
+  });
+}
+    
+
 window.onload = function() {
   load_links_from_local_storage();
-  enable_textareas_listeners(["link", "title", "summary"]);
+  enable_textareas_listeners(save_link_textareas_ids);
   enable_buttons_listeners({
     "save": save_to_local_storage, 
     "find-tab": load_links_from_local_storage
   });
   enable_range_listener("urgency");
+  enable_radios_listener("what_to_do");
 }
 
 
