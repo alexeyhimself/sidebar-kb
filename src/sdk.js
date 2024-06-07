@@ -34,10 +34,12 @@ function disable_buttons() {
   document.getElementById("save").classList.add("disabled");
 }
 function enable_buttons_on_link_value_only() {
-  if(document.getElementById("link").value)
-    enable_buttons();
-  else
-    disable_buttons();
+  setTimeout(() => {
+    if(document.getElementById("link").value)
+      enable_buttons();
+    else
+      disable_buttons();
+  }, 100); // a bit wait because drag&drop events pass faster than the DOM update
 }
 
 function enable_textareas_listeners(elements_ids) {
