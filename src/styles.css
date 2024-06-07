@@ -45,6 +45,8 @@ body {
 #urgency {
   height: 36.5px;
   cursor: pointer;
+  background: transparent;
+  position: relative;
 }
 
 #container {
@@ -77,4 +79,20 @@ textarea, input, button#save {
 .input-time {
   border-left: 0;
   border-radius: 0 12px 12px 0!important;
+}
+
+#importance_placeholder {
+  position: relative;
+  top: 38px;
+  left: 23px;
+
+  position: fixed;
+  top: 265px;
+  left: 29px;  
+  color: #585c5f;
+  font-size: 0.97em;
+}
+
+.btn-group {
+  width: 100%;
 }
