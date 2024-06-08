@@ -1,5 +1,5 @@
 const save_link_textareas_ids = ["link", "title", "summary", "time"];
-const default_current_link = {"importance": 50, "what_to_do": "read"};
+const default_current_link = {};
 var current_link = default_current_link;
 
 function load_links_from_local_storage() {
@@ -11,13 +11,15 @@ function load_links_from_local_storage() {
       item.title = item.link;
     links_html += `<p><a href="${item.link}" target="_blank">${item.title}</a></p>`;
   });
-  document.getElementById('links_area').innerHTML = links_html;
+  document.getElementById("links_area").innerHTML = links_html;
 }
 
 function save_to_local_storage() {
   let links = localStorage.getItem("links") || "[]";
       links = JSON.parse(links);
   current_link.date_created = Date.now();
+  current_link.importance = document.getElementById("importance").value;
+  current_link.what_to_do = document.getElementById("what_to_do").value;
   links.push(current_link);
   localStorage.setItem("links", JSON.stringify(links));
 
