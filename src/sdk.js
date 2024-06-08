@@ -1,6 +1,5 @@
 const save_link_textareas_ids = ["link", "title", "summary", "time"];
-const default_current_link = {};
-var current_link = default_current_link;
+const range_and_selector_ids = ["importance", "what_to_do"];
 
 function load_links_from_local_storage() {
   let links = localStorage.getItem("links") || "[]";
@@ -14,50 +13,65 @@ function load_links_from_local_storage() {
   document.getElementById("links_area").innerHTML = links_html;
 }
 
-function save_to_local_storage() {
+function collect_data_from_the_save_link_form() {
+  var current_link = {};
+  current_link.date_created = Date.now();
+
+  const elements_ids = save_link_textareas_ids.concat(range_and_selector_ids);
+  for (let each in elements_ids) {
+    const element_id = elements_ids[each];
+    current_link[element_id] = document.getElementById(element_id).value;
+  }
+
+  //console.log(current_link);
+  return current_link;
+}
+
+function save_current_link() {
+  save_data_to_local_storage(collect_data_from_the_save_link_form());
+  clear_save_link_form();
+  disable_save_button();
+}
+
+function save_data_to_local_storage(what_to_save) {
   let links = localStorage.getItem("links") || "[]";
       links = JSON.parse(links);
-  current_link.date_created = Date.now();
-  current_link.importance = document.getElementById("importance").value;
-  current_link.what_to_do = document.getElementById("what_to_do").value;
-  links.push(current_link);
-  localStorage.setItem("links", JSON.stringify(links));
 
-  clear_form();
-  disable_buttons();
+  links.push(what_to_save);
+  localStorage.setItem("links", JSON.stringify(links));
 }
-function clear_form() {
-  current_link = default_current_link;
+function clear_save_link_form() {
   save_link_textareas_ids.forEach((id) => {
     document.getElementById(id).value = "";
-  })
-  //location.reload();
+  });
 }
 
-function enable_buttons() {
+function enable_save_button() {
   document.getElementById("save").classList.remove("disabled");
 }
-function disable_buttons() {
+function disable_save_button() {
   document.getElementById("save").classList.add("disabled");
 }
 function enable_buttons_on_link_value_only() {
   setTimeout(() => {
     if(document.getElementById("link").value)
-      enable_buttons();
+      enable_save_button();
     else
-      disable_buttons();
-  }, 100); // a bit wait because drag&drop events pass faster than the DOM update
+      disable_save_button();
+  }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
 }
 
 function enable_range_placeholder_on_space_available_only(importance) {
-  if (!importance)
+  if (!importance)  // initial start of the event listener
     importance = document.getElementById("importance").value;
 
-  if (importance < 38)
-    document.getElementById("importance_placeholder").style.display = 'none';
+  const importance_placeholder_element = document.getElementById("importance_placeholder");
+  if (importance < 38)  // 38 is the length of "Set importance" placeholder
+    importance_placeholder_element.style.display = 'none';
   else
-    document.getElementById("importance_placeholder").style.display = '';
+    importance_placeholder_element.style.display = '';
 }
+
 
 /* LISTENERS */
 
@@ -67,11 +81,11 @@ function enable_textareas_listeners(elements_ids) {
 
     var element = document.getElementById(element_id);
     element.addEventListener('drop', function (event) {
-      current_link[element_id] = event.dataTransfer.getData('text');
+      //current_link[element_id] = event.dataTransfer.getData('text');
       enable_buttons_on_link_value_only();
     });
     element.addEventListener('keyup', function (event) { // change, paste
-      current_link[element_id] = this.value;
+      //current_link[element_id] = this.value;
       enable_buttons_on_link_value_only();
     });
   }
@@ -87,10 +101,11 @@ function enable_buttons_listeners(buttons) {
 }
 
 function enable_range_listener(element_id) {
+  enable_range_placeholder_on_space_available_only();
+
   var element = document.getElementById(element_id);
   element.addEventListener('change', function (event) {
     const importance = parseInt(this.value);
-    current_link[element_id] = importance;
     enable_range_placeholder_on_space_available_only(importance);
   });
 }
@@ -103,24 +118,20 @@ function enable_radios_listener(radio_name) {
     });
   });
 }
-*/
 function enable_selector_listener(element_id) {
   var element = document.getElementById(element_id);  
   element.addEventListener('change', function (event) {
     current_link.what_to_do = event.target.value;
   });
 }
-    
+*/    
 
 window.onload = function() {
   load_links_from_local_storage();
   enable_textareas_listeners(save_link_textareas_ids);
   enable_buttons_listeners({
-    "save": save_to_local_storage, 
+    "save": save_current_link, 
     "find-tab": load_links_from_local_storage
   });
   enable_range_listener("importance");
-  //enable_radios_listener("what_to_do");
-  enable_selector_listener("what_to_do");
-  enable_range_placeholder_on_space_available_only();
 }
