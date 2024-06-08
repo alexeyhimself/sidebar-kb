@@ -47,6 +47,18 @@ function enable_buttons_on_link_value_only() {
   }, 100); // a bit wait because drag&drop events pass faster than the DOM update
 }
 
+function enable_range_placeholder_on_space_available_only(importance) {
+  if (!importance)
+    importance = document.getElementById("importance").value;
+
+  if (importance < 38)
+    document.getElementById("importance_placeholder").style.display = 'none';
+  else
+    document.getElementById("importance_placeholder").style.display = '';
+}
+
+/* LISTENERS */
+
 function enable_textareas_listeners(elements_ids) {
   for (let i in elements_ids) {
     const element_id = elements_ids[i];
@@ -75,7 +87,9 @@ function enable_buttons_listeners(buttons) {
 function enable_range_listener(element_id) {
   var element = document.getElementById(element_id);
   element.addEventListener('change', function (event) {
-    current_link[element_id] = parseInt(this.value);
+    const importance = parseInt(this.value);
+    current_link[element_id] = importance;
+    enable_range_placeholder_on_space_available_only(importance);
   });
 }
 
@@ -97,6 +111,7 @@ window.onload = function() {
   });
   enable_range_listener("importance");
   enable_radios_listener("what_to_do");
+  enable_range_placeholder_on_space_available_only();
 }
 
 

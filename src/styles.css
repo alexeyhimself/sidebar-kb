@@ -47,6 +47,7 @@ body {
   cursor: pointer;
   background: transparent;
   position: relative;
+  z-index: 10;
 }
 
 #container {
@@ -83,14 +84,11 @@ textarea, input, button#save {
 
 #importance_placeholder {
   position: relative;
-  top: 38px;
+  top: -118px;
   left: 23px;
-
-  position: fixed;
-  top: 265px;
-  left: 29px;  
   color: #585c5f;
   font-size: 0.97em;
+  z-index: 0;
 }
 
 .btn-group {
