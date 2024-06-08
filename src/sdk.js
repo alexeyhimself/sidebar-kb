@@ -1,4 +1,4 @@
-const save_link_textareas_ids = ["link", "title", "summary", "time"];
+const save_link_textareas_ids = ["link", "title", "summary", "time", "tags"];
 const range_and_selector_ids = ["importance", "what_to_do"];
 
 function load_links_from_local_storage() {
@@ -20,10 +20,10 @@ function collect_data_from_the_save_link_form() {
   const elements_ids = save_link_textareas_ids.concat(range_and_selector_ids);
   for (let each in elements_ids) {
     const element_id = elements_ids[each];
-    current_link[element_id] = document.getElementById(element_id).value;
+    current_link[element_id] = document.getElementById(element_id).value.trim();
   }
 
-  //console.log(current_link);
+  console.log(current_link);
   return current_link;
 }
 
