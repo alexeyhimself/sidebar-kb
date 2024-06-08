@@ -93,11 +93,19 @@ function enable_range_listener(element_id) {
   });
 }
 
+/*
 function enable_radios_listener(radio_name) {
   document.querySelectorAll(`input[name='${radio_name}']`).forEach((input) => {
     input.addEventListener('change', function (event) {
       current_link.what_to_do = event.target.id;
     });
+  });
+}
+*/
+function enable_selector_listener(element_id) {
+  var element = document.getElementById(element_id);  
+  element.addEventListener('change', function (event) {
+    current_link.what_to_do = event.target.value;
   });
 }
     
@@ -110,10 +118,7 @@ window.onload = function() {
     "find-tab": load_links_from_local_storage
   });
   enable_range_listener("importance");
-  enable_radios_listener("what_to_do");
+  //enable_radios_listener("what_to_do");
+  enable_selector_listener("what_to_do");
   enable_range_placeholder_on_space_available_only();
 }
-
-
-// "read", "watch", "listen", "reply", "buy", "review", "attend", "connect", 
-// 

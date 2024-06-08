@@ -1,4 +1,4 @@
-body, textarea, button, label, input {
+body, textarea, button, label, input, select {
   font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -93,4 +93,8 @@ textarea, input, button#save {
 
 .btn-group {
   width: 100%;
+}
+select {
+  border-radius: 12px 0 0 12px!important;
+  color: #585c5f!important;
 }

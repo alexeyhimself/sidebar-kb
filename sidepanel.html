@@ -36,7 +36,7 @@
 
           <div class="margin-5">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-              <input type="radio" class="btn-check" name="what_to_do" id="read" autocomplete="off" checked>
+              <!--input type="radio" class="btn-check" name="what_to_do" id="read" autocomplete="off" checked>
               <label class="btn btn-outline-custom" for="read">read</label>
 
               <input type="radio" class="btn-check" name="what_to_do" id="watch" autocomplete="off">
@@ -46,7 +46,18 @@
               <label class="btn btn-outline-custom" for="listen">listen</label>
 
               <input type="radio" class="btn-check" name="what_to_do" id="course" autocomplete="off">
-              <label class="btn btn-outline-custom" for="course">course</label>
+              <label class="btn btn-outline-custom" for="course">course</label-->
+
+              <div class="btn-group" role="group">
+                <select class="form-select" id="what_to_do">
+                  <option value="read" selected>to Read</option>
+                  <option value="watch">to Watch</option>
+                  <option value="listen">to Listen</option>
+                  <option value="course">to Course</option>
+                  <option value="attend">to Attend</option>
+                  <option value="connect">to Connect</option>
+                </select>
+              </div>
 
               <textarea class="form-control input-time" id="time" type="text" placeholder="5m" rows="1"></textarea>
             </div>
