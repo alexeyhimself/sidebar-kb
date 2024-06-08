@@ -61,15 +61,15 @@ function enable_buttons_on_link_value_only() {
   }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
 }
 
-function enable_range_placeholder_on_space_available_only(importance) {
+function dim_range_placeholder_in_thumb_proximity(importance) {
   if (!importance)  // initial start of the event listener
     importance = document.getElementById("importance").value;
 
   const importance_placeholder_element = document.getElementById("importance_placeholder");
   if (importance < 38)  // 38 is the length of "Set importance" placeholder
-    importance_placeholder_element.style.display = 'none';
+    importance_placeholder_element.style.color = '#585c5f70';
   else
-    importance_placeholder_element.style.display = '';
+    importance_placeholder_element.style.color = '#585c5fff';
 }
 
 
@@ -101,12 +101,12 @@ function enable_buttons_listeners(buttons) {
 }
 
 function enable_range_listener(element_id) {
-  enable_range_placeholder_on_space_available_only();
+  dim_range_placeholder_in_thumb_proximity();
 
   var element = document.getElementById(element_id);
   element.addEventListener('change', function (event) {
     const importance = parseInt(this.value);
-    enable_range_placeholder_on_space_available_only(importance);
+    dim_range_placeholder_in_thumb_proximity(importance);
   });
 }
 
