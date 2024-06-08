@@ -9,7 +9,7 @@ function load_links_from_local_storage() {
   links.forEach((item) => {
     if (!item.title)
       item.title = item.link;
-    links_html += `<p>(${item.importance}, ${item.date_created}) <a href="${item.link}" target="_blank">${item.title}</a></p>`;
+    links_html += `<p><a href="${item.link}" target="_blank">${item.title}</a></p>`;
   });
   document.getElementById('links_area').innerHTML = links_html;
 }

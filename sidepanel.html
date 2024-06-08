@@ -32,8 +32,6 @@
           <textarea class="form-control margin-5" id="title" type="text" placeholder="Add human-friendly name for the link"></textarea>
           <textarea class="form-control margin-5" id="summary" type="text" placeholder="Add summary / notes / source link" rows2="4"></textarea>
 
-          <input class="form-control form-range- margin-5" id="importance" type="range" title="Importance: from Low (on the left) to High (on the right)" value2="0">
-
           <div class="margin-5">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
               <!--input type="radio" class="btn-check" name="what_to_do" id="read" autocomplete="off" checked>
@@ -50,12 +48,12 @@
 
               <div class="btn-group" role="group">
                 <select class="form-select" id="what_to_do">
-                  <option value="read" selected>to Read</option>
-                  <option value="watch">to Watch</option>
-                  <option value="listen">to Listen</option>
-                  <option value="course">to Course</option>
-                  <option value="attend">to Attend</option>
-                  <option value="connect">to Connect</option>
+                  <option value="read" selected>Read</option>
+                  <option value="watch">Watch</option>
+                  <option value="listen">Listen</option>
+                  <option value="course">Course</option>
+                  <option value="attend">Attend</option>
+                  <option value="connect">Connect</option>
                 </select>
               </div>
 
@@ -63,7 +61,9 @@
             </div>
           </div>
 
-          <!--input class="form-control margin-5" id="tags" type="text" placeholder="Link tags"-->
+          <textarea class="form-control margin-5" id="tags" type="text" placeholder="Add tags" rows="1"></textarea>
+
+          <input class="form-control form-range- margin-5" id="importance" type="range" title="Importance: from Low (on the left) to High (on the right)" value2="0">
 
           <div class="row" style="margin: 0;">
             <div class="col" style="padding: 0;">

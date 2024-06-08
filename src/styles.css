@@ -84,8 +84,8 @@ textarea, input, button#save {
 
 #importance_placeholder {
   position: relative;
-  top: -118px;
-  left: 23px;
+  top: -75px;
+  left: 22px;
   color: #585c5f;
   font-size: 0.97em;
   z-index: 0;
