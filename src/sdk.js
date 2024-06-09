@@ -109,6 +109,7 @@ function save_current_link() {
   save_data_to_local_storage(collect_data_from_the_save_link_form());
   clear_save_link_form();
   disable_save_button();
+  document.getElementById("suggested_tags").innerHTML = "";
 }
 
 function save_data_to_local_storage(what_to_save) {
@@ -117,6 +118,7 @@ function save_data_to_local_storage(what_to_save) {
 
   links.push(what_to_save);
   localStorage.setItem("links", JSON.stringify(links));
+  update_tags_in_local_storage(what_to_save.tags);
 }
 function clear_save_link_form() {
   save_link_textareas_ids.forEach((id) => {
