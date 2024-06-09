@@ -1,6 +1,59 @@
 const save_link_textareas_ids = ["link", "title", "summary", "time", "tags"];
 const range_and_selector_ids = ["importance", "what_to_do"];
 
+
+function sort_dict_by_value_desc(dict) {  // https://www.geeksforgeeks.org/how-to-sort-a-dictionary-by-value-in-javascript/
+  return Object.keys(dict)
+    .sort((a, b) => dict[b] - dict[a])
+    .reduce((acc, key) => {
+      acc[key] = dict[key];
+      return acc;
+    }, {});
+}
+
+function load_tags_from_local_storage() {
+  const tags = localStorage.getItem("tags") || "{}";
+  return JSON.parse(tags);
+}
+
+function update_tags_in_local_storage(new_tags) {
+  let tags = load_tags_from_local_storage();
+  let existing_tags = tags.existing || {};
+  let most_recent_tags = tags.most_recent || [];
+
+  new_tags = new_tags.split(",");
+  for (let i in new_tags) {
+    const new_tag = new_tags[i].trim();
+    // recalculate existing tags stats
+    if (new_tag in existing_tags)
+      existing_tags[new_tag] += 1;
+    else
+      existing_tags[new_tag] = 1;
+
+    // if new_tag exists in tags.most_recent then refresh it's position
+    var new_tag_index = most_recent_tags.indexOf(new_tag);
+    if (new_tag_index > -1)
+      most_recent_tags.splice(new_tag_index, 1);
+
+    most_recent_tags.push(new_tag)
+    most_recent_tags = most_recent_tags.slice(-100);  // keep the list length fixed
+  }
+
+  tags = {"existing": existing_tags, "most_recent": most_recent_tags};
+  localStorage.setItem("tags", JSON.stringify(tags));
+}
+
+function suggest_tags() {
+  const tags = load_tags_from_local_storage();
+  if (!tags.existing)
+    return [];
+
+  const most_used_tags = sort_dict_by_value_desc(tags.existing);
+  const most_recent_tags = tags.most_recent.reverse();
+
+  console.log(most_used_tags, most_recent_tags);
+}
+
 function load_links_from_local_storage() {
   let links = localStorage.getItem("links") || "[]";
       links = JSON.parse(links);
@@ -23,7 +76,7 @@ function collect_data_from_the_save_link_form() {
     current_link[element_id] = document.getElementById(element_id).value.trim();
   }
 
-  console.log(current_link);
+  //console.log(current_link);
   return current_link;
 }
 
