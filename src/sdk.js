@@ -43,7 +43,7 @@ function update_tags_in_local_storage(new_tags) {
   localStorage.setItem("tags", JSON.stringify(tags));
 }
 
-function suggest_tags() {
+function compose_tags() {
   const tags = load_tags_from_local_storage();
   if (!tags.existing)
     return [];
@@ -51,7 +51,32 @@ function suggest_tags() {
   const most_used_tags = sort_dict_by_value_desc(tags.existing);
   const most_recent_tags = tags.most_recent.reverse();
 
-  console.log(most_used_tags, most_recent_tags);
+  return Object.keys(most_used_tags);
+
+  setTimeout(() => {
+    //... suggest content-based tags
+  }, 100);
+  //console.log(most_used_tags, most_recent_tags);
+  /* 
+    based on input:
+    if domain exists, get most used tags from there
+    if keywords in title / summary
+  */
+}
+
+function suggest_tags() {
+  const tags = compose_tags();
+  if (tags.length == 0)
+    return;
+
+  let suggested_tags = 'Tags hint: ';
+  tags.forEach((tag) => {
+    suggested_tags += `<a href="#" class="suggested_tag">${tag}</a>, `;
+  });
+  suggested_tags = suggested_tags.slice(0, -2)
+  document.getElementById("suggested_tags").innerHTML = suggested_tags;
+
+  enable_suggested_tags_listeners();
 }
 
 function load_links_from_local_storage() {
@@ -63,7 +88,7 @@ function load_links_from_local_storage() {
       item.title = item.link;
     links_html += `<p><a href="${item.link}" target="_blank">${item.title}</a></p>`;
   });
-  document.getElementById("links_area").innerHTML = links_html;
+  document.getElementById("links_area").innerHTML = links_html;// + links_html;
 }
 
 function collect_data_from_the_save_link_form() {
@@ -136,10 +161,12 @@ function enable_textareas_listeners(elements_ids) {
     element.addEventListener('drop', function (event) {
       //current_link[element_id] = event.dataTransfer.getData('text');
       enable_buttons_on_link_value_only();
+      suggest_tags();
     });
     element.addEventListener('keyup', function (event) { // change, paste
       //current_link[element_id] = this.value;
       enable_buttons_on_link_value_only();
+      suggest_tags();
     });
   }
 }
@@ -160,6 +187,19 @@ function enable_range_listener(element_id) {
   element.addEventListener('change', function (event) {
     const importance = parseInt(this.value);
     dim_range_placeholder_in_thumb_proximity(importance);
+  });
+}
+
+function enable_suggested_tags_listeners() {
+  let elements = document.querySelectorAll(".suggested_tag");
+  elements.forEach(function(element) {
+    element.addEventListener("click", function(event) {
+      let existing_tags = document.getElementById("tags").value;
+      if (existing_tags)
+        document.getElementById("tags").value = existing_tags + `, ${element.innerText}`;
+      else
+        document.getElementById("tags").value = element.innerText;
+    });
   });
 }
 
