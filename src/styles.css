@@ -1,4 +1,4 @@
-body, textarea, button, label, input, select {
+body, textarea, button, label, input, select, p, a {
   font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -97,4 +97,13 @@ textarea, input, button#save {
 select {
   border-radius: 12px 0 0 12px!important;
   color: #585c5f!important;
+}
+
+#suggested_tags {
+  margin: 5px;
+  margin-left: 20px!important;
+  color: #585c5f;
+}
+.suggested_tag {
+  margin: 0 1px 0 1px;
 }
