@@ -157,7 +157,7 @@ function adjust_textarea_size(element) {  // https://stackoverflow.com/questions
   element.style.height = (element.scrollHeight) + "px";
 }
 
-function shirk_are_if_necessary(element) {
+function shirk_textareas_if_necessary(element) {
   //if (save_link_textareas_ids.includes(element.id))
   if (element.id == "summary")
     adjust_textarea_size(element);
@@ -172,13 +172,13 @@ function enable_textareas_listeners(elements_ids) {
     var element = document.getElementById(element_id);
     element.addEventListener('drop', function (event) {
       //current_link[element_id] = event.dataTransfer.getData('text');
-      shirk_are_if_necessary(event.target);
+      shirk_textareas_if_necessary(event.target);
       enable_buttons_on_link_value_only();
       suggest_tags();
     });
     element.addEventListener('keyup', function (event) { // change, paste
       //current_link[element_id] = this.value;
-      shirk_are_if_necessary(event.target);
+      shirk_textareas_if_necessary(event.target);
       enable_buttons_on_link_value_only();
       suggest_tags();
     });
