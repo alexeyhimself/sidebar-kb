@@ -15,7 +15,7 @@
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: 'openSidePanel',
-    title: 'Knowledge base',
+    title: 'Open Knowledge Base',
     contexts: ['all']
   });
   chrome.tabs.create({ url: 'page.html' });
