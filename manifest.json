@@ -10,12 +10,12 @@
   "side_panel": {
     "default_path": "sidepanel.html"
   },
-  "content_scripts": [
-    {
-      "js": ["content-script.js"],
-      "matches": ["https://www.google.com/*"]
-    }
-  ],
+  //"content_scripts": [
+  //  {
+  //    "js": ["content-script.js"],
+  //    "matches": ["https://www.google.com/*"]
+  //  }
+  //],
   "permissions": ["sidePanel", "contextMenus"],
   "icons": {
     //"16": "images/icon-16.png",
