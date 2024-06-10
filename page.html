@@ -15,15 +15,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="src/styles.css">
+    <style type="text/css">
+      .center {
+        text-align: center; 
+      }
+      .offset {
+        margin-top: 40vh;
+      }
+      .btn {
+        border-radius: 12px;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
-      <div class="col" style="text-align: center; margin-top: 300px;">
+      <div class="center offset">
         <h1>Hello 👋</h1>
         <p>Thank you for trying Personal Knowledge Base side panel!</p>
-        <button class="btn btn-primary" id="openSidePanel">Open side panel</button>
-        <script src="script.js" type="module"></script>
+        <button class="btn btn-primary btn-lg" id="openSidePanel">Open side panel</button>
       </div>
     </div>
+    <script src="script.js" type="module"></script>
   </body>
 </html>
