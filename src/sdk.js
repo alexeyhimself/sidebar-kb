@@ -210,12 +210,13 @@ function enable_suggested_tags_listeners() {
     element.addEventListener("click", function(event) {
       let tags_element = document.getElementById("tags");
       let existing_tags = tags_element.value.trim();
-      if (existing_tags && existing_tags.slice(-1) != ',')
-        tags_element.value = existing_tags + `, ${element.innerText}`;
-      else if (existing_tags && existing_tags.slice(-1) == ',')
+
+      if (!existing_tags)
+        tags_element.value = element.innerText;
+      else if (existing_tags.slice(-1) == ',')
         tags_element.value = existing_tags + ` ${element.innerText}`;
       else
-        tags_element.value = element.innerText;
+        tags_element.value = existing_tags + `, ${element.innerText}`;
     });
   });
 }
