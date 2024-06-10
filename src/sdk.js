@@ -69,14 +69,14 @@ function suggest_tags() {
   if (tags.length == 0)
     return;
 
-  let suggested_tags = 'Tags hint: ';
+  let tags_hint = 'Tags hint: ';
   tags.forEach((tag) => {
-    suggested_tags += `<a href="#" class="suggested_tag">${tag}</a>, `;
+    tags_hint += `<a href="#" class="suggested_tag">${tag}</a>, `;
   });
-  suggested_tags = suggested_tags.slice(0, -2)
-  document.getElementById("suggested_tags").innerHTML = suggested_tags;
+  tags_hint = tags_hint.slice(0, -2)
+  document.getElementById("tags_hint").innerHTML = tags_hint;
 
-  enable_suggested_tags_listeners();
+  enable_tags_hint_listeners();
 }
 
 function load_links_from_local_storage() {
@@ -109,7 +109,7 @@ function save_current_link() {
   save_data_to_local_storage(collect_data_from_the_save_link_form());
   clear_save_link_form();
   disable_save_button();
-  document.getElementById("suggested_tags").innerHTML = "";
+  document.getElementById("tags_hint").innerHTML = "";
 }
 
 function save_data_to_local_storage(what_to_save) {
@@ -138,6 +138,15 @@ function enable_buttons_on_link_value_only() {
       enable_save_button();
     else
       disable_save_button();
+  }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
+}
+
+function enable_tags_hint_on_any_value_only() {
+  setTimeout(() => {
+    if(document.getElementById("link").value || document.getElementById("title").value || document.getElementById("summary").value || document.getElementById("tags").value)
+      document.getElementById("tags_hint").style.display = '';
+    else
+      document.getElementById("tags_hint").style.display = 'none';
   }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
 }
 
@@ -180,6 +189,13 @@ function hide_fields_if_necessary(element) {
   }
 }
 
+function what_to_do_on_textareas_content_change(event) {
+  shirk_textareas_if_necessary(event.target);
+  enable_buttons_on_link_value_only();
+  enable_tags_hint_on_any_value_only();
+  suggest_tags();
+}
+
 /* LISTENERS */
 
 function enable_textareas_listeners(elements_ids) {
@@ -189,15 +205,11 @@ function enable_textareas_listeners(elements_ids) {
     var element = document.getElementById(element_id);
     element.addEventListener('drop', function (event) {
       //current_link[element_id] = event.dataTransfer.getData('text');
-      shirk_textareas_if_necessary(event.target);
-      enable_buttons_on_link_value_only();
-      suggest_tags();
+      what_to_do_on_textareas_content_change(event);
     });
     element.addEventListener('keyup', function (event) { // change, paste
       //current_link[element_id] = this.value;
-      shirk_textareas_if_necessary(event.target);
-      enable_buttons_on_link_value_only();
-      suggest_tags();
+      what_to_do_on_textareas_content_change(event);
     });
   }
 }
@@ -221,7 +233,7 @@ function enable_range_listener(element_id) {
   });
 }
 
-function enable_suggested_tags_listeners() {
+function enable_tags_hint_listeners() {
   let elements = document.querySelectorAll(".suggested_tag");
   elements.forEach(function(element) {
     element.addEventListener("click", function(event) {
