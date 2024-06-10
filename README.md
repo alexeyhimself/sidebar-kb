@@ -1,5 +1,5 @@
 # Personal Knowledge Base side panel
-This is an MVP for a Personal Knowledge Base side panel extension for desktop version of Google Chrome web-browser.
+This is an MVP for a Personal Knowledge Base side panel extension for Google Chrome desktop.
 ![image](https://www.dropbox.com/scl/fi/6wb77q2inrk2bcy7ivqjp/2024-06-11-00.17.00.jpg?rlkey=tpuxw2dntgf39hg95jxyl0rrq&raw=1)
 
 ## How to install
