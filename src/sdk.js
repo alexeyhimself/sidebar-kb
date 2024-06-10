@@ -152,6 +152,16 @@ function dim_range_placeholder_in_thumb_proximity(importance) {
     importance_placeholder_element.style.color = '#585c5fff';
 }
 
+function adjust_textarea_size(element) {  // https://stackoverflow.com/questions/995168/textarea-to-resize-based-on-content-length
+  element.style.height = "1px";
+  element.style.height = (element.scrollHeight) + "px";
+}
+
+function shirk_are_if_necessary(element) {
+  //if (save_link_textareas_ids.includes(element.id))
+  if (element.id == "summary")
+    adjust_textarea_size(element);
+}
 
 /* LISTENERS */
 
@@ -162,11 +172,13 @@ function enable_textareas_listeners(elements_ids) {
     var element = document.getElementById(element_id);
     element.addEventListener('drop', function (event) {
       //current_link[element_id] = event.dataTransfer.getData('text');
+      shirk_are_if_necessary(event.target);
       enable_buttons_on_link_value_only();
       suggest_tags();
     });
     element.addEventListener('keyup', function (event) { // change, paste
       //current_link[element_id] = this.value;
+      shirk_are_if_necessary(event.target);
       enable_buttons_on_link_value_only();
       suggest_tags();
     });
