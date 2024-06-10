@@ -94,8 +94,13 @@ textarea, input, button#save {
 .btn-group {
   width: 100%;
 }
-select {
+.left-half-border-radius {
   border-radius: 12px 0 0 12px!important;
+}
+.all-around-border-radius {
+  border-radius: 12px!important;
+}
+select {
   color: #585c5f!important;
 }
 

@@ -163,6 +163,21 @@ function shirk_textareas_if_necessary(element) {
     adjust_textarea_size(element);
 }
 
+function hide_fields_if_necessary(element) {
+  if (element.value == "tool") {
+    document.getElementById("importance").style.display = 'none';
+    document.getElementById("importance_placeholder").style.display = 'none';
+    document.getElementById("time").style.display = 'none';
+    document.getElementById("what_to_do").classList.add("all-around-border-radius");
+  }
+  else {
+    document.getElementById("importance").style.display = '';
+    document.getElementById("importance_placeholder").style.display = '';
+    document.getElementById("time").style.display = '';
+    document.getElementById("what_to_do").classList.remove("all-around-border-radius");
+  }
+}
+
 /* LISTENERS */
 
 function enable_textareas_listeners(elements_ids) {
@@ -229,13 +244,13 @@ function enable_radios_listener(radio_name) {
     });
   });
 }
+*/
 function enable_selector_listener(element_id) {
   var element = document.getElementById(element_id);  
   element.addEventListener('change', function (event) {
-    current_link.what_to_do = event.target.value;
+    hide_fields_if_necessary(event.target);
   });
 }
-*/    
 
 window.onload = function() {
   load_links_from_local_storage();
@@ -245,4 +260,5 @@ window.onload = function() {
     "find-tab": load_links_from_local_storage
   });
   enable_range_listener("importance");
+  enable_selector_listener("what_to_do");
 }
