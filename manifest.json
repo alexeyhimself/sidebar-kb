@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Knowledge base side panel",
+  "name": "Personal Knowledge Base",
   "version": "1.0",
   "description": "Shows how to call sidePanel.open() to open a global side panel.",
   "minimum_chrome_version": "116",
