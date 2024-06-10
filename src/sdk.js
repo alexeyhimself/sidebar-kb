@@ -208,9 +208,11 @@ function enable_suggested_tags_listeners() {
   let elements = document.querySelectorAll(".suggested_tag");
   elements.forEach(function(element) {
     element.addEventListener("click", function(event) {
-      let existing_tags = document.getElementById("tags").value;
-      if (existing_tags)
+      let existing_tags = document.getElementById("tags").value.trim();
+      if (existing_tags && existing_tags.slice(-1) != ',')
         document.getElementById("tags").value = existing_tags + `, ${element.innerText}`;
+      else if (existing_tags && existing_tags.slice(-1) == ',')
+        document.getElementById("tags").value = existing_tags + ` ${element.innerText}`;
       else
         document.getElementById("tags").value = element.innerText;
     });
