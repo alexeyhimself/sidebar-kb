@@ -1,25 +1,27 @@
-# Opening the side panel through a user interaction
+# Personal Knowledge Base side panel
 
-This example demonstrates using [`chrome.sidePanel.open()`](https://developer.chrome.com/docs/extensions/reference/sidePanel/#method-open) to open a global side panel through a context menu click and a tab-specific side panel by clicking a button in an extension page or a button click injected by a content script. This feature will be available starting **Chrome 116**.
+This is an MVP for a Personal Knowledge Base side panel extension for desktop version of Google Chrome web-browser.
 
-## Running this extension
 
-1. Clone this repository.
-2. Load this directory in Chrome as an [unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked).
+## How to install
 
-### Test with a context menu
+1. Clone this repository (or download it as a ZIP-archive and unpack).
+2. Load clonned / unpacked directory in Chrome as an [unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked). Go to:
+* Chrome "kebab" menu → Extensions → Manage Extensions
+* In the upper left corner click "Load unpacked" button
+* Choose repository directory from step 1.
 
-1. Navigate to any page, like [example.com](http://example.com/).
-2. Right-click on any word.
-3. Choose the context menu "Open side panel".
 
-### Test in an extension page
+## FAQ
 
-1. The extension page will open when you install the extension.
-2. Click on the "Open side panel" button.
+### Where the data is stored?
+There's no server behind extension and all the data is stored in [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) in you Google Chrome web browser and never leaves it.
 
-### Test by clicking on an injected element
+### Will the data disappear if I close my browser?
+No, the data will stay in your browser.
 
-1. Navigate to [google.com](http://www.google.com/).
-2. Scroll to the very bottom of the page.
-3. Click on the "Open side panel" button.
+### Do you collect any personal information using this app?
+No.
+
+### Do you use any analytics trackers?
+No.
