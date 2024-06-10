@@ -169,12 +169,14 @@ function hide_fields_if_necessary(element) {
     document.getElementById("importance_placeholder").style.display = 'none';
     document.getElementById("time").style.display = 'none';
     document.getElementById("what_to_do").classList.add("all-around-border-radius");
+    document.getElementById("tags").focus();
   }
   else {
     document.getElementById("importance").style.display = '';
     document.getElementById("importance_placeholder").style.display = '';
     document.getElementById("time").style.display = '';
     document.getElementById("what_to_do").classList.remove("all-around-border-radius");
+    document.getElementById("time").focus();
   }
 }
 
