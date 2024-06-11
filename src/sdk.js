@@ -138,20 +138,30 @@ function suggest_tags() {
 function draw_links_placeholder() {
   return `<p id="links_placeholder"><b>You have no saved links yet.</b><br>Collect some &mdash; they will appear 👍</p>`;
 }
+function draw_links_error_message() {
+  return `<p id="links_placeholder"><span style="font-size: 2em;">😲</span><br><b>Something went wrong...</b><br>Please <a href="#" id="copy_error_message_to_clipboard">click here to copy an error message to clipboard</a> and <a href="mailto:alexeyhimself@gmail.com">let us know</a></p>`;
+}
 
 function draw_links() {
-  const links = load_links_from_local_storage();
-
   let links_html = '';
-  if (links.length == 0)
-    links_html = draw_links_placeholder();
-  else
-    links_html = draw_existing_links(links);
+  try {
+    const links = load_links_from_local_storage();
 
-  document.getElementById("links_area").innerHTML = links_html;
-  if (links.length > 10) {
-    document.getElementById("number_of_links").innerHTML = links.length;
-    document.getElementById("links_export").style.display = '';
+    if (links.length == 0)
+      links_html = draw_links_placeholder();
+    else
+      links_html = draw_existing_links(links);
+
+    if (links.length > 10) {
+      document.getElementById("number_of_links").innerHTML = links.length;
+      document.getElementById("links_export").style.display = '';
+    }
+    document.getElementById("links_area").innerHTML = links_html;
+  } catch (error) {
+    console.error(error);
+    links_html = draw_links_error_message();
+    document.getElementById("links_area").innerHTML = links_html;
+    enable_copy_error_message_to_clipboard_listener("copy_error_message_to_clipboard", error);
   }
 }
 
@@ -166,7 +176,7 @@ function draw_existing_links(links) {
       links_html += '<br>';
 
     if (item.time)
-      links_html += `time: ${item.time}, `;
+      links_html += `${item.what_to_do} time: ${item.time}, `;
     if (item.importance)
       links_html += `importance: ${item.importance}, `;
     if (item.tags)
@@ -343,6 +353,12 @@ function enable_tags_hint_listeners() {
   });
 }
 
+function enable_copy_error_message_to_clipboard_listener(element_id, error_message) {
+  var element = document.getElementById(element_id);
+  element.addEventListener('click', function (event) {
+    navigator.clipboard.writeText(error_message);
+  });
+}
 /*
 function enable_radios_listener(radio_name) {
   document.querySelectorAll(`input[name='${radio_name}']`).forEach((input) => {
