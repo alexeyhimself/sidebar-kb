@@ -149,8 +149,10 @@ function draw_links() {
     links_html = draw_existing_links(links);
 
   document.getElementById("links_area").innerHTML = links_html;
-  if (links.length > 10)
+  if (links.length > 10) {
     document.getElementById("number_of_links").innerHTML = links.length;
+    document.getElementById("links_export").style.display = '';
+  }
 }
 
 function draw_existing_links(links) {
