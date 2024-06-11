@@ -10,6 +10,33 @@ function sort_dict_by_value_desc(dict) {  // https://www.geeksforgeeks.org/how-t
       return acc;
     }, {});
 }
+function sort_dicts_by_value(property) {  // https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
+  var sortOrder = 1;
+  if(property[0] === "-") {
+    sortOrder = -1;
+    property = property.substr(1);
+  }
+  return function (a,b) {
+    if (!a[property] || !b[property])  // my change: if undefined, move them to the end of list
+      return sortOrder;
+    /* next line works with strings and numbers, 
+     * and you may want to customize it to your needs
+     */
+    var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+    return result * sortOrder;
+  }
+}
+function sort_dicts_by_multiple_values() {
+  var props = arguments;
+  return function (obj1, obj2) {
+    var i = 0, result = 0, numberOfProperties = props.length;
+    while(result === 0 && i < numberOfProperties) {
+      result = sort_dicts_by_value(props[i])(obj1, obj2);
+      i++;
+    }
+    return result;
+  }
+}
 
 function load_tags_from_local_storage() {
   const tags = localStorage.getItem("tags") || "{}";
@@ -82,6 +109,8 @@ function suggest_tags() {
 function load_links_from_local_storage() {
   let links = localStorage.getItem("links") || "[]";
       links = JSON.parse(links);
+
+  links.sort(sort_dicts_by_multiple_values("-importance", "-date_created"));
   let links_html = '';
   links.forEach((item) => {
     if (!item.title)
