@@ -106,11 +106,23 @@ function suggest_tags() {
   enable_tags_hint_listeners();
 }
 
-function load_links_from_local_storage() {
-  let links = localStorage.getItem("links") || "[]";
-      links = JSON.parse(links);
+function draw_links_placeholder() {
+  return `<p id="links_placeholder"><b>You have no saved links yet.</b><br>Collect some &mdash; and they'll appear here</p>`;
+}
 
-  links.sort(sort_dicts_by_multiple_values("-importance", "-date_created"));
+function draw_links() {
+  const links = load_links_from_local_storage();
+
+  let links_html = '';
+  if (links.length == 0)
+    links_html = draw_links_placeholder();
+  else
+    links_html = draw_existing_links(links);
+
+  document.getElementById("links_area").innerHTML = links_html;
+}
+
+function draw_existing_links(links) {
   let links_html = '';
   links.forEach((item) => {
     if (!item.title)
@@ -126,11 +138,21 @@ function load_links_from_local_storage() {
       links_html += `importance: ${item.importance}, `;
     if (item.tags)
       links_html += `tags: ${item.tags}`;
-    
-    
+
     links_html += '</p>';
   });
-  document.getElementById("links_area").innerHTML = links_html;// + links_html;
+
+  if (links.length > 10)
+    links_html += `Total number of saved links: ${links.length}`;
+
+  return links_html;
+}
+
+function load_links_from_local_storage() {
+  let links = localStorage.getItem("links") || "[]";
+      links = JSON.parse(links);
+      links.sort(sort_dicts_by_multiple_values("-importance", "-date_created"));
+  return links;
 }
 
 function collect_data_from_the_save_link_form() {
@@ -309,11 +331,11 @@ function enable_selector_listener(element_id) {
 }
 
 window.onload = function() {
-  load_links_from_local_storage();
+  draw_links(); // remove this
   enable_textareas_listeners(save_link_textareas_ids);
   enable_buttons_listeners({
     "save": save_current_link, 
-    "find-tab": load_links_from_local_storage
+    "find-tab": draw_links
   });
   enable_range_listener("importance");
   enable_selector_listener("what_to_do");

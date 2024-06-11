@@ -114,7 +114,7 @@ select {
 }
 
 #find-tab-pane {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: calc(100vh - 60px);
 }
 #summary {
@@ -123,4 +123,9 @@ select {
 
 #what_to_do {
   cursor: pointer;
+}
+#links_placeholder {
+  text-align: center;
+  position: relative;
+  margin-top: 38vh;
 }
