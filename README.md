@@ -3,10 +3,10 @@ This is an MVP for a Personal Knowledge Base side panel extension for Google Chr
 ![image](https://www.dropbox.com/scl/fi/6wb77q2inrk2bcy7ivqjp/2024-06-11-00.17.00.jpg?rlkey=tpuxw2dntgf39hg95jxyl0rrq&raw=1)
 
 ## How to install
-1. Clone this repository (or download it as a ZIP-archive and unpack).
+1. Clone this repository (or download it as a ZIP-archive and unpack)
 2. In "kebab" menu of Google Chrome go to: "Extensions" → "Manage Extensions"
-3. In the upper left corner click "Load unpacked" button
-4. Choose repository directory from step 1.
+3. In the upper right corner turn on "Developer mode"
+4. In the upper left corner click "Load unpacked" button and choose repository directory from step 1
 
 ## FAQ
 ### Where the data is stored?
