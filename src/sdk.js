@@ -89,7 +89,7 @@ function load_links_from_local_storage() {
     links_html += `<p><a href="${item.link}" target="_blank">${item.title}</a>`;
 
     if (item.time || item.importance || item.tags)
-      links_html += ' | ';
+      links_html += '<br>';
 
     if (item.time)
       links_html += `time: ${item.time}, `;
