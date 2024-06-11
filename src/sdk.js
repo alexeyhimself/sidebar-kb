@@ -136,7 +136,7 @@ function suggest_tags() {
 }
 
 function draw_links_placeholder() {
-  return `<p id="links_placeholder"><b>You have no saved links yet.</b><br>Collect some &mdash; and they'll appear here</p>`;
+  return `<p id="links_placeholder"><b>You have no saved links yet.</b><br>Collect some &mdash; they will appear 👍</p>`;
 }
 
 function draw_links() {
