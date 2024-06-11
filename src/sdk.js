@@ -38,6 +38,35 @@ function sort_dicts_by_multiple_values() {
   }
 }
 
+function convert_array_of_objects_to_csv(array_of_objects) {  // https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
+  let array_of_arrays = [["link", "title", "summary", "time", "tags", "importance", "what_to_do"]];
+  array_of_objects.forEach((obj) => {
+    array_of_arrays.push([obj.link, obj.title, obj.summary, obj.time, obj.tags, obj.importance, obj.what_to_do]);
+  });
+  return array_of_arrays.map(row =>
+    row
+    .map(String)  // convert every value to String
+    .map(v => v.replaceAll('"', '""'))  // escape double quotes
+    .map(v => `"${v}"`)  // quote it
+    .join(',')  // comma-separated
+  ).join('\r\n');  // rows starting on new lines
+}
+function download_as_file(content) {
+  var blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+  var url = URL.createObjectURL(blob);
+
+  // Create a link to download it
+  var pom = document.createElement('a');
+  pom.href = url;
+  pom.setAttribute('download', 'exported_links.csv');
+  pom.click();
+}
+function download_as_csv() {
+  const links = load_links_from_local_storage();
+  const csv = convert_array_of_objects_to_csv(links);
+  download_as_file(csv);
+}
+
 function load_tags_from_local_storage() {
   const tags = localStorage.getItem("tags") || "{}";
   return JSON.parse(tags);
@@ -120,6 +149,8 @@ function draw_links() {
     links_html = draw_existing_links(links);
 
   document.getElementById("links_area").innerHTML = links_html;
+  if (links.length > 10)
+    document.getElementById("number_of_links").innerHTML = links.length;
 }
 
 function draw_existing_links(links) {
@@ -142,9 +173,6 @@ function draw_existing_links(links) {
     links_html += '</p>';
   });
 
-  if (links.length > 10)
-    links_html += `Total number of saved links: ${links.length}`;
-
   return links_html;
 }
 
@@ -165,7 +193,6 @@ function collect_data_from_the_save_link_form() {
     current_link[element_id] = document.getElementById(element_id).value.trim();
   }
 
-  //console.log(current_link);
   return current_link;
 }
 
@@ -331,11 +358,11 @@ function enable_selector_listener(element_id) {
 }
 
 window.onload = function() {
-  draw_links(); // remove this
   enable_textareas_listeners(save_link_textareas_ids);
   enable_buttons_listeners({
     "save": save_current_link, 
-    "find-tab": draw_links
+    "find-tab": draw_links,
+    "links_export": download_as_csv,
   });
   enable_range_listener("importance");
   enable_selector_listener("what_to_do");

@@ -11,10 +11,9 @@ body, textarea, button, label, input, select, p, a {
 
 #links_area {
   padding: 10px;
-  font-size: 0.97em!important;
 }
 
-.margin-5 {
+.margin-8 {
   width: calc(100% - 16px);
   margin: 8px 8px 0 8px;
 }
@@ -87,7 +86,6 @@ textarea, input, button#save {
   top: -75px;
   left: 22px;
   color: #585c5f;
-  font-size: 0.97em;
   z-index: 0;
 }
 
@@ -114,8 +112,8 @@ select {
 }
 
 #find-tab-pane {
-  overflow-y: auto;
   height: calc(100vh - 60px);
+  overflow-y: auto;
 }
 #summary {
   overflow-y: hidden;
@@ -128,4 +126,8 @@ select {
   text-align: center;
   position: relative;
   margin-top: 38vh;
+}
+
+#links_export {
+  margin: 5px 0 8px 8px;
 }

@@ -28,11 +28,11 @@
       </ul>
       <div class="tab-content" id="tabsContent">
         <div class="tab-pane fade show active" id="save-tab-pane" role="tabpanel" aria-labelledby="save-tab" tabindex="0">
-          <textarea class="form-control margin-5" id="link" type="text" placeholder="Drag & drop / paste link here"></textarea>
-          <textarea class="form-control margin-5" id="title" type="text" placeholder="Add a human-friendly name for the link"></textarea>
-          <textarea class="form-control margin-5" id="summary" type="text" placeholder="Add summary / notes / source link" rows="1"></textarea>
+          <textarea class="form-control margin-8" id="link" type="text" placeholder="Drag & drop / paste link here"></textarea>
+          <textarea class="form-control margin-8" id="title" type="text" placeholder="Add a human-friendly name for the link"></textarea>
+          <textarea class="form-control margin-8" id="summary" type="text" placeholder="Add summary / notes / source link" rows="1"></textarea>
 
-          <div class="margin-5">
+          <div class="margin-8">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
               <div class="btn-group" role="group">
                 <select class="form-select left-half-border-radius" id="what_to_do">
@@ -48,14 +48,14 @@
             </div>
           </div>
 
-          <textarea class="form-control margin-5" id="tags" type="text" placeholder="Add tags separated by commas" rows="1"></textarea>
+          <textarea class="form-control margin-8" id="tags" type="text" placeholder="Add tags separated by commas" rows="1"></textarea>
           <p id="tags_hint"></p>
 
-          <input class="form-control form-range- margin-5" id="importance" type="range" title="Importance: from Low (on the left) to High (on the right)" value2="0">
+          <input class="form-control form-range- margin-8" id="importance" type="range" title="Importance: from Low (on the left) to High (on the right)" value2="0">
 
           <div class="row" style="margin: 0;">
             <div class="col" style="padding: 0;">
-              <button id="save" class="btn btn-primary margin-5 disabled" type="button">Save link</button>
+              <button id="save" class="btn btn-primary margin-8 disabled" type="button">Save link</button>
             </div>
           </div>
 
@@ -64,6 +64,7 @@
 
         <div class="tab-pane fade" id="find-tab-pane" role="tabpanel" aria-labelledby="find-tab" tabindex="0">
           <div id="links_area"></div>
+          <a href="#" id="links_export">💾 Export all <span id="number_of_links"></span> links as CSV</a>
         </div>
       </div>
     </div>
