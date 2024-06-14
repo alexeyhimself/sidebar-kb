@@ -152,6 +152,7 @@ select {
   /*background: #dee2e6; */
   background: lightgray;
   float: left;
+  border-radius: 0 0 10px 10px;
 }
 #chart_what_to_do {
   top: -140px;
@@ -160,4 +161,5 @@ select {
   width: 1%; 
   background: #0075ff; 
   float: left;
+  border-radius: 0 0 10px 10px;
 }
