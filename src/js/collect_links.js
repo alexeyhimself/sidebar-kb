@@ -154,6 +154,8 @@ function hide_fields_if_necessary(element) {
   if (element.value == "tool" || element.value == "course") {
     document.getElementById("importance").style.display = 'none';
     document.getElementById("importance_placeholder").style.display = 'none';
+    document.getElementById("chart_total").style.display = 'none';
+    document.getElementById("chart_what_to_do").style.display = 'none';
     document.getElementById("time").style.display = 'none';
     document.getElementById("what_to_do").classList.add("all-around-border-radius");
     document.getElementById("tags").focus();
@@ -161,6 +163,8 @@ function hide_fields_if_necessary(element) {
   else {
     document.getElementById("importance").style.display = '';
     document.getElementById("importance_placeholder").style.display = '';
+    document.getElementById("chart_total").style.display = '';
+    document.getElementById("chart_what_to_do").style.display = '';
     document.getElementById("time").style.display = '';
     document.getElementById("what_to_do").classList.remove("all-around-border-radius");
     document.getElementById("time").focus();
@@ -241,6 +245,7 @@ function enable_selector_listener(element_id) {
   var element = document.getElementById(element_id);  
   element.addEventListener('change', function (event) {
     hide_fields_if_necessary(event.target);
+    draw_links_stats_chart_under_importance_bar("chart_what_to_do", event.target.value);
   });
 }
 
@@ -251,4 +256,6 @@ function enable_collect_links() {
   });
   enable_range_listener("importance");
   enable_selector_listener("what_to_do");
+  draw_links_stats_chart_under_importance_bar("chart_total");
+  draw_links_stats_chart_under_importance_bar("chart_what_to_do", "read");
 }

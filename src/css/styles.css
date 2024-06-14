@@ -86,7 +86,7 @@ textarea, input, button#save {
   top: -75px;
   left: 22px;
   color: #585c5f;
-  z-index: 0;
+  z-index: 1;
 }
 
 .btn-group {
@@ -135,4 +135,29 @@ select {
 #link, #title {
   min-height: 59px!important;
   overflow-y: hidden;
+}
+
+#chart_total, #chart_what_to_do {
+  height: 36px; 
+  width: calc(100% - 16px - 42px); 
+  background: transparent; 
+  position: relative; 
+  top: -104px; 
+  z-index: 0; 
+  margin: 0 27px; 
+  transform: rotateX(-180deg);
+}
+.chart_total {
+  width: 1%; 
+  /*background: #dee2e6; */
+  background: lightgray;
+  float: left;
+}
+#chart_what_to_do {
+  top: -140px;
+}
+.chart_what_to_do {
+  width: 1%; 
+  background: #0075ff; 
+  float: left;
 }
