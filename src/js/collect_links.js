@@ -249,6 +249,54 @@ function enable_selector_listener(element_id) {
   });
 }
 
+var chart_total_max = 0;
+var chart_what_to_do_max = 0;
+
+function calculate_links_stats_for_importance_bar(what_to_do) {
+  let links = load_links_from_local_storage();
+  let stats = {};
+  let max = 0;
+  for (let i in links) {
+    let link = links[i];
+    if (!link.importance)
+      continue;
+
+    if (what_to_do) {
+      if (link.what_to_do != what_to_do)
+        continue;
+    }
+
+    if (!stats[link.importance])
+      stats[link.importance] = 1;
+    else
+      stats[link.importance] += 1;
+
+    if (stats[link.importance] > max)
+      max = stats[link.importance];
+  }
+  
+  if (what_to_do)
+    chart_what_to_do_max = max;
+  else
+    chart_total_max = max;
+
+  return stats;
+}
+function draw_links_stats_chart_under_importance_bar(chart_id, what_to_do) {
+  const stats = calculate_links_stats_for_importance_bar(what_to_do);
+  const max = chart_total_max;
+
+  let content = '';
+  for (let i = 0; i < 100; i++) {
+    let items = stats[i];
+    if (items)
+      content += `<div style="height: ${items * 100 / (max * 1.2)}%;" class="${chart_id}"></div>`;
+    else
+      content += `<div style="height: 1px;" class="${chart_id}"></div>`;
+  }
+  document.getElementById(chart_id).innerHTML = content;
+}
+
 function enable_collect_links() {
   enable_textareas_listeners(save_link_textareas_ids);
   enable_buttons_listeners({
