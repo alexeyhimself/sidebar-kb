@@ -131,3 +131,8 @@ select {
 #links_export {
   margin: 5px 0 8px 8px;
 }
+
+#link, #title {
+  min-height: 59px!important;
+  overflow-y: hidden;
+}

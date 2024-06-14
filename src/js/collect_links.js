@@ -146,7 +146,7 @@ function adjust_textarea_size(element) {  // https://stackoverflow.com/questions
 
 function shirk_textareas_if_necessary(element) {
   //if (save_link_textareas_ids.includes(element.id))
-  if (element.id == "summary")
+  if (["link", "title", "summary"].includes(element.id))
     adjust_textarea_size(element);
 }
 
