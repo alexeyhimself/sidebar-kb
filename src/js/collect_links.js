@@ -151,7 +151,7 @@ function shirk_textareas_if_necessary(element) {
 }
 
 function hide_fields_if_necessary(element) {
-  if (element.value == "tool") {
+  if (element.value == "tool" || element.value == "course") {
     document.getElementById("importance").style.display = 'none';
     document.getElementById("importance_placeholder").style.display = 'none';
     document.getElementById("time").style.display = 'none';
