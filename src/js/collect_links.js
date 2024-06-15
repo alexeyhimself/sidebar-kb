@@ -14,7 +14,10 @@ function update_tags_in_local_storage(new_tags) {
 
   new_tags = new_tags.split(",");
   for (let i in new_tags) {
-    const new_tag = new_tags[i].trim();
+    const new_tag = new_tags[i].trim().replace(/(?:\r\n|\r|\n)/g, '');
+    if (!new_tag)
+      continue;
+
     // recalculate existing tags stats
     if (new_tag in existing_tags)
       existing_tags[new_tag] += 1;
@@ -142,7 +145,7 @@ function dim_range_placeholder_in_thumb_proximity(priority) {
     priority = document.getElementById("priority").value;
 
   const priority_placeholder_element = document.getElementById("priority_placeholder");
-  if (priority < 38)  // 38 is the length of "Set priority" placeholder
+  if (priority < 26)  // the length of "Set priority" placeholder
     priority_placeholder_element.style.color = '#585c5f70';
   else
     priority_placeholder_element.style.color = '#585c5fff';
