@@ -1,5 +1,5 @@
 const save_link_textareas_ids = ["link", "title", "summary", "time", "tags"];
-const range_and_selector_ids = ["importance", "what_to_do"];
+const range_and_selector_ids = ["priority", "what_to_do"];
 
 
 function load_tags_from_local_storage() {
@@ -93,6 +93,8 @@ function save_current_link() {
   clear_save_link_form();
   disable_save_button();
   document.getElementById("tags_hint").innerHTML = "";
+  draw_links_stats_chart_under_priority_bar("chart_what_to_do");
+  // shirk_textareas_if_necessary();
 }
 
 function save_data_to_local_storage(what_to_save) {
@@ -133,15 +135,15 @@ function enable_tags_hint_on_any_value_only() {
   }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
 }
 
-function dim_range_placeholder_in_thumb_proximity(importance) {
-  if (!importance)  // initial start of the event listener
-    importance = document.getElementById("importance").value;
+function dim_range_placeholder_in_thumb_proximity(priority) {
+  if (!priority)  // initial start of the event listener
+    priority = document.getElementById("priority").value;
 
-  const importance_placeholder_element = document.getElementById("importance_placeholder");
-  if (importance < 38)  // 38 is the length of "Set importance" placeholder
-    importance_placeholder_element.style.color = '#585c5f70';
+  const priority_placeholder_element = document.getElementById("priority_placeholder");
+  if (priority < 38)  // 38 is the length of "Set priority" placeholder
+    priority_placeholder_element.style.color = '#585c5f70';
   else
-    importance_placeholder_element.style.color = '#585c5fff';
+    priority_placeholder_element.style.color = '#585c5fff';
 }
 
 function adjust_textarea_size(element) {  // https://stackoverflow.com/questions/995168/textarea-to-resize-based-on-content-length
@@ -150,15 +152,14 @@ function adjust_textarea_size(element) {  // https://stackoverflow.com/questions
 }
 
 function shirk_textareas_if_necessary(element) {
-  //if (save_link_textareas_ids.includes(element.id))
   if (["link", "title", "summary"].includes(element.id))
     adjust_textarea_size(element);
 }
 
 function hide_fields_if_necessary(element) {
   if (element.value == "tool" || element.value == "course") {
-    document.getElementById("importance").style.display = 'none';
-    document.getElementById("importance_placeholder").style.display = 'none';
+    document.getElementById("priority").style.display = 'none';
+    document.getElementById("priority_placeholder").style.display = 'none';
     document.getElementById("chart_total").style.display = 'none';
     document.getElementById("chart_what_to_do").style.display = 'none';
     document.getElementById("time").style.display = 'none';
@@ -166,8 +167,8 @@ function hide_fields_if_necessary(element) {
     document.getElementById("tags").focus();
   }
   else {
-    document.getElementById("importance").style.display = '';
-    document.getElementById("importance_placeholder").style.display = '';
+    document.getElementById("priority").style.display = '';
+    document.getElementById("priority_placeholder").style.display = '';
     document.getElementById("chart_total").style.display = '';
     document.getElementById("chart_what_to_do").style.display = '';
     document.getElementById("time").style.display = '';
@@ -215,8 +216,8 @@ function enable_range_listener(element_id) {
 
   var element = document.getElementById(element_id);
   element.addEventListener('change', function (event) {
-    const importance = parseInt(this.value);
-    dim_range_placeholder_in_thumb_proximity(importance);
+    const priority = parseInt(this.value);
+    dim_range_placeholder_in_thumb_proximity(priority);
   });
 }
 
@@ -250,20 +251,20 @@ function enable_selector_listener(element_id) {
   var element = document.getElementById(element_id);  
   element.addEventListener('change', function (event) {
     hide_fields_if_necessary(event.target);
-    draw_links_stats_chart_under_importance_bar("chart_what_to_do", event.target.value);
+    draw_links_stats_chart_under_priority_bar("chart_what_to_do", event.target.value);
   });
 }
 
 var chart_total_max = 0;
 var chart_what_to_do_max = 0;
 
-function calculate_links_stats_for_importance_bar(what_to_do) {
+function calculate_links_stats_for_priority_bar(what_to_do) {
   let links = load_links_from_local_storage();
   let stats = {};
   let max = 0;
   for (let i in links) {
     let link = links[i];
-    if (!link.importance)
+    if (!link.priority)
       continue;
 
     if (what_to_do) {
@@ -271,13 +272,13 @@ function calculate_links_stats_for_importance_bar(what_to_do) {
         continue;
     }
 
-    if (!stats[link.importance])
-      stats[link.importance] = 1;
+    if (!stats[link.priority])
+      stats[link.priority] = 1;
     else
-      stats[link.importance] += 1;
+      stats[link.priority] += 1;
 
-    if (stats[link.importance] > max)
-      max = stats[link.importance];
+    if (stats[link.priority] > max)
+      max = stats[link.priority];
   }
   
   if (what_to_do)
@@ -287,8 +288,11 @@ function calculate_links_stats_for_importance_bar(what_to_do) {
 
   return stats;
 }
-function draw_links_stats_chart_under_importance_bar(chart_id, what_to_do) {
-  const stats = calculate_links_stats_for_importance_bar(what_to_do);
+function draw_links_stats_chart_under_priority_bar(chart_id, what_to_do) {
+  if (!what_to_do)
+    what_to_do = document.getElementById("what_to_do").value;
+
+  const stats = calculate_links_stats_for_priority_bar(what_to_do);
   const max = chart_total_max;
 
   let content = '';
@@ -312,8 +316,8 @@ function enable_collect_links() {
   enable_buttons_listeners({
     "save": save_current_link
   });
-  enable_range_listener("importance");
+  enable_range_listener("priority");
   enable_selector_listener("what_to_do");
-  draw_links_stats_chart_under_importance_bar("chart_total");
-  draw_links_stats_chart_under_importance_bar("chart_what_to_do", "read");
+  draw_links_stats_chart_under_priority_bar("chart_total");
+  draw_links_stats_chart_under_priority_bar("chart_what_to_do");
 }

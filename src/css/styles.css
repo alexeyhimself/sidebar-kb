@@ -41,7 +41,7 @@ body {
   border-radius: 0 15px 0 0;
 }
 
-#importance {
+#priority {
   height: 60px;
   cursor: pointer;
   background: transparent;
@@ -82,7 +82,7 @@ textarea, input, button#save {
   border-radius: 0 12px 12px 0!important;
 }
 
-#importance_placeholder {
+#priority_placeholder {
   position: relative;
   top: -98px;
   left: 22px;
