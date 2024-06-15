@@ -92,7 +92,7 @@ function save_current_link() {
   save_data_to_local_storage(collect_data_from_the_save_link_form());
   clear_save_link_form();
   disable_save_button();
-  document.getElementById("tags_hint").innerHTML = "";
+  draw_links_stats_chart_under_priority_bar("chart_total");
   draw_links_stats_chart_under_priority_bar("chart_what_to_do");
   // shirk_textareas_if_necessary();
 }
@@ -106,6 +106,8 @@ function save_data_to_local_storage(what_to_save) {
   update_tags_in_local_storage(what_to_save.tags);
 }
 function clear_save_link_form() {
+  document.getElementById("tags_hint").innerHTML = "";
+
   save_link_textareas_ids.forEach((id) => {
     document.getElementById(id).value = "";
   });
@@ -296,7 +298,7 @@ function draw_links_stats_chart_under_priority_bar(chart_id, what_to_do) {
   const max = chart_total_max;
 
   let content = '';
-  for (let i = 0; i < 100; i+=2) {
+  for (let i = 0; i <= 100; i+=2) {
     let items = stats[i];
     let items2 = stats[i+1];
     let items3 = items || 0;

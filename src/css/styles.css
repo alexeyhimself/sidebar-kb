@@ -140,7 +140,7 @@ select {
 
 #chart_total, #chart_what_to_do {
   height: 36px; 
-  width: calc(100% - 16px - 42px); 
+  width: calc(100% - 16px - 36px); 
   background: transparent; 
   position: relative; 
   top: -104px; 
@@ -149,7 +149,7 @@ select {
   transform: rotateX(-180deg);
 }
 .chart_total {
-  width: 2%; 
+  width: 1.96%; 
   background: mediumspringgreen;
   background: #dee2e6;
   background: lightgray;
@@ -160,7 +160,7 @@ select {
   top: -140px;
 }
 .chart_what_to_do {
-  width: 2%; 
+  width: 1.96%; 
   background: #0075ff; 
   background-: darkgray;
   float: left;
