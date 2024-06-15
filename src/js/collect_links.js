@@ -39,10 +39,9 @@ function compose_tags() {
   if (!tags.existing)
     return [];
 
-  const most_used_tags = sort_dict_by_value_desc(tags.existing);
   const most_recent_tags = tags.most_recent.reverse();
 
-  return Object.keys(most_used_tags);
+  return most_recent_tags.slice(0, 15);
 
   setTimeout(() => {
     //... suggest content-based tags
@@ -60,9 +59,15 @@ function suggest_tags() {
   if (tags.length == 0)
     return;
 
+  let most_used_tags = sort_dict_by_value_desc(load_tags_from_local_storage().existing);
+  most_used_tags = Object.keys(most_used_tags).slice(0, 15);
+
   let tags_hint = 'Tags hint: ';
   tags.forEach((tag) => {
-    tags_hint += `<a href="#" class="suggested_tag">${tag}</a>, `;
+    if (most_used_tags.includes(tag))
+      tags_hint += `<a href="#" class="suggested_tag"><b>${tag}</b></a>, `;
+    else
+      tags_hint += `<a href="#" class="suggested_tag">${tag}</a>, `;
   });
   tags_hint = tags_hint.slice(0, -2)
   document.getElementById("tags_hint").innerHTML = tags_hint;
