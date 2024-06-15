@@ -91,7 +91,7 @@ function collect_data_from_the_save_link_form() {
   return current_link;
 }
 
-function reset_form_state() {
+function reset_collect_links_form_state() {
   clear_save_link_form();
   disable_save_button();
   draw_links_stats_chart_under_priority_bar("chart_total");
@@ -104,7 +104,7 @@ function reset_form_state() {
 
 function save_current_link() {
   save_data_to_local_storage(collect_data_from_the_save_link_form());
-  reset_form_state();
+  reset_collect_links_form_state();
 }
 
 function save_data_to_local_storage(what_to_save) {
@@ -250,15 +250,6 @@ function enable_tags_hint_listeners() {
   });
 }
 
-/*
-function enable_radios_listener(radio_name) {
-  document.querySelectorAll(`input[name='${radio_name}']`).forEach((input) => {
-    input.addEventListener('change', function (event) {
-      current_link.what_to_do = event.target.id;
-    });
-  });
-}
-*/
 function enable_selector_listener(element_id) {
   var element = document.getElementById(element_id);  
   element.addEventListener('change', function (event) {
@@ -314,7 +305,7 @@ function draw_links_stats_chart_under_priority_bar(chart_id, what_to_do) {
     let items3 = items || 0;
     if (items2)
       items3 += items2;
-    //console.log(i, items, items2, items3)
+
     if (items3)
       content += `<div style="height: ${items3 * 100 / (max * 1.5)}%;" class="${chart_id}"></div>`;
     else
@@ -323,13 +314,16 @@ function draw_links_stats_chart_under_priority_bar(chart_id, what_to_do) {
   document.getElementById(chart_id).innerHTML = content;
 }
 
-function enable_collect_links() {
+function enable_collect_links_listeners() {
   enable_textareas_listeners(save_link_textareas_ids);
   enable_buttons_listeners({
     "save": save_current_link
   });
   enable_range_listener("priority");
   enable_selector_listener("what_to_do");
-  draw_links_stats_chart_under_priority_bar("chart_total");
-  draw_links_stats_chart_under_priority_bar("chart_what_to_do");
+}
+
+function enable_collect_links() {
+  enable_collect_links_listeners();
+  reset_collect_links_form_state();
 }
