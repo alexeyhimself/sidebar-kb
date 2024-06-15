@@ -258,7 +258,7 @@ function enable_selector_listener(element_id) {
 var chart_total_max = 0;
 var chart_what_to_do_max = 0;
 
-function calculate_links_stats_for_priority_bar(what_to_do) {
+function calculate_links_stats_for_priority_bar(chart_id, what_to_do) {
   let links = load_links_from_local_storage();
   let stats = {};
   let max = 0;
@@ -267,7 +267,7 @@ function calculate_links_stats_for_priority_bar(what_to_do) {
     if (!link.priority)
       continue;
 
-    if (what_to_do) {
+    if (what_to_do && chart_id == "chart_what_to_do") {
       if (link.what_to_do != what_to_do)
         continue;
     }
@@ -281,7 +281,7 @@ function calculate_links_stats_for_priority_bar(what_to_do) {
       max = stats[link.priority];
   }
   
-  if (what_to_do)
+  if (chart_id == "chart_what_to_do")
     chart_what_to_do_max = max;
   else
     chart_total_max = max;
@@ -292,7 +292,7 @@ function draw_links_stats_chart_under_priority_bar(chart_id, what_to_do) {
   if (!what_to_do)
     what_to_do = document.getElementById("what_to_do").value;
 
-  const stats = calculate_links_stats_for_priority_bar(what_to_do);
+  const stats = calculate_links_stats_for_priority_bar(chart_id, what_to_do);
   const max = chart_total_max;
 
   let content = '';
