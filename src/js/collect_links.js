@@ -91,13 +91,20 @@ function collect_data_from_the_save_link_form() {
   return current_link;
 }
 
-function save_current_link() {
-  save_data_to_local_storage(collect_data_from_the_save_link_form());
+function reset_form_state() {
   clear_save_link_form();
   disable_save_button();
   draw_links_stats_chart_under_priority_bar("chart_total");
   draw_links_stats_chart_under_priority_bar("chart_what_to_do");
-  // shirk_textareas_if_necessary();
+  save_link_textareas_ids.forEach((id) => {
+    let textarea = document.getElementById(id);
+    adjust_textarea_size(textarea);
+  });
+}
+
+function save_current_link() {
+  save_data_to_local_storage(collect_data_from_the_save_link_form());
+  reset_form_state();
 }
 
 function save_data_to_local_storage(what_to_save) {
