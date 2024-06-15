@@ -42,11 +42,12 @@ body {
 }
 
 #importance {
-  height: 36.5px;
+  height: 60px;
   cursor: pointer;
   background: transparent;
   position: relative;
   z-index: 10;
+  padding-bottom: 30px;
 }
 
 #container {
@@ -83,7 +84,7 @@ textarea, input, button#save {
 
 #importance_placeholder {
   position: relative;
-  top: -75px;
+  top: -98px;
   left: 22px;
   color: #585c5f;
   z-index: 1;
@@ -148,8 +149,9 @@ select {
   transform: rotateX(-180deg);
 }
 .chart_total {
-  width: 1%; 
-  /*background: #dee2e6; */
+  width: 2%; 
+  background: mediumspringgreen;
+  background: #dee2e6;
   background: lightgray;
   float: left;
   border-radius: 0 0 10px 10px;
@@ -158,8 +160,9 @@ select {
   top: -140px;
 }
 .chart_what_to_do {
-  width: 1%; 
+  width: 2%; 
   background: #0075ff; 
+  background-: darkgray;
   float: left;
   border-radius: 0 0 10px 10px;
 }

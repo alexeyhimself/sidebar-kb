@@ -287,10 +287,15 @@ function draw_links_stats_chart_under_importance_bar(chart_id, what_to_do) {
   const max = chart_total_max;
 
   let content = '';
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 100; i+=2) {
     let items = stats[i];
-    if (items)
-      content += `<div style="height: ${items * 100 / (max * 1.2)}%;" class="${chart_id}"></div>`;
+    let items2 = stats[i+1];
+    let items3 = items || 0;
+    if (items2)
+      items3 += items2;
+    //console.log(i, items, items2, items3)
+    if (items3)
+      content += `<div style="height: ${items3 * 100 / (max * 1.5)}%;" class="${chart_id}"></div>`;
     else
       content += `<div style="height: 1px;" class="${chart_id}"></div>`;
   }
