@@ -203,14 +203,14 @@ function enable_textareas_listeners(elements_ids) {
     const element_id = elements_ids[i];
 
     var element = document.getElementById(element_id);
-    element.addEventListener('drop', function (event) {
+    element.addEventListener('drop', handler);
+    element.addEventListener('keyup', handler);
+    element.addEventListener('dblclick', handler);
+
+    function handler(event) {
       //current_link[element_id] = event.dataTransfer.getData('text');
       what_to_do_on_textareas_content_change(event);
-    });
-    element.addEventListener('keyup', function (event) { // change, paste
-      //current_link[element_id] = this.value;
-      what_to_do_on_textareas_content_change(event);
-    });
+    }
   }
 }
 
