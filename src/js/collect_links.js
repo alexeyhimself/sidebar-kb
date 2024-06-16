@@ -44,7 +44,7 @@ function compose_tags() {
 
   const most_recent_tags = tags.most_recent.reverse();
 
-  return most_recent_tags.slice(0, 15);
+  return most_recent_tags.slice(0, 30);
 
   setTimeout(() => {
     //... suggest content-based tags
@@ -97,8 +97,7 @@ function reset_collect_links_form_state() {
   draw_links_stats_chart_under_priority_bar("chart_total");
   draw_links_stats_chart_under_priority_bar("chart_what_to_do");
   save_link_textareas_ids.forEach((id) => {
-    let textarea = document.getElementById(id);
-    adjust_textarea_size(textarea);
+    adjust_textarea_size(document.getElementById(id));
   });
 }
 
@@ -164,6 +163,7 @@ function adjust_textarea_size(element) {  // https://stackoverflow.com/questions
 }
 
 function shirk_textareas_if_necessary(element) {
+  console.log(1)
   if (["link", "title", "summary"].includes(element.id))
     adjust_textarea_size(element);
 }
@@ -325,5 +325,6 @@ function enable_collect_links_listeners() {
 
 function enable_collect_links() {
   enable_collect_links_listeners();
-  reset_collect_links_form_state();
+  draw_links_stats_chart_under_priority_bar("chart_total");
+  draw_links_stats_chart_under_priority_bar("chart_what_to_do");
 }
