@@ -163,7 +163,6 @@ function adjust_textarea_size(element) {  // https://stackoverflow.com/questions
 }
 
 function shirk_textareas_if_necessary(element) {
-  console.log(1)
   if (["link", "title", "summary"].includes(element.id))
     adjust_textarea_size(element);
 }
@@ -260,7 +259,8 @@ function enable_selector_listener(element_id) {
 
 function enable_side_panel_dblclick_listener() {
   var element = document.getElementById("link");
-  element.addEventListener('dblclick', function (event) {
+  element.addEventListener('dblclick', async function (event) {
+    /*
     chrome.tabs.query({
       active: true,
       lastFocusedWindow: true
@@ -272,8 +272,34 @@ function enable_side_panel_dblclick_listener() {
       title.value = tab.title;
       adjust_textarea_size(link);
       adjust_textarea_size(title);
+    */
+    const [tab] = await chrome.tabs.query({
+      active: true,
+      lastFocusedWindow: true
     });
-  });
+
+    const tabId = tab.id;
+
+      let a = await chrome.scripting
+        .executeScript({
+          target: {tabId : tabId},
+          func: () => {
+            const words = document.body.innerText.replace(/(?:\r\n|\r|\n)/g, ' ').trim().split(/\s+/).length;
+            return {"title": document.title, "url": document.location.href, "words": words};
+          },
+        });
+        //console.log(a);
+        a = a[0].result;
+      let link = document.getElementById("link");
+      link.value = a.url;
+      let title = document.getElementById("title")
+      title.value = a.title;
+      let time = document.getElementById("time")
+      time.value = parseInt(a.words / 150) + 'm';
+      adjust_textarea_size(link);
+      adjust_textarea_size(title);
+    });
+  //});
 }
 
 
