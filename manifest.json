@@ -16,7 +16,8 @@
   //    "matches": ["https://www.google.com/*"]
   //  }
   //],
-  "permissions": ["sidePanel", "contextMenus"],
+  //"permissions": ["sidePanel", "contextMenus"],
+  "permissions": ["sidePanel", "contextMenus", "tabs"],
   "icons": {
     //"16": "images/icon-16.png",
     //"48": "images/icon-48.png",

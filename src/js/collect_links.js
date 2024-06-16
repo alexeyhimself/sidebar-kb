@@ -258,6 +258,21 @@ function enable_selector_listener(element_id) {
   });
 }
 
+function enable_side_panel_dblclick_listener() {
+  var element = document.getElementById("link");
+  element.addEventListener('dblclick', function (event) {
+    chrome.tabs.query({
+      active: true,
+      lastFocusedWindow: true
+    }, function(tabs) {
+      const tab = tabs[0];
+      document.getElementById("link").value = tab.url;
+      document.getElementById("title").value = tab.title;
+    });
+  });
+}
+
+
 var chart_total_max = 0;
 var chart_what_to_do_max = 0;
 
@@ -321,6 +336,7 @@ function enable_collect_links_listeners() {
   });
   enable_range_listener("priority");
   enable_selector_listener("what_to_do");
+  enable_side_panel_dblclick_listener();
 }
 
 function enable_collect_links() {
