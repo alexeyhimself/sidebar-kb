@@ -266,8 +266,12 @@ function enable_side_panel_dblclick_listener() {
       lastFocusedWindow: true
     }, function(tabs) {
       const tab = tabs[0];
-      document.getElementById("link").value = tab.url;
-      document.getElementById("title").value = tab.title;
+      let link = document.getElementById("link");
+      link.value = tab.url;
+      let title = document.getElementById("title")
+      title.value = tab.title;
+      adjust_textarea_size(link);
+      adjust_textarea_size(title);
     });
   });
 }
