@@ -18,7 +18,7 @@ function enable_button_on_link_value_only() {
 
 function save_current_link() {
   save_data_to_local_storage(collect_data_from_the_save_link_form());
-  reset_collect_links_form_state();
+  reset_collect_links_form_state_after_save();
 }
 
 function save_data_to_local_storage(what_to_save) {

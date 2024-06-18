@@ -67,3 +67,8 @@ function get_hostname(link) {  // https://stackoverflow.com/questions/8498592/ex
   const { hostname } = new URL(link);
   return hostname.replace(/^www\./g, '');  // remove starting "www."
 }
+
+function adjust_textarea_size(element) {  // https://stackoverflow.com/questions/995168/textarea-to-resize-based-on-content-length
+  element.style.height = "1px";
+  element.style.height = (element.scrollHeight) + "px";
+}
