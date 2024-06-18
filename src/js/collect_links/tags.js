@@ -53,6 +53,16 @@ function compose_tags() {
   */
 }
 
+function draw_tags_hint(tags) {
+  let tags_hint = 'Tags hint: ';
+  tags.forEach((tag) => {
+    tags_hint += `<a href="#" class="suggested_tag">${tag}</a>, `;
+  });
+  tags_hint = tags_hint.slice(0, -2)
+  document.getElementById("tags_hint").innerHTML = tags_hint;
+  enable_tags_hint_listeners();
+}
+
 function suggest_tags() {
   const tags = compose_tags();
   if (tags.length == 0)

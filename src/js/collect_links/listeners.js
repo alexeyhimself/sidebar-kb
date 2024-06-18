@@ -58,50 +58,61 @@ function enable_selector_listener(element_id) {
   });
 }
 
+function count_words_stats(words_list) {
+  result = {};
+  words_list.forEach((word) => {
+    word = word.toLowerCase();
+    if (word in result)
+      result[word] += 1;
+    else
+      result[word] = 1;
+  });
+  return result;
+}
+
+var b;
 function enable_side_panel_dblclick_listener() {
   var element = document.getElementById("link");
   element.addEventListener('dblclick', async function (event) {
+    const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+
+    let page_object = await chrome.scripting.executeScript({
+      target: {tabId : tab.id},
+      func: () => {
+        const words_list = document.body.innerText.replace(/(?:\r\n|\r|\n|:|%|\.|,|;|\?|!|'|\(|\)|\[|\]|0|1|2|3|4|5|6|7|8|9)/g, ' ').trim().split(/\s+/);
+        return {"title": document.title, "url": document.location.href, "words_list": words_list};
+      },
+    });
+    page_object = page_object[0].result;
+
+    words_on_page = count_words_stats(page_object.words_list);
     /*
-    chrome.tabs.query({
-      active: true,
-      lastFocusedWindow: true
-    }, function(tabs) {
-      const tab = tabs[0];
-      let link = document.getElementById("link");
-      link.value = tab.url;
-      let title = document.getElementById("title")
-      title.value = tab.title;
-      adjust_textarea_size(link);
-      adjust_textarea_size(title);
+    for (key in b) {
+      console.log(key, b[key]);
+    }
     */
-    const [tab] = await chrome.tabs.query({
-      active: true,
-      lastFocusedWindow: true
-    });
 
-    const tabId = tab.id;
+    let tags = load_tags_from_local_storage();
+    tags = Object.keys(tags.existing);
+    let res = {};
+    tags.forEach((tag) => {
+      if (tag in words_on_page)
+        res[tag] = words_on_page[tag];
+    })
+    let em = Object.keys(sort_dict_by_value_desc(res));
+    draw_tags_hint(em);
 
-      let a = await chrome.scripting
-        .executeScript({
-          target: {tabId : tabId},
-          func: () => {
-            const words = document.body.innerText.replace(/(?:\r\n|\r|\n)/g, ' ').trim().split(/\s+/).length;
-            return {"title": document.title, "url": document.location.href, "words": words};
-          },
-        });
-        //console.log(a);
-        a = a[0].result;
-      let link = document.getElementById("link");
-      link.value = a.url;
-      let title = document.getElementById("title")
-      title.value = a.title;
-      let time = document.getElementById("time")
-      time.value = parseInt(a.words / 220) + 'm';
-      adjust_textarea_size(link);
-      adjust_textarea_size(title);
-      suggest_what_to_do(link.value);
-    });
-  //});
+    let link = document.getElementById("link");
+    link.value = page_object.url;
+    let title = document.getElementById("title")
+    title.value = page_object.title;
+    let time = document.getElementById("time")
+    time.value = parseInt(page_object.words_list.length / 220) + 'm';  // let 220 - an avg words/minute reading speed
+
+    adjust_textarea_size(link);
+    adjust_textarea_size(title);
+    suggest_what_to_do(link.value);
+  });
 }
 
 function enable_collect_links_listeners() {
