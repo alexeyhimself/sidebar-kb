@@ -107,7 +107,7 @@ function enable_side_panel_dblclick_listener() {
 function enable_collect_links_listeners() {
   enable_textareas_listeners(collect_links_textareas_ids);
   enable_buttons_listeners({
-    "save": save_current_link
+    "save": save_link
   });
   enable_range_listener("priority");
   enable_selector_listener("what_to_do");

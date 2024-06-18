@@ -8,7 +8,7 @@ function collect_data_from_the_save_link_form() {
 
   for (let i in all_input_elements_ids) {
     const element_id = all_input_elements_ids[i];
-    current_link[element_id] = document.getElementById(element_id).value.trim();
+    current_link[element_id] = document.getElementById(element_id).value.trim().replace(/(?:\r\n|\r|\n)/g, '');
   }
   return current_link;
 }
@@ -69,5 +69,5 @@ function enable_collect_links() {
   enable_collect_links_listeners();
   draw_links_stats_chart_under_priority_bar("chart_total");
   draw_links_stats_chart_under_priority_bar("chart_what_to_do");
-  fill_stats_what_to_do_for_links();
+  fill_stats_of_what_to_do_for_links();
 }

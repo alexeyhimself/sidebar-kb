@@ -8,7 +8,7 @@ function draw_links_error_message() {
 function draw_links() {
   let links_html = '';
   try {
-    const links = load_links_from_local_storage();
+    const links = load_links_from_local_storage_sorted_by();
 
     if (links.length == 0)
       links_html = draw_links_placeholder();
@@ -73,6 +73,7 @@ function convert_time_string_to_minutes(time) {  // "1h 30m" => 90
   return parseInt(hours) * 60 + parseInt(minutes);
 }
 
+/*
 function calculate_links_stats(importance) {
   if (!importance)
     importance = 0;
@@ -92,6 +93,7 @@ function calculate_links_stats(importance) {
   }
   return stats;
 }
+*/
 
 function enable_copy_error_message_to_clipboard_listener(element_id, error_message) {
   var element = document.getElementById(element_id);

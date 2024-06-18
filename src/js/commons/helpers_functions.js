@@ -58,7 +58,7 @@ function download_as_file(content) {
   pom.click();
 }
 function download_as_csv() {
-  const links = load_links_from_local_storage();
+  const links = load_links_from_local_storage_sorted_by();
   const csv = convert_array_of_objects_to_csv(links);
   download_as_file(csv);
 }
