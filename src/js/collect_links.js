@@ -1,6 +1,34 @@
 const save_link_textareas_ids = ["link", "title", "summary", "time", "tags"];
 const range_and_selector_ids = ["priority", "what_to_do"];
 
+var stats_what_to_do_for_links = {};
+
+
+function fill_stats_what_to_do_for_links() {
+  load_links_from_local_storage().forEach((link) => {
+    let hostname = get_hostname(link.link);
+
+    if (hostname in stats_what_to_do_for_links) {
+      let what_to_dos = stats_what_to_do_for_links[hostname];
+      if (link.what_to_do in what_to_dos)
+        what_to_dos[link.what_to_do] += 1;
+    }
+    else {
+      stats_what_to_do_for_links[hostname] = {};
+      stats_what_to_do_for_links[hostname][link.what_to_do] = 1;
+    }
+  });
+}
+function guess_what_to_do_by_link(link) {
+  const hostname = get_hostname(link);
+  if (hostname in stats_what_to_do_for_links) {
+    let what_to_dos = stats_what_to_do_for_links[hostname];
+    let sorted_what_to_dos = sort_dict_by_value_desc(what_to_dos);
+    return Object.keys(sorted_what_to_dos)[0];
+  }
+  else
+    return "read";
+}
 
 function load_tags_from_local_storage() {
   const tags = localStorage.getItem("tags") || "{}";
@@ -130,8 +158,11 @@ function disable_save_button() {
 }
 function enable_buttons_on_link_value_only() {
   setTimeout(() => {
-    if(document.getElementById("link").value)
+    const link = document.getElementById("link").value;
+    if(link) {
       enable_save_button();
+      suggest_what_to_do(link);
+    }
     else
       disable_save_button();
   }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
@@ -188,11 +219,17 @@ function hide_fields_if_necessary(element) {
   }
 }
 
+function suggest_what_to_do(link) {
+  const what_to_do = guess_what_to_do_by_link(link);
+  document.getElementById("what_to_do").value = what_to_do;
+}
+
 function what_to_do_on_textareas_content_change(event) {
   shirk_textareas_if_necessary(event.target);
   enable_buttons_on_link_value_only();
   enable_tags_hint_on_any_value_only();
   suggest_tags();
+  suggest_what_to_do();
 }
 
 /* LISTENERS */
@@ -295,7 +332,7 @@ function enable_side_panel_dblclick_listener() {
       let title = document.getElementById("title")
       title.value = a.title;
       let time = document.getElementById("time")
-      time.value = parseInt(a.words / 150) + 'm';
+      time.value = parseInt(a.words / 220) + 'm';
       adjust_textarea_size(link);
       adjust_textarea_size(title);
     });
@@ -373,4 +410,6 @@ function enable_collect_links() {
   enable_collect_links_listeners();
   draw_links_stats_chart_under_priority_bar("chart_total");
   draw_links_stats_chart_under_priority_bar("chart_what_to_do");
+
+  fill_stats_what_to_do_for_links();
 }

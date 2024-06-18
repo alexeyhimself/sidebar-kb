@@ -62,3 +62,8 @@ function download_as_csv() {
   const csv = convert_array_of_objects_to_csv(links);
   download_as_file(csv);
 }
+
+function get_hostname(link) {  // https://stackoverflow.com/questions/8498592/extract-hostname-name-from-string
+  const { hostname } = new URL(link);
+  return hostname.replace(/^www\./g, '');  // remove starting "www."
+}

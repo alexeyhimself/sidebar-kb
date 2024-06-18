@@ -161,8 +161,7 @@ select {
 }
 .chart_what_to_do {
   width: 1.96%; 
-  background: #0075ff; 
-  background-: darkgray;
+  background: #0075ff;
   float: left;
   border-radius: 0 0 10px 10px;
 }
