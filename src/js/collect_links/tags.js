@@ -54,20 +54,6 @@ function compose_tags() {
 }
 
 function draw_tags_hint(tags) {
-  let tags_hint = 'Tags hint: ';
-  tags.forEach((tag) => {
-    tags_hint += `<a href="#" class="suggested_tag">${tag}</a>, `;
-  });
-  tags_hint = tags_hint.slice(0, -2)
-  document.getElementById("tags_hint").innerHTML = tags_hint;
-  enable_tags_hint_listeners();
-}
-
-function suggest_tags() {
-  const tags = compose_tags();
-  if (tags.length == 0)
-    return;
-
   let most_used_tags = sort_dict_by_value_desc(load_tags_from_local_storage().existing);
   most_used_tags = Object.keys(most_used_tags).slice(0, 15);
 
@@ -80,8 +66,15 @@ function suggest_tags() {
   });
   tags_hint = tags_hint.slice(0, -2)
   document.getElementById("tags_hint").innerHTML = tags_hint;
-
   enable_tags_hint_listeners();
+}
+
+function suggest_tags() {
+  const tags = compose_tags();
+  if (tags.length == 0)
+    return;
+
+  draw_tags_hint(tags);
 }
 
 function enable_tags_hint_on_any_value_only() {
