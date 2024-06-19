@@ -79,7 +79,7 @@ function enable_side_panel_dblclick_listener() {
     let page_object = await chrome.scripting.executeScript({
       target: {tabId : tab.id},
       func: () => {
-        const words_list = document.body.innerText.replace(/(?:\r\n|\r|\n|:|%|\.|,|;|\?|!|'|\(|\)|\[|\]|0|1|2|3|4|5|6|7|8|9)/g, ' ').trim().split(/\s+/);
+        const words_list = document.body.innerText.replace(/(?:\r\n|\r|\n|:|%|\.|,|;|\?|!|'|’|\(|\)|\[|\]|0|1|2|3|4|5|6|7|8|9)/g, ' ').trim().split(/\s+/);
         return {"title": document.title, "url": document.location.href, "words_list": words_list};
       },
     });

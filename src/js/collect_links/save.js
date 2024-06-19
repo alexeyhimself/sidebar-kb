@@ -22,6 +22,7 @@ function save_link() {
   update_tags_in_local_storage(link.tags);
   update_stats_of_what_to_do_for_links(link);
   reset_collect_links_form_state_after_save();
+  enable_tags_hint_on_any_value_only();
 }
 
 function save_link_to_local_storage(link) {
