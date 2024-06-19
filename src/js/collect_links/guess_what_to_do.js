@@ -29,6 +29,8 @@ function update_stats_of_what_to_do_for_links(link) {
     let what_to_dos = stats_of_what_to_do_for_links[hostname];
     if (link.what_to_do in what_to_dos)
       what_to_dos[link.what_to_do] += 1;
+    else
+      what_to_dos[link.what_to_do] = 1;
   }
   else {
     stats_of_what_to_do_for_links[hostname] = {};
