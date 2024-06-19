@@ -33,14 +33,24 @@ function update_tags_in_local_storage(new_tags) {
   localStorage.setItem("tags", JSON.stringify(tags));
 }
 
-function compose_tags() {
-  const tags = load_tags_from_local_storage();
+function compose_tags(words_on_page) {
+  let tags = load_tags_from_local_storage();
   if (!tags.existing)
     return [];
 
-  const most_recent_tags = tags.most_recent.reverse();
-
-  return most_recent_tags.slice(0, 30);
+  if (words_on_page) {
+    tags_existing = Object.keys(tags.existing);
+    let resulting_tags = {};
+    tags_existing.forEach((existing_tag) => {
+      if (existing_tag in words_on_page)
+        resulting_tags[existing_tag] = words_on_page[existing_tag];
+    })
+    return Object.keys(resulting_tags);
+  }
+  else {
+    const most_recent_tags = tags.most_recent.reverse();
+    return most_recent_tags.slice(0, 30);
+  }
 
   setTimeout(() => {
     //... suggest content-based tags
@@ -69,8 +79,8 @@ function draw_tags_hint(tags) {
   enable_tags_hint_listeners();
 }
 
-function suggest_tags() {
-  const tags = compose_tags();
+function suggest_tags(words_on_page) {
+  const tags = compose_tags(words_on_page);
   if (tags.length == 0)
     return;
 

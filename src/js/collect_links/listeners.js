@@ -70,7 +70,6 @@ function count_words_stats(words_list) {
   return result;
 }
 
-var b;
 function enable_side_panel_dblclick_listener() {
   var element = document.getElementById("link");
   element.addEventListener('dblclick', async function (event) {
@@ -86,21 +85,8 @@ function enable_side_panel_dblclick_listener() {
     page_object = page_object[0].result;
 
     words_on_page = count_words_stats(page_object.words_list);
-    /*
-    for (key in b) {
-      console.log(key, b[key]);
-    }
-    */
 
-    let tags = load_tags_from_local_storage();
-    tags = Object.keys(tags.existing);
-    let res = {};
-    tags.forEach((tag) => {
-      if (tag in words_on_page)
-        res[tag] = words_on_page[tag];
-    })
-    let em = Object.keys(sort_dict_by_value_desc(res));
-    draw_tags_hint(em);
+    suggest_tags(words_on_page);
 
     let link = document.getElementById("link");
     link.value = page_object.url;
