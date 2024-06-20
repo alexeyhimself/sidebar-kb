@@ -9,7 +9,7 @@ function enable_button_on_link_value_only() {
     const link = document.getElementById("link").value;
     if (link) {
       enable_save_button();
-      suggest_what_to_do(link);
+      //suggest_what_to_do(link);
     }
     else
       disable_save_button();
@@ -18,6 +18,7 @@ function enable_button_on_link_value_only() {
 
 function save_link() {
   const link = collect_data_from_the_save_link_form();
+  get_hostname(link.link); // just validation of format to prevent saving of a broken link
   save_link_to_local_storage(link);
   update_tags_in_local_storage(link.tags);
   update_stats_of_what_to_do_for_links(link);
