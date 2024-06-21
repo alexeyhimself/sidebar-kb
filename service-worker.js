@@ -13,23 +13,22 @@
 // limitations under the License.
 
 chrome.runtime.onInstalled.addListener(() => {
-  /*
   chrome.contextMenus.create({
     id: 'openSidePanel',
-    title: 'Open Knowledge Base',
+    title: 'Save to Personal Knowledge Base',
     contexts: ['all']
   });
-  */
   chrome.tabs.create({ url: 'page.html' });
 });
-/*
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === 'openSidePanel') {
     // This will open the panel in all the pages on the current window.
-    chrome.sidePanel.open({ windowId: tab.windowId });
+    chrome.sidePanel.open({ windowId: tab.windowId }, () => {console.log(this)});
+    //console.log(info);
+    //console.log(tab);
+    chrome.runtime.sendMessage({ type: "context_menu_call", "link": info.linkUrl, "title": info.selectionText});
   }
 });
-*/
 
 chrome.runtime.onMessage.addListener((message, sender) => {
   // The callback for runtime.onMessage must return falsy if we're not sending a response
