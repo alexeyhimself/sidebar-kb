@@ -38,6 +38,7 @@ window.onload = function() {
       if (message.type === 'context_menu_call') {
         document.getElementById("link").value = message.link;
         document.getElementById("title").value = message.title;
+        document.getElementById("save").classList.add("context_menu_call");
       }
     })();
   });

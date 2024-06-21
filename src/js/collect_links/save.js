@@ -16,7 +16,7 @@ function enable_button_on_link_value_only() {
   }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
 }
 
-function save_link() {
+async function save_link() {
   const link = collect_data_from_the_save_link_form();
   get_hostname(link.link); // just validation of format to prevent saving of a broken link
   save_link_to_local_storage(link);
@@ -24,6 +24,14 @@ function save_link() {
   update_stats_of_what_to_do_for_links(link);
   reset_collect_links_form_state_after_save();
   enable_tags_hint_on_any_value_only();
+
+  let save_element = document.getElementById("save");
+  if (save_element.classList.contains("context_menu_call")) {
+    save_element.classList.remove("context_menu_call");
+    // if same link then close tab
+    const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+    chrome.tabs.remove(tab.id, function() { });  
+  }
 }
 
 function save_link_to_local_storage(link) {
