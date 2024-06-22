@@ -61,7 +61,9 @@ function what_to_do_on_textareas_content_change(event) {
   adjust_textarea_size(event.target);
   enable_button_on_link_value_only();
   enable_tags_hint_on_any_value_only();
-  suggest_tags();
+
+  if (!document.getElementById("save").classList.contains("context_menu_call"))
+    suggest_tags();
   //suggest_what_to_do();
 }
 

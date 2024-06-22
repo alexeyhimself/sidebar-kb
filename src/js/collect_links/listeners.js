@@ -105,6 +105,7 @@ async function fill_and_adjust(tab) {
 function enable_side_panel_dblclick_listener() {
   var element = document.getElementById("link");
   element.addEventListener('dblclick', async function (event) {
+    document.getElementById("save").classList.add("context_menu_call");
     const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
     fill_and_adjust(tab);
   });
