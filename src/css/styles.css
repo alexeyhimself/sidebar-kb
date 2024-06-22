@@ -162,6 +162,34 @@ select {
 .chart_what_to_do {
   width: 1.96%; 
   background: #0075ff;
+  background: #6ba2ff;
   float: left;
   border-radius: 0 0 10px 10px;
+}
+
+.animate_fade_in {
+  animation: fade_in 5s;
+}
+@keyframes fade_in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.animate_fade_out {
+  animation: fade_out 5s;
+}
+@keyframes fade_out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+#priority {
+  --sliderColor: #6ba2ff;
+}
+#priority::-webkit-slider-thumb {
+  width: 1rem;
+  height: 1rem;
+  background: var(--sliderColor);
+  border: 0;
+  border-radius: 1rem;
+  appearance: none;
 }

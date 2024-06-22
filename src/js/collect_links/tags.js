@@ -89,7 +89,7 @@ function suggest_tags(words_on_page) {
 
 function enable_tags_hint_on_any_value_only() {
   setTimeout(() => {
-    if(document.getElementById("link").value || document.getElementById("title").value || document.getElementById("summary").value || document.getElementById("tags").value)
+    if (document.getElementById("link").value || document.getElementById("title").value || document.getElementById("tags").value)
       document.getElementById("tags_hint").style.display = '';
     else
       document.getElementById("tags_hint").style.display = 'none';

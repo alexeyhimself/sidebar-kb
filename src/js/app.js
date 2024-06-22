@@ -32,17 +32,6 @@ function fix_data() {
 window.onload = function() {
   fix_data();
 
-  chrome.runtime.onMessage.addListener((message, sender) => {
-    // The callback for runtime.onMessage must return falsy if we're not sending a response
-    (async () => {
-      if (message.type === 'context_menu_call') {
-        document.getElementById("link").value = message.link;
-        document.getElementById("title").value = message.title;
-        document.getElementById("save").classList.add("context_menu_call");
-      }
-    })();
-  });
-
   enable_collect_links();
   enable_manage_links();
 }

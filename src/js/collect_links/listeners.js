@@ -5,10 +5,14 @@ function enable_textareas_listeners(elements_ids) {
     var element = document.getElementById(element_id);
     element.addEventListener('drop', handler);
     element.addEventListener('keyup', handler);
+    element.addEventListener('change', handler);
+    element.addEventListener('input', handler);
+    element.addEventListener('oninput', handler);
     element.addEventListener('dblclick', handler);
 
     function handler(event) {
       //current_link[element_id] = event.dataTransfer.getData('text');
+      console.log(1)
       what_to_do_on_textareas_content_change(event);
     }
   }
@@ -101,6 +105,21 @@ function enable_side_panel_dblclick_listener() {
   });
 }
 
+function enable_chrome_runtime_listeners() {
+  chrome.runtime.onMessage.addListener((message, sender) => {
+    // The callback for runtime.onMessage must return falsy if we're not sending a response
+    (async () => {
+      if (message.type == 'context_menu_call') {
+        document.getElementById("link").value = message.link;
+        document.getElementById("title").value = message.title;
+        document.getElementById("save").classList.add("context_menu_call");
+
+        document.getElementById("link").dispatchEvent(new InputEvent("input")); //  https://github.com/w3c/input-events/issues/105
+      }
+    })();
+  });
+}
+
 function enable_collect_links_listeners() {
   enable_textareas_listeners(collect_links_textareas_ids);
   enable_buttons_listeners({
@@ -109,4 +128,6 @@ function enable_collect_links_listeners() {
   enable_range_listener("priority");
   enable_selector_listener("what_to_do");
   enable_side_panel_dblclick_listener();
+
+  enable_chrome_runtime_listeners();
 }

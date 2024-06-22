@@ -1,8 +1,18 @@
 function enable_save_button() {
   document.getElementById("save").classList.remove("disabled");
+  document.getElementById("priority").style.setProperty('--sliderColor', "#0075ff");
+  let elements = document.querySelectorAll(".chart_what_to_do");
+  elements.forEach(function(element) {
+    element.style.background = "#0075ff";
+  });
 }
 function disable_save_button() {
   document.getElementById("save").classList.add("disabled");
+  document.getElementById("priority").style.setProperty('--sliderColor', "#6ba2ff");
+  let elements = document.querySelectorAll(".chart_what_to_do");
+  elements.forEach(function(element) {
+    element.style.background = "#6ba2ff";
+  });
 }
 function enable_button_on_link_value_only() {
   setTimeout(() => {
@@ -11,8 +21,9 @@ function enable_button_on_link_value_only() {
       enable_save_button();
       //suggest_what_to_do(link);
     }
-    else
+    else {
       disable_save_button();
+    }
   }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
 }
 
