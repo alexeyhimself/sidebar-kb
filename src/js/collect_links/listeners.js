@@ -122,7 +122,7 @@ function enable_chrome_runtime_listeners() {
         const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
         setTimeout(() => {
           fill_and_adjust(tab);
-        }, 1500);
+        }, 2000);
       }
     })();
   });

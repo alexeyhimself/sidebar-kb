@@ -41,7 +41,8 @@ async function save_link() {
     save_element.classList.remove("context_menu_call");
     // if same link then close tab
     const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
-    chrome.tabs.remove(tab.id, function() { });  
+    chrome.tabs.remove(tab.id, function() { });
+    window.close();
   }
 }
 
