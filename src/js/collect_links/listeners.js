@@ -6,8 +6,8 @@ function enable_textareas_listeners(elements_ids) {
     element.addEventListener('drop', handler);
     element.addEventListener('keyup', handler);
     element.addEventListener('change', handler);
-    element.addEventListener('input', handler);
-    element.addEventListener('oninput', handler);
+    //element.addEventListener('input', handler);
+    //element.addEventListener('oninput', handler);
     element.addEventListener('dblclick', handler);
 
     function handler(event) {

@@ -64,6 +64,7 @@ function download_as_csv() {
 }
 
 function get_hostname(link) {  // https://stackoverflow.com/questions/8498592/extract-hostname-name-from-string
+  //console.log(link);
   const { hostname } = new URL(link);
   return hostname.replace(/^www\./g, '');  // remove starting "www."
 }

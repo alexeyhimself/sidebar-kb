@@ -64,7 +64,12 @@ function what_to_do_on_textareas_content_change(event) {
 
   if (!document.getElementById("save").classList.contains("context_menu_call"))
     suggest_tags();
-  //suggest_what_to_do();
+
+  if (event.target.id == "link") {
+    setTimeout(() => {
+      suggest_what_to_do(event.target.value);
+    }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
+  }
 }
 
 function enable_collect_links() {
