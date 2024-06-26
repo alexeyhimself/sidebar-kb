@@ -74,7 +74,7 @@ function draw_tags_hint(tags) {
     else
       tags_hint += `<a href="#" class="suggested_tag">${tag}</a>, `;
   });
-  tags_hint = tags_hint.slice(0, -2)
+  tags_hint = tags_hint.slice(0, -2);
   document.getElementById("tags_hint").innerHTML = tags_hint;
   enable_tags_hint_listeners();
 }

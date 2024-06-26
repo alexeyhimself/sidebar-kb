@@ -137,6 +137,9 @@ select {
   min-height: 59px!important;
   overflow-y: hidden;
 }
+#tags {
+  overflow-y: hidden;
+}
 
 #chart_total, #chart_what_to_do {
   height: 36px; 

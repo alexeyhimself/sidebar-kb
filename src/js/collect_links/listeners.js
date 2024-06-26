@@ -50,6 +50,8 @@ function enable_tags_hint_listeners() {
         tags_element.value = existing_tags + ` ${element.innerText}`;
       else
         tags_element.value = existing_tags + `, ${element.innerText}`;
+
+      adjust_textarea_size(tags_element);
     });
   });
 }
@@ -90,9 +92,9 @@ async function fill_and_adjust(tab) {
 
   let link = document.getElementById("link");
   link.value = page_object.url;
-  let title = document.getElementById("title")
+  let title = document.getElementById("title");
   title.value = page_object.title;
-  let time = document.getElementById("time")
+  let time = document.getElementById("time");
   time.value = parseInt(page_object.words_list.length / 220) + 'm';  // let 220 - an avg words/minute reading speed
 
   document.getElementById("link").dispatchEvent(new InputEvent("input")); //  https://github.com/w3c/input-events/issues/105
