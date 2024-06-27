@@ -19,7 +19,9 @@ function guess_what_to_do_by_link(link) {
 
 function suggest_what_to_do(link) {
   const what_to_do = guess_what_to_do_by_link(link);
-  document.getElementById("what_to_do").value = what_to_do;
+  const what_to_do_element = document.getElementById("what_to_do");
+  what_to_do_element.value = what_to_do;
+  update_form_after_what_to_do_change(what_to_do_element);
 }
 
 function update_stats_of_what_to_do_for_links(link) {
@@ -36,4 +38,17 @@ function update_stats_of_what_to_do_for_links(link) {
     stats_of_what_to_do_for_links[hostname] = {};
     stats_of_what_to_do_for_links[hostname][link.what_to_do] = 1;
   }
+}
+
+function update_form_after_what_to_do_change(what_to_do_element) {
+  hide_fields_if_necessary(what_to_do_element);
+  draw_links_stats_chart_under_priority_bar("chart_what_to_do", what_to_do_element.value);
+  enable_button_on_link_value_only();
+}
+
+function enable_selector_listener(element_id) {
+  var element = document.getElementById(element_id);  
+  element.addEventListener('change', function (event) {
+    update_form_after_what_to_do_change(event.target);
+  });
 }

@@ -56,14 +56,6 @@ function enable_tags_hint_listeners() {
   });
 }
 
-function enable_selector_listener(element_id) {
-  var element = document.getElementById(element_id);  
-  element.addEventListener('change', function (event) {
-    hide_fields_if_necessary(event.target);
-    draw_links_stats_chart_under_priority_bar("chart_what_to_do", event.target.value);
-  });
-}
-
 function count_words_stats(words_list) {
   result = {};
   words_list.forEach((word) => {
@@ -107,7 +99,7 @@ async function fill_and_adjust(tab) {
 function enable_side_panel_dblclick_listener() {
   var element = document.getElementById("link");
   element.addEventListener('dblclick', async function (event) {
-    document.getElementById("save").classList.add("context_menu_call");
+    // document.getElementById("save").classList.add("context_menu_call");
     const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
     fill_and_adjust(tab);
   });
