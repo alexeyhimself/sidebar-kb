@@ -54,7 +54,7 @@ async function get_data_from_active_tab(tab) {
   return page_object[0].result;
 }
 
-function adjust_textareas(page_object) {
+function fill_and_adjust_textareas(page_object) {
   ["link", "title", "time"].forEach((element_id) => {
     const element = document.getElementById(element_id);
     element.value = page_object[element_id];
@@ -67,10 +67,12 @@ function adjust_textareas(page_object) {
 async function fill_and_adjust(tab) {
   const page_object = await get_data_from_active_tab(tab);
 
-  suggest_tags(page_object.words_on_page);
+  fill_and_adjust_textareas(page_object);
   suggest_what_to_do(page_object.link);
+  suggest_tags(page_object.words_on_page);
 
-  adjust_textareas(page_object);  
+  let save_element = document.getElementById("save");
+  save_element.classList.add("auto_fill");
 }
 
 function enable_side_panel_dblclick_listener() {

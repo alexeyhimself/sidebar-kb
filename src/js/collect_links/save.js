@@ -44,6 +44,8 @@ async function save_link() {
     chrome.tabs.remove(tab.id, function() { });
     window.close();
   }
+  if (save_element.classList.contains("auto_fill"))
+    save_element.classList.remove("auto_fill");
 }
 
 function save_link_to_local_storage(link) {

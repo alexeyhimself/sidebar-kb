@@ -48,6 +48,10 @@ function compose_tags(words_on_page) {
     return Object.keys(resulting_tags);
   }
   else {
+    let save_element = document.getElementById("save");
+    if (save_element.classList.contains("auto_fill"))
+      return [];
+
     const most_recent_tags = tags.most_recent.reverse();
     return most_recent_tags.slice(0, 30);
   }
