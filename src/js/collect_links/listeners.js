@@ -11,19 +11,8 @@ function enable_textareas_listeners(elements_ids) {
     element.addEventListener('dblclick', handler);
 
     function handler(event) {
-      //current_link[element_id] = event.dataTransfer.getData('text');
-      //console.log(1)
       what_to_do_on_textareas_content_change(event);
     }
-  }
-}
-
-function enable_buttons_listeners(buttons) {
-  for (let button_id in buttons) { 
-    var element = document.getElementById(button_id);
-    element.addEventListener('click', function (event) {
-      buttons[button_id]();
-    });
   }
 }
 
@@ -37,63 +26,51 @@ function enable_range_listener(element_id) {
   });
 }
 
-function enable_tags_hint_listeners() {
-  let elements = document.querySelectorAll(".suggested_tag");
-  elements.forEach(function(element) {
-    element.addEventListener("click", function(event) {
-      let tags_element = document.getElementById("tags");
-      let existing_tags = tags_element.value.trim();
-
-      if (!existing_tags)
-        tags_element.value = element.innerText;
-      else if (existing_tags.slice(-1) == ',')
-        tags_element.value = existing_tags + ` ${element.innerText}`;
-      else
-        tags_element.value = existing_tags + `, ${element.innerText}`;
-
-      adjust_textarea_size(tags_element);
-    });
-  });
-}
-
-function count_words_stats(words_list) {
-  result = {};
-  words_list.forEach((word) => {
-    word = word.toLowerCase();
-    if (word in result)
-      result[word] += 1;
-    else
-      result[word] = 1;
-  });
-  return result;
-}
-
-async function fill_and_adjust(tab) {
-  let page_object = await chrome.scripting.executeScript({
+async function get_data_from_active_tab(tab) {
+  const page_object = await chrome.scripting.executeScript({
     target: {tabId : tab.id},
     func: () => {
       const words_list = document.body.innerText.replace(/(?:\r\n|\r|\n|:|%|\.|,|;|\?|!|'|’|\(|\)|\[|\]|0|1|2|3|4|5|6|7|8|9)/g, ' ').trim().split(/\s+/);
-      return {"title": document.title, "url": document.location.href, "words_list": words_list};
+
+      // can't be an external function count_words_stats_for_words_list(words_list)
+      words_on_page = {};
+      words_list.forEach((word) => {
+        word = word.toLowerCase();
+        if (word in words_on_page)
+          words_on_page[word] += 1;
+        else
+          words_on_page[word] = 1;
+      });
+
+      return {
+        "title": document.title,
+        "link": document.location.href,
+        "words_on_page": words_on_page,
+        "time": parseInt(words_list.length / 220) + 'm',  // assume 220 - an avg words/minute reading speed
+      };
     },
   });
-  page_object = page_object[0].result;
 
-  words_on_page = count_words_stats(page_object.words_list);
+  return page_object[0].result;
+}
 
-  suggest_tags(words_on_page);
+function adjust_textareas(page_object) {
+  ["link", "title", "time"].forEach((element_id) => {
+    const element = document.getElementById(element_id);
+    element.value = page_object[element_id];
+    adjust_textarea_size(element);
+  })
 
-  let link = document.getElementById("link");
-  link.value = page_object.url;
-  let title = document.getElementById("title");
-  title.value = page_object.title;
-  let time = document.getElementById("time");
-  time.value = parseInt(page_object.words_list.length / 220) + 'm';  // let 220 - an avg words/minute reading speed
+  document.getElementById("link").dispatchEvent(new InputEvent("input"));  //  https://github.com/w3c/input-events/issues/105  
+}
 
-  document.getElementById("link").dispatchEvent(new InputEvent("input")); //  https://github.com/w3c/input-events/issues/105
+async function fill_and_adjust(tab) {
+  const page_object = await get_data_from_active_tab(tab);
 
-  adjust_textarea_size(link);
-  adjust_textarea_size(title);
-  suggest_what_to_do(link.value);
+  suggest_tags(page_object.words_on_page);
+  suggest_what_to_do(page_object.link);
+
+  adjust_textareas(page_object);  
 }
 
 function enable_side_panel_dblclick_listener() {
@@ -110,13 +87,11 @@ function enable_chrome_runtime_listeners() {
     // The callback for runtime.onMessage must return falsy if we're not sending a response
     (async () => {
       if (message.type == 'context_menu_call') {
-        //document.getElementById("link").value = message.link;
-        //document.getElementById("title").value = message.title;
-        document.getElementById("save").classList.add("context_menu_call");
+        document.getElementById("save").classList.add("context_menu_call");  // this is made to close tab on save
         const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
         setTimeout(() => {
           fill_and_adjust(tab);
-        }, 2000);
+        }, 2000);  // if page is loaded longer than 2s then will not work out. Need to use messaging on document ready
       }
     })();
   });

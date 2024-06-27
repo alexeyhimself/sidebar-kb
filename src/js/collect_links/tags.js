@@ -95,3 +95,22 @@ function enable_tags_hint_on_any_value_only() {
       document.getElementById("tags_hint").style.display = 'none';
   }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
 }
+
+function enable_tags_hint_listeners() {
+  let elements = document.querySelectorAll(".suggested_tag");
+  elements.forEach(function(element) {
+    element.addEventListener("click", function(event) {
+      let tags_element = document.getElementById("tags");
+      let existing_tags = tags_element.value.trim();
+
+      if (!existing_tags)
+        tags_element.value = element.innerText;
+      else if (existing_tags.slice(-1) == ',')
+        tags_element.value = existing_tags + ` ${element.innerText}`;
+      else
+        tags_element.value = existing_tags + `, ${element.innerText}`;
+
+      adjust_textarea_size(tags_element);
+    });
+  });
+}

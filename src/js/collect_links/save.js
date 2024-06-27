@@ -53,3 +53,12 @@ function save_link_to_local_storage(link) {
   links.push(link);
   localStorage.setItem("links", JSON.stringify(links));
 }
+
+function enable_buttons_listeners(buttons) {
+  for (let button_id in buttons) { 
+    var element = document.getElementById(button_id);
+    element.addEventListener('click', function (event) {
+      buttons[button_id]();
+    });
+  }
+}
