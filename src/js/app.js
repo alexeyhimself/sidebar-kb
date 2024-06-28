@@ -27,7 +27,7 @@ function fix_data() {
 
     new_links.push(link);
   }
-
+ 
   // remove duplicates assuming latest version is more valid
   let urls = [];
   let new_unique_links = [];
