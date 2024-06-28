@@ -36,18 +36,16 @@ async function get_data_from_active_tab(tab) {
       if (["youtube.com", "youtu.be"].includes(hostname)) {
         let time = document.getElementsByClassName('ytp-time-duration')[0].innerHTML;
         let time_list = time.split(':').reverse();
-        let time_minutes = 0;
-        if (time_list[0] > 30)
-          time_minutes += 1;
-        if (time_list[1])
-          time_minutes += parseInt(time_list[1]);
+        let time_minutes = '';
         if (time_list[2])
-          time_minutes += parseInt(time_list[2]) * 60;
+          time_minutes += time_list[2] + 'h ';
+        if (time_list[1])
+          time_minutes += time_list[1] + 'm';
         
         return {
           "title": document.title,
           "link": document.location.href,
-          "time": time_minutes + 'm',
+          "time": time_minutes,
         };
       }
       else {
