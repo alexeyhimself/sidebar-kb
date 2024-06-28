@@ -1,11 +1,12 @@
 function fix_data() {
   let links = localStorage.getItem("links") || "[]";
-      links = JSON.parse(links);
+      links = JSON.parse(links).reverse();  // REVERSE TIME ORDER
 
   let new_links = [];
   for (let i in links) {
     let link = links[i];
 
+    // renamed fields
     if ("importance" in link) {
       link["priority"] = link.importance;
       delete link["importance"];
@@ -27,7 +28,19 @@ function fix_data() {
     new_links.push(link);
   }
 
-  localStorage.setItem("links", JSON.stringify(new_links));
+  // remove duplicates assuming latest version is more valid
+  let urls = [];
+  let new_unique_links = [];
+  new_links.forEach((link) => {
+    if (urls.includes(link.link))
+        ;
+    else {
+      urls.push(link.link);
+      new_unique_links.push(link);
+    }
+  });
+
+  localStorage.setItem("links", JSON.stringify(new_unique_links.reverse()));  // REVERSE BACK
 }
 
 window.onload = function() {
