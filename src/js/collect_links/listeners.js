@@ -30,25 +30,47 @@ async function get_data_from_active_tab(tab) {
   const page_object = await chrome.scripting.executeScript({
     target: {tabId : tab.id},
     func: () => {
-      const words_list = document.body.innerText.replace(/(?:\r\n|\r|\n|:|%|\.|,|;|\?|!|'|’|\(|\)|\[|\]|0|1|2|3|4|5|6|7|8|9)/g, ' ').trim().split(/\s+/);
+      let { hostname } = new URL(document.location.href);
+      hostname = hostname.replace(/^www\./g, '');  // remove starting "www."
 
-      // can't be an external function count_words_stats_for_words_list(words_list)
-      words_on_page = {};
-      words_list.forEach((word) => {
-        word = word.toLowerCase();
-        if (word in words_on_page)
-          words_on_page[word] += 1;
-        else
-          words_on_page[word] = 1;
-      });
+      if (["youtube.com", "youtu.be"].includes(hostname)) {
+        let time = document.getElementsByClassName('ytp-time-duration')[0].innerHTML;
+        let time_list = time.split(':').reverse();
+        let time_minutes = 0;
+        if (time_list[0] > 30)
+          time_minutes += 1;
+        if (time_list[1])
+          time_minutes += parseInt(time_list[1]);
+        if (time_list[2])
+          time_minutes += parseInt(time_list[2]) * 60;
+        
+        return {
+          "title": document.title,
+          "link": document.location.href,
+          "time": time_minutes + 'm',
+        };
+      }
+      else {
+        const words_list = document.body.innerText.replace(/(?:\r\n|\r|\n|:|%|\.|,|;|\?|!|'|’|\(|\)|\[|\]|0|1|2|3|4|5|6|7|8|9)/g, ' ').trim().split(/\s+/);
 
-      return {
-        "title": document.title,
-        "link": document.location.href,
-        "words_on_page": words_on_page,
-        "time": parseInt(words_list.length / 220) + 'm',  // assume 220 - an avg words/minute reading speed
-      };
-    },
+        // can't be an external function count_words_stats_for_words_list(words_list)
+        words_on_page = {};
+        words_list.forEach((word) => {
+          word = word.toLowerCase();
+          if (word in words_on_page)
+            words_on_page[word] += 1;
+          else
+            words_on_page[word] = 1;
+        });
+
+        return {
+          "title": document.title,
+          "link": document.location.href,
+          "words_on_page": words_on_page,
+          "time": parseInt(words_list.length / 220) + 'm',  // assume 220 - an avg words/minute reading speed
+        };
+      }
+    }
   });
 
   return page_object[0].result;
@@ -69,7 +91,8 @@ async function fill_and_adjust(tab) {
 
   fill_and_adjust_textareas(page_object);
   suggest_what_to_do(page_object.link);
-  suggest_tags(page_object.words_on_page);
+  if (page_object.words_on_page)
+    suggest_tags(page_object.words_on_page);
 
   let save_element = document.getElementById("save");
   save_element.classList.add("auto_fill");
