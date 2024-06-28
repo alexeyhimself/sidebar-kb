@@ -35,9 +35,9 @@ function sort_dicts_by_multiple_values() {
 }
 
 function convert_array_of_objects_to_csv(array_of_objects) {  // https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
-  let array_of_arrays = [["link", "title", "summary", "time", "tags", "priority", "what_to_do"]];
+  let array_of_arrays = [["link", "title", "notes", "time", "tags", "priority", "what_to_do"]];
   array_of_objects.forEach((obj) => {
-    array_of_arrays.push([obj.link, obj.title, obj.summary, obj.time, obj.tags, obj.priority, obj.what_to_do]);
+    array_of_arrays.push([obj.link, obj.title, obj.notes, obj.time, obj.tags, obj.priority, obj.what_to_do]);
   });
   return array_of_arrays.map(row =>
     row

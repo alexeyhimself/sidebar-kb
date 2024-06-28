@@ -116,7 +116,7 @@ select {
   height: calc(100vh - 60px);
   overflow-y: auto;
 }
-#summary {
+#notes {
   overflow-y: hidden;
 }
 

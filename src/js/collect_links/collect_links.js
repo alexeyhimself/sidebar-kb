@@ -1,4 +1,4 @@
-const collect_links_textareas_ids = ["link", "title", "summary", "time", "tags"];
+const collect_links_textareas_ids = ["link", "title", "notes", "time", "tags"];
 const all_input_elements_ids = collect_links_textareas_ids.concat(["priority", "what_to_do"]);
 
 

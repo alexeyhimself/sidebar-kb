@@ -6,9 +6,6 @@ function fix_data() {
   for (let i in links) {
     let link = links[i];
 
-    if ("priority" in link)
-      return;
-
     if ("importance" in link) {
       link["priority"] = link.importance;
       delete link["importance"];
@@ -21,6 +18,10 @@ function fix_data() {
       delete link["importance"];
       delete link["priority"];
       delete link["time"];
+    }
+    if ("summary" in link) {
+      link["notes"] = link.summary;
+      delete link["summary"];
     }
 
     new_links.push(link);
