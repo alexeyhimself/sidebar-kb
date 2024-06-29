@@ -13,8 +13,11 @@ function guess_what_to_do_by_link(link) {
     let sorted_what_to_dos = sort_dict_by_value_desc(what_to_dos);
     return Object.keys(sorted_what_to_dos)[0];
   }
-  else
-    return "read";
+  
+  if (["youtube.com", "youtu.be"].includes(hostname))
+    return "watch";
+
+  return "read";
 }
 
 function suggest_what_to_do(link) {
