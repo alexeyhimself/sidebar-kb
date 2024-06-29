@@ -47,7 +47,7 @@ function hide_fields_if_necessary(element) {
   else {
     display = '';
     document.getElementById("what_to_do").classList.remove("all-around-border-radius");
-    document.getElementById("time").focus();
+    // document.getElementById("time").focus();  // when try to edit URL this breaks UX
   }
 
   document.getElementById("priority").style.display = display;
