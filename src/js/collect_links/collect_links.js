@@ -31,7 +31,7 @@ function dim_range_placeholder_in_thumb_proximity(priority) {
   if (!priority)  // initial start of the event listener
     priority = document.getElementById("priority").value;
 
-  if (priority < 26)  // the length of "Set priority" placeholder
+  if (priority < 63)  // the length of "Set priority" placeholder
     document.getElementById("priority_placeholder").style.color = '#585c5f70';
   else
     document.getElementById("priority_placeholder").style.color = '#585c5fff';
