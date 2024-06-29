@@ -15,7 +15,7 @@
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: 'openSidePanel',
-    title: 'Save to Personal Knowledge Base',
+    title: 'Queue to learn in a Personal Knowledge Base',
     contexts: ['all']
   });
   chrome.tabs.create({ url: 'page.html' });
