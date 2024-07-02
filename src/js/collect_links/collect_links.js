@@ -89,6 +89,10 @@ function what_to_do_on_textareas_content_change(event) {
         document.getElementById("save").innerText = "Update existing link";
         document.getElementById("save").classList.add("btn-warning");
       }
+      else {
+        document.getElementById("save").innerText = "Save link";
+        document.getElementById("save").classList.remove("btn-warning");
+      }
 
       suggest_what_to_do(link);
 
