@@ -1,18 +1,14 @@
-function enable_textareas_listeners(elements_ids) {
-  for (let i in elements_ids) {
-    const element_id = elements_ids[i];
+function enable_textarea_listener(element_id, callback) {
+  var element = document.getElementById(element_id);
+  element.addEventListener('drop', handler);
+  element.addEventListener('keyup', handler);
+  element.addEventListener('change', handler);
+  //element.addEventListener('input', handler);
+  //element.addEventListener('oninput', handler);
+  element.addEventListener('dblclick', handler);
 
-    var element = document.getElementById(element_id);
-    element.addEventListener('drop', handler);
-    element.addEventListener('keyup', handler);
-    element.addEventListener('change', handler);
-    //element.addEventListener('input', handler);
-    //element.addEventListener('oninput', handler);
-    element.addEventListener('dblclick', handler);
-
-    function handler(event) {
-      what_to_do_on_textareas_content_change(event);
-    }
+  function handler(event) {
+    callback(event);
   }
 }
 
@@ -121,7 +117,9 @@ function enable_chrome_runtime_listeners() {
 }
 
 function enable_collect_links_listeners() {
-  enable_textareas_listeners(collect_links_textareas_ids);
+  collect_links_textareas_ids.forEach((element_id) => { 
+    enable_textarea_listener(element_id, what_to_do_on_textareas_content_change); 
+  });
   enable_buttons_listeners({
     "save": save_link
   });
