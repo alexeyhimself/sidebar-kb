@@ -49,8 +49,13 @@ async function save_link() {
 }
 
 function save_link_to_local_storage(link) {
-  let links = localStorage.getItem("links") || "[]";
-      links = JSON.parse(links);
+  let links = load_links_from_local_storage();
+  for (let i = 0; i < links.length; i++) {
+    if (links[i].link == link.link) {
+      links.splice(i, 1);
+      break;
+    }
+  }
 
   links.push(link);
   localStorage.setItem("links", JSON.stringify(links));

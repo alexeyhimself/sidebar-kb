@@ -57,6 +57,21 @@ function hide_fields_if_necessary(element) {
   document.getElementById("time").style.display = display;
 }
 
+function link_already_exists(link) {
+  const links = load_links_from_local_storage();
+  for (let i = 0; i < links.length; i++) {
+    if (links[i].link == link)
+      return links[i];
+  }
+  return false;
+}
+
+function fill_the_collect_links_form_with_existing_data(link) {
+  all_input_elements_ids.forEach((element_id) => {
+    document.getElementById(element_id).value = link[element_id];
+  });
+}
+
 function what_to_do_on_textareas_content_change(event) {
   adjust_textarea_size(event.target);
   enable_button_on_link_value_only();
@@ -67,8 +82,15 @@ function what_to_do_on_textareas_content_change(event) {
 
   if (event.target.id == "link") {
     setTimeout(() => {
-      suggest_what_to_do(event.target.value);
-    }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
+      const link = event.target.value;
+      const existing_link = link_already_exists(link);
+      if (existing_link) {
+        fill_the_collect_links_form_with_existing_data(existing_link);
+      }
+
+      suggest_what_to_do(link);
+
+    }, 200);  // a bit wait because drag&drop events pass faster than the DOM update
   }
 }
 

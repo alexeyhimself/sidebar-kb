@@ -118,7 +118,7 @@ function enable_chrome_runtime_listeners() {
 
 function enable_collect_links_listeners() {
   collect_links_textareas_ids.forEach((element_id) => { 
-    enable_textarea_listener(element_id, what_to_do_on_textareas_content_change); 
+    enable_textarea_listener(element_id, what_to_do_on_textareas_content_change);
   });
   enable_buttons_listeners({
     "save": save_link
