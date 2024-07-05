@@ -117,6 +117,12 @@ function filter_links_by_text(text) {
         continue;
       }
     }
+    if (link.tags) {
+      if (link.tags.toLowerCase().includes(text.toLowerCase())) {
+        resulting_links.push(link);
+        continue;
+      }
+    }
   }
   return resulting_links;
 }
