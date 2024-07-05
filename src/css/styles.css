@@ -78,7 +78,7 @@ textarea, input, button#save {
 }
 
 .input-time {
-  border-left: 0;
+  /*border-left: 0;*/
   border-radius: 0 12px 12px 0!important;
 }
 
@@ -122,6 +122,7 @@ select {
 
 #what_to_do {
   cursor: pointer;
+  width: 50%;
 }
 #links_placeholder {
   text-align: center;
@@ -195,4 +196,12 @@ select {
   border: 0;
   border-radius: 1rem;
   appearance: none;
+}
+
+#find_text {
+  border-radius: 12px 0 0 12px!important;
+  width: 50%;
+}
+#find_time {
+  border-radius: 0 12px 12px 0!important;
 }

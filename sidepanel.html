@@ -46,8 +46,8 @@
           <textarea class="form-control margin-8" id="notes" placeholder="Add notes (optional)" rows="1"></textarea>
 
           <div class="margin-8">
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-              <div class="btn-group" role="group">
+            <div class="input-group" role="group" aria-label="Basic radio toggle button group">
+              <div class="input-group" role="group" style="width: 50%;">
                 <select class="form-select left-half-border-radius" id="what_to_do">
                   <option value="read" selected>Read 📚</option>
                   <option value="watch">Watch 📺</option>
@@ -78,19 +78,21 @@
         </div>
 
         <div class="tab-pane fade" id="find-tab-pane" role="tabpanel" aria-labelledby="find-tab" tabindex="0">
-          <div class="btn-group" role="group" aria-label="">
-            <input type="text" id="find" class="form-control margin-8" placeholder="Search ...">
-            <!--input type="text" class="form-control" placeholder="0m">
-            <div class="btn-group" role="group">
-              <select class="form-select" id="order">
-                <option value="priority_desc" selected>Priority ↓</option>
-                <option value="priority_asc">Priority ↑</option>
-                <option value="datetime_desc">Date ↓</option>
-                <option value="datetime_asc">Date ↑</option>
-                <option value="longerst_first">Time ↓</option>
-                <option value="shortest_first">Time ↑</option>
-              </select>
-            </div-->
+          <div class="margin-8">
+            <div class="input-group" role="group" aria-label="">
+              <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search ...">
+              <input type="text" id="find_time" class="form-control" placeholder="0m">
+              <!--div class="btn-group" role="group">
+                <select class="form-select" id="order">
+                  <option value="priority_desc" selected>Priority ↓</option>
+                  <option value="priority_asc">Priority ↑</option>
+                  <option value="datetime_desc">Date ↓</option>
+                  <option value="datetime_asc">Date ↑</option>
+                  <option value="longerst_first">Time ↓</option>
+                  <option value="shortest_first">Time ↑</option>
+                </select>
+              </div-->
+            </div>
           </div>
           <div id="links_area"></div>
           <a href="#" id="links_export" style="display: none;">💾 Export all <span id="number_of_links"></span> links as a CSV</a>

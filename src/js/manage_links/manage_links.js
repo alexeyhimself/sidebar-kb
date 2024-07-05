@@ -37,7 +37,7 @@ function draw_links(links, no_links_callback) {
       document.getElementById("links_export").style.display = 'none';
     }
 
-    document.getElementById("find").focus();
+    // document.getElementById("find_text").focus();
   } catch (error) {
     console.error(error);
     document.getElementById("links_area").innerHTML = draw_links_error_message();
@@ -139,8 +139,12 @@ function filter_links_by_text(text) {
   return resulting_links;
 }
 
-function what_to_do_on_find_change(event) {
+function what_to_do_on_find_text_change(event) {
   const filtered_links = filter_links_by_text(event.target.value);
+  draw_links(filtered_links, draw_no_links_found_placeholder);
+}
+function what_to_do_on_find_text_change(event) {
+  const filtered_links = filter_links_by_time(event.target.value);
   draw_links(filtered_links, draw_no_links_found_placeholder);
 }
 
@@ -150,5 +154,6 @@ function enable_manage_links() {
     "find-tab": draw_links,
     "links_export": download_as_csv,
   });
-  enable_textarea_listener("find", what_to_do_on_find_change);
+  enable_textarea_listener("find_text", what_to_do_on_find_text_change);
+  enable_textarea_listener("find_time", what_to_do_on_find_time_change);
 }
