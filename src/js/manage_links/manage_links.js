@@ -4,6 +4,9 @@ function draw_links_placeholder() {
 function draw_links_error_message() {
   return `<p id="links_placeholder"><span style="font-size: 2em;">😲</span><br><b>Something went wrong...</b><br>Please <a href="#" id="copy_error_message_to_clipboard">click here to copy an error message to clipboard</a> and <a href="mailto:alexeyhimself@gmail.com">let us know</a></p>`;
 }
+function draw_no_links_found_placeholder() {
+  return `<p id="links_placeholder"><b>No such links.</b></p>`;
+}
 
 function enable_copy_error_message_to_clipboard_listener(element_id, error_message) {
   var element = document.getElementById(element_id);
@@ -12,13 +15,17 @@ function enable_copy_error_message_to_clipboard_listener(element_id, error_messa
   });
 }
 
-function draw_links(links) {
+function draw_links(links, no_links_callback) {
   try {
     if (!links)
       links = load_links_from_local_storage_sorted_by();
 
-    if (links.length == 0)
-      document.getElementById("links_area").innerHTML = draw_links_placeholder();
+    if (links.length == 0) {
+      if (no_links_callback)
+        document.getElementById("links_area").innerHTML = no_links_callback();
+      else
+        document.getElementById("links_area").innerHTML = draw_links_placeholder();
+    }
     else
       document.getElementById("links_area").innerHTML = draw_existing_links(links);
 
@@ -26,6 +33,11 @@ function draw_links(links) {
       document.getElementById("number_of_links").innerHTML = links.length;
       document.getElementById("links_export").style.display = '';
     }
+    else {
+      document.getElementById("links_export").style.display = 'none';
+    }
+
+    document.getElementById("find").focus();
   } catch (error) {
     console.error(error);
     document.getElementById("links_area").innerHTML = draw_links_error_message();
@@ -129,7 +141,7 @@ function filter_links_by_text(text) {
 
 function what_to_do_on_find_change(event) {
   const filtered_links = filter_links_by_text(event.target.value);
-  draw_links(filtered_links);
+  draw_links(filtered_links, draw_no_links_found_placeholder);
 }
 
 
