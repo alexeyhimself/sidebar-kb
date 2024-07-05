@@ -41,9 +41,9 @@
       </ul>
       <div class="tab-content" id="tabsContent">
         <div class="tab-pane fade show active" id="save-tab-pane" role="tabpanel" aria-labelledby="save-tab" tabindex="0">
-          <textarea class="form-control margin-8" id="link" type="text" placeholder="Double-click / drag & drop / paste link here"></textarea>
-          <textarea class="form-control margin-8" id="title" type="text" placeholder="Add a human-friendly title for the link"></textarea>
-          <textarea class="form-control margin-8" id="notes" type="text" placeholder="Add notes (optional)" rows="1"></textarea>
+          <textarea class="form-control margin-8" id="link" placeholder="Double-click / drag & drop / paste link here"></textarea>
+          <textarea class="form-control margin-8" id="title" placeholder="Add a human-friendly title for the link"></textarea>
+          <textarea class="form-control margin-8" id="notes" placeholder="Add notes (optional)" rows="1"></textarea>
 
           <div class="margin-8">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -57,11 +57,11 @@
                 </select>
               </div>
 
-              <textarea class="form-control input-time" id="time" type="text" placeholder="0m" rows="1"></textarea>
+              <textarea class="form-control input-time" id="time" placeholder="0m" rows="1"></textarea>
             </div>
           </div>
 
-          <textarea class="form-control margin-8" id="tags" type="text" placeholder="Add tags separated by commas" rows="1"></textarea>
+          <textarea class="form-control margin-8" id="tags" placeholder="Add tags separated by commas" rows="1"></textarea>
           <p id="tags_hint"></p>
 
           <input class="form-control form-range- margin-8" id="priority" type="range" title="Queue to learn priority: from Low (on the left) to High (on the right)" value="70">
@@ -78,6 +78,20 @@
         </div>
 
         <div class="tab-pane fade" id="find-tab-pane" role="tabpanel" aria-labelledby="find-tab" tabindex="0">
+          <div class="btn-group" role="group" aria-label="">
+            <input type="text" id="find" class="form-control margin-8" placeholder="Find ...">
+            <!--input type="text" class="form-control" placeholder="0m">
+            <div class="btn-group" role="group">
+              <select class="form-select" id="order">
+                <option value="priority_desc" selected>Priority ↓</option>
+                <option value="priority_asc">Priority ↑</option>
+                <option value="datetime_desc">Date ↓</option>
+                <option value="datetime_asc">Date ↑</option>
+                <option value="longerst_first">Time ↓</option>
+                <option value="shortest_first">Time ↑</option>
+              </select>
+            </div-->
+          </div>
           <div id="links_area"></div>
           <a href="#" id="links_export" style="display: none;">💾 Export all <span id="number_of_links"></span> links as a CSV</a>
         </div>
