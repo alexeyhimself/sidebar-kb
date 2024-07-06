@@ -135,8 +135,9 @@ select {
 }
 
 #links_export {
-  margin: 5px 0 8px 10px;
-  font-size: 0.9em!important;
+  padding: 5px 8px 8px 10px;
+  font-size: 0.8em!important;
+  background: #ebeff7;
 }
 
 #link, #title {
