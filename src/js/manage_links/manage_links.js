@@ -29,7 +29,7 @@ function draw_links(links, no_links_callback) {
     else
       document.getElementById("links_area").innerHTML = draw_existing_links(links);
 
-    if (links.length > 10) {
+    if (links.length > 0) {
       document.getElementById("number_of_links").innerHTML = links.length;
       document.getElementById("links_export").style.display = '';
     }
@@ -68,6 +68,7 @@ function draw_existing_links(links) {
   return links_html;
 }
 
+/*
 function convert_time_string_to_minutes(time) {  // "1h 30m" => 90
   if (!time)
     return 0;
@@ -90,7 +91,6 @@ function convert_time_string_to_minutes(time) {  // "1h 30m" => 90
   return parseInt(hours) * 60 + parseInt(minutes);
 }
 
-/*
 function calculate_links_stats(importance) {
   if (!importance)
     importance = 0;
@@ -143,7 +143,7 @@ function what_to_do_on_find_text_change(event) {
   const filtered_links = filter_links_by_text(event.target.value);
   draw_links(filtered_links, draw_no_links_found_placeholder);
 }
-function what_to_do_on_find_text_change(event) {
+function what_to_do_on_find_time_change(event) {
   const filtered_links = filter_links_by_time(event.target.value);
   draw_links(filtered_links, draw_no_links_found_placeholder);
 }
@@ -152,7 +152,8 @@ function what_to_do_on_find_text_change(event) {
 function enable_manage_links() {
   enable_buttons_listeners({
     "find-tab": draw_links,
-    "links_export": download_as_csv,
+    "links_export_csv": download_as_csv,
+    "links_export_json": download_as_json,
   });
   enable_textarea_listener("find_text", what_to_do_on_find_text_change);
   enable_textarea_listener("find_time", what_to_do_on_find_time_change);

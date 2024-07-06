@@ -12,7 +12,7 @@ body, textarea, button, label, input, select, p, a {
 #links_area {
   margin-top: 8px;
   padding: 0 10px 10px 10px;
-  height: calc(100vh - 130px);
+  height: calc(100vh - 133px);
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: lightgray transparent;

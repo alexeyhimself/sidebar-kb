@@ -35,9 +35,9 @@ function sort_dicts_by_multiple_values() {
 }
 
 function convert_array_of_objects_to_csv(array_of_objects) {  // https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
-  let array_of_arrays = [["link", "title", "notes", "time", "tags", "priority", "what_to_do"]];
+  let array_of_arrays = [["link", "title", "notes", "time", "tags", "priority", "what_to_do", "date_created"]];
   array_of_objects.forEach((obj) => {
-    array_of_arrays.push([obj.link, obj.title, obj.notes, obj.time, obj.tags, obj.priority, obj.what_to_do]);
+    array_of_arrays.push([obj.link, obj.title, obj.notes, obj.time, obj.tags, obj.priority, obj.what_to_do, obj.date_created]);
   });
   return array_of_arrays.map(row =>
     row
@@ -47,20 +47,29 @@ function convert_array_of_objects_to_csv(array_of_objects) {  // https://stackov
     .join(',')  // comma-separated
   ).join('\r\n');  // rows starting on new lines
 }
-function download_as_file(content) {
-  var blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+function download_as_file(content, file_type) {
+  let mime_type = 'text/csv;charset=utf-8;';
+  if (file_type == 'json')
+    mime_type = 'application/json;charset=utf-8;';
+  else
+    file_type = 'csv';
+
+  var blob = new Blob([content], {type: mime_type});
   var url = URL.createObjectURL(blob);
 
-  // Create a link to download it
   var pom = document.createElement('a');
   pom.href = url;
-  pom.setAttribute('download', 'exported_links.csv');
+  pom.setAttribute('download', `exported_links.${file_type}`);
   pom.click();
 }
 function download_as_csv() {
   const links = load_links_from_local_storage_sorted_by();
-  const csv = convert_array_of_objects_to_csv(links);
-  download_as_file(csv);
+  const csv_links = convert_array_of_objects_to_csv(links);
+  download_as_file(csv_links, 'csv');
+}
+function download_as_json() {
+  const json_links = load_links_from_local_storage();
+  download_as_file(JSON.stringify(json_links), 'json');
 }
 
 function get_hostname(link) {  // https://stackoverflow.com/questions/8498592/extract-hostname-name-from-string
