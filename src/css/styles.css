@@ -10,7 +10,12 @@ body, textarea, button, label, input, select, p, a {
 }
 
 #links_area {
-  padding: 10px;
+  margin-top: 8px;
+  padding: 0 10px 10px 10px;
+  height: calc(100vh - 130px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: lightgray transparent;
 }
 
 .margin-8 {
@@ -113,8 +118,7 @@ select {
 }
 
 #find-tab-pane {
-  height: calc(100vh - 60px);
-  overflow-y: auto;
+  
 }
 #notes {
   overflow-y: hidden;
@@ -131,7 +135,8 @@ select {
 }
 
 #links_export {
-  margin: 5px 0 8px 8px;
+  margin: 5px 0 8px 10px;
+  font-size: 0.9em!important;
 }
 
 #link, #title {
