@@ -15,7 +15,7 @@ body, textarea, button, label, input, select, p, a {
   height: calc(100vh - 133px);
   overflow-y: auto;
   scrollbar-width-: thin;
-  scrollbar-color: gray transparent;
+  scrollbar-color: lightgray transparent;
 }
 
 .margin-8 {
