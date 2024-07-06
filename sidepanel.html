@@ -33,10 +33,13 @@
     <div id="container">
       <ul class="nav nav-tabs nav-fill" id="tabs" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link save-tab-pane active" id="save-tab" data-bs-toggle="tab" data-bs-target="#save-tab-pane" type="button" role="tab" aria-controls="save-tab-pane" aria-selected="true">Collecting links</button>
+          <button class="nav-link save-tab-pane active" id="save-tab" data-bs-toggle="tab" data-bs-target="#save-tab-pane" type="button" role="tab" aria-controls="save-tab-pane" aria-selected="true">Add links</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link find-tab-pane" id="find-tab" data-bs-toggle="tab" data-bs-target="#find-tab-pane" type="button" role="tab" aria-controls="find-tab-pane" aria-selected="false">Managing links</button>
+          <button class="nav-link find-tab-pane" id="find-tab" data-bs-toggle="tab" data-bs-target="#find-tab-pane" type="button" role="tab" aria-controls="find-tab-pane" aria-selected="false">Queue</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link find-tab-pane disabled" id="find-tab" data-bs-toggle="tab" data-bs-target="#find-tab-pane" type="button" role="tab" aria-controls="find-tab-pane" aria-selected="false">Knowledge base</button>
         </li>
       </ul>
       <div class="tab-content" id="tabsContent">
@@ -80,7 +83,7 @@
         <div class="tab-pane fade" id="find-tab-pane" role="tabpanel" aria-labelledby="find-tab" tabindex="0">
           <div class="margin-8">
             <div class="input-group" role="group" aria-label="">
-              <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search ...">
+              <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search links">
               <input type="text" id="find_time" class="form-control" placeholder="0m">
               <!--div class="btn-group" role="group">
                 <select class="form-select" id="order">
@@ -95,7 +98,7 @@
             </div>
           </div>
           <div id="links_area"></div>
-          <p id="links_export" style="display: none;">💾 Export all <span id="number_of_links"></span> links as <a href="#" id="links_export_csv">CSV</a> or as <a href="#" id="links_export_json">JSON</a><p>
+          <p id="links_export" style="display: none;">💾 Export <span id="number_of_links"></span> links as <a href="#" id="links_export_csv">CSV</a> or as <a href="#" id="links_export_json">JSON</a><p>
         </div>
       </div>
     </div>

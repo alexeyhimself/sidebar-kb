@@ -14,8 +14,8 @@ body, textarea, button, label, input, select, p, a {
   padding: 0 10px 10px 10px;
   height: calc(100vh - 133px);
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: lightgray transparent;
+  scrollbar-width-: thin;
+  scrollbar-color: gray transparent;
 }
 
 .margin-8 {
@@ -43,7 +43,8 @@ body {
 
 .nav-link.active.find-tab-pane {
   border-left: 1px solid #dee2e6;
-  border-radius: 0 15px 0 0;
+  border-right: 1px solid #dee2e6;
+  border-radius: 0;
 }
 
 #priority {

@@ -1,6 +1,6 @@
+// providing backward compatibilty with existing user's data
 function fix_data() {
-  let links = localStorage.getItem("links") || "[]";
-      links = JSON.parse(links).reverse();  // REVERSE TIME ORDER
+  const links = load_links_from_local_storage().reverse();  // REVERSE TIME ORDER
 
   let new_links = [];
   for (let i in links) {
@@ -24,6 +24,8 @@ function fix_data() {
       link["notes"] = link.summary;
       delete link["summary"];
     }
+    if (!link["time_minutes"])
+      link = add_time_in_minutes(link);
 
     new_links.push(link);
   }

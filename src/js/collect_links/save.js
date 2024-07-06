@@ -27,9 +27,19 @@ function enable_button_on_link_value_only() {
   }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
 }
 
+function add_time_in_minutes(link) {
+  if (!link.time)
+    return link;
+
+  const time_minutes = convert_time_to_minutes(link.time);
+  link["time_minutes"] = time_minutes;
+  return link;
+}
+
 async function save_link() {
-  const link = collect_data_from_the_save_link_form();
+  let link = collect_data_from_the_save_link_form();
   get_hostname(link.link); // just validation of format to prevent saving of a broken link
+  link = add_time_in_minutes(link);
   save_link_to_local_storage(link);
   update_tags_in_local_storage(link.tags);
   update_stats_of_what_to_do_for_links(link);

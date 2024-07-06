@@ -5,7 +5,7 @@ function draw_links_error_message() {
   return `<p id="links_placeholder"><span style="font-size: 2em;">😲</span><br><b>Something went wrong...</b><br>Please <a href="#" id="copy_error_message_to_clipboard">click here to copy an error message to clipboard</a> and <a href="mailto:alexeyhimself@gmail.com">let us know</a></p>`;
 }
 function draw_no_links_found_placeholder() {
-  return `<p id="links_placeholder"><b>No such links.</b></p>`;
+  return `<p id="links_placeholder"><b>No such links found.</b></p>`;
 }
 
 function enable_copy_error_message_to_clipboard_listener(element_id, error_message) {
@@ -112,25 +112,69 @@ function calculate_links_stats(importance) {
 }
 */
 
-function filter_links_by_text(text) {
+function filter_links() {
+  const filtered_text = document.getElementById("find_text").value;
+  const filtered_time = document.getElementById("find_time").value;
+  const filtered_time_minutes = convert_time_to_minutes(filtered_time);
+  console.log(filtered_time_minutes);
+
   const links = load_links_from_local_storage_sorted_by();
-  let resulting_links = [];
+  let links_match_by_time = [];
+  let links_without_time = [];
   for (let i = 0; i < links.length; i++) {
     const link = links[i];
+    if (link.time_minutes) {
+      if (filtered_time_minutes && link.time_minutes <= filtered_time_minutes) {
+        links_match_by_time.push(link);
+      }
+      else if (!filtered_time_minutes) {
+        links_match_by_time.push(link);
+      }
+    }
+    else {
+      links_without_time.push(link);
+    }
+  }
+
+  let resulting_links = [];
+  for (let i = 0; i < links_match_by_time.length; i++) {
+    const link = links_match_by_time[i];
     if (link.title) {
-      if (link.title.toLowerCase().includes(text.toLowerCase())) {
+      if (link.title.toLowerCase().includes(filtered_text.toLowerCase())) {
         resulting_links.push(link);
         continue;
       }
     }
     if (link.notes) {
-      if (link.notes.toLowerCase().includes(text.toLowerCase())) {
+      if (link.notes.toLowerCase().includes(filtered_text.toLowerCase())) {
         resulting_links.push(link);
         continue;
       }
     }
     if (link.tags) {
-      if (link.tags.toLowerCase().includes(text.toLowerCase())) {
+      if (link.tags.toLowerCase().includes(filtered_text.toLowerCase())) {
+        resulting_links.push(link);
+        continue;
+      }
+    }
+  }
+
+  for (let i = 0; i < links_without_time.length; i++) {
+    const link = links_without_time[i];
+    if (link.title) {
+      if (link.title.toLowerCase().includes(filtered_text.toLowerCase())) {
+        resulting_links.push(link);
+        continue;
+      }
+    }
+    if (link.notes) {
+      if (link.notes.toLowerCase().includes(filtered_text.toLowerCase())) {
+        resulting_links.push(link);
+        continue;
+      }
+    }
+    if (link.tags) {
+      if (link.tags.toLowerCase().includes(filtered_text.toLowerCase())) {
         resulting_links.push(link);
         continue;
       }
@@ -139,15 +183,10 @@ function filter_links_by_text(text) {
   return resulting_links;
 }
 
-function what_to_do_on_find_text_change(event) {
-  const filtered_links = filter_links_by_text(event.target.value);
+function what_to_do_on_filter_change(event) {
+  const filtered_links = filter_links();
   draw_links(filtered_links, draw_no_links_found_placeholder);
 }
-function what_to_do_on_find_time_change(event) {
-  const filtered_links = filter_links_by_time(event.target.value);
-  draw_links(filtered_links, draw_no_links_found_placeholder);
-}
-
 
 function enable_manage_links() {
   enable_buttons_listeners({
@@ -155,6 +194,6 @@ function enable_manage_links() {
     "links_export_csv": download_as_csv,
     "links_export_json": download_as_json,
   });
-  enable_textarea_listener("find_text", what_to_do_on_find_text_change);
-  enable_textarea_listener("find_time", what_to_do_on_find_time_change);
+  enable_textarea_listener("find_text", what_to_do_on_filter_change);
+  enable_textarea_listener("find_time", what_to_do_on_filter_change);
 }
