@@ -116,7 +116,6 @@ function filter_links() {
   const filtered_text = document.getElementById("find_text").value;
   const filtered_time = document.getElementById("find_time").value;
   const filtered_time_minutes = convert_time_to_minutes(filtered_time);
-  console.log(filtered_time_minutes);
 
   const links = load_links_from_local_storage_sorted_by();
   let links_match_by_time = [];
@@ -128,7 +127,7 @@ function filter_links() {
         links_match_by_time.push(link);
       }
       else if (!filtered_time_minutes) {
-        links_match_by_time.push(link);
+        links_without_time.push(link);
       }
     }
     else {
