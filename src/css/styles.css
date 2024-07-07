@@ -216,3 +216,6 @@ select {
 p {
   margin-bottom: 8px;
 }
+.badge {
+  padding-bottom: 3px;
+}
