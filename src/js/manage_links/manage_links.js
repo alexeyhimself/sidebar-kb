@@ -2,7 +2,7 @@ function draw_links_placeholder() {
   return `<p id="links_placeholder"><b>You have no saved links yet.</b><br>Collect some &mdash; they will appear 👍</p>`;
 }
 function draw_links_error_message() {
-  return `<p id="links_placeholder"><span style="font-size: 2em;">😲</span><br><b>Something went wrong...</b><br>Please <a href="#" id="copy_error_message_to_clipboard">click here to copy an error message to clipboard</a> and <a href="mailto:alexeyhimself@gmail.com">let us know</a></p>`;
+  return `<p id="links_placeholder"><span style="font-size: 2em;">😲</span><br><b>Something went wrong...</b><br>Please <a href="#" id="copy_error_message_to_clipboard">click here</a> to copy an error message to clipboard and <a href="mailto:alexeyhimself@gmail.com">let us know</a></p>`;
 }
 function draw_no_links_found_placeholder() {
   return `<p id="links_placeholder"><b>No such links found.</b></p>`;
@@ -13,6 +13,35 @@ function enable_copy_error_message_to_clipboard_listener(element_id, error_messa
   element.addEventListener('click', function (event) {
     navigator.clipboard.writeText(error_message);
   });
+}
+
+function display_links_export(number_of_links) {
+  if (number_of_links > 0) {
+    document.getElementById("number_of_links").innerHTML = number_of_links;
+    document.getElementById("links_export").style.display = '';
+  }
+  else
+    document.getElementById("links_export").style.display = 'none';
+}
+
+function draw_grouped_links(grouped_links, no_links_callback) {
+  try {
+    if (grouped_links.total == 0) {
+      if (no_links_callback)
+        document.getElementById("links_area").innerHTML = no_links_callback();
+      else
+        document.getElementById("links_area").innerHTML = draw_links_placeholder();
+    }
+    else
+      document.getElementById("links_area").innerHTML = draw_existing_grouped_links(grouped_links);
+
+    display_links_export(grouped_links.total);
+    // document.getElementById("find_text").focus();
+  } catch (error) {
+    console.error(error);
+    document.getElementById("links_area").innerHTML = draw_links_error_message();
+    enable_copy_error_message_to_clipboard_listener("copy_error_message_to_clipboard", error);
+  }
 }
 
 function draw_links(links, no_links_callback) {
@@ -29,20 +58,45 @@ function draw_links(links, no_links_callback) {
     else
       document.getElementById("links_area").innerHTML = draw_existing_links(links);
 
-    if (links.length > 0) {
-      document.getElementById("number_of_links").innerHTML = links.length;
-      document.getElementById("links_export").style.display = '';
-    }
-    else {
-      document.getElementById("links_export").style.display = 'none';
-    }
-
+    display_links_export(links.length);
     // document.getElementById("find_text").focus();
   } catch (error) {
     console.error(error);
     document.getElementById("links_area").innerHTML = draw_links_error_message();
     enable_copy_error_message_to_clipboard_listener("copy_error_message_to_clipboard", error);
   }
+}
+
+function draw_existing_grouped_links(grouped_links) {
+  let links_html = '';
+  ["read", "watch", "listen", "others"].forEach((what_to_do) => {
+    if (what_to_do == "others")
+      links_html += `<p><b>Everything else by descending priority:</b></p>`;
+    else if (grouped_links[what_to_do].length > 0)
+      links_html += `<p><b>Top priority to ${what_to_do}:</b></p>`;
+
+    grouped_links[what_to_do].forEach((item) => {
+      if (!item.title)
+        item.title = item.link;
+      links_html += `<p><a href="${item.link}" target="_blank">${item.title}</a>`;
+
+      if (item.time || item.priority || item.tags)
+        links_html += '<br>';
+
+      if (item.time && what_to_do != "others")
+        links_html += `time: ${item.time}; `;
+      if (item.time && what_to_do == "others")
+        links_html += `${item.what_to_do} time: ${item.time}; `;
+      //if (item.priority)
+      //  links_html += `priority: ${item.priority}, `;
+      if (item.tags)
+        links_html += `tags: ${item.tags}`;
+
+      links_html += '</p>';
+    });
+  });
+
+  return links_html;
 }
 
 function draw_existing_links(links) {
@@ -52,13 +106,13 @@ function draw_existing_links(links) {
       item.title = item.link;
     links_html += `<p><a href="${item.link}" target="_blank">${item.title}</a>`;
 
-    if (item.time || item.importance || item.tags)
+    if (item.time || item.priority || item.tags)
       links_html += '<br>';
 
     if (item.time)
       links_html += `${item.what_to_do} time: ${item.time}, `;
-    if (item.importance)
-      links_html += `importance: ${item.importance}, `;
+    if (item.priority)
+      links_html += `priority: ${item.priority}, `;
     if (item.tags)
       links_html += `tags: ${item.tags}`;
 
@@ -111,6 +165,36 @@ function calculate_links_stats(importance) {
   return stats;
 }
 */
+
+function group_filtered_links(filtered_links) {
+  let links_to_read = [];
+  let links_to_watch = [];
+  let links_to_listen = [];
+  let links_others = [];
+  for (let i = 0; i < filtered_links.length; i++) {
+    const link = filtered_links[i];
+    if (link.what_to_do) {
+      if (link.what_to_do == "read" && links_to_read.length < 3) {
+        links_to_read.push(link);
+      }
+      else if (link.what_to_do == "watch" && links_to_watch.length < 3) {
+        links_to_watch.push(link);
+      }
+      else if (link.what_to_do == "listen" && links_to_listen.length < 3) {
+        links_to_listen.push(link);
+      }
+      else {
+        links_others.push(link);
+      }
+    }
+    else {
+      links_others.push(link);
+    }
+  }
+  
+  return {"read": links_to_read, "watch": links_to_watch, "listen": links_to_listen, "others": links_others, 
+          "total": links_to_read.length + links_to_watch.length + links_to_listen.length + links_others.length};
+}
 
 function filter_links() {
   const filtered_text = document.getElementById("find_text").value;
@@ -184,12 +268,15 @@ function filter_links() {
 
 function what_to_do_on_filter_change(event) {
   const filtered_links = filter_links();
-  draw_links(filtered_links, draw_no_links_found_placeholder);
+  const grouped_filtered_links = group_filtered_links(filtered_links);
+  //draw_links(filtered_links, draw_no_links_found_placeholder);
+  draw_grouped_links(grouped_filtered_links, draw_no_links_found_placeholder);
 }
 
 function enable_manage_links() {
   enable_buttons_listeners({
-    "find-tab": draw_links,
+    // "find-tab": draw_links,
+    "find-tab": what_to_do_on_filter_change,
     "links_export_csv": download_as_csv,
     "links_export_json": download_as_json,
   });

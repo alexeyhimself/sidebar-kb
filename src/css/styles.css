@@ -212,3 +212,7 @@ select {
 #find_time {
   border-radius: 0 12px 12px 0!important;
 }
+
+p {
+  margin-bottom: 8px;
+}
