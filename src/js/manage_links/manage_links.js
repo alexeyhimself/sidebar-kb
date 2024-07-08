@@ -92,9 +92,14 @@ function draw_existing_grouped_links(grouped_links) {
 
       //if (item.priority)
       //  links_html += `priority: ${item.priority}, `;
-      if (item.tags)
-        links_html += `${item.tags}`;
-
+      if (item.tags) {
+        links_html += ` | <a href="">${item.tags.split(',').length}&nbsp;tag` //links_html += `${item.tags}`;
+        if (item.tags.split(',').length > 1)
+          links_html += 's';
+      }
+      if (item.notes)
+        links_html += ' + a note';
+      links_html += '...</a>';
       links_html += '</p>';
     });
   });
@@ -243,6 +248,12 @@ function filter_links() {
         continue;
       }
     }
+    if (link.what_to_do) {
+      if (link.what_to_do.toLowerCase().includes(filtered_text.toLowerCase())) {
+        resulting_links.push(link);
+        continue;
+      }
+    }
   }
 
   for (let i = 0; i < links_without_time.length; i++) {
@@ -261,6 +272,12 @@ function filter_links() {
     }
     if (link.tags) {
       if (link.tags.toLowerCase().includes(filtered_text.toLowerCase())) {
+        resulting_links.push(link);
+        continue;
+      }
+    }
+    if (link.what_to_do) {
+      if (link.what_to_do.toLowerCase().includes(filtered_text.toLowerCase())) {
         resulting_links.push(link);
         continue;
       }
