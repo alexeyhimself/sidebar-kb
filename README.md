@@ -1,12 +1,21 @@
 # Personal Knowledge Base side panel
 This is an MVP for a Personal Knowledge Base side panel extension for Google Chrome desktop.
-![image](https://www.dropbox.com/scl/fi/6wb77q2inrk2bcy7ivqjp/2024-06-11-00.17.00.jpg?rlkey=tpuxw2dntgf39hg95jxyl0rrq&raw=1)
+![image](https://www.dropbox.com/scl/fi/0j638d53bsaqwos4t4t26/Screenshot-at-Jul-08-05-46-44.png?rlkey=vgajq5mupz726h6jg3yruka9h&raw=1)
+
 
 ## How to install
 1. Clone this repository (or download it as a ZIP-archive and unpack)
 2. In "kebab" menu of Google Chrome go to: "Extensions" → "Manage Extensions"
-3. In the upper right corner turn on "Developer mode"
+3. In the upper right corner enable "Developer mode" if not yet enabled
 4. In the upper left corner click "Load unpacked" button and choose repository directory from step 1
+
+
+## How to use
+1. Use "Collect" tab to collect links you want to read / watch / listen / etc. later
+2. Use "Queue" tab to filter links with top priority that match you current time frame to learn
+3. "Knowledge base" tab is under construction yet, that's why disabled
+4. Use "Export links to CSV or JSON" on a "Queue" tab to backup your links at any time
+
 
 ## FAQ
 ### Where the data is stored?
