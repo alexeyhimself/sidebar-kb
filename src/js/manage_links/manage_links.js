@@ -25,12 +25,17 @@ function display_links_export(number_of_links) {
 }
 
 function draw_grouped_links(grouped_links, no_links_callback) {
+  const all_existing_links = load_links_from_local_storage_sorted_by();
+
   try {
+    document.getElementById("filter").style.display = '';
     if (grouped_links.total == 0) {
-      if (no_links_callback)
+      if (no_links_callback && all_existing_links.length > 0)
         document.getElementById("links_area").innerHTML = no_links_callback();
-      else
+      else {
         document.getElementById("links_area").innerHTML = draw_links_placeholder();
+        document.getElementById("filter").style.display = 'none';
+      }
     }
     else
       document.getElementById("links_area").innerHTML = draw_existing_grouped_links(grouped_links);
@@ -70,7 +75,7 @@ function draw_links(links, no_links_callback) {
 function draw_existing_grouped_links(grouped_links) {
   let links_html = '';
   ["read", "watch", "listen", "others"].forEach((what_to_do) => {
-    if (what_to_do == "others")
+    if (what_to_do == "others" && grouped_links[what_to_do].length > 0)
       links_html += `<p><br><b>Everything else matching filter, ordered by descending priority:</b></p>`;
     else if (grouped_links[what_to_do].length > 0)
       links_html += `<p><b>Top priority to ${what_to_do}:</b></p>`;
@@ -295,7 +300,7 @@ function what_to_do_on_filter_change(event) {
 
 function enable_manage_links() {
   enable_buttons_listeners({
-    // "find-tab": draw_links,
+    // "find-tab": draw_grouped_links,
     "find-tab": what_to_do_on_filter_change,
     "links_export_csv": download_as_csv,
     "links_export_json": download_as_json,
