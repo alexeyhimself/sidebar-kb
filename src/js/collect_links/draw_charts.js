@@ -31,7 +31,7 @@ function calculate_links_stats_for_priority_bar(chart_id, what_to_do, links) {
   return stats;
 }
 function adjust_links_stats_chart_height_if_needed(number_of_saved_links) {
-  if (number_of_saved_links == 0) {
+  if (number_of_saved_links < 1000) {
     document.getElementById("priority").style.height = "36px";
     document.getElementById("priority").style.paddingBottom = "5px";
     document.getElementById("priority_placeholder").style.top = "-74px";
