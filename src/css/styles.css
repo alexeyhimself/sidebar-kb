@@ -9,6 +9,20 @@ body, textarea, button, label, input, select, p, a {
     "YTLC" 500;
 }
 
+label.arsenal-sc {
+  font-family: "Arsenal SC", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1em!important;
+  margin-left: 10px;
+  color: gray;
+}
+/*
+#link, #title, #notes, #what_to_do, #time, #tags {
+  margin-bottom: 5px;
+}
+*/
+
 #links_area {
   margin-top: 8px;
   padding: 0 10px 10px 10px;
@@ -20,7 +34,7 @@ body, textarea, button, label, input, select, p, a {
 
 .margin-8 {
   width: calc(100% - 16px);
-  margin: 8px 8px 0 8px;
+  margin: 12px 8px 0px 8px;
 }
 
 body {
@@ -46,14 +60,19 @@ body {
   border-right: 1px solid #dee2e6;
   border-radius: 0;
 }
+.nav-link.active.kb-tab-pane {
+  border-left: 1px solid #dee2e6;
+  border-right: 0px solid #dee2e6;
+  border-radius: 0 12px 0 0;
+}
 
 #priority {
-  height: 60px;
+  height: 34px;
   cursor: pointer;
   background: transparent;
   position: relative;
   z-index: 10;
-  padding-bottom: 30px;
+  padding-bottom: 7px;
 }
 
 #container {
@@ -64,28 +83,12 @@ body {
 }
 
 textarea, input, button#save {
-  border-radius: 12px!important;
-}
-
-.btn-outline-custom {
-  border: 1px solid #dee2e6;
-}
-.btn-check:checked+.btn-outline-custom {
-  background: #ebeff7;
-  border: 1px solid #dee2e6;
-}
-
-.btn-check+.btn:hover {
-  border: 1px solid #dee2e6;
-  background: #ebeff7;
-}
-.btn-outline-custom {
-  border-radius: 12px;
+  border-radius-: 8px!important;
 }
 
 .input-time {
   /*border-left: 0;*/
-  border-radius: 0 12px 12px 0!important;
+  border-radius: 0 0.375rem 0.375rem 0!important;
 }
 
 #priority_placeholder {
@@ -100,7 +103,7 @@ textarea, input, button#save {
   width: 100%;
 }
 .left-half-border-radius {
-  border-radius: 12px 0 0 12px!important;
+  border-radius: 0.375rem 0 0 0.375rem!important;
 }
 .all-around-border-radius {
   border-radius: 12px!important;
@@ -118,9 +121,6 @@ select {
   margin: 0 1px 0 1px;
 }
 
-#find-tab-pane {
-  
-}
 #notes {
   overflow-y: hidden;
 }
@@ -142,8 +142,9 @@ select {
 }
 
 #link, #title {
-  min-height: 59px!important;
+  min-height-: 59px!important;
   overflow-y: hidden;
+  height: 35px;
 }
 #tags {
   overflow-y: hidden;
@@ -218,4 +219,8 @@ p {
 }
 .badge {
   padding-bottom: 3px;
+}
+
+textarea::placeholder {
+  color: gray!important;
 }

@@ -26,6 +26,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="src/css/styles.css">
   </head>
@@ -39,16 +40,21 @@
           <button class="nav-link find-tab-pane" id="find-tab" data-bs-toggle="tab" data-bs-target="#find-tab-pane" type="button" role="tab" aria-controls="find-tab-pane" aria-selected="false">Queue</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link find-tab-pane disabled" id="find-tab" data-bs-toggle="tab" data-bs-target="#find-tab-pane" type="button" role="tab" aria-controls="find-tab-pane" aria-selected="false">Knowledge base</button>
+          <button class="nav-link kb-tab-pane" id="kb-tab" data-bs-toggle="tab" data-bs-target="#kb-tab-pane" type="button" role="tab" aria-controls="kb-tab-pane" aria-selected="false">Knowledge base</button>
         </li>
       </ul>
       <div class="tab-content" id="tabsContent">
         <div class="tab-pane fade show active" id="save-tab-pane" role="tabpanel" aria-labelledby="save-tab" tabindex="0">
-          <textarea class="form-control margin-8" id="link" placeholder="Double-click / drag & drop / paste link here"></textarea>
-          <textarea class="form-control margin-8" id="title" placeholder="Add a human-friendly title for the link"></textarea>
-          <textarea class="form-control margin-8" id="notes" placeholder="Add notes (optional)" rows="1"></textarea>
+          
+          <!--label class="arsenal-sc">url:</label-->
+          <textarea class="form-control margin-8" id="link" placeholder="Double-click / drag & drop / paste URL here"></textarea>
 
-          <div class="margin-8">
+          <!--label class="arsenal-sc">title:</label-->
+          <textarea class="form-control margin-8" id="title" placeholder="A human-friendly title for the link"></textarea>
+          
+          <!--label class="arsenal-sc">what to do:</label-->
+          <!--label class="arsenal-sc" style="margin-left: 24%;">time estimate:</label-->
+          <div class="margin-8" >
             <div class="input-group" role="group" aria-label="Basic radio toggle button group">
               <div class="input-group" role="group" style="width: 50%;">
                 <select class="form-select left-half-border-radius" id="what_to_do">
@@ -64,18 +70,24 @@
             </div>
           </div>
 
-          <textarea class="form-control margin-8" id="tags" placeholder="Add tags separated by commas" rows="1"></textarea>
-          <p id="tags_hint"></p>
+          <!--label class="arsenal-sc">priority to learn:</label-->
+          <input class="form-control form-range- margin-8" id="priority" type="range" title="Queue to learn priority: from Low (on the left) to High (on the right)" value="50">
 
-          <input class="form-control form-range- margin-8" id="priority" type="range" title="Queue to learn priority: from Low (on the left) to High (on the right)" value="70">
+          <!--label class="arsenal-sc">notes:</label-->
+          <textarea class="form-control margin-8" id="notes" placeholder="Add notes" rows="1"></textarea>
+
+
+          <!--label class="arsenal-sc">tags:</label-->
+          <textarea class="form-control margin-8" id="tags" placeholder="Tags separated by commas" rows="1"></textarea>
+          <p id="tags_hint"></p>
 
           <div class="row" style="margin: 0;">
             <div class="col" style="padding: 0;">
-              <button id="save" class="btn btn-primary margin-8 disabled" type="button">Save link</button>
+              <button id="save" class="btn btn-primary margin-8 disabled" style="margin-top-: 20px" type="button">Collect to Queue</button>
             </div>
           </div>
 
-          <label id="priority_placeholder">Set queue to learn priority</label>
+          <!--label id="priority_placeholder" style="display: none;">Set queue to learn priority</label-->
           <div id="chart_total"></div>
           <div id="chart_what_to_do"></div>
         </div>
@@ -99,6 +111,12 @@
           </div>
           <div id="links_area"></div>
           <p id="links_export" style="display: none;">💾 Export <span id="number_of_links"></span> displayed links as <a href="#" id="links_export_csv">CSV</a> or as <a href="#" id="links_export_json">JSON</a><p>
+        </div>
+
+        <div class="tab-pane fade" id="kb-tab-pane" role="tabpanel" aria-labelledby="kb-tab" tabindex="0">
+          <div class="margin-8">
+            ...
+          </div>
         </div>
       </div>
     </div>

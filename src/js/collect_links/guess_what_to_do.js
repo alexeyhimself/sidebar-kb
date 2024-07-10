@@ -45,7 +45,7 @@ function update_stats_of_what_to_do_for_links(link) {
 
 function update_form_after_what_to_do_change(what_to_do_element) {
   hide_fields_if_necessary(what_to_do_element);
-  draw_links_stats_chart_under_priority_bar("chart_what_to_do", what_to_do_element.value);
+  //draw_links_stats_chart_under_priority_bar("chart_what_to_do", what_to_do_element.value);
   enable_button_on_link_value_only();
 }
 

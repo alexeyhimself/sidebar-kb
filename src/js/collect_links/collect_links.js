@@ -16,8 +16,8 @@ function collect_data_from_the_save_link_form() {
 function reset_collect_links_form_state_after_save() {
   disable_save_button();
   clear_save_link_form();
-  draw_links_stats_chart_under_priority_bar("chart_total");
-  draw_links_stats_chart_under_priority_bar("chart_what_to_do");
+  //draw_links_stats_chart_under_priority_bar("chart_total");
+  //draw_links_stats_chart_under_priority_bar("chart_what_to_do");
 }
 
 function clear_save_link_form() {
@@ -90,7 +90,7 @@ function what_to_do_on_textareas_content_change(event) {
         document.getElementById("save").classList.add("btn-warning");
       }
       else {
-        document.getElementById("save").innerText = "Save link";
+        document.getElementById("save").innerText = "Collect to Queue";
         document.getElementById("save").classList.remove("btn-warning");
       }
 
@@ -102,7 +102,7 @@ function what_to_do_on_textareas_content_change(event) {
 
 function enable_collect_links() {
   enable_collect_links_listeners();
-  draw_links_stats_chart_under_priority_bar("chart_total");
-  draw_links_stats_chart_under_priority_bar("chart_what_to_do");
+  //draw_links_stats_chart_under_priority_bar("chart_total");
+  //draw_links_stats_chart_under_priority_bar("chart_what_to_do");
   fill_stats_of_what_to_do_for_links();
 }

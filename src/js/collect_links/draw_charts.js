@@ -47,7 +47,7 @@ function adjust_links_stats_chart_height_if_needed(number_of_saved_links) {
 function draw_links_stats_chart_under_priority_bar(chart_id, what_to_do) {
   const links = load_links_from_local_storage();
 
-  const should_we_draw_the_chart = adjust_links_stats_chart_height_if_needed(links.length);
+  //const should_we_draw_the_chart = adjust_links_stats_chart_height_if_needed(links.length);
   if (!should_we_draw_the_chart)
     return;
 

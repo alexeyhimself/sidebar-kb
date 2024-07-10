@@ -13,12 +13,12 @@ function enable_textarea_listener(element_id, callback) {
 }
 
 function enable_range_listener(element_id) {
-  dim_range_placeholder_in_thumb_proximity();
+  //dim_range_placeholder_in_thumb_proximity();
 
   var element = document.getElementById(element_id);
   element.addEventListener('change', function (event) {
     const priority = parseInt(this.value);
-    dim_range_placeholder_in_thumb_proximity(priority);
+    //dim_range_placeholder_in_thumb_proximity(priority);
   });
 }
 
