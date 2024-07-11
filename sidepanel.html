@@ -51,6 +51,9 @@
 
           <!--label class="arsenal-sc">title:</label-->
           <textarea class="form-control margin-8" id="title" placeholder="A human-friendly title for the link"></textarea>
+
+          <!--label class="arsenal-sc">notes:</label-->
+          <textarea class="form-control margin-8" id="notes" placeholder="Notes" rows="1"></textarea>
           
           <!--label class="arsenal-sc">what to do:</label-->
           <!--label class="arsenal-sc" style="margin-left: 24%;">time estimate:</label-->
@@ -66,14 +69,9 @@
                 </select>
               </div>
 
-              <textarea class="form-control input-time" id="time" placeholder="0m" rows="1"></textarea>
+              <textarea class="form-control input-time" id="time" placeholder="Estimate time" rows="1"></textarea>
             </div>
           </div>
-
-
-          <!--label class="arsenal-sc">notes:</label-->
-          <textarea class="form-control margin-8" id="notes" placeholder="Add notes" rows="1"></textarea>
-
 
           <!--label class="arsenal-sc">tags:</label-->
           <textarea class="form-control margin-8" id="tags" placeholder="Tags separated by commas" rows="1"></textarea>
@@ -84,7 +82,7 @@
 
           <div class="row" style="margin: 0;">
             <div class="col" style="padding: 0;">
-              <button id="save" class="btn btn-primary margin-8 disabled" style="margin-top-: 20px" type="button">Collect to Queue</button>
+              <button id="save" class="btn btn-primary margin-8 disabled" style="margin-top-: 20px" type="button">Add to Queue</button>
             </div>
           </div>
 
@@ -98,7 +96,7 @@
           <div class="margin-8">
             <div id="filter" class="input-group" role="group" aria-label="">
               <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search links">
-              <input type="text" id="find_time" class="form-control" placeholder="0m">
+              <input type="text" id="find_time" class="form-control" placeholder="Time limit">
               <!--div class="btn-group" role="group">
                 <select class="form-select" id="order">
                   <option value="priority_desc" selected>Priority ↓</option>

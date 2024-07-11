@@ -46,7 +46,7 @@ async function save_link() {
   reset_collect_links_form_state_after_save();
   enable_tags_hint_on_any_value_only();
 
-  document.getElementById("save").innerText = "Collect to Queue";
+  document.getElementById("save").innerText = "Add to Queue";
   document.getElementById("save").classList.remove("btn-warning");
 
   let save_element = document.getElementById("save");

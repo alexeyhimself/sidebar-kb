@@ -90,7 +90,7 @@ function what_to_do_on_textareas_content_change(event) {
         document.getElementById("save").classList.add("btn-warning");
       }
       else {
-        document.getElementById("save").innerText = "Collect to Queue";
+        document.getElementById("save").innerText = "Add to Queue";
         document.getElementById("save").classList.remove("btn-warning");
       }
 
