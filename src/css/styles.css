@@ -224,3 +224,6 @@ p {
 textarea::placeholder {
   color: gray!important;
 }
+textarea {
+  resize: none;
+}
