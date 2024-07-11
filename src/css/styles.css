@@ -93,9 +93,10 @@ textarea, input, button#save {
 
 #priority_placeholder {
   position: relative;
-  top: -98px;
+  top: -77px;
   left: 22px;
   color: #585c5f;
+  color: gray;
   z-index: 1;
 }
 

@@ -70,8 +70,6 @@
             </div>
           </div>
 
-          <!--label class="arsenal-sc">priority to learn:</label-->
-          <input class="form-control form-range- margin-8" id="priority" type="range" title="Queue to learn priority: from Low (on the left) to High (on the right)" value="50">
 
           <!--label class="arsenal-sc">notes:</label-->
           <textarea class="form-control margin-8" id="notes" placeholder="Add notes" rows="1"></textarea>
@@ -81,13 +79,17 @@
           <textarea class="form-control margin-8" id="tags" placeholder="Tags separated by commas" rows="1"></textarea>
           <p id="tags_hint"></p>
 
+          <!--label class="arsenal-sc">priority to learn:</label-->
+          <input class="form-control form-range- margin-8" id="priority" type="range" title="Queue to learn priority: from Low (on the left) to High (on the right)" value="50">
+
           <div class="row" style="margin: 0;">
             <div class="col" style="padding: 0;">
               <button id="save" class="btn btn-primary margin-8 disabled" style="margin-top-: 20px" type="button">Collect to Queue</button>
             </div>
           </div>
 
-          <!--label id="priority_placeholder" style="display: none;">Set queue to learn priority</label-->
+          <label id="priority_placeholder" style="display: none-;">Low priority</label>
+          <label id="priority_placeholder" style="display: none-; float: right; left: -22px;">High priority</label>
           <div id="chart_total"></div>
           <div id="chart_what_to_do"></div>
         </div>
