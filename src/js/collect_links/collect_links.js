@@ -35,7 +35,7 @@ function collect_data_from_the_save_link_form() {
 
   for (let i in all_input_elements_ids) {
     const element_id = all_input_elements_ids[i];
-    current_link[element_id] = document.getElementById(element_id).value.trim().replace(/(?:\r\n|\r|\n)/g, '');
+    current_link[element_id] = document.getElementById(element_id).value.trim().replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
   }
   return current_link;
 }

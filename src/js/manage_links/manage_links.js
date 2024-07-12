@@ -225,7 +225,11 @@ function group_filtered_links(filtered_links) {
 function filter_links() {
   const filtered_text = document.getElementById("find_text").value;
   const filtered_time = document.getElementById("find_time").value;
-  const filtered_time_minutes = convert_time_to_minutes(filtered_time);
+  const parsed_time = parse_time(filtered_time);
+  if (!parsed_time)
+    return [];
+
+  const filtered_time_minutes = parsed_time.hours * 60 + parsed_time.minutes;
 
   const links = load_links_from_local_storage_sorted_by();
   let links_match_by_time = [];

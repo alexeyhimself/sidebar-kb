@@ -12,22 +12,28 @@ function load_links_from_local_storage_sorted_by() {
   return links;
 }
 
-function convert_time_to_minutes(time) {
+function parse_time(time) {
   if (time.includes("h")) {
     if (time.includes("m")) {
-      const match = time.match(/(\d+)\s*h\s*(\d+)\s*m/);
-      return parseInt(match[1]) * 60 + parseInt(match[2]);
+      const match = time.match(/(\d+)\s*h[ours]*\s*(\d+)\s*m[inutes]*/);
+      if (match)
+        return {"hours": parseInt(match[1]), "minutes": parseInt(match[2])};
+      else
+        return {};
     }
     else {
-      const match = time.match(/(\d+)\s*h/);
-      return parseInt(match[1]) * 60;
+      const match = time.match(/(\d+)\s*h[ours]*/);
+      if (match)
+        return {"hours": parseInt(match[1]), "minutes": 0};
+      else
+        return {};
     }
   }
   else {
-    const match = time.match(/(\d+)\s*m/);
+    const match = time.match(/(\d+)\s*m[inutes]*/);
     if (match)
-      return parseInt(match[1]);
+      return {"hours": 0, "minutes": parseInt(match[1])};
     else
-      return;
+      return {};
   }
 }
