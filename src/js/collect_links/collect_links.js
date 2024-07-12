@@ -99,7 +99,7 @@ function what_to_do_on_textareas_content_change(event) {
       const existing_link = link_already_exists(link);
       if (existing_link) {
         fill_the_collect_links_form_with_existing_data(existing_link);
-        document.getElementById("save").innerText = "Update existing link";
+        document.getElementById("save").innerText = "Update existing item";
         document.getElementById("save").classList.add("btn-warning");
       }
       else {
