@@ -86,9 +86,9 @@ function draw_existing_grouped_links(grouped_links) {
       links_html += '<p>';
 
       if (item.time && what_to_do != "others")
-        links_html += `<span class="badge bg-warning text-dark">${item.time}</span> `;
+        links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span> `;
       if (item.time && what_to_do == "others")
-        links_html += `<span class="badge bg-warning text-dark">${item.time}</span> <span class="badge bg-secondary text-dark-">${item.what_to_do}</span> `;
+        links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span> <span class="badge bg-secondary text-dark-">${item.what_to_do}</span> `;
       
       links_html += `<a href="${item.link}" target="_blank">${item.title}</a> `;
 
