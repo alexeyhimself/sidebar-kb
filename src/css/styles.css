@@ -54,7 +54,7 @@ body {
 }
 .nav-link.active.kb-tab-pane {
   border-left: 1px solid #dee2e6;
-  border-right: 0px solid #dee2e6;
+  border-right: 1px solid transparent;
   border-radius: 0 12px 0 0;
 }
 
