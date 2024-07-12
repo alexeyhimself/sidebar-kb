@@ -76,9 +76,9 @@ function draw_existing_grouped_links(grouped_links) {
   let links_html = '';
   ["read", "watch", "listen", "others"].forEach((what_to_do) => {
     if (what_to_do == "others" && grouped_links[what_to_do].length > 0)
-      links_html += `<p><br><b>Everything else matching filter, ordered by descending priority:</b></p>`;
+      links_html += `<p><br><b>Everything else matching filter (${grouped_links[what_to_do].length} items), ordered by descending priority:</b></p>`;
     else if (grouped_links[what_to_do].length > 0)
-      links_html += `<p><b>Top priority to ${what_to_do}:</b></p>`;
+      links_html += `<p><b>${grouped_links[what_to_do].length} top priority to ${what_to_do}:</b></p>`;
 
     grouped_links[what_to_do].forEach((item) => {
       if (!item.title)
