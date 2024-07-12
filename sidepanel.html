@@ -45,7 +45,7 @@
       </ul>
       <div class="tab-content" id="tabsContent">
         <div class="tab-pane fade show active" id="save-tab-pane" role="tabpanel" aria-labelledby="save-tab" tabindex="0">
-          <div id="welcome">
+          <div id="welcome" class="animate_fade_in">
             <button id="grab_tab" class="btn btn-primary btn-lg" style="margin-top: 40vh; margin-bottom: 10px;" type="button">Save this tab for later</button><br>
             <a href="#">Save all opened tabs for later</a>
             <a href="#" id="open_collect_form">Open collect form</a>
@@ -85,11 +85,12 @@
             <!--label class="arsenal-sc">priority to learn:</label-->
             <input class="form-control form-range- margin-8" id="priority" type="range" title="Queue to learn priority: from Low (on the left) to High (on the right)" value="50">
 
-            <div class="row" style="margin: 0;">
+            <div class="row" style="margin: 0; display: block; text-align: center;">
               <div class="col" style="padding: 0;">
-                <button id="save" class="btn btn-primary margin-8 disabled" style="margin-top-: 20px" type="button">Add to Queue</button>
+                <button id="save" class="btn btn-primary margin-8 disabled" style="margin-bottom: 8px" type="button">Add to Queue</button>
               </div>
-              <a href="#" id="clear" class="margin-8" style="display: none;">Clear form</a>
+              <a href="#" id="clear" style="display: none;">Clear form</a>
+              <a href="#" id="close_collect_form">Close form</a>
             </div>
 
             <label class="priority_placeholder">Low priority</label>

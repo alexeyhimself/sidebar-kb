@@ -93,7 +93,7 @@ textarea, input, button#save {
 
 .priority_placeholder {
   position: relative;
-  top: -77px;
+  top: -107px;
   left: 22px;
   color: #585c5f;
   color: gray;
@@ -232,8 +232,10 @@ textarea {
   resize: none;
 }
 
-#clear {
+#clear, #close_collect_form {
   text-align: center;
+  margin: 0;
+  padding: 5px;
   margin-top: 8px;
 }
 #welcome {
