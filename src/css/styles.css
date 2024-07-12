@@ -109,9 +109,11 @@ textarea, input, button#save {
 .all-around-border-radius {
   border-radius: 12px!important;
 }
+/*
 select {
   color: #585c5f!important;
 }
+*/
 
 #tags_hint {
   margin: 5px;
@@ -129,6 +131,7 @@ select {
 #what_to_do {
   cursor: pointer;
   width: 50%;
+  color: gray;
 }
 #links_placeholder {
   text-align: center;

@@ -27,6 +27,7 @@ function clear_save_link_form() {
   });
 }
 
+/*
 function dim_range_placeholder_in_thumb_proximity(priority) {
   if (!priority)  // initial start of the event listener
     priority = document.getElementById("priority").value;
@@ -36,6 +37,7 @@ function dim_range_placeholder_in_thumb_proximity(priority) {
   else
     document.getElementById("priority_placeholder").style.color = '#585c5fff';
 }
+*/
 
 function hide_fields_if_necessary(element) {
   let display;
@@ -51,9 +53,9 @@ function hide_fields_if_necessary(element) {
   }
 
   document.getElementById("priority").style.display = display;
-  document.getElementById("priority_placeholder").style.display = display;
-  document.getElementById("chart_total").style.display = display;
-  document.getElementById("chart_what_to_do").style.display = display;
+  //document.getElementById("priority_placeholder").style.display = display;
+  //document.getElementById("chart_total").style.display = display;
+  //document.getElementById("chart_what_to_do").style.display = display;
   document.getElementById("time").style.display = display;
 }
 

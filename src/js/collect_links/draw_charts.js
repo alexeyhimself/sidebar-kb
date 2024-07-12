@@ -1,3 +1,4 @@
+/*
 var chart_total_max = 0;
 var chart_what_to_do_max = 0;
 
@@ -71,3 +72,4 @@ function draw_links_stats_chart_under_priority_bar(chart_id, what_to_do) {
   }
   document.getElementById(chart_id).innerHTML = content;
 }
+*/

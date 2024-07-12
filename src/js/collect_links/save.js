@@ -1,28 +1,23 @@
-function enable_save_button() {
-  document.getElementById("save").classList.remove("disabled");
-  document.getElementById("priority").style.setProperty('--sliderColor', "#0075ff");
-  let elements = document.querySelectorAll(".chart_what_to_do");
-  elements.forEach(function(element) {
-    element.style.background = "#0075ff";
-  });
-}
-function disable_save_button() {
+function bring_form_to_idle_state() {
   document.getElementById("save").classList.add("disabled");
   document.getElementById("priority").style.setProperty('--sliderColor', "#6ba2ff");
-  let elements = document.querySelectorAll(".chart_what_to_do");
-  elements.forEach(function(element) {
-    element.style.background = "#6ba2ff";
-  });
+  document.getElementById("what_to_do").style.color = "gray";
 }
+function bring_form_to_active_state() {
+  document.getElementById("save").classList.remove("disabled");
+  document.getElementById("priority").style.setProperty('--sliderColor', "#0075ff");
+  document.getElementById("what_to_do").style.color = "black";
+}
+
 function enable_button_on_link_value_only() {
   setTimeout(() => {
     const link = document.getElementById("link").value;
     if (link) {
-      enable_save_button();
+      bring_form_to_active_state();
       //suggest_what_to_do(link);
     }
     else {
-      disable_save_button();
+      bring_form_to_idle_state();
     }
   }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
 }
