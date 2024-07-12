@@ -5,11 +5,19 @@ function bring_form_to_idle_state() {
   document.getElementById("save").classList.add("disabled");
   document.getElementById("priority").style.setProperty('--sliderColor', "#6ba2ff");
   document.getElementById("what_to_do").style.color = "gray";
+  document.getElementById("clear").style.display = "none";
+  document.querySelectorAll(".priority_placeholder").forEach((element) => {
+    element.style.top = "-77px";
+  });
 }
 function bring_form_to_active_state() {
   document.getElementById("save").classList.remove("disabled");
   document.getElementById("priority").style.setProperty('--sliderColor', "#0075ff");
   document.getElementById("what_to_do").style.color = "black";
+  document.getElementById("clear").style.display = "";
+  document.querySelectorAll(".priority_placeholder").forEach((element) => {
+    element.style.top = "-107px";
+  });
 }
 
 function collect_data_from_the_save_link_form() {

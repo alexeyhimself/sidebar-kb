@@ -121,7 +121,8 @@ function enable_collect_links_listeners() {
     enable_textarea_listener(element_id, what_to_do_on_textareas_content_change);
   });
   enable_buttons_listeners({
-    "save": save_link
+    "save": save_link,
+    "clear": reset_form_state,
   });
   enable_range_listener("priority");
   enable_selector_listener("what_to_do");

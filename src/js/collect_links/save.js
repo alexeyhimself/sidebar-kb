@@ -20,6 +20,15 @@ function add_time_in_minutes(link) {
   return link;
 }
 
+function reset_form_state() {
+  bring_form_to_idle_state();
+  clear_save_link_form();
+  enable_tags_hint_on_any_value_only();
+
+  document.getElementById("save").innerText = "Add to Queue";
+  document.getElementById("save").classList.remove("btn-warning");
+}
+
 async function save_link() {
   let link = collect_data_from_the_save_link_form();
   get_hostname(link.link); // just validation of format to prevent saving of a broken link
@@ -27,12 +36,7 @@ async function save_link() {
   save_link_to_local_storage(link);
   update_tags_in_local_storage(link.tags);
   update_stats_of_what_to_do_for_links(link);
-  bring_form_to_idle_state();
-  clear_save_link_form();
-  enable_tags_hint_on_any_value_only();
-
-  document.getElementById("save").innerText = "Add to Queue";
-  document.getElementById("save").classList.remove("btn-warning");
+  reset_form_state();
 
   let save_element = document.getElementById("save");
   if (save_element.classList.contains("context_menu_call")) {

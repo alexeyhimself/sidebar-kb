@@ -91,7 +91,7 @@ textarea, input, button#save {
   border-radius: 0 0.375rem 0.375rem 0!important;
 }
 
-#priority_placeholder {
+.priority_placeholder {
   position: relative;
   top: -77px;
   left: 22px;
@@ -230,4 +230,9 @@ textarea::placeholder {
 }
 textarea {
   resize: none;
+}
+
+#clear {
+  text-align: center;
+  margin-top: 8px;
 }
