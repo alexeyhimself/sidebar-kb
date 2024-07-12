@@ -37,6 +37,7 @@ async function save_link() {
   update_tags_in_local_storage(link.tags);
   update_stats_of_what_to_do_for_links(link);
   reset_form_state();
+  show_collect_welcome();
 
   let save_element = document.getElementById("save");
   if (save_element.classList.contains("context_menu_call")) {

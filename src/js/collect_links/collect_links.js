@@ -94,6 +94,19 @@ function fill_the_collect_links_form_with_existing_data(link) {
   });
 }
 
+function adjust_if_link_already_exists(link) {
+  const existing_link = link_already_exists(link);
+  if (existing_link) {
+    fill_the_collect_links_form_with_existing_data(existing_link);
+    document.getElementById("save").innerText = "Update existing item";
+    document.getElementById("save").classList.add("btn-warning");
+  }
+  else {
+    document.getElementById("save").innerText = "Add to Queue";
+    document.getElementById("save").classList.remove("btn-warning");
+  }
+}
+
 function what_to_do_on_textareas_content_change(event) {
   adjust_textarea_size(event.target);
   enable_button_on_link_value_only();
@@ -105,17 +118,7 @@ function what_to_do_on_textareas_content_change(event) {
   if (event.target.id == "link") {
     setTimeout(() => {
       const link = event.target.value;
-      const existing_link = link_already_exists(link);
-      if (existing_link) {
-        fill_the_collect_links_form_with_existing_data(existing_link);
-        document.getElementById("save").innerText = "Update existing item";
-        document.getElementById("save").classList.add("btn-warning");
-      }
-      else {
-        document.getElementById("save").innerText = "Add to Queue";
-        document.getElementById("save").classList.remove("btn-warning");
-      }
-
+      adjust_if_link_already_exists(link);
       suggest_what_to_do(link);
 
     }, 200);  // a bit wait because drag&drop events pass faster than the DOM update

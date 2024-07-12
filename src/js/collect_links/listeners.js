@@ -88,6 +88,7 @@ async function fill_and_adjust(tab) {
   if (page_object.words_on_page)
     suggest_tags(page_object.words_on_page);
 
+  adjust_if_link_already_exists(page_object.link);
   let save_element = document.getElementById("save");
   save_element.classList.add("auto_fill");
 }
