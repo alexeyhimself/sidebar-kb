@@ -1,14 +1,3 @@
-function bring_form_to_idle_state() {
-  document.getElementById("save").classList.add("disabled");
-  document.getElementById("priority").style.setProperty('--sliderColor', "#6ba2ff");
-  document.getElementById("what_to_do").style.color = "gray";
-}
-function bring_form_to_active_state() {
-  document.getElementById("save").classList.remove("disabled");
-  document.getElementById("priority").style.setProperty('--sliderColor', "#0075ff");
-  document.getElementById("what_to_do").style.color = "black";
-}
-
 function enable_button_on_link_value_only() {
   setTimeout(() => {
     const link = document.getElementById("link").value;

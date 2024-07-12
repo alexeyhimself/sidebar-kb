@@ -1,6 +1,16 @@
 const collect_links_textareas_ids = ["link", "title", "notes", "time", "tags"];
 const all_input_elements_ids = collect_links_textareas_ids.concat(["priority", "what_to_do"]);
 
+function bring_form_to_idle_state() {
+  document.getElementById("save").classList.add("disabled");
+  document.getElementById("priority").style.setProperty('--sliderColor', "#6ba2ff");
+  document.getElementById("what_to_do").style.color = "gray";
+}
+function bring_form_to_active_state() {
+  document.getElementById("save").classList.remove("disabled");
+  document.getElementById("priority").style.setProperty('--sliderColor', "#0075ff");
+  document.getElementById("what_to_do").style.color = "black";
+}
 
 function collect_data_from_the_save_link_form() {
   var current_link = {};
@@ -14,7 +24,7 @@ function collect_data_from_the_save_link_form() {
 }
 
 function reset_collect_links_form_state_after_save() {
-  disable_save_button();
+  bring_form_to_idle_state();
   clear_save_link_form();
   //draw_links_stats_chart_under_priority_bar("chart_total");
   //draw_links_stats_chart_under_priority_bar("chart_what_to_do");
