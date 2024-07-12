@@ -101,21 +101,23 @@ function draw_existing_grouped_links(grouped_links) {
       if (item.time && what_to_do == "others")
         links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span> <span class="badge bg-secondary text-dark-">${item.what_to_do}</span> `;
       
-      links_html += `<a href="${item.link}" target="_blank">${item.title}</a> `;
+      links_html += `<a href="${item.link}" target="_blank">${item.title.trim()}</a> `;
 
-      //if (item.time || item.priority || item.tags)
-      //  links_html += '<br>';
-
-      //if (item.priority)
-      //  links_html += `priority: ${item.priority}, `;
       if (item.tags) {
         links_html += ` | <a href="">${item.tags.split(',').length}&nbsp;tag` //links_html += `${item.tags}`;
         if (item.tags.split(',').length > 1)
           links_html += 's';
       }
-      if (item.notes)
-        links_html += ' + a note';
-      links_html += '...</a>';
+      if (item.notes) {
+        if (item.tags)
+          links_html += ' + a note';
+        else
+          links_html += ' | <a href="">a note';
+      }
+      if (item.tags || item.notes)
+        links_html += '...';
+
+      links_html += '</a>';
       links_html += '</p>';
     });
   });
