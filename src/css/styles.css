@@ -67,7 +67,7 @@ body {
 }
 
 #priority {
-  height: 34px;
+  min-height: calc(1.5em + .75rem + calc(var(--bs-border-width)* 2));
   cursor: pointer;
   background: transparent;
   position: relative;
@@ -93,7 +93,7 @@ textarea, input, button#save {
 
 .priority_placeholder {
   position: relative;
-  top: -107px;
+  top: -109px;
   left: 22px;
   color: #585c5f;
   color: gray;
