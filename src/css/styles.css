@@ -236,11 +236,13 @@ textarea {
   text-align: center;
   margin-top: 8px;
 }
+#welcome {
+  text-align: center;
+}
 #form {
   display: none;
 }
 #open_collect_form {
   display: block;
-  text-align: center;
-  margin-top: 40vh;
+  margin-top: 5px;
 }

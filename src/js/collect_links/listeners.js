@@ -82,7 +82,7 @@ function fill_and_adjust_textareas(page_object) {
 
 async function fill_and_adjust(tab) {
   const page_object = await get_data_from_active_tab(tab);
-
+  show_collect_form();
   fill_and_adjust_textareas(page_object);
   suggest_what_to_do(page_object.link);
   if (page_object.words_on_page)
@@ -90,6 +90,14 @@ async function fill_and_adjust(tab) {
 
   let save_element = document.getElementById("save");
   save_element.classList.add("auto_fill");
+}
+
+function enable_side_panel_grab_tab_click_listener() {
+  var element = document.getElementById("grab_tab");
+  element.addEventListener('click', async function (event) {
+    const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+    fill_and_adjust(tab);
+  });
 }
 
 function enable_side_panel_dblclick_listener() {
@@ -128,6 +136,7 @@ function enable_collect_links_listeners() {
   enable_range_listener("priority");
   enable_selector_listener("what_to_do");
   enable_side_panel_dblclick_listener();
+  enable_side_panel_grab_tab_click_listener();
 
   enable_chrome_runtime_listeners();
 }
