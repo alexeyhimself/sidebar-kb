@@ -1,6 +1,15 @@
 const collect_links_textareas_ids = ["link", "title", "notes", "time", "tags"];
 const all_input_elements_ids = collect_links_textareas_ids.concat(["priority", "what_to_do"]);
 
+function show_collect_welcome() {
+  document.getElementById("form").style.display = 'none';
+  document.getElementById("welcome").style.display = 'block';
+}
+function show_collect_form() {
+  document.getElementById("welcome").style.display = 'none';
+  document.getElementById("form").style.display = 'block';
+}
+
 function bring_form_to_idle_state() {
   document.getElementById("save").classList.add("disabled");
   document.getElementById("priority").style.setProperty('--sliderColor', "#6ba2ff");

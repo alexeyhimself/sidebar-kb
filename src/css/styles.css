@@ -184,14 +184,14 @@ select {
 }
 
 .animate_fade_in {
-  animation: fade_in 5s;
+  animation: fade_in 0.3s;
 }
 @keyframes fade_in {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
 .animate_fade_out {
-  animation: fade_out 5s;
+  animation: fade_out 0.3s;
 }
 @keyframes fade_out {
   0% { opacity: 1; }
@@ -235,4 +235,12 @@ textarea {
 #clear {
   text-align: center;
   margin-top: 8px;
+}
+#form {
+  display: none;
+}
+#open_collect_form {
+  display: block;
+  text-align: center;
+  margin-top: 40vh;
 }
