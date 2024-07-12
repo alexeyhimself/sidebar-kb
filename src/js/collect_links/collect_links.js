@@ -23,13 +23,6 @@ function collect_data_from_the_save_link_form() {
   return current_link;
 }
 
-function reset_collect_links_form_state_after_save() {
-  bring_form_to_idle_state();
-  clear_save_link_form();
-  //draw_links_stats_chart_under_priority_bar("chart_total");
-  //draw_links_stats_chart_under_priority_bar("chart_what_to_do");
-}
-
 function clear_save_link_form() {
   collect_links_textareas_ids.forEach((id) => {
     document.getElementById(id).value = "";
