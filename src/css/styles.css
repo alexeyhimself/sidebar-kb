@@ -15,7 +15,7 @@ body, textarea, button, label, input, select, p, a {
 }
 */
 
-#links_area {
+#links_area, #kb_area {
   margin-top: 8px;
   padding: 0 10px 10px 10px;
   height: calc(100vh - 134px);
@@ -125,7 +125,7 @@ select {
   width: 50%;
   color: gray;
 }
-#links_placeholder {
+#links_placeholder, #kb_placeholder {
   text-align: center;
   position: relative;
   margin-top: 38vh;
