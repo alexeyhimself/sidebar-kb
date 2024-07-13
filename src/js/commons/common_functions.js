@@ -29,8 +29,15 @@ function parse_time(time) {
         return {};
     }
   }
-  else {
+  else if (time.includes("m")) {
     const match = time.match(/(\d+)\s*m[inutes]*/);
+    if (match)
+      return {"hours": 0, "minutes": parseInt(match[1])};
+    else
+      return {};
+  }
+  else {
+    const match = time.match(/(\d+)/);
     if (match)
       return {"hours": 0, "minutes": parseInt(match[1])};
     else
