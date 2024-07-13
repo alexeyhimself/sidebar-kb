@@ -123,6 +123,13 @@ function enable_chrome_runtime_listeners() {
       }
     })();
   });
+
+  chrome.tabs.onRemoved.addListener(function(tabId, info) {
+    count_tabs_in_a_window();
+  });
+  chrome.tabs.onCreated.addListener(function(tabId, info) {
+    count_tabs_in_a_window();
+  });
 }
 
 function enable_collect_links_listeners() {
