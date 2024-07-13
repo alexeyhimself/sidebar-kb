@@ -59,6 +59,11 @@ function dim_range_placeholder_in_thumb_proximity(priority) {
 }
 */
 
+async function count_tabs_in_a_window() {
+  const tabs = await chrome.tabs.query({currentWindow: true});
+  document.getElementById("number_of_tabs").innerHTML = tabs.length;
+}
+
 function hide_fields_if_necessary(element) {
   let display;
   if (["tool", "course"].includes(element.value)) {
@@ -130,4 +135,5 @@ function enable_collect_links() {
   //draw_links_stats_chart_under_priority_bar("chart_total");
   //draw_links_stats_chart_under_priority_bar("chart_what_to_do");
   fill_stats_of_what_to_do_for_links();
+  count_tabs_in_a_window();
 }
