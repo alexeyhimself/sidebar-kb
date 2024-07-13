@@ -30,7 +30,7 @@ function bring_form_to_active_state() {
 }
 
 function collect_data_from_the_save_link_form() {
-  var current_link = {};
+  let current_link = {};
   current_link.date_created = Date.now();
 
   for (let i in all_input_elements_ids) {
@@ -60,8 +60,28 @@ function dim_range_placeholder_in_thumb_proximity(priority) {
 */
 
 async function count_tabs_in_a_window() {
-  const tabs = await chrome.tabs.query({currentWindow: true});
-  document.getElementById("number_of_tabs").innerHTML = tabs.length;
+  const tabs = await chrome.tabs.query({currentWindow: true, groupId: -1, pinned: false});
+  let result = tabs.length;
+  if (tabs.length > 1)
+    result = "all " + result;
+  document.getElementById("number_of_tabs").innerHTML = result;
+}
+
+async function save_all_tabs_in_window() {
+  const tabs = await chrome.tabs.query({currentWindow: true, groupId: -1, pinned: false});  // do not touch pinned and grouped tabs
+  const saved_tabs_group_id = Date.now();  // to find this collapse transaction in future
+  tabs.forEach((tab) => {
+    if (tab.url) {  // do not save empty tabs
+      let link = {"group_id": saved_tabs_group_id, "what_to_do": "undefined", "feature": "save_all_tabs_in_window"};
+      link.link = tab.url.trim().replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
+      link.title = tab.title.trim().replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
+      link.date_created = Date.now();
+
+      if (!link_already_exists(link.link))  // do not save duplicates
+        save_link_into_queue(link);
+    }
+    chrome.tabs.remove(tab.id, function() {});  // close all (even empty) but not pinned and grouped
+  });
 }
 
 function hide_fields_if_necessary(element) {

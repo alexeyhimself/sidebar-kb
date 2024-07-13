@@ -4,6 +4,9 @@ function load_tags_from_local_storage() {
 }
 
 function update_tags_in_local_storage(new_tags) {
+  if (!new_tags)
+    return;
+
   let tags = load_tags_from_local_storage();
   let existing_tags = tags.existing || {};
   let most_recent_tags = tags.most_recent || [];

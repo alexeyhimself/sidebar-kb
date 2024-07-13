@@ -42,13 +42,17 @@ function reset_form_state() {
   document.getElementById("save").classList.remove("btn-warning");
 }
 
+function save_link_into_queue(link) {
+  save_link_to_local_storage(link);
+  update_tags_in_local_storage(link.tags);
+  update_stats_of_what_to_do_for_links(link);
+}
+
 async function save_link() {
   let link = collect_data_from_the_save_link_form();
   get_hostname(link.link); // just validation of format to prevent saving of a broken link
   link = add_time_in_minutes(link);
-  save_link_to_local_storage(link);
-  update_tags_in_local_storage(link.tags);
-  update_stats_of_what_to_do_for_links(link);
+  save_link_into_queue(link);
   reset_form_state();
   show_collect_welcome();
 
