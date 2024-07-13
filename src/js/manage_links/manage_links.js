@@ -75,7 +75,7 @@ function draw_links(links, no_links_callback) {
 function draw_existing_grouped_links(grouped_links) {
   let links_html = '';
   let i = 1;
-  const what_to_do_map = {"read": "📚", "watch": "📺", "listen": "🎧"};
+  const what_to_do_map = {"read": "📚", "watch": "🖥️", "listen": "🎧"};
   //const what_to_do_map = {"read": '<i class="bi bi-book-half"></i>', "watch": '<i class="bi bi-youtube"></i>', "listen": '<i class="bi bi-earbuds"></i>'};
 
   ["read", "watch", "listen", "others"].forEach((what_to_do) => {
