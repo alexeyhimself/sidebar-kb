@@ -38,7 +38,7 @@ function reset_form_state() {
   clear_save_link_form();
   enable_tags_hint_on_any_value_only();
 
-  document.getElementById("save").innerText = "Add to Queue";
+  document.getElementById("save").innerText = "Save to Queue";
   document.getElementById("save").classList.remove("btn-warning");
 }
 

@@ -107,7 +107,7 @@ function adjust_if_link_already_exists(link) {
     document.getElementById("save").classList.add("btn-warning");
   }
   else {
-    document.getElementById("save").innerText = "Add to Queue";
+    document.getElementById("save").innerText = "Save to Queue";
     document.getElementById("save").classList.remove("btn-warning");
   }
 }
