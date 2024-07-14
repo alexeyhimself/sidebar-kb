@@ -69,6 +69,7 @@ async function count_tabs_in_a_window() {
 
 async function save_all_tabs_in_window() {
   const tabs = await chrome.tabs.query({currentWindow: true, groupId: -1, pinned: false});  // do not touch pinned and grouped tabs
+  chrome.tabs.create({});  // create an empty tab that will stay at the end
   const saved_tabs_group_id = Date.now();  // to find this collapse transaction in future
   tabs.forEach((tab) => {
     if (tab.url) {  // do not save empty tabs
