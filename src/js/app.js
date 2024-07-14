@@ -26,6 +26,8 @@ function fix_data() {
     }
     if (!link["time_minutes"])
       link = add_time_in_minutes(link);
+    if (link.priority)
+      link["priority"] = parseInt(link.priority);
 
     new_links.push(link);
   }
