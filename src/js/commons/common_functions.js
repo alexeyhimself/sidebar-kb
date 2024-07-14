@@ -6,6 +6,7 @@ function load_links_from_local_storage() {
 function load_links_from_local_storage_sorted_by() {
   let links = load_links_from_local_storage();
   return links.sort(sort_dicts_by_multiple_values("-priority", "-date_created"));
+  //return links.sort(sort_dicts_by_value("-priority"));
 }
 
 function parse_time(time) {

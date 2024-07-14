@@ -128,8 +128,8 @@ function draw_existing_grouped_links(grouped_links) {
       if (item.tags || item.notes)
         links_html += '...';
 
-      // links_html += item.priority
       links_html += '</a>';
+      //links_html += ` ${item.priority}`;
       links_html += '</p>';
     });
   });

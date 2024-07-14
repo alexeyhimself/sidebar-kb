@@ -13,8 +13,15 @@ function sort_dicts_by_value(property) {  // https://stackoverflow.com/questions
     property = property.substr(1);
   }
   return function (a,b) {
-    if (!a[property] || !b[property])  // my change: if undefined, move them to the end of list
+    if (!a[property] && !b[property]) {  // my change: if undefined, move them to the end of list
+      return 0; //-1 * sortOrder;
+    }
+    else if (!a[property]) {
       return -1 * sortOrder;
+    }
+    else if (!b[property]) {
+      return 1 * sortOrder;
+    }
     /* next line works with strings and numbers */
     var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
     return result * sortOrder;
@@ -24,7 +31,7 @@ function sort_dicts_by_multiple_values() {
   var props = arguments;
   return function (obj1, obj2) {
     var i = 0, result = 0, numberOfProperties = props.length;
-    while(result === 0 && i < numberOfProperties) {
+    while (result === 0 && i < numberOfProperties) {
       result = sort_dicts_by_value(props[i])(obj1, obj2);
       i++;
     }
