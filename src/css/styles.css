@@ -204,11 +204,11 @@ select {
 }
 
 #find_text {
-  border-radius: 12px 0 0 12px!important;
+  border-radius: 8px 0 0 8px!important;
   width: 40%;
 }
 #find_time {
-  border-radius: 0 12px 12px 0!important;
+  border-radius: 0 8px 8px 0!important;
 }
 
 p {
