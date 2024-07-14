@@ -20,6 +20,7 @@ body, textarea, button, label, input, select, p, a {
   padding: 0 10px 10px 10px;
   height: calc(100vh - 134px);
   overflow-y: auto;
+  overflow-x: hidden;
   scrollbar-width-: thin;
   scrollbar-color: lightgray transparent;
 }
