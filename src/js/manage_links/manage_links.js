@@ -100,13 +100,13 @@ function draw_existing_grouped_links(grouped_links) {
       if (item.time)
         links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span> `;
       else
-        links_html += `<span class="badge bg-danger">undefined</span> `;
+        links_html += `<span class="badge bg-warning text-dark">undefined</span> `;
 
       if (what_to_do == "undefined" || what_to_do === undefined)
-        links_html += `<span class="badge bg-danger text-dark-">undefined</span> `;
+        links_html += `<span class="badge bg-secondary">undefined</span> `;
       else if (what_to_do == "others") {
         if (item.what_to_do == "undefined" || item.what_to_do === undefined)
-          links_html += `<span class="badge bg-danger text-dark-">undefined</span> `;
+          links_html += `<span class="badge bg-secondary">undefined</span> `;
         else
           links_html += `<span class="badge bg-secondary">${item.what_to_do}</span> `;
       }
