@@ -97,11 +97,20 @@ function draw_existing_grouped_links(grouped_links) {
         item.title = item.link;
       links_html += '<p>';
 
-      if (item.time && what_to_do != "others")
+      if (item.time)
         links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span> `;
-      if (item.time && what_to_do == "others")
-        links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span> <span class="badge bg-secondary text-dark-">${item.what_to_do}</span> `;
-      
+      else
+        links_html += `<span class="badge bg-danger">undefined</span> `;
+
+      if (what_to_do == "undefined" || what_to_do === undefined)
+        links_html += `<span class="badge bg-danger text-dark-">undefined</span> `;
+      else if (what_to_do == "others") {
+        if (item.what_to_do == "undefined" || item.what_to_do === undefined)
+          links_html += `<span class="badge bg-danger text-dark-">undefined</span> `;
+        else
+          links_html += `<span class="badge bg-secondary">${item.what_to_do}</span> `;
+      }
+
       links_html += `<a href="${item.link}" target="_blank">${item.title.trim()}</a> `;
 
       if (item.tags) {
