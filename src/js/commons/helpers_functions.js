@@ -8,16 +8,14 @@ function sort_dict_by_value_desc(dict) {  // https://www.geeksforgeeks.org/how-t
 }
 function sort_dicts_by_value(property) {  // https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
   var sortOrder = 1;
-  if(property[0] === "-") {
+  if (property[0] === "-") {
     sortOrder = -1;
     property = property.substr(1);
   }
   return function (a,b) {
     if (!a[property] || !b[property])  // my change: if undefined, move them to the end of list
-      return sortOrder;
-    /* next line works with strings and numbers, 
-     * and you may want to customize it to your needs
-     */
+      return -1 * sortOrder;
+    /* next line works with strings and numbers */
     var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
     return result * sortOrder;
   }

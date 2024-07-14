@@ -1,15 +1,11 @@
 function load_links_from_local_storage() {
   let links = localStorage.getItem("links") || "[]";
-      links = JSON.parse(links);
-      //links.sort(sort_dicts_by_multiple_values("-priority", "-date_created"));
-  return links;
+  return JSON.parse(links);
 }
 
 function load_links_from_local_storage_sorted_by() {
-  let links = localStorage.getItem("links") || "[]";
-      links = JSON.parse(links);
-      links.sort(sort_dicts_by_multiple_values("-priority", "-date_created"));
-  return links;
+  let links = load_links_from_local_storage();
+  return links.sort(sort_dicts_by_multiple_values("-priority", "-date_created"));
 }
 
 function parse_time(time) {
