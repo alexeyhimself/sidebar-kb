@@ -28,6 +28,9 @@ function suggest_what_to_do(link) {
 }
 
 function update_stats_of_what_to_do_for_links(link) {
+  if (link.what_to_do == undefined || link.what_to_do == "undefined")
+    return;
+
   let hostname = get_hostname(link.link);
 
   if (hostname in stats_of_what_to_do_for_links) {
