@@ -234,8 +234,8 @@ function group_filtered_links(filtered_links) {
 }
 
 function filter_links() {
-  const filtered_text = document.getElementById("find_text").value;
-  const filtered_time = document.getElementById("find_time").value;
+  const filtered_text = document.getElementById("find_text").value.toLowerCase();
+  const filtered_time = document.getElementById("find_time").value.toLowerCase();
   const parsed_time = parse_time(filtered_time);
   if (!parsed_time)
     return [];
@@ -263,26 +263,32 @@ function filter_links() {
   let resulting_links = [];
   for (let i = 0; i < links_match_by_time.length; i++) {
     const link = links_match_by_time[i];
+
+    if (!link.time && "undefined".includes(filtered_text)) {
+      resulting_links.push(link);
+      continue;
+    }
+
     if (link.title) {
-      if (link.title.toLowerCase().includes(filtered_text.toLowerCase())) {
+      if (link.title.toLowerCase().includes(filtered_text)) {
         resulting_links.push(link);
         continue;
       }
     }
     if (link.notes) {
-      if (link.notes.toLowerCase().includes(filtered_text.toLowerCase())) {
+      if (link.notes.toLowerCase().includes(filtered_text)) {
         resulting_links.push(link);
         continue;
       }
     }
     if (link.tags) {
-      if (link.tags.toLowerCase().includes(filtered_text.toLowerCase())) {
+      if (link.tags.toLowerCase().includes(filtered_text)) {
         resulting_links.push(link);
         continue;
       }
     }
     if (link.what_to_do) {
-      if (link.what_to_do.toLowerCase().includes(filtered_text.toLowerCase())) {
+      if (link.what_to_do.toLowerCase().includes(filtered_text)) {
         resulting_links.push(link);
         continue;
       }
@@ -291,26 +297,32 @@ function filter_links() {
 
   for (let i = 0; i < links_without_time.length; i++) {
     const link = links_without_time[i];
+
+    if (!link.time && "undefined".includes(filtered_text)) {
+      resulting_links.push(link);
+      continue;
+    }
+    
     if (link.title) {
-      if (link.title.toLowerCase().includes(filtered_text.toLowerCase())) {
+      if (link.title.toLowerCase().includes(filtered_text)) {
         resulting_links.push(link);
         continue;
       }
     }
     if (link.notes) {
-      if (link.notes.toLowerCase().includes(filtered_text.toLowerCase())) {
+      if (link.notes.toLowerCase().includes(filtered_text)) {
         resulting_links.push(link);
         continue;
       }
     }
     if (link.tags) {
-      if (link.tags.toLowerCase().includes(filtered_text.toLowerCase())) {
+      if (link.tags.toLowerCase().includes(filtered_text)) {
         resulting_links.push(link);
         continue;
       }
     }
     if (link.what_to_do) {
-      if (link.what_to_do.toLowerCase().includes(filtered_text.toLowerCase())) {
+      if (link.what_to_do.toLowerCase().includes(filtered_text)) {
         resulting_links.push(link);
         continue;
       }
