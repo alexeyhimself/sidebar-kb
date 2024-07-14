@@ -111,10 +111,11 @@ function draw_existing_grouped_links(grouped_links) {
           links_html += `<span class="badge bg-secondary">${item.what_to_do}</span> `;
       }
 
-      links_html += `<a href="${item.link}" target="_blank">${item.title.trim()}</a> `;
+      const hostname = get_hostname(item.link);
+      links_html += `${hostname}: <a href="${item.link}" target="_blank">${item.title.trim()}</a>&nbsp;`;
 
       if (item.tags) {
-        links_html += ` | <a href="">${item.tags.split(',').length}&nbsp;tag` //links_html += `${item.tags}`;
+        links_html += `| <a href="">${item.tags.split(',').length}&nbsp;tag` //links_html += `${item.tags}`;
         if (item.tags.split(',').length > 1)
           links_html += 's';
       }
@@ -122,7 +123,7 @@ function draw_existing_grouped_links(grouped_links) {
         if (item.tags)
           links_html += ' + a note';
         else
-          links_html += ' | <a href="">a note';
+          links_html += '| <a href="">a note';
       }
       if (item.tags || item.notes)
         links_html += '...';
@@ -293,6 +294,12 @@ function filter_links() {
         continue;
       }
     }
+    if (link.link) {
+      if (link.link.toLowerCase().includes(filtered_text)) {
+        resulting_links.push(link);
+        continue;
+      }
+    }
   }
 
   for (let i = 0; i < links_without_time.length; i++) {
@@ -323,6 +330,12 @@ function filter_links() {
     }
     if (link.what_to_do) {
       if (link.what_to_do.toLowerCase().includes(filtered_text)) {
+        resulting_links.push(link);
+        continue;
+      }
+    }
+    if (link.link) {
+      if (link.link.toLowerCase().includes(filtered_text)) {
         resulting_links.push(link);
         continue;
       }
