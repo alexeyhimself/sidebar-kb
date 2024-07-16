@@ -111,12 +111,21 @@ function draw_existing_grouped_links(grouped_links) {
 
       //links_html += ` ${item.priority}`;
       links_html += `<div id="collapse-${item.date_created}" class="accordion-collapse collapse" data-bs-parent="#accordionExample"><div class="accordion-body">`;
+      
+      /*
+      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb btn btn-success btn-sm">move to knowledge base</a> `;
+      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb- btn btn-warning btn-sm">edit</a> `;
+      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb- btn btn-danger btn-sm">delete</a><br>`;
+      */
+      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb">move to knowledge base</a> | `;
+      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb-">edit</a> | `;
+      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb-">delete</a><br>`;
+
       if (item.tags)
         links_html += `tags: ${item.tags}<br>`;
       if (item.notes)
-        links_html += `${item.notes}<br>`;
-      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb">move to knowledge base</a>`;
-
+        links_html += `notes: ${item.notes}<br>`;
+      
       links_html += `</div></div>`;
       links_html += '</p>';
     });

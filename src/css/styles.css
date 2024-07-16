@@ -251,3 +251,9 @@ textarea {
 #top-3-section {
   margin-bottom: 30px;
 }
+
+.accordion-body {
+  padding: 8px 0 8px 12px;
+  background: #ebeff7;
+  border-radius: 8px;
+}
