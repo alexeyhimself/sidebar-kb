@@ -233,11 +233,21 @@ textarea {
 }
 #welcome {
   text-align: center;
+
+  /*
+  background-image: radial-gradient(gray 1px, transparent 0);
+  background-size: 100px 100px;*/
+  /*background-position: -19px -19px;*/
 }
+
 #form {
   display: none;
 }
 #open_collect_form {
   display: block;
   margin-top: 37vh;
+}
+
+#top-3-section {
+  margin-bottom: 30px;
 }
