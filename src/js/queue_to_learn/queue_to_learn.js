@@ -91,9 +91,10 @@ function draw_existing_grouped_links(grouped_links) {
 
       const hostname = get_hostname(item.link);
       links_html += `${hostname}: <a href="${item.link}" target="_blank">${item.title.trim()}</a>&nbsp;`;
-
+      links_html += `| <a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}" aria-expanded="false" aria-controls="collapseOne">more... `;
+      /*
       if (item.tags) {
-        links_html += `| <a href="">${item.tags.split(',').length}&nbsp;tag` //links_html += `${item.tags}`;
+        links_html += `| <a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}" aria-expanded="false" aria-controls="collapseOne">${item.tags.split(',').length}&nbsp;tag` //links_html += `${item.tags}`;
         if (item.tags.split(',').length > 1)
           links_html += 's';
       }
@@ -105,11 +106,18 @@ function draw_existing_grouped_links(grouped_links) {
       }
       if (item.tags || item.notes)
         links_html += '...';
-
+      */
       links_html += '</a> ';
 
-      links_html += `| <a href="#" data-url="${item.link}" class="move_to_kb">move to knowledge base</a>`;
       //links_html += ` ${item.priority}`;
+      links_html += `<div id="collapse-${item.date_created}" class="accordion-collapse collapse" data-bs-parent="#accordionExample"><div class="accordion-body">`;
+      if (item.tags)
+        links_html += `tags: ${item.tags}<br>`;
+      if (item.notes)
+        links_html += `${item.notes}<br>`;
+      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb">move to knowledge base</a>`;
+
+      links_html += `</div></div>`;
       links_html += '</p>';
     });
 
