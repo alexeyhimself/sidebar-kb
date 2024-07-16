@@ -50,29 +50,6 @@ function draw_grouped_links(grouped_links, no_links_callback) {
   }
 }
 
-function draw_links(links, no_links_callback) {
-  try {
-    if (!links)
-      links = load_links_from_local_storage_sorted_by();
-
-    if (links.length == 0) {
-      if (no_links_callback)
-        document.getElementById("links_area").innerHTML = no_links_callback();
-      else
-        document.getElementById("links_area").innerHTML = draw_links_placeholder();
-    }
-    else
-      document.getElementById("links_area").innerHTML = draw_existing_links(links);
-
-    display_links_export(links.length);
-    // document.getElementById("find_text").focus();
-  } catch (error) {
-    console.error(error);
-    document.getElementById("links_area").innerHTML = draw_links_error_message();
-    enable_copy_error_message_to_clipboard_listener("copy_error_message_to_clipboard", error);
-  }
-}
-
 function draw_existing_grouped_links(grouped_links) {
   let links_html = '';
   let i = 1;
