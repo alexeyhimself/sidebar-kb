@@ -120,7 +120,7 @@ function draw_existing_grouped_links(grouped_links) {
       links_html += `<a href="#" data-url="${item.link}" class="move_to_kb- btn btn-danger btn-sm">delete</a><br>`;
       */
       links_html += `<a href="#" data-url="${item.link}" class="move_to_kb">Move to Knowledge Base</a> | `;
-      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb-">Edit</a> | `;
+      links_html += `<a href2="#" data-url="${item.link}" class="move_to_kb-">Edit</a> | `;
       links_html += `<a href="#" data-url="${item.link}" class="delete_from_queue">Delete</a><br>`;
 
       if (item.tags)
