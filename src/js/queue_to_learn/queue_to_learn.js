@@ -45,6 +45,7 @@ function draw_grouped_links(grouped_links, no_links_callback) {
 
     enable_move_to_kb_listeners();
     enable_delete_from_queue_listeners();
+    enable_edit_in_queue_listeners();
   } catch (error) {
     console.error(error);
     document.getElementById("links_area").innerHTML = draw_links_error_message();
@@ -120,7 +121,7 @@ function draw_existing_grouped_links(grouped_links) {
       links_html += `<a href="#" data-url="${item.link}" class="move_to_kb- btn btn-danger btn-sm">delete</a><br>`;
       */
       links_html += `<a href="#" data-url="${item.link}" class="move_to_kb">Move to Knowledge Base</a> | `;
-      links_html += `<a href2="#" data-url="${item.link}" class="move_to_kb-">Edit</a> | `;
+      links_html += `<a href="#" data-url="${item.link}" class="edit_in_queue">Edit</a> | `;
       links_html += `<a href="#" data-url="${item.link}" class="delete_from_queue">Delete</a><br>`;
 
       if (item.tags)
@@ -405,6 +406,21 @@ function enable_delete_from_queue_listeners() {
       save_link_to(link, "deleted");
       delete_link_from_queue(url);
       what_to_do_on_filter_change();
+    });
+  });
+}
+
+function enable_edit_in_queue_listeners() {
+  document.querySelectorAll(".edit_in_queue").forEach((element) => {
+    element.addEventListener('click', function (event) {
+      const url = event.target.getAttribute("data-url");
+      let a = document.getElementById("save-tab");
+      bootstrap.Tab.getInstance(a).show();
+      show_collect_form();
+      let link = document.getElementById("link");
+      link.value = url;
+      link.dispatchEvent(new InputEvent("change"));
+      //document.getElementById("title").dispatchEvent(new InputEvent("change"));
     });
   });
 }
