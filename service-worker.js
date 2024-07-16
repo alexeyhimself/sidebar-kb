@@ -14,8 +14,13 @@
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
+    id: 'openSidePanel2',
+    title: 'Save this tab for later',
+    contexts: ['all']
+  });
+  chrome.contextMenus.create({
     id: 'openSidePanel',
-    title: 'Save this link for later',
+    title: 'Save this hyperlink for later',
     contexts: ['all']
   });
   chrome.tabs.create({ url: 'page.html' });
@@ -31,6 +36,14 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     });
     //console.log(info);
     //console.log(tab);
+  }
+  else if (info.menuItemId === 'openSidePanel2') {
+    // This will open the panel in all the pages on the current window.
+    chrome.sidePanel.open({ windowId: tab.windowId }).then(() => {
+      setTimeout(() => {
+        chrome.runtime.sendMessage({ type: "context_menu_call", "link": info.linkUrl, "title": info.selectionText});
+      }, 300);  // a bit wait because drag&drop events pass faster than the DOM update
+    });
   }
 });
 
