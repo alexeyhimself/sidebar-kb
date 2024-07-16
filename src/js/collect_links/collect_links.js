@@ -119,7 +119,8 @@ function link_already_exists(link) {
 
 function fill_the_collect_links_form_with_existing_data(link) {
   all_input_elements_ids.forEach((element_id) => {
-    document.getElementById(element_id).value = link[element_id];
+    if (link[element_id] && link[element_id] != "undefined")
+      document.getElementById(element_id).value = link[element_id];
   });
 }
 
