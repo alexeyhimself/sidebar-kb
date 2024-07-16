@@ -42,7 +42,9 @@ function draw_grouped_links(grouped_links, no_links_callback) {
 
     display_links_export(grouped_links.total);
     // document.getElementById("find_text").focus();
+
     enable_move_to_kb_listeners();
+    enable_delete_from_queue_listeners();
   } catch (error) {
     console.error(error);
     document.getElementById("links_area").innerHTML = draw_links_error_message();
@@ -117,14 +119,14 @@ function draw_existing_grouped_links(grouped_links) {
       links_html += `<a href="#" data-url="${item.link}" class="move_to_kb- btn btn-warning btn-sm">edit</a> `;
       links_html += `<a href="#" data-url="${item.link}" class="move_to_kb- btn btn-danger btn-sm">delete</a><br>`;
       */
-      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb">move to knowledge base</a> | `;
-      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb-">edit</a> | `;
-      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb-">delete</a><br>`;
+      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb">Move to Knowledge Base</a> | `;
+      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb-">Edit</a> | `;
+      links_html += `<a href="#" data-url="${item.link}" class="delete_from_queue">Delete</a><br>`;
 
       if (item.tags)
-        links_html += `tags: ${item.tags}<br>`;
+        links_html += `<b>Tags:</b> ${item.tags}<br>`;
       if (item.notes)
-        links_html += `notes: ${item.notes}<br>`;
+        links_html += `<b>Notes:</b> ${item.notes}<br>`;
       
       links_html += `</div></div>`;
       links_html += '</p>';
@@ -352,14 +354,15 @@ function what_to_do_on_filter_change(event) {
   draw_grouped_links(grouped_filtered_links, draw_no_links_found_placeholder);
 }
 
-function load_links_from_knowledge_base() {
-  let links = localStorage.getItem("kb") || "[]";
+
+function load_links_from(where) {
+  let links = localStorage.getItem(where) || "[]";
   return JSON.parse(links);
 }
-function save_link_to_knowledge_base(link) {
-  let links = load_links_from_knowledge_base();
+function save_link_to(link, where) {
+  let links = load_links_from(where);
   links.push(link);
-  localStorage.setItem("kb", JSON.stringify(links));
+  localStorage.setItem(where, JSON.stringify(links));
 }
 function delete_link_from_queue(url) {
   let links = load_links_from_local_storage();
@@ -387,7 +390,19 @@ function enable_move_to_kb_listeners() {
     element.addEventListener('click', function (event) {
       const url = event.target.getAttribute("data-url");
       const link = get_link_from_queue(url);
-      save_link_to_knowledge_base(link);
+      save_link_to(link, "kb");
+      delete_link_from_queue(url);
+      what_to_do_on_filter_change();
+    });
+  });
+}
+
+function enable_delete_from_queue_listeners() {
+  document.querySelectorAll(".delete_from_queue").forEach((element) => {
+    element.addEventListener('click', function (event) {
+      const url = event.target.getAttribute("data-url");
+      const link = get_link_from_queue(url);
+      save_link_to(link, "deleted");
       delete_link_from_queue(url);
       what_to_do_on_filter_change();
     });

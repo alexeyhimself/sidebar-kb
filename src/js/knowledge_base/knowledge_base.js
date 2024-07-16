@@ -8,7 +8,7 @@ function draw_kb_error_message() {
 function draw_links(links, no_links_callback) {
   try {
     if (!links)
-      links = load_links_from_knowledge_base();
+      links = load_links_from("kb");
 
     if (links.length == 0) {
       if (no_links_callback)
