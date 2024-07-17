@@ -73,7 +73,10 @@ function draw_existing_grouped_links(grouped_links) {
       links_html += `${grouped_links[what_to_do].length} top priority to ${what_to_do}:</b></p>`;
     }
 
-    grouped_links[what_to_do].forEach((item) => {
+    for (let j = 0; j < grouped_links[what_to_do].length; j++) {
+    //grouped_links[what_to_do].forEach((item) => {
+      const item = grouped_links[what_to_do][j];
+
       if (!item.title)
         item.title = item.link;
       links_html += '<p>';
@@ -94,10 +97,10 @@ function draw_existing_grouped_links(grouped_links) {
 
       const hostname = get_hostname(item.link);
       links_html += `${hostname}: <a href="${item.link}" target="_blank">${item.title.trim()}</a>&nbsp;`;
-      links_html += `| <a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}" aria-expanded="false" aria-controls="collapseOne">more... `;
+      links_html += `| <a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne">more... `;
       /*
       if (item.tags) {
-        links_html += `| <a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}" aria-expanded="false" aria-controls="collapseOne">${item.tags.split(',').length}&nbsp;tag` //links_html += `${item.tags}`;
+        links_html += `| <a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne">${item.tags.split(',').length}&nbsp;tag` //links_html += `${item.tags}`;
         if (item.tags.split(',').length > 1)
           links_html += 's';
       }
@@ -113,7 +116,7 @@ function draw_existing_grouped_links(grouped_links) {
       links_html += '</a> ';
 
       //links_html += ` ${item.priority}`;
-      links_html += `<div id="collapse-${item.date_created}" class="accordion-collapse collapse" data-bs-parent="#accordionExample"><div class="accordion-body">`;
+      links_html += `<div id="collapse-${item.date_created}-${j}" class="accordion-collapse collapse" data-bs-parent="#accordionExample"><div class="accordion-body">`;
       
       /*
       links_html += `<a href="#" data-url="${item.link}" class="move_to_kb btn btn-success btn-sm">move to knowledge base</a> `;
@@ -131,7 +134,7 @@ function draw_existing_grouped_links(grouped_links) {
       
       links_html += `</div></div>`;
       links_html += '</p>';
-    });
+    }
 
     i++;
     if (i == 4)
