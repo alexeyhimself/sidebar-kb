@@ -24,6 +24,9 @@ body, textarea, button, label, input, select, p, a {
   scrollbar-width-: thin;
   scrollbar-color: lightgray transparent;
 }
+#kb_area {
+  height: calc(100vh - 64px);
+}
 
 .margin-8 {
   width: calc(100% - 16px);

@@ -144,29 +144,6 @@ function draw_existing_grouped_links(grouped_links) {
   return links_html;
 }
 
-function draw_existing_links(links) {
-  let links_html = '';
-  links.forEach((item) => {
-    if (!item.title)
-      item.title = item.link;
-    links_html += `<p><a href="${item.link}" target="_blank">${item.title}</a>`;
-
-    if (item.time || item.priority || item.tags)
-      links_html += '<br>';
-
-    if (item.time)
-      links_html += `${item.what_to_do} time: ${item.time}, `;
-    if (item.priority)
-      links_html += `priority: ${item.priority}, `;
-    if (item.tags)
-      links_html += `tags: ${item.tags}`;
-
-    links_html += '</p>';
-  });
-
-  return links_html;
-}
-
 /*
 function convert_time_string_to_minutes(time) {  // "1h 30m" => 90
   if (!time)

@@ -5,6 +5,31 @@ function draw_kb_error_message() {
   return `<p id="kb_placeholder"><span style="font-size: 2em;">😲</span><br><b>Something went wrong...</b><br>Please <a href="#" id="copy_error_message_to_clipboard">click here</a> to copy an error message to clipboard and <a href="mailto:alexeyhimself@gmail.com">let us know</a></p>`;
 }
 
+function draw_existing_links(links) {
+  let links_html = '';
+  links.forEach((item) => {
+    if (!item.title)
+      item.title = item.link;
+    links_html += `<p><a href="${item.link}" target="_blank">${item.title}</a>`;
+
+    if (item.time || item.priority || item.tags)
+      links_html += '<br>';
+
+    if (item.time)
+      links_html += `<b>${item.what_to_do} time:</b> ${item.time}, `;
+    //if (item.priority)
+    //  links_html += `priority: ${item.priority}`;
+    if (item.tags)
+      links_html += `<br><b>tags:</b> ${item.tags}`;
+    if (item.notes)
+      links_html += `<br><b>notes:</b> ${item.notes}`;
+
+    links_html += '</p>';
+  });
+
+  return links_html;
+}
+
 function draw_links(links, no_links_callback) {
   try {
     if (!links)
