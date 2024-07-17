@@ -40,6 +40,7 @@ function collect_data_from_the_save_link_form() {
       value = parseInt(value);
     current_link[element_id] = value;
   }
+  current_link["source"] = document.getElementById("save").dataset.source;
   return current_link;
 }
 
@@ -82,7 +83,7 @@ async function save_all_tabs_in_window() {
       link.date_created = Date.now();
 
       if (!link_already_exists(link.link))  // do not save duplicates
-        save_link_into_queue(link);
+        save_link_into_storage(link);
     }
     chrome.tabs.remove(tab.id, function() {});  // close all (even empty) but not pinned and grouped
   });
@@ -109,15 +110,21 @@ function hide_fields_if_necessary(element) {
 }
 
 function link_already_exists(link) {
-  const links = load_links_from_local_storage();
-  for (let i = 0; i < links.length; i++) {
-    if (links[i].link == link)
-      return links[i];
+  const sources = ["links", "kb", "deleted"];
+  for (let j = 0; j < sources.length; j++) {
+    const source = sources[j];
+    const links = load_links_from(source);
+
+    for (let i = 0; i < links.length; i++) {
+      if (links[i].link == link)
+        return {"link": links[i], "source": source};
+    }
   }
   return false;
 }
 
-function fill_the_collect_links_form_with_existing_data(link) {
+function fill_the_collect_links_form_with_existing_data(existing_link) {
+  const link = existing_link.link;
   all_input_elements_ids.forEach((element_id) => {
     if (link[element_id] && link[element_id] != "undefined") {
       const element = document.getElementById(element_id);
@@ -130,12 +137,15 @@ function fill_the_collect_links_form_with_existing_data(link) {
   });
 }
 
+const sources_map = {"links": "Queue", "kb": "Knowledge Base", "deleted": "Deleted"};
+
 function adjust_if_link_already_exists(link) {
   const existing_link = link_already_exists(link);
   if (existing_link) {
     fill_the_collect_links_form_with_existing_data(existing_link);
-    document.getElementById("save").innerText = "Update existing item";
+    document.getElementById("save").innerText = `Update existing item in ${sources_map[existing_link.source]}`;
     document.getElementById("save").classList.add("btn-warning");
+    document.getElementById("save").dataset.source = existing_link.source;
   }
   else {
     document.getElementById("save").innerText = "Save to Queue";

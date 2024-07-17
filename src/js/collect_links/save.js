@@ -40,9 +40,10 @@ function reset_form_state() {
 
   document.getElementById("save").innerText = "Save to Queue";
   document.getElementById("save").classList.remove("btn-warning");
+  delete document.getElementById("save").dataset.source;
 }
 
-function save_link_into_queue(link) {
+function save_link_into_storage(link) {
   save_link_to_local_storage(link);
   update_tags_in_local_storage(link.tags);
   update_stats_of_what_to_do_for_links(link);
@@ -52,7 +53,7 @@ async function save_link() {
   let link = collect_data_from_the_save_link_form();
   get_hostname(link.link); // just validation of format to prevent saving of a broken link
   link = add_time_in_minutes(link);
-  save_link_into_queue(link);
+  save_link_into_storage(link);
   reset_form_state();
   show_collect_welcome();
 
@@ -69,7 +70,8 @@ async function save_link() {
 }
 
 function save_link_to_local_storage(link) {
-  let links = load_links_from_local_storage();
+  let source = link.source || "links";
+  let links = load_links_from(source);
   for (let i = 0; i < links.length; i++) {
     if (links[i].link == link.link) {
       links.splice(i, 1);
@@ -78,7 +80,7 @@ function save_link_to_local_storage(link) {
   }
 
   links.push(link);
-  localStorage.setItem("links", JSON.stringify(links));
+  localStorage.setItem(source, JSON.stringify(links));
 }
 
 function enable_buttons_listeners(buttons) {
