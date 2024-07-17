@@ -35,7 +35,9 @@ function collect_data_from_the_save_link_form() {
 
   for (let i in all_input_elements_ids) {
     const element_id = all_input_elements_ids[i];
-    let value = document.getElementById(element_id).value.trim().replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
+    let value = document.getElementById(element_id).value.trim();
+    if (element_id != "notes")
+      value = value.replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
     if (element_id == "priority")
       value = parseInt(value);
     current_link[element_id] = value;

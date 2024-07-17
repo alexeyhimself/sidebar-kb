@@ -22,7 +22,7 @@ function draw_existing_links(links) {
     if (item.tags)
       links_html += `<br><b>tags:</b> ${item.tags}`;
     if (item.notes)
-      links_html += `<br><b>notes:</b> ${item.notes}`;
+      links_html += `<br><b>notes:</b> ${item.notes.replace(/\n/g, '<br>')}`;
 
     links_html += '</p>';
   });
