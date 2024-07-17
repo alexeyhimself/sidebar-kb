@@ -60,9 +60,9 @@ function draw_existing_grouped_links(grouped_links) {
   //const what_to_do_map = {"read": '<i class="bi bi-book-half"></i>', "watch": '<i class="bi bi-youtube"></i>', "listen": '<i class="bi bi-earbuds"></i>'};
 
   ["read", "watch", "listen", "others"].forEach((what_to_do) => {
-    if (what_to_do == "others" && grouped_links[what_to_do].length > 0)
+    if (what_to_do == "others" && grouped_links[what_to_do].length > 0 && (grouped_links["read"].length > 0 || grouped_links["watch"].length > 0 || grouped_links["listen"].length > 0))
       links_html += `<p><b>Everything else matching filter (${grouped_links[what_to_do].length} items), ordered by descending priority:</b></p>`;
-    else if (grouped_links[what_to_do].length > 0) {
+    else if (what_to_do != "others" && grouped_links[what_to_do].length > 0) {
       if (i == 1)
         links_html += `<div id="top-3-section"><p><b>`;
       else
@@ -335,16 +335,6 @@ function what_to_do_on_filter_change(event) {
   draw_grouped_links(grouped_filtered_links, draw_no_links_found_placeholder);
 }
 
-
-function load_links_from(where) {
-  let links = localStorage.getItem(where) || "[]";
-  return JSON.parse(links);
-}
-function save_link_to(link, where) {
-  let links = load_links_from(where);
-  links.push(link);
-  localStorage.setItem(where, JSON.stringify(links));
-}
 function delete_link_from_queue(url) {
   let links = load_links_from_local_storage();
   for (let i = 0; i < links.length; i++) {

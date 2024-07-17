@@ -9,6 +9,11 @@ function load_links_from_local_storage_sorted_by() {
   //return links.sort(sort_dicts_by_value("-priority"));
 }
 
+function load_links_from(where) {
+  let links = localStorage.getItem(where) || "[]";
+  return JSON.parse(links);
+}
+
 function parse_time(time) {
   if (time.includes("h")) {
     if (time.includes("m")) {

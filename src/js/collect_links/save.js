@@ -69,6 +69,12 @@ async function save_link() {
     save_element.classList.remove("auto_fill");
 }
 
+function save_link_to(link, where) {
+  let links = load_links_from(where);
+  links.push(link);
+  localStorage.setItem(where, JSON.stringify(links));
+}
+
 function save_link_to_local_storage(link) {
   let source = link.source || "links";
   let links = load_links_from(source);
