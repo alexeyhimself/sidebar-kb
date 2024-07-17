@@ -20,6 +20,7 @@
   //"permissions": ["sidePanel", "contextMenus", "tabs"],
   //"permissions": ["sidePanel", "tabs"],
   "permissions": ["sidePanel", "contextMenus", "activeTab", "scripting"],
+  //"permissions": ["sidePanel", "contextMenus", "activeTab", "scripting", "webNavigation"],
   "host_permissions": ["*://*/"],
   "icons": {
     //"16": "images/icon-16.png",

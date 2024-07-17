@@ -137,6 +137,10 @@ function enable_chrome_runtime_listeners() {
   chrome.tabs.onCreated.addListener(function(tabId, info) {
     count_tabs_in_a_window();
   });
+
+  //chrome.webNavigation.onCompleted.addListener(function(details) {
+  //  console.log(details);
+  //},{});
 }
 
 function enable_collect_links_listeners() {
