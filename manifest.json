@@ -10,12 +10,13 @@
   "side_panel": {
     "default_path": "sidepanel.html"
   },
-  //"content_scripts": [
-  //  {
-  //    "js": ["content-script.js"],
-  //    "matches": ["https://www.google.com/*"]
-  //  }
-  //],
+  "content_scripts": [
+    {
+      "js": ["content-script.js"],
+      //"matches": ["http://*/*", "https://*/*"],
+      "matches": ["https://www.svpg.com/*", "https://vimeo.com/*"]
+    }
+  ],
   //"permissions": ["sidePanel", "contextMenus"],
   //"permissions": ["sidePanel", "contextMenus", "tabs"],
   //"permissions": ["sidePanel", "tabs"],
