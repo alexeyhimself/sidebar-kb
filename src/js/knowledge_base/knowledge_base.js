@@ -16,7 +16,7 @@ function draw_existing_links(links) {
       links_html += '<br>';
 
     if (item.time)
-      links_html += `<b>${item.what_to_do} time:</b> ${item.time}, `;
+      links_html += `<b>${item.what_to_do} time:</b> ${item.time}`;
     //if (item.priority)
     //  links_html += `priority: ${item.priority}`;
     if (item.tags)
