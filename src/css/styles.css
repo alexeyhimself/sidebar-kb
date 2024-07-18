@@ -248,7 +248,10 @@ textarea {
 }
 #open_collect_form {
   display: block;
-  margin-top: 35vh;
+  position: absolute;
+  width: calc(100vw - 32px);
+  text-align: center;
+  top: calc(100vh - 45px);
 }
 
 #top-3-section {
