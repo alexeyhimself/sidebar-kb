@@ -245,6 +245,10 @@ textarea {
 
 #form {
   display: none;
+  height: calc(100vh - 55px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: lightgray transparent;
 }
 #open_collect_form {
   display: block;
