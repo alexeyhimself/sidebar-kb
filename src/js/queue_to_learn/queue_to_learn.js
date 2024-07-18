@@ -123,9 +123,18 @@ function draw_existing_grouped_links(grouped_links) {
       links_html += `<a href="#" data-url="${item.link}" class="move_to_kb- btn btn-warning btn-sm">edit</a> `;
       links_html += `<a href="#" data-url="${item.link}" class="move_to_kb- btn btn-danger btn-sm">delete</a><br>`;
       */
-      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb">Move to Knowledge Base</a> | `;
-      links_html += `<a href="#" data-url="${item.link}" class="edit_in_queue">Edit</a> | `;
-      links_html += `<a href="#" data-url="${item.link}" class="delete_from_queue">Delete</a><br>`;
+      
+      links_html += `<b>Actions:</b><br>`;
+      links_html += `<a href="#" data-url="${item.link}" class="edit_in_queue">Edit...</a><br>`;
+      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb">Move to Knowledge Base</a><br>`;
+      links_html += 'Archive with a reason:';
+      links_html += '<ul style="margin-bottom: 5px;">';
+      links_html += `<li><span class="badge bg-secondary">neutral</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="neutral">Not for saving in a Knowledge Base, not that useful</a></li>`;
+      links_html += `<li><span class="badge bg-secondary">negative</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="dontlike">Avoid such stuff. Don't want to waste time on such stuff</a></li>`;
+      links_html += `<li><span class="badge bg-secondary">trash</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="mistake" style="margin-bottom: 8px;">Do not save such links: they're not for learning</a></li>`;
+      links_html += '</ul>';
+      //https://calendar.google.com/calendar/render?action=TEMPLATE&text=Example+Google+Calendar+Event&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=20201231T160000/20201231T170000&recur=RRULE:FREQ%3DWEEKLY
+      // from: https://support.google.com/calendar/thread/81344786/how-do-i-generate-add-to-calendar-link-from-our-own-website?hl=en
 
       if (item.tags)
         links_html += `<b>Tags:</b> ${item.tags}<br>`;
@@ -390,7 +399,7 @@ function enable_edit_in_queue_listeners() {
       let link = document.getElementById("link");
       link.value = url;
       link.dispatchEvent(new InputEvent("change"));
-      //document.getElementById("title").dispatchEvent(new InputEvent("change"));
+      document.getElementById("save").dataset.callback = "queue";
     });
   });
 }

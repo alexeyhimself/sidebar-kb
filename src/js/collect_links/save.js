@@ -55,7 +55,6 @@ async function save_link() {
   link = add_time_in_minutes(link);
   save_link_into_storage(link);
   reset_form_state();
-  show_collect_welcome();
 
   let save_element = document.getElementById("save");
   if (save_element.classList.contains("context_menu_call")) {
@@ -67,6 +66,14 @@ async function save_link() {
   }
   if (save_element.classList.contains("auto_fill"))
     save_element.classList.remove("auto_fill");
+
+  show_collect_welcome();
+  let callback = save_element.dataset.callback;
+  if (callback == "queue") {
+    let a = document.getElementById("find-tab");
+    bootstrap.Tab.getInstance(a).show();
+    what_to_do_on_filter_change();
+  }
 }
 
 function save_link_to(link, where) {
