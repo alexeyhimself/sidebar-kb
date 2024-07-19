@@ -105,7 +105,9 @@ function hide_fields_if_necessary(element) {
   }
 
   document.getElementById("priority").style.display = display;
-  //document.getElementById("priority_placeholder").style.display = display;
+  document.querySelectorAll(".priority_placeholder").forEach((element) => {
+    element.style.display = display;
+  });
   //document.getElementById("chart_total").style.display = display;
   //document.getElementById("chart_what_to_do").style.display = display;
   document.getElementById("time").style.display = display;

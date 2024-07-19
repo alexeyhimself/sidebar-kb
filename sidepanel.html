@@ -65,8 +65,7 @@
             <!--label class="arsenal-sc">what to do:</label-->
             <!--label class="arsenal-sc" style="margin-left: 24%;">time estimate:</label-->
             <div class="margin-8" >
-              <div class="input-group" role="group" aria-label="Basic radio toggle button group">
-                <div class="input-group" role="group" style="width: 50%;">
+                <div class="input-group" role="group" id="what_to_do_dropdown">
                   <select class="form-select left-half-border-radius" id="what_to_do">
                     <option value="read" selected>Read 📚</option>
                     <option value="watch">Watch 🖥️</option>
@@ -74,10 +73,8 @@
                     <option value="course">Course ✏️</option>
                     <option value="tool">Tool 🛠</option>
                   </select>
+                  <textarea class="form-control input-time" id="time" placeholder="Estimate time" rows="1"></textarea>
                 </div>
-
-                <textarea class="form-control input-time" id="time" placeholder="Estimate time" rows="1"></textarea>
-              </div>
             </div>
 
             <!--label class="arsenal-sc">tags:</label-->
