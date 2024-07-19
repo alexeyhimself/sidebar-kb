@@ -82,7 +82,7 @@ function fill_and_adjust_textareas(page_object) {
 
 async function fill_and_adjust(tab) {
   const page_object = await get_data_from_active_tab(tab);
-  show_collect_form();
+  open_collect_form();
   fill_and_adjust_textareas(page_object);
   suggest_what_to_do(page_object.link);
   if (page_object.words_on_page)
@@ -150,8 +150,8 @@ function enable_collect_links_listeners() {
   enable_buttons_listeners({
     "save": save_link,
     "clear": reset_form_state,
-    "open_collect_form": show_collect_form,
-    "close_collect_form": show_collect_welcome,
+    "open_collect_form": open_collect_form,
+    "close_collect_form": close_collect_form,
     "save_all": save_all_tabs_in_window,
   });
   enable_range_listener("priority");

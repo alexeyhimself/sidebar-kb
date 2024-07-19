@@ -67,13 +67,7 @@ async function save_link() {
   if (save_element.classList.contains("auto_fill"))
     save_element.classList.remove("auto_fill");
 
-  show_collect_welcome();
-  let callback = save_element.dataset.callback;
-  if (callback == "queue") {
-    let a = document.getElementById("find-tab");
-    bootstrap.Tab.getInstance(a).show();
-    what_to_do_on_filter_change();
-  }
+  close_collect_form();
 }
 
 function save_link_to(link, where) {

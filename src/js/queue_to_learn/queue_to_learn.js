@@ -361,7 +361,7 @@ function enable_edit_in_queue_listeners() {
       const url = event.target.getAttribute("data-url");
       let a = document.getElementById("save-tab");
       bootstrap.Tab.getInstance(a).show();
-      show_collect_form();
+      open_collect_form();
       let link = document.getElementById("link");
       link.value = url;
       link.dispatchEvent(new InputEvent("change"));

@@ -5,7 +5,18 @@ function show_collect_welcome() {
   document.getElementById("form").style.display = 'none';
   document.getElementById("welcome").style.display = 'block';
 }
-function show_collect_form() {
+function close_collect_form() {
+  show_collect_welcome();
+  const save_element = document.getElementById("save");
+  let callback = save_element.dataset.callback;
+  if (callback == "queue") {
+    let a = document.getElementById("find-tab");
+    bootstrap.Tab.getInstance(a).show();
+    what_to_do_on_filter_change();
+    delete save_element.dataset.callback;
+  }
+}
+function open_collect_form() {
   document.getElementById("welcome").style.display = 'none';
   document.getElementById("form").style.display = 'block';
 }
