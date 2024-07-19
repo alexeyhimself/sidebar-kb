@@ -15,6 +15,7 @@ function close_collect_form() {
     what_to_do_on_filter_change();
     delete save_element.dataset.callback;
   }
+  save_element.classList.remove("context_menu_call");
 }
 function open_collect_form() {
   document.getElementById("welcome").style.display = 'none';

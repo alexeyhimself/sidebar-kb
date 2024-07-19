@@ -130,6 +130,7 @@ function draw_existing_grouped_links(grouped_links) {
       links_html += 'Remove from Queue with a reason:';
       links_html += '<ul style="margin-bottom: 5px;">';
       links_html += `<li><span class="badge bg-secondary">neutral</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="neutral">Not for saving in a Knowledge Base, not that useful</a></li>`;
+      links_html += `<li><span class="badge bg-secondary">neutral</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="duplicate">Duplicate link. Such link already exists</a></li>`;
       links_html += `<li><span class="badge bg-secondary">negative</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="dontlike">Avoid such stuff. Don't want to waste time on such stuff</a></li>`;
       links_html += `<li><span class="badge bg-secondary">trash</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="mistake" style="margin-bottom: 8px;">Do not save such links: they're not for learning</a></li>`;
       links_html += '</ul>';
@@ -152,50 +153,6 @@ function draw_existing_grouped_links(grouped_links) {
 
   return links_html;
 }
-
-/*
-function convert_time_string_to_minutes(time) {  // "1h 30m" => 90
-  if (!time)
-    return 0;
-  time = time.replace(/ /g, '');
-
-  let hours = time.split('h');
-  if (hours.length == 2) {
-    time = hours[1];
-    hours = hours[0];
-  }
-  else
-    hours = 0;
-  let minutes = time.split('m');
-  if (minutes.length == 2) {
-    minutes = minutes[0];
-  }
-  else
-    minutes = 0;
-
-  return parseInt(hours) * 60 + parseInt(minutes);
-}
-
-function calculate_links_stats(importance) {
-  if (!importance)
-    importance = 0;
-
-  let links = load_links_from_local_storage();
-  let stats = {};
-  for (let i in links) {
-    let link = links[i];
-    if (link.importance < importance)
-      continue;
-
-    let time = convert_time_string_to_minutes(link.time);
-    if (!stats[link.what_to_do])
-      stats[link.what_to_do] = time;
-    else
-      stats[link.what_to_do] += time;
-  }
-  return stats;
-}
-*/
 
 function group_filtered_links(filtered_links) {
   let links_to_read = [];
@@ -347,7 +304,9 @@ function enable_delete_from_queue_listeners() {
   document.querySelectorAll(".delete_from_queue").forEach((element) => {
     element.addEventListener('click', function (event) {
       const url = event.target.getAttribute("data-url");
+      const reason = event.target.getAttribute("data-reason");
       const link = get_link_from_queue(url);
+      link["reason"] = reason;
       save_link_to(link, "deleted");
       delete_link_from_queue(url);
       what_to_do_on_filter_change();
@@ -362,6 +321,7 @@ function enable_edit_in_queue_listeners() {
       let a = document.getElementById("save-tab");
       bootstrap.Tab.getInstance(a).show();
       open_collect_form();
+      save_element.classList.remove("context_menu_call");
       let link = document.getElementById("link");
       link.value = url;
       link.dispatchEvent(new InputEvent("change"));
