@@ -127,7 +127,7 @@ function draw_existing_grouped_links(grouped_links) {
       links_html += `<b>Actions:</b><br>`;
       links_html += `<a href="#" data-url="${item.link}" class="edit_in_queue">Edit...</a><br>`;
       links_html += `<a href="#" data-url="${item.link}" class="move_to_kb">Move to Knowledge Base</a><br>`;
-      links_html += 'Archive with a reason:';
+      links_html += 'Remove from Queue with a reason:';
       links_html += '<ul style="margin-bottom: 5px;">';
       links_html += `<li><span class="badge bg-secondary">neutral</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="neutral">Not for saving in a Knowledge Base, not that useful</a></li>`;
       links_html += `<li><span class="badge bg-secondary">negative</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="dontlike">Avoid such stuff. Don't want to waste time on such stuff</a></li>`;
@@ -228,112 +228,58 @@ function group_filtered_links(filtered_links) {
 }
 
 function filter_links() {
-  const filtered_text = document.getElementById("find_text").value.toLowerCase();
-  const filtered_time = document.getElementById("find_time").value.toLowerCase();
-  const parsed_time = parse_time(filtered_time);
-  if (!parsed_time)
-    return [];
-
-  const filtered_time_minutes = parsed_time.hours * 60 + parsed_time.minutes;
-
   const links = load_links_from_local_storage_sorted_by();
   let links_match_by_time = [];
   let links_without_time = [];
-  for (let i = 0; i < links.length; i++) {
-    const link = links[i];
-    if (link.time_minutes) {
-      if (filtered_time_minutes && link.time_minutes <= filtered_time_minutes) {
-        links_match_by_time.push(link);
-      }
-      else if (!filtered_time_minutes) {
+
+  const filtered_time = document.getElementById("find_time").value.toLowerCase();
+  if (filtered_time != '') {
+    const parsed_time = parse_time(filtered_time);
+
+    if (Object.keys(parsed_time).length == 0)  // if couldn't parse the time limit filter
+      return [];
+
+    const filtered_time_minutes = parsed_time.hours * 60 + parsed_time.minutes;
+
+    for (let i = 0; i < links.length; i++) {
+      const link = links[i];
+      if (!link.time_minutes) {
         links_without_time.push(link);
+        continue;
       }
-    }
-    else {
-      links_without_time.push(link);
+      if (filtered_time_minutes && link.time_minutes <= filtered_time_minutes)
+        links_match_by_time.push(link);
     }
   }
+  else {
+    links_without_time = links;  // doesn't matter, could be a links_match_by_time = links too
+  }
 
+  const filtered_text = document.getElementById("find_text").value.toLowerCase();
+  const fields_to_search_in = ["link", "title", "notes", "tags", "what_to_do"];
   let resulting_links = [];
-  for (let i = 0; i < links_match_by_time.length; i++) {
-    const link = links_match_by_time[i];
 
-    if (!link.time && "undefined".includes(filtered_text)) {
-      resulting_links.push(link);
-      continue;
-    }
+  [links_match_by_time, links_without_time].forEach((list) => {
+    for (let i = 0; i < list.length; i++) {
+      const link = list[i];
 
-    if (link.title) {
-      if (link.title.toLowerCase().includes(filtered_text)) {
+      if (!link.time && "undefined".includes(filtered_text)) { // !link.time here represents undefined time
         resulting_links.push(link);
         continue;
       }
-    }
-    if (link.notes) {
-      if (link.notes.toLowerCase().includes(filtered_text)) {
-        resulting_links.push(link);
-        continue;
-      }
-    }
-    if (link.tags) {
-      if (link.tags.toLowerCase().includes(filtered_text)) {
-        resulting_links.push(link);
-        continue;
-      }
-    }
-    if (link.what_to_do) {
-      if (link.what_to_do.toLowerCase().includes(filtered_text)) {
-        resulting_links.push(link);
-        continue;
-      }
-    }
-    if (link.link) {
-      if (link.link.toLowerCase().includes(filtered_text)) {
-        resulting_links.push(link);
-        continue;
-      }
-    }
-  }
 
-  for (let i = 0; i < links_without_time.length; i++) {
-    const link = links_without_time[i];
+      for (let j = 0; j < fields_to_search_in.length; j++) {
+        const field_to_search_in = fields_to_search_in[j];
+        if (link[field_to_search_in]) {
+          if (link[field_to_search_in].toLowerCase().includes(filtered_text)) {
+            resulting_links.push(link);
+            continue;
+          }
+        }  
+      }
+    }
+  });
 
-    if (!link.time && "undefined".includes(filtered_text)) {
-      resulting_links.push(link);
-      continue;
-    }
-    
-    if (link.title) {
-      if (link.title.toLowerCase().includes(filtered_text)) {
-        resulting_links.push(link);
-        continue;
-      }
-    }
-    if (link.notes) {
-      if (link.notes.toLowerCase().includes(filtered_text)) {
-        resulting_links.push(link);
-        continue;
-      }
-    }
-    if (link.tags) {
-      if (link.tags.toLowerCase().includes(filtered_text)) {
-        resulting_links.push(link);
-        continue;
-      }
-    }
-    if (link.what_to_do) {
-      if (link.what_to_do.toLowerCase().includes(filtered_text)) {
-        resulting_links.push(link);
-        continue;
-      }
-    }
-    if (link.link) {
-      if (link.link.toLowerCase().includes(filtered_text)) {
-        resulting_links.push(link);
-        continue;
-      }
-    }
-  }
   return resulting_links;
 }
 
