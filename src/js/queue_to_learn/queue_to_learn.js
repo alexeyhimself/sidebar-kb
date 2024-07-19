@@ -321,11 +321,12 @@ function enable_edit_in_queue_listeners() {
       let a = document.getElementById("save-tab");
       bootstrap.Tab.getInstance(a).show();
       open_collect_form();
+      const save_element = document.getElementById("save");
       save_element.classList.remove("context_menu_call");
       let link = document.getElementById("link");
       link.value = url;
       link.dispatchEvent(new InputEvent("change"));
-      document.getElementById("save").dataset.callback = "queue";
+      save_element.dataset.callback = "queue";
     });
   });
 }
