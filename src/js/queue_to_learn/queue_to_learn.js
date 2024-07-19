@@ -235,12 +235,10 @@ function filter_links() {
   const filtered_time = document.getElementById("find_time").value.toLowerCase();
   if (filtered_time != '') {
     const parsed_time = parse_time(filtered_time);
-
     if (Object.keys(parsed_time).length == 0)  // if couldn't parse the time limit filter
       return [];
 
     const filtered_time_minutes = parsed_time.hours * 60 + parsed_time.minutes;
-
     for (let i = 0; i < links.length; i++) {
       const link = links[i];
       if (!link.time_minutes) {
@@ -259,23 +257,45 @@ function filter_links() {
   const fields_to_search_in = ["link", "title", "notes", "tags", "what_to_do"];
   let resulting_links = [];
 
-  [links_match_by_time, links_without_time].forEach((list) => {
-    for (let i = 0; i < list.length; i++) {
-      const link = list[i];
+  [links_match_by_time, links_without_time].forEach((list_of_links) => {
+    for (let i = 0; i < list_of_links.length; i++) {
+      const link = list_of_links[i];
 
       if (!link.time && "undefined".includes(filtered_text)) { // !link.time here represents undefined time
         resulting_links.push(link);
         continue;
       }
 
-      for (let j = 0; j < fields_to_search_in.length; j++) {
+      let full_text_match_found = false;
+      for (let j = 0; j < fields_to_search_in.length; j++) {  // full text search
         const field_to_search_in = fields_to_search_in[j];
-        if (link[field_to_search_in]) {
-          if (link[field_to_search_in].toLowerCase().includes(filtered_text)) {
-            resulting_links.push(link);
-            continue;
+        if (!link[field_to_search_in])
+          continue;
+
+        if (link[field_to_search_in].toLowerCase().includes(filtered_text)) {
+          resulting_links.push(link);
+          full_text_match_found = true;
+          break;
+        }
+      }
+
+      if (!full_text_match_found) {
+        let split_text_match_found_count = 0;
+        const filtered_text_split = filtered_text.split(/\s+/);
+        filtered_text_split.forEach((filtered_word) => {  // split text search
+          for (let k = 0; k < fields_to_search_in.length; k++) {
+            const field_to_search_in = fields_to_search_in[k];
+            if (!link[field_to_search_in])
+              continue;
+
+            if (link[field_to_search_in].toLowerCase().includes(filtered_word)) {
+              split_text_match_found_count++;
+              break;
+            }
           }
-        }  
+        });
+        if (filtered_text_split.length == split_text_match_found_count)
+          resulting_links.push(link);
       }
     }
   });
