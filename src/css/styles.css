@@ -126,7 +126,7 @@ select {
 
 #what_to_do {
   cursor: pointer;
-  width: 42%;
+  width: 20%;
   color: gray;
 }
 #links_placeholder, #kb_placeholder {
