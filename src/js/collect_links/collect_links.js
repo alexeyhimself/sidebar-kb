@@ -17,6 +17,7 @@ function close_collect_form() {
   }
   save_element.classList.remove("context_menu_call");
 }
+
 function open_collect_form() {
   document.getElementById("welcome").style.display = 'none';
   document.getElementById("form").style.display = 'block';

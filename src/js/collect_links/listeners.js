@@ -121,7 +121,7 @@ function enable_chrome_runtime_listeners() {
           fill_and_adjust(tab);
         }, 2000);  // if page is loaded longer than 2s then will not work out. Need to use messaging on document ready
       }
-      if (message.type == 'context_menu_call2') {
+      if (message.type == 'context_menu_already_opened_tab') {
         // document.getElementById("save").classList.add("context_menu_call");  // this is made to close tab on save
         const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
         setTimeout(() => {

@@ -302,7 +302,7 @@ function enable_move_to_kb_listeners() {
 
 function enable_delete_from_queue_listeners() {
   document.querySelectorAll(".delete_from_queue").forEach((element) => {
-    element.addEventListener('click', function (event) {
+    element.addEventListener('click', async function (event) {
       const url = event.target.getAttribute("data-url");
       const reason = event.target.getAttribute("data-reason");
       const link = get_link_from_queue(url);
@@ -310,6 +310,10 @@ function enable_delete_from_queue_listeners() {
       save_link_to(link, "deleted");
       delete_link_from_queue(url);
       what_to_do_on_filter_change();
+
+      const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+      if (tab.url == url)
+        chrome.tabs.remove(tab.id, function() { });
     });
   });
 }
@@ -322,7 +326,7 @@ function enable_edit_in_queue_listeners() {
       bootstrap.Tab.getInstance(a).show();
       open_collect_form();
       const save_element = document.getElementById("save");
-      save_element.classList.remove("context_menu_call");
+      save_element.classList.remove("context_menu_call");  // clean if left from unsaved tab
       let link = document.getElementById("link");
       link.value = url;
       link.dispatchEvent(new InputEvent("change"));
