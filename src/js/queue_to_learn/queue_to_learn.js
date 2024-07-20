@@ -79,7 +79,7 @@ function draw_existing_grouped_links(grouped_links) {
 
       if (!item.title)
         item.title = item.link;
-      links_html += '<p>';
+      links_html += '<p class="queue-link">';
 
       if (item.time)
         links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span> `;
@@ -143,7 +143,7 @@ function draw_existing_grouped_links(grouped_links) {
         links_html += `<b>Notes:</b> ${item.notes}<br>`;
       
       links_html += `</div></div>`;
-      links_html += '</p>';
+      //links_html += '</p>';
     }
 
     i++;

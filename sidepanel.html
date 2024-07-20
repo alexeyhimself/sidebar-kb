@@ -71,6 +71,7 @@
                     <option value="watch">Watch 🖥️</option>
                     <option value="listen">Listen 🎧</option>
                     <option value="course">Course ✏️</option>
+                    <option value="people">People 👤</option>
                     <option value="tool">Tool 🛠</option>
                   </select>
                   <textarea class="form-control input-time" id="time" placeholder="Estimate time" rows="1"></textarea>
@@ -102,16 +103,18 @@
         <div class="tab-pane fade" id="find-tab-pane" role="tabpanel" aria-labelledby="find-tab" tabindex="0">
           <div class="margin-8">
             <div id="filter" class="input-group" role="group" aria-label="">
-              <!--div class="btn-group btn-group-sm" role="group" aria-label="Basic radio toggle button group" style="margin-bottom: 8px;">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                <label class="btn btn-outline-secondary" for="btnradio1">Priority-based</label>
-
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                <label class="btn btn-outline-secondary" for="btnradio2">Time-based</label>
-              </div-->
-
-              <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search links">
+              <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search...">
               <input type="text" id="find_time" class="form-control" placeholder="Time limit">
+
+              <div id="priority-vs-time" style="width: 100%;">
+                <input type="radio" class="form-check-input" name="btnradio" id="btnradio1" autocomplete="off" checked disabled>
+                <label class="form-check-label" for="btnradio1" style="margin-right: 12px;">Priority list</label>
+
+                
+                <input type="radio" class="form-check-input" name="btnradio" id="btnradio2" autocomplete="off" style="" disabled>
+                <label class="form-check-label" for="btnradio2" style="">Time list</label>
+                
+              </div>
               <!--div class="btn-group" role="group">
                 <select class="form-select" id="order">
                   <option value="priority_desc" selected>Priority ↓</option>

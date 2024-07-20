@@ -17,8 +17,8 @@ body, textarea, button, label, input, select, p, a {
 
 #links_area, #kb_area {
   margin-top: 8px;
-  padding: 0 10px 10px 10px;
-  height: calc(100vh - 134px);
+  padding: 0 0px 10px 10px;
+  height: calc(100vh - 162px);
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width-: thin;
@@ -260,6 +260,7 @@ textarea {
 
 #top-3-section {
   margin-bottom: 30px;
+  margin-top: 3px;
 }
 
 .accordion-body {
@@ -269,4 +270,28 @@ textarea {
 }
 hr {
   margin: 0.5em 0;
+}
+
+a {
+  text-decoration: none;
+}
+#priority-vs-time {
+  margin-top: 5px;
+  margin-left: 2px;
+}
+.form-check-label, input[type="radio"] {
+  cursor: pointer;
+}
+.queue-link-- {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 8px 8px 8px 8px;
+  margin-right: 0;
+}
+.queue-link {
+  margin-left: 4px;
+}
+.accordion-collapse {
+  margin-left-: 5px;
+  margin-bottom: 10px;
 }
