@@ -10,13 +10,12 @@ function draw_existing_links(links) {
   links.forEach((item) => {
     if (!item.title)
       item.title = item.link;
-    links_html += `<p><a href="${item.link}" target="_blank">${item.title}</a>`;
+    links_html += `<p style="margin-bottom: 20px;"><a href="${item.link}" target="_blank">${item.title}</a>`;
 
-    if (item.time || item.priority || item.tags)
-      links_html += '<br>';
-
+    if (item.what_to_do)
+      links_html += `<br><b>${item.what_to_do}</b>`;
     if (item.time)
-      links_html += `<b>${item.what_to_do} time:</b> ${item.time}`;
+      links_html += `<br><b>time:</b> ${item.time}`;
     //if (item.priority)
     //  links_html += `priority: ${item.priority}`;
     if (item.tags)
