@@ -96,8 +96,8 @@ function draw_existing_grouped_links(grouped_links) {
       }
 
       const hostname = get_hostname(item.link);
-      links_html += `${hostname}: <a href="${item.link}" target="_blank">${item.title.trim()}</a>&nbsp;`;
-      links_html += `| <a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne">more... `;
+      links_html += `${hostname}: <a href="${item.link}" target="_blank">${item.title.trim()}</a>`;
+      links_html += `<a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne"><img src="images/arrow-down.png" style="width: 12px; margin-left: 7px;"> `;
       /*
       if (item.tags) {
         links_html += `| <a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne">${item.tags.split(',').length}&nbsp;tag` //links_html += `${item.tags}`;
