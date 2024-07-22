@@ -105,9 +105,7 @@ function draw_link_in_queue_tab(item, j) {
 
   const hostname = get_hostname(item.link);
   links_html += `${hostname}: <a href="${item.link}" target="_blank">${item.title.trim()}</a>`;
-  links_html += `<a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne"><img src="images/arrow-down.png" style="width: 10px; margin-left: 7px;"> `;
-
-  links_html += '</a> ';
+  links_html += `<a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne"><img src="images/arrow-down.png" style="width: 10px; margin-left: 7px;"></a>`;
 
   links_html += `<div id="collapse-${item.date_created}-${j}" class="accordion-collapse collapse" data-bs-parent="#accordionExample"><div class="accordion-body">`;
         
@@ -169,11 +167,12 @@ function draw_existing_grouped_links(grouped_links) {
 }
 
 function draw_existing_time_based_links(links) {
-  let links_html = '';
+  let links_html = `<div id="top-3-section"><p><b>Most recently saved on top:</b></p>`;
   for (let j = 0; j < links.length; j++) {
     const item = links[j];
     links_html += draw_link_in_queue_tab(item, j);
   }
+  links_html += '</div>';
   return links_html;
 }
 
