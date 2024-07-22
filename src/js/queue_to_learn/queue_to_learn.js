@@ -80,6 +80,8 @@ function draw_time_based_links(links, no_links_callback) {
   }
 }
 
+const no_time_what_to_do = ["tool", "course", "people"];
+
 function draw_link_in_queue_tab(item, j, what_to_do) {
   let links_html = '';
 
@@ -90,7 +92,7 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   if (item.time)
     links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span> `;
   else {
-    if (!["tool", "course", "people"].includes(item.what_to_do))
+    if (!no_time_what_to_do.includes(item.what_to_do))
       links_html += `<span class="badge bg-warning text-dark">undefined</span> `;
   }
 
@@ -240,7 +242,7 @@ function filter_links(sorting) {
     for (let i = 0; i < list_of_links.length; i++) {
       const link = list_of_links[i];
 
-      if (!link.time && "undefined".includes(filtered_text)) { // !link.time here represents undefined time
+      if (!link.time && "undefined".includes(filtered_text) && !no_time_what_to_do.includes(link.what_to_do)) { // !link.time here represents undefined time
         resulting_links.push(link);
         continue;
       }
