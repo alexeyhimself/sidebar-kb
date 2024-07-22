@@ -185,11 +185,19 @@ function draw_existing_time_based_links(links) {
     date = new Date(item.date_created).getDate();
     weekday = new Date(item.date_created).toLocaleDateString('en-US', {weekday: 'long'});
 
+    if (item_date_created != date_created) {
+      if (group_started)
+        links_html += '</div>';
+      group_started = false;
+      links_html += `<p><b>${weekday}, ${month} ${date}:</b></p>`;
+      date_created = item_date_created;
+    }
+
     if (item.group_id && item.group_id != group_id) {
       if (group_started)
         links_html += '</div>';
 
-      links_html += `<div class="bulk_saved_group"><p><b>${weekday}, ${month} ${date}:</b></p>`;
+      links_html += `<div class="bulk_saved_group">`;
       group_started = true;
     }
     else if (!item.group_id && group_started) {
@@ -197,10 +205,6 @@ function draw_existing_time_based_links(links) {
       group_started = false;
     }
     
-    if (!item.group_id && item_date_created != date_created) {
-      links_html += `<p><b>${weekday}, ${month} ${date}:</b></p>`;
-      date_created = item_date_created;
-    }
     links_html += draw_link_in_queue_tab(item, j);
     group_id = item.group_id;
   }
