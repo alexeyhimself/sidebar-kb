@@ -80,7 +80,7 @@ function draw_time_based_links(links, no_links_callback) {
   }
 }
 
-function draw_link_in_queue_tab(item, j) {
+function draw_link_in_queue_tab(item, j, what_to_do) {
   let links_html = '';
 
   if (!item.title)
@@ -94,9 +94,10 @@ function draw_link_in_queue_tab(item, j) {
       links_html += `<span class="badge bg-warning text-dark">undefined</span> `;
   }
 
-  if (what_to_do == "undefined" || what_to_do === undefined)
-    links_html += `<span class="badge bg-secondary">undefined</span> `;
-  else if (what_to_do == "others") {
+  //if (what_to_do == "undefined" || what_to_do === undefined)
+  //  links_html += `<span class="badge bg-secondary">undefined</span> `;
+  //else if (what_to_do == "others") {
+  if (what_to_do == "others" || what_to_do == undefined) {
     if (item.what_to_do == "undefined" || item.what_to_do === undefined)
       links_html += `<span class="badge bg-secondary">undefined</span> `;
     else
@@ -154,8 +155,7 @@ function draw_existing_grouped_links(grouped_links) {
 
     for (let j = 0; j < grouped_links[what_to_do].length; j++) {
       const item = grouped_links[what_to_do][j];
-
-      links_html += draw_link_in_queue_tab(item, j);
+      links_html += draw_link_in_queue_tab(item, j, what_to_do);
     }
 
     i++;
