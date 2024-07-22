@@ -5,7 +5,7 @@ function draw_kb_error_message() {
   return `<p id="kb_placeholder"><span style="font-size: 2em;">😲</span><br><b>Something went wrong...</b><br>Please <a href="#" id="copy_error_message_to_clipboard">click here</a> to copy an error message to clipboard and <a href="mailto:alexeyhimself@gmail.com">let us know</a></p>`;
 }
 
-function draw_existing_links(links) {
+function draw_existing_links_in_kb_tab(links) {
   let links_html = '';
   links.forEach((item) => {
     if (!item.title)
@@ -29,7 +29,7 @@ function draw_existing_links(links) {
   return links_html;
 }
 
-function draw_links(links, no_links_callback) {
+function draw_links_in_kb_tab(links, no_links_callback) {
   try {
     if (!links)
       links = load_links_from("kb");
@@ -41,7 +41,7 @@ function draw_links(links, no_links_callback) {
         document.getElementById("kb_area").innerHTML = draw_kb_placeholder();
     }
     else
-      document.getElementById("kb_area").innerHTML = draw_existing_links(links);
+      document.getElementById("kb_area").innerHTML = draw_existing_links_in_kb_tab(links);
 
   } catch (error) {
     console.error(error);
@@ -52,7 +52,7 @@ function draw_links(links, no_links_callback) {
 
 function enable_knowledge_base() {
   enable_buttons_listeners({
-    "kb-tab": draw_links,
+    "kb-tab": draw_links_in_kb_tab,
   });
 }
 

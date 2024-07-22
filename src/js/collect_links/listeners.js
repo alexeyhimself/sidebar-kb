@@ -146,10 +146,7 @@ function enable_chrome_runtime_listeners() {
 function enable_radios_listener() {
   document.getElementById("priority-vs-time").addEventListener('click', function (event) {
     if (event.target && event.target.matches("input[type='radio']")) {
-      if (event.target.id == "priority-based")
-        what_to_do_on_filter_change();
-      else
-        document.getElementById("links_area").innerHTML = draw_links_error_message();
+      what_to_do_on_filter_change();
     }
   });
 }

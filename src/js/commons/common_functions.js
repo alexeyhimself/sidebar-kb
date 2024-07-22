@@ -3,10 +3,17 @@ function load_links_from_local_storage() {
   return JSON.parse(links);
 }
 
-function load_links_from_local_storage_sorted_by() {
+function load_links_from_local_storage_sorted_by(sorting) {
   let links = load_links_from_local_storage();
-  return links.sort(sort_dicts_by_multiple_values("-priority", "-date_created"));
-  //return links.sort(sort_dicts_by_value("-priority"));
+  if (sorting) {
+    if (sorting == "priority-based")
+      return links.sort(sort_dicts_by_value("-priority"));
+    else
+      return links.sort(sort_dicts_by_value("-date_created"));
+  }
+  else {
+    return links.sort(sort_dicts_by_multiple_values("-priority", "-date_created"));  
+  }
 }
 
 function load_links_from(where) {

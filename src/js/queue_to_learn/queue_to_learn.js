@@ -24,8 +24,8 @@ function display_links_export(number_of_links) {
     document.getElementById("links_export").style.display = 'none';
 }
 
-function draw_grouped_links(grouped_links, no_links_callback) {
-  const all_existing_links = load_links_from_local_storage_sorted_by();
+function draw_links_in_queue_tab(grouped_links, no_links_callback) {
+  const all_existing_links = load_links_from_local_storage();
 
   try {
     document.getElementById("filter").style.display = '';
@@ -41,7 +41,6 @@ function draw_grouped_links(grouped_links, no_links_callback) {
       document.getElementById("links_area").innerHTML = draw_existing_grouped_links(grouped_links);
 
     display_links_export(grouped_links.total);
-    // document.getElementById("find_text").focus();
 
     enable_move_to_kb_listeners();
     enable_delete_from_queue_listeners();
@@ -51,6 +50,88 @@ function draw_grouped_links(grouped_links, no_links_callback) {
     document.getElementById("links_area").innerHTML = draw_links_error_message();
     enable_copy_error_message_to_clipboard_listener("copy_error_message_to_clipboard", error);
   }
+}
+
+function draw_time_based_links(links, no_links_callback) {
+  const all_existing_links = load_links_from_local_storage();
+
+  try {
+    document.getElementById("filter").style.display = '';
+    if (links.total == 0) {
+      if (no_links_callback && all_existing_links.length > 0)
+        document.getElementById("links_area").innerHTML = no_links_callback();
+      else {
+        document.getElementById("links_area").innerHTML = draw_links_placeholder();
+        document.getElementById("filter").style.display = 'none';
+      }
+    }
+    else
+      document.getElementById("links_area").innerHTML = draw_existing_time_based_links(links);
+
+    display_links_export(links.total);
+
+    enable_move_to_kb_listeners();
+    enable_delete_from_queue_listeners();
+    enable_edit_in_queue_listeners();
+  } catch (error) {
+    console.error(error);
+    document.getElementById("links_area").innerHTML = draw_links_error_message();
+    enable_copy_error_message_to_clipboard_listener("copy_error_message_to_clipboard", error);
+  }
+}
+
+function draw_link_in_queue_tab(item, j) {
+  let links_html = '';
+
+  if (!item.title)
+    item.title = item.link;
+  links_html += '<p class="queue-link">';
+
+  if (item.time)
+    links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span> `;
+  else {
+    if (!["tool", "course", "people"].includes(item.what_to_do))
+      links_html += `<span class="badge bg-warning text-dark">undefined</span> `;
+  }
+
+  if (what_to_do == "undefined" || what_to_do === undefined)
+    links_html += `<span class="badge bg-secondary">undefined</span> `;
+  else if (what_to_do == "others") {
+    if (item.what_to_do == "undefined" || item.what_to_do === undefined)
+      links_html += `<span class="badge bg-secondary">undefined</span> `;
+    else
+      links_html += `<span class="badge bg-secondary">${item.what_to_do}</span> `;
+  }
+
+  const hostname = get_hostname(item.link);
+  links_html += `${hostname}: <a href="${item.link}" target="_blank">${item.title.trim()}</a>`;
+  links_html += `<a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne"><img src="images/arrow-down.png" style="width: 10px; margin-left: 7px;"> `;
+
+  links_html += '</a> ';
+
+  links_html += `<div id="collapse-${item.date_created}-${j}" class="accordion-collapse collapse" data-bs-parent="#accordionExample"><div class="accordion-body">`;
+        
+  links_html += `<b>Actions:</b><br>`;
+  links_html += `<a href="#" data-url="${item.link}" class="edit_in_queue">Edit...</a><br>`;
+  links_html += `<a href="#" data-url="${item.link}" class="move_to_kb">Move to Knowledge Base</a><br>`;
+  links_html += 'Remove from Queue with a reason:';
+  links_html += '<ul style="margin-bottom: 5px;">';
+  links_html += `<li><span class="badge bg-secondary">neutral</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="neutral">Not for saving in a Knowledge Base, not that useful</a></li>`;
+  links_html += `<li><span class="badge bg-secondary">neutral</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="duplicate">Duplicate link. Such link already exists</a></li>`;
+  links_html += `<li><span class="badge bg-secondary">negative</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="dontlike">Avoid such stuff. Don't want to waste time on such stuff</a></li>`;
+  links_html += `<li><span class="badge bg-secondary">trash</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="mistake" style="margin-bottom: 8px;">Do not save such links: they're not for learning</a></li>`;
+  links_html += '</ul>';
+  //https://calendar.google.com/calendar/render?action=TEMPLATE&text=Example+Google+Calendar+Event&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=20201231T160000/20201231T170000&recur=RRULE:FREQ%3DWEEKLY
+  // from: https://support.google.com/calendar/thread/81344786/how-do-i-generate-add-to-calendar-link-from-our-own-website?hl=en
+
+  if (item.tags)
+    links_html += `<b>Tags:</b> ${item.tags}<br>`;
+  if (item.notes)
+    links_html += `<b>Notes:</b> ${item.notes}<br>`;
+  
+  links_html += `</div></div>`;
+
+  return links_html;
 }
 
 function draw_existing_grouped_links(grouped_links) {
@@ -74,85 +155,25 @@ function draw_existing_grouped_links(grouped_links) {
     }
 
     for (let j = 0; j < grouped_links[what_to_do].length; j++) {
-    //grouped_links[what_to_do].forEach((item) => {
       const item = grouped_links[what_to_do][j];
 
-      if (!item.title)
-        item.title = item.link;
-      links_html += '<p class="queue-link">';
-
-      if (item.time)
-        links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span> `;
-      else {
-        if (!["tool", "course", "people"].includes(item.what_to_do))
-          links_html += `<span class="badge bg-warning text-dark">undefined</span> `;
-      }
-
-      if (what_to_do == "undefined" || what_to_do === undefined)
-        links_html += `<span class="badge bg-secondary">undefined</span> `;
-      else if (what_to_do == "others") {
-        if (item.what_to_do == "undefined" || item.what_to_do === undefined)
-          links_html += `<span class="badge bg-secondary">undefined</span> `;
-        else
-          links_html += `<span class="badge bg-secondary">${item.what_to_do}</span> `;
-      }
-
-      const hostname = get_hostname(item.link);
-      links_html += `${hostname}: <a href="${item.link}" target="_blank">${item.title.trim()}</a>`;
-      links_html += `<a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne"><img src="images/arrow-down.png" style="width: 10px; margin-left: 7px;"> `;
-      /*
-      if (item.tags) {
-        links_html += `| <a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne">${item.tags.split(',').length}&nbsp;tag` //links_html += `${item.tags}`;
-        if (item.tags.split(',').length > 1)
-          links_html += 's';
-      }
-      if (item.notes) {
-        if (item.tags)
-          links_html += ' + a note';
-        else
-          links_html += '| <a href="">a note';
-      }
-      if (item.tags || item.notes)
-        links_html += '...';
-      */
-      links_html += '</a> ';
-
-      //links_html += ` ${item.priority}`;
-      links_html += `<div id="collapse-${item.date_created}-${j}" class="accordion-collapse collapse" data-bs-parent="#accordionExample"><div class="accordion-body">`;
-      
-      /*
-      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb btn btn-success btn-sm">move to knowledge base</a> `;
-      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb- btn btn-warning btn-sm">edit</a> `;
-      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb- btn btn-danger btn-sm">delete</a><br>`;
-      */
-      
-      links_html += `<b>Actions:</b><br>`;
-      links_html += `<a href="#" data-url="${item.link}" class="edit_in_queue">Edit...</a><br>`;
-      links_html += `<a href="#" data-url="${item.link}" class="move_to_kb">Move to Knowledge Base</a><br>`;
-      links_html += 'Remove from Queue with a reason:';
-      links_html += '<ul style="margin-bottom: 5px;">';
-      links_html += `<li><span class="badge bg-secondary">neutral</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="neutral">Not for saving in a Knowledge Base, not that useful</a></li>`;
-      links_html += `<li><span class="badge bg-secondary">neutral</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="duplicate">Duplicate link. Such link already exists</a></li>`;
-      links_html += `<li><span class="badge bg-secondary">negative</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="dontlike">Avoid such stuff. Don't want to waste time on such stuff</a></li>`;
-      links_html += `<li><span class="badge bg-secondary">trash</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="mistake" style="margin-bottom: 8px;">Do not save such links: they're not for learning</a></li>`;
-      links_html += '</ul>';
-      //https://calendar.google.com/calendar/render?action=TEMPLATE&text=Example+Google+Calendar+Event&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=20201231T160000/20201231T170000&recur=RRULE:FREQ%3DWEEKLY
-      // from: https://support.google.com/calendar/thread/81344786/how-do-i-generate-add-to-calendar-link-from-our-own-website?hl=en
-
-      if (item.tags)
-        links_html += `<b>Tags:</b> ${item.tags}<br>`;
-      if (item.notes)
-        links_html += `<b>Notes:</b> ${item.notes}<br>`;
-      
-      links_html += `</div></div>`;
-      //links_html += '</p>';
+      links_html += draw_link_in_queue_tab(item, j);
     }
 
     i++;
     if (i == 4)
-      links_html += "</div>"
+      links_html += "</div>";
   });
 
+  return links_html;
+}
+
+function draw_existing_time_based_links(links) {
+  let links_html = '';
+  for (let j = 0; j < links.length; j++) {
+    const item = links[j];
+    links_html += draw_link_in_queue_tab(item, j);
+  }
   return links_html;
 }
 
@@ -186,8 +207,8 @@ function group_filtered_links(filtered_links) {
           "total": links_to_read.length + links_to_watch.length + links_to_listen.length + links_others.length};
 }
 
-function filter_links() {
-  const links = load_links_from_local_storage_sorted_by();
+function filter_links(sorting) {
+  const links = load_links_from_local_storage_sorted_by(sorting);
   let links_match_by_time = [];
   let links_without_time = [];
 
@@ -263,10 +284,15 @@ function filter_links() {
 }
 
 function what_to_do_on_filter_change(event) {
-  const filtered_links = filter_links();
-  const grouped_filtered_links = group_filtered_links(filtered_links);
-  //draw_links(filtered_links, draw_no_links_found_placeholder);
-  draw_grouped_links(grouped_filtered_links, draw_no_links_found_placeholder);
+  const radio = document.querySelector('input[name="btnradio"]:checked');
+  const filtered_links = filter_links(radio.id);
+  if (radio.id == 'priority-based') {
+    const grouped_filtered_links = group_filtered_links(filtered_links);
+    draw_links_in_queue_tab(grouped_filtered_links, draw_no_links_found_placeholder);  
+  }
+  else {
+    draw_time_based_links(filtered_links, draw_no_links_found_placeholder);
+  }
 }
 
 function delete_link_from_queue(url) {
@@ -339,7 +365,6 @@ function enable_edit_in_queue_listeners() {
 
 function enable_manage_links() {
   enable_buttons_listeners({
-    // "find-tab": draw_grouped_links,
     "find-tab": what_to_do_on_filter_change,
     "links_export_csv": download_as_csv,
     "links_export_json": download_as_json,
