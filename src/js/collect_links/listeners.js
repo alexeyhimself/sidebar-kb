@@ -143,6 +143,17 @@ function enable_chrome_runtime_listeners() {
   //},{});
 }
 
+function enable_radios_listener() {
+  document.getElementById("priority-vs-time").addEventListener('click', function (event) {
+    if (event.target && event.target.matches("input[type='radio']")) {
+      if (event.target.id == "priority-based")
+        what_to_do_on_filter_change();
+      else
+        document.getElementById("links_area").innerHTML = draw_links_error_message();
+    }
+  });
+}
+
 function enable_collect_links_listeners() {
   collect_links_textareas_ids.forEach((element_id) => { 
     enable_textarea_listener(element_id, what_to_do_on_textareas_content_change);
@@ -158,6 +169,7 @@ function enable_collect_links_listeners() {
   enable_selector_listener("what_to_do");
   enable_side_panel_dblclick_listener();
   enable_side_panel_grab_tab_click_listener();
+  enable_radios_listener();
 
   enable_chrome_runtime_listeners();
 }

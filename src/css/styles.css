@@ -132,7 +132,7 @@ select {
 #links_placeholder, #kb_placeholder {
   text-align: center;
   position: relative;
-  margin-top: 38vh;
+  margin-top: 50%;
 }
 
 #links_export {
