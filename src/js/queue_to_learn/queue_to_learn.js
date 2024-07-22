@@ -181,9 +181,9 @@ function draw_existing_time_based_links(links) {
     const item = links[j];
 
     const item_date_created = new Date(item.date_created).toLocaleDateString('en-US');
-    month = new Date(item.date_created).toLocaleString('default', { month: 'short' });
+    month = new Date(item.date_created).toLocaleString('default', { month: 'long' });
     date = new Date(item.date_created).getDate();
-    weekday = new Date(item.date_created).toLocaleDateString('en-US', {weekday: 'short'});
+    weekday = new Date(item.date_created).toLocaleDateString('en-US', {weekday: 'long'});
 
     if (item.group_id && item.group_id != group_id) {
       if (group_started)
