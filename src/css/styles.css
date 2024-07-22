@@ -295,3 +295,10 @@ a {
   margin-left-: 5px;
   margin-bottom: 10px;
 }
+
+.bulk_saved_group {
+  background: #ebeff7;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}

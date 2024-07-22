@@ -89,6 +89,10 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
     item.title = item.link;
   links_html += '<p class="queue-link">';
 
+  //if (what_to_do == undefined) {  // time-based view only
+  //  links_html += `${new Date(item.date_created).toDateString()} `
+  //}
+  
   if (item.time)
     links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span> `;
   else {
@@ -169,10 +173,36 @@ function draw_existing_grouped_links(grouped_links) {
 }
 
 function draw_existing_time_based_links(links) {
-  let links_html = `<div id="top-3-section"><p><b>Most recently saved on top:</b></p>`;
+  let links_html = ''; //`<div id="top-3-section"><p><b>Most recently saved on top:</b></p>`;
+  let group_id = 1;
+  let group_started = false;
+  let date_created = new Date(1).toLocaleDateString('en-US');
   for (let j = 0; j < links.length; j++) {
     const item = links[j];
+
+    const item_date_created = new Date(item.date_created).toLocaleDateString('en-US');
+    month = new Date(item.date_created).toLocaleString('default', { month: 'short' });
+    date = new Date(item.date_created).getDate();
+    weekday = new Date(item.date_created).toLocaleDateString('en-US', {weekday: 'short'});
+
+    if (item.group_id && item.group_id != group_id) {
+      if (group_started)
+        links_html += '</div>';
+
+      links_html += `<div class="bulk_saved_group"><p><b>${weekday}, ${month} ${date}:</b></p>`;
+      group_started = true;
+    }
+    else if (!item.group_id && group_started) {
+      links_html += '</div>';
+      group_started = false;
+    }
+    
+    if (!item.group_id && item_date_created != date_created) {
+      links_html += `<p><b>${weekday}, ${month} ${date}:</b></p>`;
+      date_created = item_date_created;
+    }
     links_html += draw_link_in_queue_tab(item, j);
+    group_id = item.group_id;
   }
   links_html += '</div>';
   return links_html;
