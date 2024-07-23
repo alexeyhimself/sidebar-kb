@@ -1,12 +1,26 @@
 body, textarea, button, label, input, select, p, a {
-  font-family: "Nunito Sans", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   font-size: 0.97em!important;
+  /*
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
   font-variation-settings:
     "wdth" 100,
     "YTLC" 500;
+  */
+  /*
+  font-family: "Baloo Bhaijaan 2", sans-serif;
+  font-family: "Baloo Chettan 2", sans-serif;
+  font-family: "Baloo Paaji 2", sans-serif;
+  font-family: "Baloo Da 2", sans-serif;
+  font-family: "Baloo Bhai 2", sans-serif;
+  font-family: "Baloo Bhaina 2", sans-serif;
+  font-family: "Lato", sans-serif;
+  font-family: "Ubuntu", sans-serif;
+  font-family: "Mulish", sans-serif;
+  */
+  font-family: "Mulish", sans-serif;
 }
 
 /*
