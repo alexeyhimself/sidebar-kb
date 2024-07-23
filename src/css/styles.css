@@ -1,8 +1,8 @@
 body, textarea, button, label, input, select, p, a {
   font-weight: 400;
   font-style: normal;
-  font-size: 0.97em!important;
-  /*
+  font-size: 15px;
+  /*font-size: 0.97em!important;
   font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
   font-variation-settings:
@@ -32,7 +32,7 @@ body, textarea, button, label, input, select, p, a {
 #links_area, #kb_area {
   margin-top: 8px;
   padding: 0 0px 10px 10px;
-  height: calc(100vh - 162px);
+  height: calc(100vh - 164px);
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width-: thin;
@@ -151,8 +151,11 @@ select {
 
 #links_export {
   padding: 5px 10px;
-  font-size: 0.8em!important;
+  font-size: 0.9em!important;
   background: #ebeff7;
+}
+#links_export a {
+  font-size: 0.9em!important;
 }
 
 #link, #title {
@@ -232,7 +235,8 @@ p {
   margin-bottom: 8px;
 }
 .badge {
-  padding-bottom: 3px;
+  padding: 3px 5px;
+  font-size: 12px;
 }
 
 textarea::placeholder {
