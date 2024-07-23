@@ -1,6 +1,7 @@
 # Personal Knowledge Base side panel
 This is an MVP for a Personal Knowledge Base side panel extension for Google Chrome desktop.
-![image](https://www.dropbox.com/scl/fi/0j638d53bsaqwos4t4t26/Screenshot-at-Jul-08-05-46-44.png?rlkey=vgajq5mupz726h6jg3yruka9h&raw=1)
+![image 1](https://www.dropbox.com/scl/fi/jgrdvfnfme3rho63qezsy/Screenshot-at-Jul-23-12-43-46.png?rlkey=1kcy5lcy67x8qnmryk7inq28e&raw=1)
+![image 2](https://www.dropbox.com/scl/fi/l4z30ff2zeejpc0or5r4b/Screenshot-at-Jul-23-12-44-46.png?rlkey=gkbk1ovz0unjav1f2aadi4743&raw=1)
 
 
 ## How to get source code
