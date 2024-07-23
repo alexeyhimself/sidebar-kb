@@ -40,10 +40,10 @@ This is an MVP for a Personal Knowledge Base side panel extension for Google Chr
 
 
 ## How to use
-1. Use "Collect" tab to collect links you want to read / watch / listen / etc. later
+1. Use "Save" tab to collect links you want to read / watch / listen / etc. later
 2. Use "Queue" tab to filter links with top priority that match you current time frame to learn
-3. "Knowledge base" tab is under construction yet, that's why disabled
-4. Use "Export links to CSV or JSON" on a "Queue" tab to backup your links at any time
+3. Use "Knowledge base" tab to access useful links moved from "Queue" into Knowledge base
+4. Use "Export links to CSV | JSON" on a "Queue" tab to backup your links at any time
 
 ## FAQ
 ### Where the data is stored?
