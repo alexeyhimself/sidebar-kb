@@ -119,6 +119,7 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   links_html += `<b>Actions:</b><br>`;
   links_html += `<a href="#" data-url="${item.link}" class="edit_in_queue">Edit...</a><br>`;
   links_html += `<a href="#" data-url="${item.link}" class="move_to_kb">Move to Knowledge Base</a><br>`;
+  links_html += `<a target="_blank" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=${item.what_to_do}: ${item.title}&details=${item.link}">Add to Google Calendar</a><br>`;
   links_html += 'Remove from Queue with a reason:';
   links_html += '<ul style="margin-bottom: 5px;">';
   links_html += `<li><span class="badge bg-secondary">neutral</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="neutral">Not for saving in a Knowledge Base, not that useful</a></li>`;
