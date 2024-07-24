@@ -172,6 +172,15 @@ function draw_existing_grouped_links(grouped_links) {
   return links_html;
 }
 
+function days_ago(date) {
+  const days_passed_since_created = calculate_days_passed_till_today(date);
+  const weekday = new Date(date).toLocaleDateString('en-US', {weekday: 'long'});
+  if (days_passed_since_created > 7)
+    return '';
+
+  return `<span class="days_ago">${weekday} (${days_passed_since_created} days ago)</span>, `;
+}
+
 function draw_existing_time_based_links(links) {
   let links_html = ''; //`<div id="top-3-section"><p><b>Most recently saved on top:</b></p>`;
   let group_id = 1;
@@ -181,15 +190,13 @@ function draw_existing_time_based_links(links) {
     const item = links[j];
 
     const item_date_created = new Date(item.date_created).toLocaleDateString('en-US');
-    month = new Date(item.date_created).toLocaleString('default', { month: 'long' });
-    date = new Date(item.date_created).getDate();
-    weekday = new Date(item.date_created).toLocaleDateString('en-US', {weekday: 'long'});
-
+    const month = new Date(item.date_created).toLocaleString('default', { month: 'long' });
+    const date = new Date(item.date_created).getDate();
     if (item_date_created != date_created) {
       if (group_started)
         links_html += '</div>';
       group_started = false;
-      links_html += `<p><b>${weekday}, ${month} ${date}:</b></p>`;
+      links_html += `<p><b>${days_ago(item.date_created)}${month} ${date}:</b></p>`;
       date_created = item_date_created;
     }
 

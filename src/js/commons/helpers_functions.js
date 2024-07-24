@@ -76,3 +76,17 @@ function download_as_json() {
   const json_links = load_links_from_local_storage();
   download_as_file(JSON.stringify(json_links), 'json');
 }
+
+function calculate_days_passed_till_today(date) {  // https://stackoverflow.com/questions/2627473/how-to-calculate-the-number-of-days-between-two-dates
+  // The number of milliseconds in all UTC days (no DST)
+  const oneDay = 1000 * 60 * 60 * 24;
+  const today = new Date();
+  date = new Date(date);
+
+  // A day in UTC always lasts 24 hours (unlike in other time formats)
+  const start = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+  const end = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+
+  // so it's safe to divide by 24 hours
+  return (end - start) / oneDay;
+}
