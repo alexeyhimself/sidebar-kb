@@ -177,8 +177,12 @@ function days_ago(date) {
   const weekday = new Date(date).toLocaleDateString('en-US', {weekday: 'long'});
   if (days_passed_since_created > 7)
     return '';
+  if (days_passed_since_created == 0)
+    return `(today) ${weekday}, `;
+  if (days_passed_since_created == 1)
+    return `(yesterday) ${weekday}, `;
 
-  return `<span class="days_ago">${weekday} (${days_passed_since_created} days ago)</span>, `;
+  return `(${days_passed_since_created} days ago) ${weekday}, `;
 }
 
 function draw_existing_time_based_links(links) {
