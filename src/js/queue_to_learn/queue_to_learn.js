@@ -340,6 +340,7 @@ function what_to_do_on_filter_change(event) {
   else {
     draw_time_based_links(filtered_links, draw_no_links_found_placeholder);
   }
+  adjust_scroll_margin();
 }
 
 function delete_link_from_queue(url) {
@@ -408,6 +409,15 @@ function enable_edit_in_queue_listeners() {
       save_element.dataset.callback = "queue";
     });
   });
+}
+
+function adjust_scroll_margin() {
+  const links_area = document.getElementById('links_area'); 
+  const scroll_exists = links_area.scrollHeight > links_area.clientHeight;
+  if (!scroll_exists)
+    links_area.style.marginRight = '8px';
+  else
+    links_area.style.marginRight = '0px';
 }
 
 function enable_manage_links() {
