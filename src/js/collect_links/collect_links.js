@@ -19,8 +19,8 @@ function close_collect_form() {
 }
 
 function open_collect_form() {
-  document.getElementById("welcome").style.display = 'none';
-  document.getElementById("form").style.display = 'block';
+  //document.getElementById("welcome").style.display = 'none';
+  //document.getElementById("form").style.display = 'block';
 }
 
 function bring_form_to_idle_state() {
