@@ -7,7 +7,7 @@
     <title>Personal Knowledge Base</title>
 
     <link href="src/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-    <script src="src/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+    <script src="src/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 
     <script type="text/javascript" src="src/js/commons/helpers_functions.js"></script>
     <script type="text/javascript" src="src/js/commons/common_functions.js"></script>
@@ -48,67 +48,88 @@
   <body>
     <div id="container">
       
-      <!--div class="tab-content" id="tabsContent">
-        <div class="tab-pane fade show active" id="save-tab-pane" role="tabpanel" aria-labelledby="save-tab" tabindex="0"-->
-          <!--div id="welcome" class="animate_fade_in margin-8">
-            <button id="grab_tab" class="btn btn-primary btn-lg" style="margin-top: 35.5vh; margin-bottom: 8px; font-size: 1rem !important;" type="button">Save currently displayed tab for later</button><br>
-            <a href="#" id="save_all">Save <span id="number_of_tabs"></span> currently opened (non-pinned, non-grouped) tab(s) in this window for later</a>
+      <div id="form" class="animate_fade_in">
+        <div class="margin-8" style="margin-top: 8px;">
+<div class="dropdown d-grid">
+  <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Select action
+  </button>
+  <ul class="dropdown-menu" style="width: 100%;">
+    <li><a class="dropdown-item" href="#">Open empty save form</a></li>
+    <li><a class="dropdown-item" href="#">Save currently opened tab</a></li>
+    <li><a class="dropdown-item" href="#">Save all opened tabs in this browser</a></li>
+    <li><a class="dropdown-item" href="#">Save only selected tabs in this browser</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#queue">Open queue to learn</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">Open knowledge base</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">Open deleted links</a></li>
+  </ul>
+</div>
 
-            <a href="#" id="open_collect_form">Open empty form</a>
-          </div-->
-          <div id="form" class="animate_fade_in">
-            <textarea class="form-control margin-8" id="link" placeholder="URL"></textarea>
-            <textarea class="form-control margin-8" id="title" placeholder="A human-friendly title for the URL"></textarea>
-            <textarea class="form-control margin-8" id="notes" placeholder="Notes" rows="1"></textarea>
-            <div class="margin-8" >
-                <div class="input-group" role="group" id="what_to_do_dropdown">
-                  <select class="form-select left-half-border-radius" id="what_to_do">
-                    <option value="read" selected>Read 📚</option>
-                    <option value="watch">Watch 🖥️</option>
-                    <option value="listen">Listen 🎧</option>
-                    <option value="course">Course ✏️</option>
-                    <option value="people">People 👤</option>
-                    <option value="tool">Tool 🛠</option>
-                  </select>
-                  <textarea class="form-control input-time" id="time" placeholder="Estimate time" rows="1"></textarea>
-                </div>
+<div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+</div>
+        </div>
+        <textarea class="form-control margin-8" id="link" placeholder="URL"></textarea>
+        <textarea class="form-control margin-8" id="title" placeholder="A human-friendly title for the URL"></textarea>
+        <textarea class="form-control margin-8" id="notes" placeholder="Notes" rows="1"></textarea>
+        <div class="margin-8" >
+            <div class="input-group" role="group" id="what_to_do_dropdown">
+              <select class="form-select left-half-border-radius" id="what_to_do">
+                <option value="read" selected>Read 📚</option>
+                <option value="watch">Watch 🖥️</option>
+                <option value="listen">Listen 🎧</option>
+                <option value="course">Course ✏️</option>
+                <option value="people">People 👤</option>
+                <option value="tool">Tool 🛠</option>
+              </select>
+              <textarea class="form-control input-time" id="time" placeholder="Estimate time" rows="1"></textarea>
             </div>
-            <textarea class="form-control margin-8" id="tags" placeholder="Tags separated by commas" rows="1"></textarea>
-            <p id="tags_hint"></p>
-            <input class="form-control- form-range margin-8" id="priority" type="range" title="Queue to learn priority: from Low (on the left) to High (on the right)" value="50">
+        </div>
+        <textarea class="form-control margin-8" id="tags" placeholder="Tags separated by commas" rows="1"></textarea>
+        <p id="tags_hint"></p>
+        <input class="form-control- form-range margin-8" id="priority" type="range" title="Queue to learn priority: from Low (on the left) to High (on the right)" value="50">
 
-            <div class="row" style="margin: 0; display: block; text-align: center;">
-              <button id="save" class="btn btn-primary margin-8 disabled" style="margin-bottom: 8px; margin-top: 0;" type="button">Save to Queue</button>
-              <a href="#" id="clear" style="display: none;">Clear form</a>
-              <!--a href="#" id="close_collect_form">Close form</a-->
+        <div class="row" style="margin: 0; display: block; text-align: center;">
+          <button id="save" class="btn btn-primary margin-8 disabled" style="margin-bottom: 8px; margin-top: 0;" type="button">Save to Queue</button>
+          <a href="#" id="clear" style="display: none;">Clear form</a>
+          <!--a href="#" id="close_collect_form">Close form</a-->
+        </div>
+
+        <label class="priority_placeholder">Low priority</label>
+        <label class="priority_placeholder" style="float: right; left: -22px;">High priority</label>
+            
+        <div style="margin: 5px 10px" id="queue"><h5>Queue to learn</h5></div>
+        <div class="margin-8">
+          <div id="filter" class="input-group" role="group" aria-label="">
+            <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search...">
+            <input type="text" id="find_time" class="form-control" placeholder="Time limit...">
+
+            <div id="priority-vs-time" style="width: 100%;">
+              <input type="radio" class="form-check-input" name="btnradio" id="priority-based" autocomplete="off" checked disabled->
+              <label class="form-check-label" for="priority-based" style="margin-right: 12px;">Priority-based view</label>
+
+              <input type="radio" class="form-check-input" name="btnradio" id="time-based" autocomplete="off" style="" disabled->
+              <label class="form-check-label" for="time-based" style="">Time-based view</label>
             </div>
-
-            <label class="priority_placeholder">Low priority</label>
-            <label class="priority_placeholder" style="float: right; left: -22px;">High priority</label>
-            <!--div id="chart_total"></div>
-            <div id="chart_what_to_do"></div->
           </div>
-        </div-->
+        </div>
 
-        <!--div class="tab-pane fade" id="find-tab-pane" role="tabpanel" aria-labelledby="find-tab" tabindex="0"-->
-          <div class="margin-8" style="margin-top: 9px;">
-            <div id="filter" class="input-group" role="group" aria-label="">
-              <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search...">
-              <input type="text" id="find_time" class="form-control" placeholder="Time limit...">
+        <div id="links_area"></div>
 
-              <div id="priority-vs-time" style="width: 100%;">
-                <input type="radio" class="form-check-input" name="btnradio" id="priority-based" autocomplete="off" checked disabled->
-                <label class="form-check-label" for="priority-based" style="margin-right: 12px;">Priority-based view</label>
+        <div style="margin: 5px 10px"><h5>Knowledge base</h5></div>
+        <div id="kb_area"></div>
 
-                <input type="radio" class="form-check-input" name="btnradio" id="time-based" autocomplete="off" style="" disabled->
-                <label class="form-check-label" for="time-based" style="">Time-based view</label>
-              </div>
-            </div>
-          </div>
-          <div id="links_area"></div>
-          <div id="kb_area"></div>
-          <!--p id="links_export" style="display: none;">💾 Export <span id="number_of_links"></span> displayed links as <a href="#" id="links_export_csv">CSV</a> | <a href="#" id="links_export_json">JSON</a><p-->
-        <!--/div-->
+        <div style="margin: 5px 10px"><h5>Deleted links</h5></div>
+        <!--p id="links_export" style="display: none;">💾 Export <span id="number_of_links"></span> displayed links as <a href="#" id="links_export_csv">CSV</a> | <a href="#" id="links_export_json">JSON</a><p-->
+
       </div>
     </div>
   </body>

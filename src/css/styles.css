@@ -335,3 +335,13 @@ a {
   border-radius: 8px;
   margin-bottom: 8px;
 }
+
+h5 {
+  font-size: 1.2em;
+  color: #808080;
+}
+
+.dropdown:hover .dropdown-menu {
+    display-: block;
+    margin-top-: 40px; /* remove the gap so it doesn't close */
+}
