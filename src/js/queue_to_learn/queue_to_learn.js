@@ -87,7 +87,7 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
 
   if (!item.title)
     item.title = item.link;
-  links_html += '<p class="queue-link">';
+  links_html += '<div class="queue-link">';
 
   //if (what_to_do == undefined) {  // time-based view only
   //  links_html += `${new Date(item.date_created).toDateString()} `
@@ -135,7 +135,7 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   if (item.notes)
     links_html += `<b>Notes:</b> ${item.notes}<br>`;
   
-  links_html += `</div></div>`;
+  links_html += `</div></div></div>`;
 
   return links_html;
 }

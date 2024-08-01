@@ -20,7 +20,16 @@ body, textarea, button, label, input, select, p, a {
   font-family: "Ubuntu", sans-serif;
   font-family: "Mulish", sans-serif;
   */
-  font-family: "Mulish", sans-serif;
+
+  font-family: "Open Sans", sans-serif;
+  font-family: "Noto Sans", sans-serif;
+  font-family: "Lato", sans-serif;
+
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
 
 /*
@@ -31,7 +40,7 @@ body, textarea, button, label, input, select, p, a {
 
 #links_area, #kb_area {
   margin-top: 8px;
-  padding: 0 0px 10px 10px;
+  padding: 0 0px 8px 8px;
   height: calc(100vh - 164px);
   overflow-y: auto;
   overflow-x: hidden;
@@ -307,11 +316,15 @@ a {
   margin-right: 0;
 }
 .queue-link {
-  margin-left-: 4px;
+  border: 1px solid #dee2e6;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
 }
 .accordion-collapse {
   margin-left-: 5px;
-  margin-bottom: 10px;
+  margin-bottom-: 10px;
+  margin-top: 8px;
 }
 
 .bulk_saved_group {
