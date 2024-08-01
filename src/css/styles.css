@@ -39,7 +39,7 @@ body, textarea, button, label, input, select, p, a {
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width-: thin;
-  scrollbar-color: lightgray transparent;
+  scrollbar-color-: lightgray transparent;
 }
 #kb_area {
   height-: calc(100vh - 64px);
@@ -91,13 +91,17 @@ body {
 #container {
   margin: 8px;
   background: white;
-  height: calc(100vh - 16px);
+  height: calc(100vh - 62px);
   border-radius: 10px;
 
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-width-: thin;
+  scrollbar-width: thin;
   scrollbar-color: lightgray transparent;
+}
+
+.btn {
+  border-radius: 8px;
 }
 
 textarea, input, button#save {
@@ -341,7 +345,9 @@ h5 {
   color: #808080;
 }
 
+/*
 .dropdown:hover .dropdown-menu {
-    display-: block;
-    margin-top-: 40px; /* remove the gap so it doesn't close */
+    display: block;
+    margin-top: 40px; /* remove the gap so it doesn't close */
 }
+*/

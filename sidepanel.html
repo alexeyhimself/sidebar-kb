@@ -46,13 +46,10 @@
     <link rel="stylesheet" href="src/css/styles.css">
   </head>
   <body>
-    <div id="container">
-      
-      <div id="form" class="animate_fade_in">
         <div class="margin-8" style="margin-top: 8px;">
 <div class="dropdown d-grid">
-  <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Select action
+  <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Save link with empty form
   </button>
   <ul class="dropdown-menu" style="width: 100%;">
     <li><a class="dropdown-item" href="#">Open empty save form</a></li>
@@ -67,16 +64,21 @@
     <li><a class="dropdown-item" href="#">Open deleted links</a></li>
   </ul>
 </div>
+</div>
+    <div id="container" class="w">
+      
+      <!--div id="form" class="animate_fade_in"-->
+        
 
-<div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+<!--div id="toast" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; width: calc(100% - 16px);">
   <div class="d-flex">
     <div class="toast-body">
       Hello, world! This is a toast message.
     </div>
     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
   </div>
-</div>
-        </div>
+</div-->
+        
         <textarea class="form-control margin-8" id="link" placeholder="URL"></textarea>
         <textarea class="form-control margin-8" id="title" placeholder="A human-friendly title for the URL"></textarea>
         <textarea class="form-control margin-8" id="notes" placeholder="Notes" rows="1"></textarea>
