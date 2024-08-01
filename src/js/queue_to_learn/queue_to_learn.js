@@ -412,7 +412,9 @@ function enable_edit_in_queue_listeners() {
 }
 
 function adjust_scroll_margin() {
-  const links_area = document.getElementById('links_area'); 
+  return;
+
+  const links_area = document.getElementById('container'); 
   const scroll_exists = links_area.scrollHeight > links_area.clientHeight;
   if (!scroll_exists)
     links_area.style.marginRight = '8px';

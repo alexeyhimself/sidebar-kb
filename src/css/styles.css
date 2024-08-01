@@ -80,11 +80,11 @@ body {
 }
 
 #priority {
-  min-height: 36px;
+  min-height-: 36px;
   cursor: pointer;
-  background: transparent;
-  position: relative;
-  z-index: 10;
+  background-: transparent;
+  position-: relative;
+  z-index-: 10;
   padding-bottom-: 7px;
 }
 
@@ -150,11 +150,17 @@ select {
   overflow-y: hidden;
 }
 
-#what_to_do {
+#what_to_do, #priority {
   cursor: pointer;
-  width: 20%;
   color: gray;
 }
+#what_to_do {
+  width: 50%;
+}
+#time {
+  width: 50%;
+}
+
 #links_placeholder, #kb_placeholder {
   text-align: center;
   position: relative;
@@ -260,6 +266,9 @@ textarea::placeholder {
 textarea {
   resize: none;
 }
+#notes {
+  resize: revert;
+}
 
 #clear, #close_collect_form {
   text-align: center;
@@ -345,9 +354,15 @@ h5 {
   color: #808080;
 }
 
+.btn-light {
+  background: white;
+  border-color: #dee2e6;
+}
+
 /*
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 40px; /* remove the gap so it doesn't close */
 }
 */
+

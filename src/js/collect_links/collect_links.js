@@ -165,7 +165,7 @@ function adjust_if_link_already_exists(link) {
     document.getElementById("save").dataset.source = existing_link.source;
   }
   else {
-    document.getElementById("save").innerText = "Save to Queue";
+    document.getElementById("save").innerText = "Save";
     document.getElementById("save").classList.remove("btn-warning");
   }
 }

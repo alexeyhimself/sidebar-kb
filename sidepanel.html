@@ -46,7 +46,7 @@
     <link rel="stylesheet" href="src/css/styles.css">
   </head>
   <body>
-        <div class="margin-8" style="margin-top: 8px;">
+        <div style="margin: 8px;">
 <div class="dropdown d-grid">
   <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     Save link with empty form
@@ -80,9 +80,9 @@
 </div-->
         
         <textarea class="form-control margin-8" id="link" placeholder="URL"></textarea>
-        <textarea class="form-control margin-8" id="title" placeholder="A human-friendly title for the URL"></textarea>
+        <textarea class="form-control margin-8" id="title" placeholder="URL title"></textarea>
         <textarea class="form-control margin-8" id="notes" placeholder="Notes" rows="1"></textarea>
-        <div class="margin-8" >
+        <div class="margin-8">
             <div class="input-group" role="group" id="what_to_do_dropdown">
               <select class="form-select left-half-border-radius" id="what_to_do">
                 <option value="read" selected>Read 📚</option>
@@ -95,19 +95,28 @@
               <textarea class="form-control input-time" id="time" placeholder="Estimate time" rows="1"></textarea>
             </div>
         </div>
-        <textarea class="form-control margin-8" id="tags" placeholder="Tags separated by commas" rows="1"></textarea>
+        <textarea class="form-control margin-8" id="tags" placeholder="Comma separated tags" rows="1"></textarea>
         <p id="tags_hint"></p>
-        <input class="form-control- form-range margin-8" id="priority" type="range" title="Queue to learn priority: from Low (on the left) to High (on the right)" value="50">
+
+        <div class="margin-8">
+          <select class="form-select" id="priority">
+            <option value="50" selected>Priority in a queue to learn</option>
+            <option value="99">High</option>
+            <option value="50">Medium</option>
+            <option value="1">Low</option>
+          </select>
+        </div>
+        <!--input class="form-control- form-range margin-8" id="priority" type="range" title="Queue to learn priority: from Low (on the left) to High (on the right)" value="50"-->
 
         <div class="row" style="margin: 0; display: block; text-align: center;">
-          <button id="save" class="btn btn-primary margin-8 disabled" style="margin-bottom: 8px; margin-top: 0;" type="button">Save to Queue</button>
+          <button id="save" class="btn btn-primary margin-8 disabled" style="margin-bottom: 8px; margin-top-: 0;" type="button">Save</button>
           <a href="#" id="clear" style="display: none;">Clear form</a>
           <!--a href="#" id="close_collect_form">Close form</a-->
         </div>
 
-        <label class="priority_placeholder">Low priority</label>
-        <label class="priority_placeholder" style="float: right; left: -22px;">High priority</label>
-            
+        <!--label class="priority_placeholder">Low priority</label>
+        <label class="priority_placeholder" style="float: right; left: -22px;">High priority</label-->
+      <div style="display: none;">
         <div style="margin: 5px 10px" id="queue"><h5>Queue to learn</h5></div>
         <div class="margin-8">
           <div id="filter" class="input-group" role="group" aria-label="">
@@ -131,7 +140,7 @@
 
         <div style="margin: 5px 10px"><h5>Deleted links</h5></div>
         <!--p id="links_export" style="display: none;">💾 Export <span id="number_of_links"></span> displayed links as <a href="#" id="links_export_csv">CSV</a> | <a href="#" id="links_export_json">JSON</a><p-->
-
+      </div>
       </div>
     </div>
   </body>
