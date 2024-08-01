@@ -51,8 +51,11 @@ function draw_links_in_kb_tab(links, no_links_callback) {
 }
 
 function enable_knowledge_base() {
+  /*
   enable_buttons_listeners({
     "kb-tab": draw_links_in_kb_tab,
   });
+  */
+  draw_links_in_kb_tab();
 }
 

@@ -40,7 +40,7 @@ function draw_links_in_queue_tab(grouped_links, no_links_callback) {
     else
       document.getElementById("links_area").innerHTML = draw_existing_grouped_links(grouped_links);
 
-    display_links_export(grouped_links.total);
+    //display_links_export(grouped_links.total);
 
     enable_move_to_kb_listeners();
     enable_delete_from_queue_listeners();
@@ -68,7 +68,7 @@ function draw_time_based_links(links, no_links_callback) {
     else
       document.getElementById("links_area").innerHTML = draw_existing_time_based_links(links);
 
-    display_links_export(links.total);
+    //display_links_export(links.total);
 
     enable_move_to_kb_listeners();
     enable_delete_from_queue_listeners();
@@ -421,11 +421,14 @@ function adjust_scroll_margin() {
 }
 
 function enable_manage_links() {
+  /*
   enable_buttons_listeners({
     "find-tab": what_to_do_on_filter_change,
     "links_export_csv": download_as_csv,
     "links_export_json": download_as_json,
   });
+  */
+  what_to_do_on_filter_change();
   enable_textarea_listener("find_text", what_to_do_on_filter_change);
   enable_textarea_listener("find_time", what_to_do_on_filter_change);
 }

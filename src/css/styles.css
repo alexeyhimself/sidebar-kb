@@ -32,23 +32,17 @@ body, textarea, button, label, input, select, p, a {
     "wdth" 100;
 }
 
-/*
-#link, #title, #notes, #what_to_do, #time, #tags {
-  margin-bottom: 5px;
-}
-*/
-
 #links_area, #kb_area {
   margin-top: 8px;
   padding: 0 0px 8px 8px;
-  height: calc(100vh - 164px);
+  height-: calc(100vh - 164px);
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width-: thin;
   scrollbar-color: lightgray transparent;
 }
 #kb_area {
-  height: calc(100vh - 64px);
+  height-: calc(100vh - 64px);
 }
 
 .margin-8 {
@@ -99,6 +93,11 @@ body {
   background: white;
   height: calc(100vh - 16px);
   border-radius: 12px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width-: thin;
+  scrollbar-color: lightgray transparent;
 }
 
 textarea, input, button#save {
