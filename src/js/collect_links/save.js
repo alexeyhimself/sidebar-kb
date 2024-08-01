@@ -100,7 +100,8 @@ function save_link_to_local_storage(link) {
 }
 
 function enable_buttons_listeners(buttons) {
-  for (let button_id in buttons) { 
+  for (let button_id in buttons) {
+    //console.log(button_id);
     var element = document.getElementById(button_id);
     element.addEventListener('click', function (event) {
       buttons[button_id]();

@@ -153,18 +153,18 @@ function enable_radios_listener() {
 
 function enable_collect_links_listeners() {
   collect_links_textareas_ids.forEach((element_id) => { 
-    //enable_textarea_listener(element_id, what_to_do_on_textareas_content_change);
+    enable_textarea_listener(element_id, what_to_do_on_textareas_content_change);
   });
   enable_buttons_listeners({
-    //"save": save_link,
+    "save": save_link,
     //"clear": reset_form_state,
     //"open_collect_form": open_collect_form,
     //"close_collect_form": close_collect_form,
     //"save_all": save_all_tabs_in_window,
   });
-  //enable_range_listener("priority");
-  //enable_selector_listener("what_to_do");
-  //enable_side_panel_dblclick_listener();
+  enable_range_listener("priority");
+  enable_selector_listener("what_to_do");
+  enable_side_panel_dblclick_listener();
   //enable_side_panel_grab_tab_click_listener();
   enable_radios_listener();
 

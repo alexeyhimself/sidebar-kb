@@ -51,7 +51,7 @@ body, textarea, button, label, input, select, p, a {
 }
 
 body {
-  border-radius: 15px;
+  border-radius-: 15px;
   background: #ebeff7;
 }
 .nav-tabs .nav-link.active {
@@ -80,19 +80,19 @@ body {
 }
 
 #priority {
-  min-height: calc(1.5em + .75rem + calc(var(--bs-border-width)* 2));
+  min-height: 36px;
   cursor: pointer;
   background: transparent;
   position: relative;
   z-index: 10;
-  padding-bottom: 7px;
+  padding-bottom-: 7px;
 }
 
 #container {
   margin: 8px;
   background: white;
   height: calc(100vh - 16px);
-  border-radius: 12px;
+  border-radius: 10px;
 
   overflow-y: auto;
   overflow-x: hidden;
@@ -111,7 +111,7 @@ textarea, input, button#save {
 
 .priority_placeholder {
   position: relative;
-  top: -109px;
+  top: -100px;
   left: 22px;
   color: #585c5f;
   color: gray;
@@ -170,6 +170,9 @@ select {
   min-height-: 59px!important;
   overflow-y: hidden;
   height: 35px;
+}
+#link {
+  margin-top: 8px;
 }
 #tags {
   overflow-y: hidden;
