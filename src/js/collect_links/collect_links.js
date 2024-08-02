@@ -160,7 +160,7 @@ function adjust_if_link_already_exists(link) {
   const existing_link = link_already_exists(link);
   if (existing_link) {
     fill_the_collect_links_form_with_existing_data(existing_link);
-    document.getElementById("save").innerText = `Update existing item in ${sources_map[existing_link.source]}`;
+    document.getElementById("save").innerText = `Update existing item in a ${sources_map[existing_link.source]}`;
     document.getElementById("save").classList.add("btn-warning");
     document.getElementById("save").dataset.source = existing_link.source;
   }
