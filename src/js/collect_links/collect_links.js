@@ -79,6 +79,8 @@ function dim_range_placeholder_in_thumb_proximity(priority) {
 */
 
 async function count_tabs_in_a_window() {
+  return;
+  
   const tabs = await chrome.tabs.query({currentWindow: true, groupId: -1, pinned: false});
   let result = tabs.length;
   if (tabs.length > 1)
