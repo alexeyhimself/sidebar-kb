@@ -19,6 +19,8 @@ function close_collect_form() {
 }
 
 function open_collect_form() {
+  document.getElementById("choose_action").innerHTML = "Save link using empty form";
+  reset_form_state();
   //document.getElementById("welcome").style.display = 'none';
   //document.getElementById("form").style.display = 'block';
 }
@@ -80,7 +82,7 @@ function dim_range_placeholder_in_thumb_proximity(priority) {
 
 async function count_tabs_in_a_window() {
   return;
-  
+
   const tabs = await chrome.tabs.query({currentWindow: true, groupId: -1, pinned: false});
   let result = tabs.length;
   if (tabs.length > 1)

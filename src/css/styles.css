@@ -292,7 +292,7 @@ textarea {
   overflow-x: hidden;
   scrollbar-color: lightgray transparent;
 }
-#open_collect_form {
+#open_collect_form- {
   display: block;
   position: absolute;
   width: calc(100vw - 32px);
