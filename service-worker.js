@@ -15,12 +15,12 @@
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: 'openSidePanel_already_opened_tab',
-    title: 'Save this tab for later',
+    title: 'Save this tab',
     contexts: ['all']
   });
   chrome.contextMenus.create({
     id: 'openSidePanel',
-    title: 'Save this hyperlink for later',
+    title: 'Save this hyperlink',
     contexts: ['all']
   });
   chrome.tabs.create({ url: 'page.html' });

@@ -70,22 +70,23 @@
       <!--div id="form" class="animate_fade_in"-->
         
 
-<!--div id="toast" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; width: calc(100% - 16px);">
+<div id="toast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; width: calc(100% - 2*16px); margin-left: 8px; top: calc(100% - 62px)">
   <div class="d-flex">
     <div class="toast-body">
       Hello, world! This is a toast message.
     </div>
     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
   </div>
-</div-->
-        
+</div>
+  
         <textarea class="form-control margin-8" id="link" placeholder="URL"></textarea>
         <textarea class="form-control margin-8" id="title" placeholder="URL title"></textarea>
         <textarea class="form-control margin-8" id="notes" placeholder="Notes" rows="1"></textarea>
         <div class="margin-8">
             <div class="input-group" role="group" id="what_to_do_dropdown">
               <select class="form-select left-half-border-radius" id="what_to_do">
-                <option value="read" selected>Read 📚</option>
+                <option value="" selected>What to do</option>
+                <option value="read">Read 📚</option>
                 <option value="watch">Watch 🖥️</option>
                 <option value="listen">Listen 🎧</option>
                 <option value="course">Course ✏️</option>
@@ -95,7 +96,7 @@
               <textarea class="form-control input-time" id="time" placeholder="Estimate time" rows="1"></textarea>
             </div>
         </div>
-        <textarea class="form-control margin-8" id="tags" placeholder="Comma separated tags" rows="1"></textarea>
+        <textarea class="form-control margin-8" id="tags" placeholder="Tags" rows="1"></textarea>
         <p id="tags_hint"></p>
 
         <div class="margin-8">
