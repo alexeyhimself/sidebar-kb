@@ -178,7 +178,7 @@ select {
   height: 35px;
 }
 #link {
-  margin-top-: 8px;
+  margin-top: 2px;
 }
 #tags {
   overflow-y: hidden;
@@ -358,7 +358,7 @@ h5 {
 #save_form {
   margin-top-: 12px;
 
-  height: calc(100vh - 62px);
+  height: calc(100vh - 64px);
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width-: thin;
@@ -368,7 +368,7 @@ h5 {
 #saved_list {
   margin-top-: 12px;
 
-  height: calc(100vh - 62px);
+  height: calc(100vh - 72px);
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width-: thin;

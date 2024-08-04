@@ -422,15 +422,21 @@ function adjust_scroll_margin() {
     links_area.style.marginRight = '0px';
 }
 
+function switch_to_saved_list() {
+  document.getElementById("saved_list").style.display = 'block';
+  document.getElementById("save_form").style.display = 'none';
+}
+
 function enable_manage_links() {
-  /*
   enable_buttons_listeners({
-    "find-tab": what_to_do_on_filter_change,
-    "links_export_csv": download_as_csv,
-    "links_export_json": download_as_json,
+    //"find-tab": what_to_do_on_filter_change,
+    //"links_export_csv": download_as_csv,
+    //"links_export_json": download_as_json,
+    "switch_to_saved": switch_to_saved_list,
   });
-  */
+
   what_to_do_on_filter_change();
   enable_textarea_listener("find_text", what_to_do_on_filter_change);
   enable_textarea_listener("find_time", what_to_do_on_filter_change);
+  document.getElementById("saved_list").style.display = 'block';
 }

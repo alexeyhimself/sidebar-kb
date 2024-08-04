@@ -46,15 +46,15 @@
     <link rel="stylesheet" href="src/css/styles.css">
   </head>
   <body>
-    <div id="container" class="w-">
+    <div id="container">
 
-      <div id="menu" class="margin-8" style="margin-top: 0px;">
+      <div id="menu" class="margin-8" style="margin-top: 0px; margin-bottom: 10px;">
         <div class="dropdown" style="display: contents;">
           <button id="choose_action" class="btn btn-primary- col-4 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Save</button>
           <ul class="dropdown-menu" style="width: calc(100% - 31px); inset: 0px auto auto 16px;">
             <li><a class="dropdown-item" href="#" id="grab_tab">Save currently opened tab</a></li>
             <li><a class="dropdown-item" href="#">Save all opened tabs in this browser</a></li>
-            <li><a class="dropdown-item" href="#">Save selected tabs in this browser</a></li>
+            <li><a class="dropdown-item disabled" href="#">Save selected tabs in this browser</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#" id="open_collect_form">Open empty save form</a></li>
           </ul>
@@ -114,8 +114,8 @@
         <!--label class="priority_placeholder">Low priority</label>
         <label class="priority_placeholder" style="float: right; left: -22px;">High priority</label-->
 
-      <div id="saved_list" style="display-: none;">
-        <div class="margin-8">
+      <div id="saved_list" style="display: none;">
+        <div class="margin-8" style="margin-top: 0;">
           <div id="filter" class="input-group" role="group" aria-label="">
             <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search...">
             <input type="text" id="find_time" class="form-control" placeholder="Time limit...">
