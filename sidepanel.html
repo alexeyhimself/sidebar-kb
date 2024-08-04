@@ -46,38 +46,30 @@
     <link rel="stylesheet" href="src/css/styles.css">
   </head>
   <body>
-        <div style="margin: 8px;">
-<div class="dropdown d-grid">
-  <button id="choose_action" class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Save link using empty form
-  </button>
-  <ul class="dropdown-menu" style="width: 100%;">
-    <li><a class="dropdown-item" href="#" id="grab_tab">Save currently opened tab</a></li>
-    <li><a class="dropdown-item" href="#">Save all opened tabs in this browser</a></li>
-    <li><a class="dropdown-item" href="#">Save only selected tabs in this browser</a></li>
-    <li><a class="dropdown-item" href="#" id="open_collect_form">Save link using empty form</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#queue">Open queue to learn</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Open knowledge base</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Open deleted links</a></li>
-  </ul>
-</div>
-</div>
     <div id="container" class="w">
       
-      <!--div id="form" class="animate_fade_in"-->
-        
+      <div style="margin: 8px;">
+        <div class="dropdown" style="display: contents;">
+          <button id="choose_action" class="btn btn-primary col-4 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Save</button>
+          <ul class="dropdown-menu" style="width: calc(100% - 31px); inset: 0px auto auto 16px;">
+            <li><a class="dropdown-item" href="#" id="grab_tab">Save currently opened tab</a></li>
+            <li><a class="dropdown-item" href="#">Save all opened tabs in this browser</a></li>
+            <li><a class="dropdown-item" href="#">Save selected tabs in this browser</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" id="open_collect_form">Open empty form</a></li>
+          </ul>
+        </div>
+        <button id="choose_action" class="btn" type="button">Saved</button>
+      </div>
 
-<div id="toast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; width: calc(100% - 2*16px); margin-left: 8px; top: calc(100% - 62px)">
+<!--div id="toast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; width: calc(100% - 2*16px); margin-left: 8px; top: calc(100% - 62px)">
   <div class="d-flex">
     <div class="toast-body">
       Hello, world! This is a toast message.
     </div>
     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
   </div>
-</div>
+</div-->
   
         <textarea class="form-control margin-8" id="link" placeholder="URL"></textarea>
         <textarea class="form-control margin-8" id="title" placeholder="URL title"></textarea>
@@ -85,7 +77,7 @@
         <div class="margin-8">
             <div class="input-group" role="group" id="what_to_do_dropdown">
               <select class="form-select left-half-border-radius" id="what_to_do">
-                <option value="" selected>What to do</option>
+                <option value="" selected>Type</option>
                 <option value="read">Read 📚</option>
                 <option value="watch">Watch 🖥️</option>
                 <option value="listen">Listen 🎧</option>
@@ -93,20 +85,22 @@
                 <option value="people">People 👤</option>
                 <option value="tool">Tool 🛠</option>
               </select>
-              <textarea class="form-control input-time" id="time" placeholder="Estimate time" rows="1"></textarea>
+              <textarea class="form-control right-half-border-radius" id="time" placeholder="Estimate time" rows="1"></textarea>
             </div>
         </div>
-        <textarea class="form-control margin-8" id="tags" placeholder="Tags" rows="1"></textarea>
-        <p id="tags_hint"></p>
 
         <div class="margin-8">
           <select class="form-select" id="priority">
-            <option value="50" selected>Priority in a queue to learn</option>
+            <option value="50" selected>Priority</option>
             <option value="99">High</option>
             <option value="50">Medium</option>
             <option value="1">Low</option>
           </select>
         </div>
+
+        <textarea class="form-control margin-8" id="tags" placeholder="Tags" rows="1"></textarea>
+        <p id="tags_hint"></p>
+
         <!--input class="form-control- form-range margin-8" id="priority" type="range" title="Queue to learn priority: from Low (on the left) to High (on the right)" value="50"-->
 
         <div class="row" style="margin: 0; display: block; text-align: center;">

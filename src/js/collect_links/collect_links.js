@@ -19,7 +19,7 @@ function close_collect_form() {
 }
 
 function open_collect_form() {
-  document.getElementById("choose_action").innerHTML = "Save link using empty form";
+  //document.getElementById("choose_action").innerHTML = "Save link using empty form";
   reset_form_state();
   //document.getElementById("welcome").style.display = 'none';
   //document.getElementById("form").style.display = 'block';
@@ -199,7 +199,7 @@ function enable_collect_links() {
   fill_stats_of_what_to_do_for_links();
   //count_tabs_in_a_window();
 
-  var myAlert = document.getElementById('toast');//select id of toast
-  var bsAlert = new bootstrap.Toast(myAlert);//inizialize it
-  bsAlert.show();//show it
+  //var myAlert = document.getElementById('toast');//select id of toast
+  //var bsAlert = new bootstrap.Toast(myAlert);//inizialize it
+  //bsAlert.show();//show it
 }

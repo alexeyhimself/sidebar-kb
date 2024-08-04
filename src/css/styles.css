@@ -91,7 +91,7 @@ body {
 #container {
   margin: 8px;
   background: white;
-  height: calc(100vh - 62px);
+  height: calc(100vh - 16px);
   border-radius: 10px;
 
   overflow-y: auto;
@@ -108,8 +108,7 @@ textarea, input, button#save {
   border-radius-: 8px!important;
 }
 
-.input-time {
-  /*border-left: 0;*/
+.right-half-border-radius {
   border-radius: 0 0.375rem 0.375rem 0!important;
 }
 
