@@ -425,6 +425,8 @@ function adjust_scroll_margin() {
 function switch_to_saved_list() {
   document.getElementById("saved_list").style.display = 'block';
   document.getElementById("save_form").style.display = 'none';
+  document.getElementById("switch_to_saved").classList.add("btn-success");
+  document.getElementById("choose_action").classList.remove("btn-primary");
 }
 
 function enable_manage_links() {
