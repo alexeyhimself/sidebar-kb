@@ -82,7 +82,9 @@ function draw_tags_hint(tags) {
       tags_hint += `<a href="#" class="suggested_tag">${tag}</a>, `;
   });
   tags_hint = tags_hint.slice(0, -2);
-  document.getElementById("tags_hint").innerHTML = tags_hint;
+  const tags_hint_element = document.getElementById("tags_hint");
+  tags_hint_element.innerHTML = tags_hint;
+  //tags_hint_element.style.display = 'block';
   enable_tags_hint_listeners();
 }
 
@@ -97,7 +99,7 @@ function suggest_tags(words_on_page) {
 function enable_tags_hint_on_any_value_only() {
   setTimeout(() => {
     if (document.getElementById("link").value || document.getElementById("title").value || document.getElementById("tags").value)
-      document.getElementById("tags_hint").style.display = '';
+      document.getElementById("tags_hint").style.display = 'block';
     else
       document.getElementById("tags_hint").style.display = 'none';
   }, 100);  // a bit wait because drag&drop events pass faster than the DOM update

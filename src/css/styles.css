@@ -137,9 +137,10 @@ select {
 */
 
 #tags_hint {
-  margin: 5px;
+  margin-top: 5px;
   margin-left: 20px!important;
   color: #585c5f;
+  display: none;
 }
 .suggested_tag {
   margin: 0 1px 0 1px;
@@ -356,6 +357,10 @@ h5 {
 .btn-light {
   background: white;
   border-color: #dee2e6;
+}
+
+#save_form {
+  margin-top: 12px;
 }
 
 /*
