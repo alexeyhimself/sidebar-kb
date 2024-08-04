@@ -415,6 +415,14 @@ h5 {
   display:none
 }
 
+#switch_to_saved:hover {
+  background-color: #146c43;
+  color: white;
+}
+#choose_action:hover, #choose_action:focus {
+  background-color: #0a58ca;
+  color: white;
+}
 
 /*.dropdown:hover .dropdown-menu {
     display: block;
