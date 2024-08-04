@@ -362,7 +362,17 @@ h5 {
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width-: thin;
-  scrollbar-color: lightgray transparent;
+  scrollbar-color-: lightgray transparent;
+}
+
+#saved_list {
+  margin-top-: 12px;
+
+  height: calc(100vh - 62px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width-: thin;
+  scrollbar-color-: lightgray transparent;
 }
 
 .dropdown-menu {
@@ -372,10 +382,42 @@ h5 {
   background-color: white;
 }
 
-/*
-.dropdown:hover .dropdown-menu {
+.bulk_saved_group > .queue-link {
+  background: white;
+}
+
+
+/* https://codepen.io/Spemer/pen/baoKPK  */
+#saved_list::-webkit-scrollbar {
+    background-color:transparent;
+    width: 12px
+}
+
+/* background of the scrollbar except button or resizer */
+#saved_list::-webkit-scrollbar-track {
+    background-color:transparent
+}
+#saved_list::-webkit-scrollbar-track:hover {
+    background-color:white;
+}
+
+/* scrollbar itself */
+#saved_list::-webkit-scrollbar-thumb {
+    background-color:lightgray;
+    border-radius:16px;
+    border: 2px solid #fff
+}
+#saved_list::-webkit-scrollbar-thumb:hover {
+    background-color:#a0a0a5;
+    border: 2px solid white;
+}
+#saved_list::-webkit-scrollbar-button {
+  display:none
+}
+
+
+/*.dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 40px; /* remove the gap so it doesn't close */
-}
-*/
+}*/
 
