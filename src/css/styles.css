@@ -365,6 +365,13 @@ h5 {
   scrollbar-color: lightgray transparent;
 }
 
+.dropdown-menu {
+  background: rgb(235, 239, 247);
+}
+.dropdown-item:hover {
+  background-color: white;
+}
+
 /*
 .dropdown:hover .dropdown-menu {
     display: block;
