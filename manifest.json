@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "100500 tabs",
+  "name": "My Knowledge Base",
   "version": "1.0",
   "description": "Shows how to call sidePanel.open() to open a global side panel.",
   "minimum_chrome_version": "116",
@@ -23,7 +23,7 @@
   //"permissions": ["sidePanel", "contextMenus", "activeTab", "scripting", "webNavigation"],
   "host_permissions": ["*://*/"],
   "icons": {
-    //"16": "images/logo_transparent_16px.svg"
+    "16": "images/icon-16.png"
     //"48": "images/icon-48.png",
     //"128": "images/icon-128.png"
   },
