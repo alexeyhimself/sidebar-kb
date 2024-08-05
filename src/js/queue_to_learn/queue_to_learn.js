@@ -52,6 +52,27 @@ function draw_links_in_queue_tab(grouped_links, no_links_callback) {
   }
 }
 
+function enable_restore_tabs_listeners() {
+  document.querySelectorAll('.bulk_saved_group_restore_link').forEach((element) => {
+    element.addEventListener('click', function (event) {
+      group_id = event.target.dataset.groupId;
+
+      const all_existing_links = load_links_from_local_storage();
+      for (let i = 0; i < all_existing_links.length; i++) {
+        let group_id_found = 0;
+        const link = all_existing_links[i];
+        if (link.group_id == group_id) {
+          console.log(link.title);
+          group_id_found++;
+        }
+        else if (group_id_found > 0) {
+          break;
+        }
+      }
+    });
+  });
+}
+
 function draw_time_based_links(links, no_links_callback) {
   const all_existing_links = load_links_from_local_storage();
 
@@ -73,6 +94,8 @@ function draw_time_based_links(links, no_links_callback) {
     enable_move_to_kb_listeners();
     enable_delete_from_queue_listeners();
     enable_edit_in_queue_listeners();
+    enable_restore_tabs_listeners();
+
   } catch (error) {
     console.error(error);
     document.getElementById("links_area").innerHTML = draw_links_error_message();
@@ -209,7 +232,7 @@ function draw_existing_time_based_links(links) {
       if (group_started)
         links_html += '</div>';
 
-      links_html += `<div class="bulk_saved_group">`;
+      links_html += `<div class="bulk_saved_group"><p class="bulk_saved_group_restore"><a href="#" class="bulk_saved_group_restore_link" data-group-id="${item.group_id}">Restore this tabs group</a></p>`;
       group_started = true;
     }
     else if (!item.group_id && group_started) {
