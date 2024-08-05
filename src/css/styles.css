@@ -298,7 +298,7 @@ textarea {
 
 #top-3-section {
   margin-bottom: 30px;
-  margin-top: 3px;
+  margin-top-: 3px;
 }
 
 .accordion-body {
@@ -431,6 +431,9 @@ h5 {
   background-color: #ebeff7;
 }
 
+.form-check-label {
+  padding-left: 2px!important;
+}
 /*.dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 40px; /* remove the gap so it doesn't close */
