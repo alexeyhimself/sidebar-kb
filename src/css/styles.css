@@ -33,7 +33,7 @@ body, textarea, button, label, input, select, p, a {
 }
 
 #links_area, #kb_area {
-  margin-top: 12px;
+  margin-top-: 12px;
   padding: 0 8px 8px 8px;
   height-: calc(100vh - 164px);
   overflow-y: auto;
