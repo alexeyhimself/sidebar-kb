@@ -491,6 +491,9 @@ label {
 #choose_action:hover img, #choose_action:focus img {
   filter: invert(1);
 }
+#choose_action.btn-primary img {
+  filter: invert(1);
+}
 
 /*.dropdown:hover .dropdown-menu {
     display: block;
