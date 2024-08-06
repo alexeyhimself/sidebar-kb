@@ -59,15 +59,15 @@ function enable_restore_tabs_listeners() {
 
       const all_existing_links = load_links_from_local_storage();
       for (let i = 0; i < all_existing_links.length; i++) {
-        let group_id_found = 0;
+        let group_id_found = false;
         const link = all_existing_links[i];
         if (link.group_id == group_id) {
-          console.log(link.title);
-          group_id_found++;
+          //console.log(link.title);
+          chrome.tabs.create({ url: link.link });
+          group_id_found = true;
         }
-        else if (group_id_found > 0) {
+        else if (group_id_found)
           break;
-        }
       }
     });
   });
@@ -450,6 +450,7 @@ function switch_to_saved_list() {
   document.getElementById("save_form").style.display = 'none';
   document.getElementById("switch_to_saved").classList.add("btn-success");
   document.getElementById("choose_action").classList.remove("btn-primary");
+  what_to_do_on_filter_change();
 }
 
 function enable_manage_links() {
