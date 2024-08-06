@@ -103,13 +103,12 @@ async function save_all_tabs_in_window() {
   const saved_tabs_group_id = Date.now();  // to find this collapse transaction in future
   tabs.forEach((tab) => {
     if (tab.url) {  // do not save empty tabs
-      let link = {"group_id": saved_tabs_group_id, "what_to_do": "undefined", "feature": "save_all_tabs_in_window"};
+      let link = {"group_id": saved_tabs_group_id, "what_to_do": undefined, "feature": "save_all_tabs_in_window"};
       link.link = tab.url.trim().replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
       link.title = tab.title.trim().replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
       link.date_created = Date.now();
 
-      if (!link_already_exists(link.link))  // do not save duplicates
-        save_link_into_storage(link);
+      save_link_into_storage(link);
     }
     chrome.tabs.remove(tab.id, function() {});  // close all (even empty) but not pinned and grouped
   });

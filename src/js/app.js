@@ -28,6 +28,8 @@ function fix_data() {
       link = add_time_in_minutes(link);
     if (link.priority)
       link["priority"] = parseInt(link.priority);
+    if (link.what_to_do == "undefined")
+      link["what_to_do"] = undefined;
 
     new_links.push(link);
   }

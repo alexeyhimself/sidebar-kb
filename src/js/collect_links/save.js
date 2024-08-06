@@ -91,8 +91,23 @@ function save_link_to_local_storage(link) {
   let links = load_links_from(source);
   for (let i = 0; i < links.length; i++) {
     if (links[i].link == link.link) {
-      link.date_created = links[i].date_created;
-      link.group_id = links[i].group_id;
+      const link_from_storage = links[i];
+      link.date_created = Date.now(); //link_from_storage.date_created;
+      if (!link.group_id && link_from_storage.group_id)
+        link.group_id = link_from_storage.group_id;
+      if (!link.time && link_from_storage.time) {
+        link.time = link_from_storage.time;
+        link.time_minutes = link_from_storage.time_minutes;
+      }
+      if (!link.what_to_do && link_from_storage.what_to_do)
+        link.what_to_do = link_from_storage.what_to_do;
+      if (!link.notes && link_from_storage.notes)
+        link.notes = link_from_storage.notes;
+      if (!link.tags && link_from_storage.tags)
+        link.tags = link_from_storage.tags;
+      if (!link.priority && link_from_storage.priority)
+        link.priority = link_from_storage.priority;
+
       link.date_updated = Date.now();
       links.splice(i, 1);
       break;
