@@ -475,6 +475,22 @@ label {
   padding: 8px 12px;
 }
 
+.accordion-button::after {
+  background-image: url(/images/arrow-down.png);
+  scale: 55%;
+}
+.accordion-button:not(.collapsed)::after {
+  background-image: url(/images/arrow-down.png);
+  scale: 55%;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+#choose_action:hover img, #choose_action:focus img {
+  filter: invert(1);
+}
 
 /*.dropdown:hover .dropdown-menu {
     display: block;
