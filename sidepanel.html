@@ -48,7 +48,7 @@
   <body>
     <div id="container">
 
-      <div id="menu" class="margin-8" style="margin-top: 0px; margin-bottom: 10px;">
+      <div id="menu" class="margin-8" style="margin-top: 0px; margin-bottom: 4px; width: 300px;">
         <div class="dropdown" style="display: contents;">
           <button id="choose_action" class="btn col-4 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 5px;">Save</button>
           <ul class="dropdown-menu" style="width: calc(100% - 31px); inset: 0px auto auto 16px;">
@@ -114,40 +114,75 @@
         <!--label class="priority_placeholder">Low priority</label>
         <label class="priority_placeholder" style="float: right; left: -22px;">High priority</label-->
 
-      <div id="saved_list" style="display: none;">
-        <div class="margin-8" style="margin-top: 4px; margin-right: 0; width: calc(100% - 12px);">
+      <div id="saved_list" style="display: none; padding-right: 4px;">
+        <div class="margin-8" style="margin-top: 4px;">
           <div id="filter" class="input-group" role="group" aria-label="">
             <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search...">
             <input type="text" id="find_time" class="form-control" placeholder="Time limit...">
 
-            <!--div class="btn-group btn-group-sm" role="group" id="priority-vs-time" style="line-height: 30px; width: 80%;">
+            <div class="btn-group btn-group-sm" role="group" id="priority-vs-time" style="line-height: 30px; width-: 100%;">
               View by:&nbsp;&nbsp;
               <input type="radio" class="btn-check" name="btnradio" id="priority-based" autocomplete="off" checked>
-              <label class="btn btn-outline-primary" for="priority-based">Priority</label>
+              <label class="btn btn-light" for="priority-based">Priority</label>
 
               <input type="radio" class="btn-check" name="btnradio" id="time-based" autocomplete="off">
-              <label class="btn btn-outline-primary" for="time-based">Date-time</label>
-            </div-->
+              <label class="btn btn-light" for="time-based">Date-time</label>
+            </div>
 
 
-            <div id="priority-vs-time" style="width: 100%;">
+            <!--div id="priority-vs-time" style="width: 100%;">
               <input type="radio" class="form-check-input" name="btnradio" id="priority-based" autocomplete="off" checked>
               <label class="form-check-label" for="priority-based" style="margin-right: 12px;">Priority</label>
 
               <input type="radio" class="form-check-input" name="btnradio" id="time-based" autocomplete="off" style="">
               <label class="form-check-label" for="time-based" style="">Date-time</label>
+            </div-->
+          </div>
+
+          <div class="accordion" id="accordionPanelsStayOpenExample" style="margin-top: 8px;">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                  Queue to learn
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show-">
+                <div class="accordion-body-">
+                  <div id="links_area"></div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                  Knowledge Base
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                <div class="accordion-body-">
+                  <div id="kb_area"></div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                  Deleted
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                <div class="accordion-body-">
+                  ...
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div id="links_area"></div>
+        
 
-        <div style="margin: 5px 10px"><h5>Knowledge base</h5></div>
-        <div id="kb_area"></div>
-
-        <div style="margin: 5px 10px"><h5>Deleted links</h5></div>
+        
         <!--p id="links_export" style="display: none;">💾 Export <span id="number_of_links"></span> displayed links as <a href="#" id="links_export_csv">CSV</a> | <a href="#" id="links_export_json">JSON</a><p-->
-      </div>
+        </div>
       </div>
     </div>
   </body>

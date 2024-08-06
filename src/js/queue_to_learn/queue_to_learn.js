@@ -440,9 +440,9 @@ function adjust_scroll_margin() {
   const links_area = document.getElementById('container'); 
   const scroll_exists = links_area.scrollHeight > links_area.clientHeight;
   if (!scroll_exists)
-    links_area.style.marginRight = '8px';
+    links_area.style.paddingRight = '8px';
   else
-    links_area.style.marginRight = '0px';
+    links_area.style.paddingRight = '0px';
 }
 
 function switch_to_saved_list() {
