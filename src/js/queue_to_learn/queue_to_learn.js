@@ -134,7 +134,7 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   }
 
   const hostname = get_hostname(item.link);
-  links_html += `<span class="hostname">${hostname}</span><a href="${item.link}" target="_blank">${item.title.trim()}</a>`;
+  links_html += ` <span class="hostname">${hostname}</span> <a href="${item.link}" target="_blank">${item.title.trim()}</a>`;
   links_html += `<a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne"><img src="images/arrow-down.png" style="width: 10px; margin-left: 7px;"></a>`;
 
   links_html += `<div id="collapse-${item.date_created}-${j}" class="accordion-collapse collapse" data-bs-parent="#accordionExample"><div class="accordion-body">`;
