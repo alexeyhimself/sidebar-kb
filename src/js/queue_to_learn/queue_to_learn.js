@@ -128,9 +128,9 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   //else if (what_to_do == "others") {
   if (what_to_do == "others" || what_to_do == undefined) {
     if (item.what_to_do == "undefined" || item.what_to_do === undefined)
-      links_html += `<span class="badge bg-secondary">undefined</span>`;
+      links_html += ` <span class="badge bg-secondary">undefined</span>`;
     else
-      links_html += `<span class="badge bg-secondary">${item.what_to_do}</span>`;
+      links_html += ` <span class="badge bg-secondary">${item.what_to_do}</span>`;
   }
 
   const hostname = get_hostname(item.link);
