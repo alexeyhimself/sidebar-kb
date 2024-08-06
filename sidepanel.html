@@ -52,7 +52,7 @@
         <div class="dropdown" style="display: contents;">
           <button id="choose_action" class="btn col-4 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 5px;">Save <img src="/images/arrow-down.png" style="width: 10px; margin-left: 3px;"></button>
           <ul class="dropdown-menu" style="width: calc(100% - 31px); inset: 0px auto auto 16px;">
-            <li><a class="dropdown-item" href="#" id="grab_tab">Save opened tab</a></li>
+            <li><a class="dropdown-item" href="#" id="grab_tab">Save active tab</a></li>
             <li><a class="dropdown-item" href="#" id="save_all">Save all opened tabs</a></li>
             <li><a class="dropdown-item disabled" href="#">Save only selected tabs</a></li>
             <li><hr class="dropdown-divider"></li>
@@ -116,14 +116,6 @@
 
       <div id="saved_list" style="display: none; padding-right: 4px;">
 
-            <!--div id="priority-vs-time" style="width: 100%;">
-              <input type="radio" class="form-check-input" name="btnradio" id="priority-based" autocomplete="off" checked>
-              <label class="form-check-label" for="priority-based" style="margin-right: 12px;">Priority</label>
-
-              <input type="radio" class="form-check-input" name="btnradio" id="time-based" autocomplete="off" style="">
-              <label class="form-check-label" for="time-based" style="">Date-time</label>
-            </div-->
-
           <div class="accordion" id="accordionPanelsStayOpenExample" style="margin-top: 8px; margin-left: 8px;">
             <div class="accordion-item">
               <h2 class="accordion-header">
@@ -138,14 +130,31 @@
                       <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search...">
                       <input type="text" id="find_time" class="form-control" placeholder="Time limit...">
 
-                      <div class="btn-group btn-group-sm" role="group" id="priority-vs-time" style="line-height: 30px; width-: 100%;">
-                        View by:&nbsp;&nbsp;
+
+                      <div id="priority-vs-time" style="width: 100%;">
+                        <input type="radio" class="form-check-input" name="btnradio" id="priority-based" autocomplete="off" checked>
+                        <label class="form-check-label" for="priority-based" style="margin-right: 12px;">Priority</label>
+
+                        <input type="radio" class="form-check-input" name="btnradio" id="time-based" autocomplete="off" style="">
+                        <label class="form-check-label" for="time-based" style="">Date-time</label>
+                      </div>
+
+                      <!--div class="btn-group btn-group-sm" role="group" aria-label="Basic radio toggle button group" id="priority-vs-time">
+                        <input type="radio" class="btn-check" name="btnradio" id="priority-based" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="priority-based">Priority</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="time-based" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="time-based">Date-time</label>
+                      </div-->
+                      
+                      <!--div class="btn-group btn-group-sm-" role="group" id="priority-vs-time" style="line-height: 36px; width-: 100%;">
+                        View by:&nbsp;&nbsp;&nbsp;
                         <input type="radio" class="btn-check" name="btnradio" id="priority-based" autocomplete="off" checked>
                         <label class="btn btn-light" for="priority-based">Priority</label>
 
                         <input type="radio" class="btn-check" name="btnradio" id="time-based" autocomplete="off">
                         <label class="btn btn-light" for="time-based">Date-time</label>
-                      </div>
+                      </div-->
                     </div>
                   </div>
                   <div id="links_area"></div>

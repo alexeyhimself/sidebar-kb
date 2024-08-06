@@ -128,13 +128,13 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   //else if (what_to_do == "others") {
   if (what_to_do == "others" || what_to_do == undefined) {
     if (item.what_to_do == "undefined" || item.what_to_do === undefined)
-      links_html += `<span class="badge bg-secondary">undefined</span> `;
+      links_html += `<span class="badge bg-secondary">undefined</span>`;
     else
-      links_html += `<span class="badge bg-secondary">${item.what_to_do}</span> `;
+      links_html += `<span class="badge bg-secondary">${item.what_to_do}</span>`;
   }
 
   const hostname = get_hostname(item.link);
-  links_html += `${hostname}: <a href="${item.link}" target="_blank">${item.title.trim()}</a>`;
+  links_html += `<span class="hostname">${hostname}</span><a href="${item.link}" target="_blank">${item.title.trim()}</a>`;
   links_html += `<a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne"><img src="images/arrow-down.png" style="width: 10px; margin-left: 7px;"></a>`;
 
   links_html += `<div id="collapse-${item.date_created}-${j}" class="accordion-collapse collapse" data-bs-parent="#accordionExample"><div class="accordion-body">`;
@@ -180,7 +180,7 @@ function draw_existing_grouped_links(grouped_links) {
       if (what_to_do in what_to_do_map)
         links_html += `${what_to_do_map[what_to_do]} `;
       
-      links_html += `${grouped_links[what_to_do].length} top priority to ${what_to_do}:</b></p>`;
+      links_html += `${grouped_links[what_to_do].length} top priority to ${what_to_do}</b></p>`;
     }
 
     for (let j = 0; j < grouped_links[what_to_do].length; j++) {
@@ -224,7 +224,7 @@ function draw_existing_time_based_links(links) {
       if (group_started)
         links_html += '</div>';
       group_started = false;
-      links_html += `<p><b>${days_ago(item.date_created)}${month} ${date}:</b></p>`;
+      links_html += `<p><b>${days_ago(item.date_created)}${month} ${date}</b></p>`;
       date_created = item_date_created;
     }
 
@@ -232,7 +232,7 @@ function draw_existing_time_based_links(links) {
       if (group_started)
         links_html += '</div>';
 
-      links_html += `<div class="bulk_saved_group"><p class="bulk_saved_group_restore"><a href="#" class="bulk_saved_group_restore_link" data-group-id="${item.group_id}">Restore tabs group</a></p>`;
+      links_html += `<div class="bulk_saved_group"><p class="bulk_saved_group_restore"><a href="#" class="bulk_saved_group_restore_link" data-group-id="${item.group_id}">Restore this group</a></p>`;
       group_started = true;
     }
     else if (!item.group_id && group_started) {

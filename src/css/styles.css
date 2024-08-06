@@ -259,7 +259,7 @@ p {
   font-size: 12px;
 }
 
-textarea::placeholder {
+input::placeholder, textarea::placeholder {
   color: gray!important;
 }
 textarea {
@@ -317,7 +317,7 @@ a {
   text-decoration: none;
 }
 #priority-vs-time {
-  margin-top: 8px;
+  margin-top: 6px;
   margin-left: 2px;
 }
 .form-check-label, input[type="radio"] {
@@ -469,7 +469,7 @@ label {
 
 .accordion-button:not(.collapsed) {
   background-color: #ebeff7;
-  color: black;
+  color: var(--bs-accordion-color);
   font-size: 15px;
 }
 .accordion-button {
@@ -494,6 +494,10 @@ label {
 }
 #choose_action.btn-primary img {
   filter: invert(1);
+}
+
+.hostname {
+  margin: 0 5px 0 4px;
 }
 
 /*.dropdown:hover .dropdown-menu {
