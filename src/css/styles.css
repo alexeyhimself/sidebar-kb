@@ -497,9 +497,12 @@ label {
 }
 
 .hostname {
-  margin: 0 5px 0 4px;
+  margin: 0 5px;
 }
 
+.bg-warning {
+  background-color-: rgb(222 226 230) !important;
+}
 /*.dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 40px; /* remove the gap so it doesn't close */

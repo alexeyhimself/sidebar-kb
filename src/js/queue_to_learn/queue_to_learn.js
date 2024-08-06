@@ -117,10 +117,10 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   //}
   
   if (item.time)
-    links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span> `;
+    links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span>`;
   else {
     if (!no_time_what_to_do.includes(item.what_to_do))
-      links_html += `<span class="badge bg-warning text-dark">undefined</span> `;
+      links_html += `<span class="badge bg-warning text-dark">undefined</span>`;
   }
 
   //if (what_to_do == "undefined" || what_to_do === undefined)
