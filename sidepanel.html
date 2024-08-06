@@ -115,19 +115,7 @@
         <label class="priority_placeholder" style="float: right; left: -22px;">High priority</label-->
 
       <div id="saved_list" style="display: none; padding-right: 4px;">
-        <div class="margin-8" style="margin-top: 4px;">
-          <div id="filter" class="input-group" role="group" aria-label="">
-            <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search...">
-            <input type="text" id="find_time" class="form-control" placeholder="Time limit...">
 
-            <div class="btn-group btn-group-sm" role="group" id="priority-vs-time" style="line-height: 30px; width-: 100%;">
-              View by:&nbsp;&nbsp;
-              <input type="radio" class="btn-check" name="btnradio" id="priority-based" autocomplete="off" checked>
-              <label class="btn btn-light" for="priority-based">Priority</label>
-
-              <input type="radio" class="btn-check" name="btnradio" id="time-based" autocomplete="off">
-              <label class="btn btn-light" for="time-based">Date-time</label>
-            </div>
 
 
             <!--div id="priority-vs-time" style="width: 100%;">
@@ -139,15 +127,30 @@
             </div-->
           </div>
 
-          <div class="accordion" id="accordionPanelsStayOpenExample" style="margin-top: 8px;">
+          <div class="accordion" id="accordionPanelsStayOpenExample" style="margin-top: 8px; margin-left: 8px;">
             <div class="accordion-item">
               <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                <button class="accordion-button collapsed-" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
                   Queue to learn
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show-">
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
                 <div class="accordion-body-">
+                  <div class="margin-8" style="margin-top: 4px;">
+                    <div id="filter" class="input-group" role="group" aria-label="">
+                      <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search...">
+                      <input type="text" id="find_time" class="form-control" placeholder="Time limit...">
+
+                      <div class="btn-group btn-group-sm" role="group" id="priority-vs-time" style="line-height: 30px; width-: 100%;">
+                        View by:&nbsp;&nbsp;
+                        <input type="radio" class="btn-check" name="btnradio" id="priority-based" autocomplete="off" checked>
+                        <label class="btn btn-light" for="priority-based">Priority</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="time-based" autocomplete="off">
+                        <label class="btn btn-light" for="time-based">Date-time</label>
+                      </div>
+                    </div>
+                  </div>
                   <div id="links_area"></div>
                 </div>
               </div>

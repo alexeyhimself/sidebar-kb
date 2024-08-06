@@ -53,6 +53,7 @@ body, textarea, button, label, input, select, p, a {
 body {
   border-radius-: 15px;
   background: #ebeff7;
+  background: #dee2e6;
 }
 .nav-tabs .nav-link.active {
   border-color: transparent;
@@ -89,10 +90,10 @@ body {
 }
 
 #container {
-  margin: 8px;
+  margin: 1px;
   background: white;
-  height: calc(100vh - 16px);
-  border-radius: 12px;
+  height: calc(100vh - 2px);
+  border-radius: 15px;
   padding-top: 8px;
   overflow-y: auto;
   scrollbar-gutter: stable;
@@ -412,11 +413,11 @@ h5 {
 #container::-webkit-scrollbar-thumb {
   background-color: lightgray;
   border-radius: 15px;
-  border: 1px solid white;
+  border: 1.5px solid white;
 }
 #container::-webkit-scrollbar-thumb:hover {
   background-color: #a0a0a5;
-  border: 1px solid white;
+  border: 1.5px solid white;
 }
 #container::-webkit-scrollbar-button {
   display: none
