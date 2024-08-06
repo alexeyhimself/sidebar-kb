@@ -412,11 +412,11 @@ h5 {
 #container::-webkit-scrollbar-thumb {
   background-color: lightgray;
   border-radius: 15px;
-  border: 1.5px solid white;
+  border: 1px solid white;
 }
 #container::-webkit-scrollbar-thumb:hover {
   background-color: #a0a0a5;
-  border: 1.5px solid transparent;
+  border: 1px solid white;
 }
 #container::-webkit-scrollbar-button {
   display: none
