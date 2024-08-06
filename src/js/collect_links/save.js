@@ -87,9 +87,13 @@ function save_link_to(link, where) {
 
 function save_link_to_local_storage(link) {
   let source = link.source || "links";
+
   let links = load_links_from(source);
   for (let i = 0; i < links.length; i++) {
     if (links[i].link == link.link) {
+      link.date_created = links[i].date_created;
+      link.group_id = links[i].group_id;
+      link.date_updated = Date.now();
       links.splice(i, 1);
       break;
     }
