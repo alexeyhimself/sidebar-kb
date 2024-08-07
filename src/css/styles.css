@@ -335,6 +335,7 @@ a {
   padding: 8px;
   border-radius: 8px;
   margin-bottom: 8px;
+  word-wrap: break-word;
 }
 .accordion-collapse {
   margin-left-: 5px;
