@@ -174,13 +174,13 @@ function draw_existing_grouped_links(grouped_links) {
       links_html += `<p><b>Everything else matching filter (${grouped_links[what_to_do].length} items), ordered by descending priority:</b></p>`;
     else if (what_to_do != "others" && grouped_links[what_to_do].length > 0) {
       if (i == 1)
-        links_html += `<div id="top-3-section"><p><b>`;
+        links_html += `<div id="top-3-section"><p style="margin-top: 0px; font-size: 17px;">`;
       else
-        links_html += `<p style="margin-top: 18px;"><b>`;
+        links_html += `<p style="margin-top: 15px; font-size: 17px;">`;
       if (what_to_do in what_to_do_map)
         links_html += `${what_to_do_map[what_to_do]} `;
       
-      links_html += `${grouped_links[what_to_do].length} top priority to ${what_to_do}</b></p>`;
+      links_html += `${grouped_links[what_to_do].length} top priority to ${what_to_do}</p>`;
     }
 
     for (let j = 0; j < grouped_links[what_to_do].length; j++) {
@@ -224,7 +224,7 @@ function draw_existing_time_based_links(links) {
       if (group_started)
         links_html += '</div>';
       group_started = false;
-      links_html += `<p><b>${days_ago(item.date_created)}${month} ${date}</b></p>`;
+      links_html += `<p style="font-size: 17px;">${days_ago(item.date_created)}${month} ${date}</p>`;
       date_created = item_date_created;
     }
 

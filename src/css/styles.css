@@ -145,7 +145,7 @@ select {
   margin: 0 1px 0 1px;
 }
 
-#notes {
+#notes, #time {
   overflow-y: hidden;
 }
 
@@ -155,6 +155,7 @@ select {
 }
 #what_to_do {
   width: 50%;
+  height: 38px;
 }
 #time {
   width: 50%;
@@ -503,6 +504,21 @@ label {
 .bg-warning {
   background-color-: rgb(222 226 230) !important;
 }
+
+.form-control:focus, .form-select:focus {  
+  box-shadow: 0 0 0 1px rgb(42 128 255 / 80%);
+  box-shadow: 0 0 0 1px #0D6EFD;
+  box-shadow: none;
+  border: 1.5px solid #0060FF;
+}
+.accordion-button:focus, .form-check-input:focus {
+  box-shadow: none;
+}
+.form-control, .form-select {
+  border: 1.5px solid var(--bs-border-color);
+}
+
+
 /*.dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 40px; /* remove the gap so it doesn't close */
