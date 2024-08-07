@@ -100,7 +100,7 @@ body {
 }
 
 .btn {
-  border-radius: 8px;
+  border-radius-: 8px;
 }
 
 textarea, input, button#save {
@@ -127,7 +127,7 @@ textarea, input, button#save {
   border-radius: 0.375rem 0 0 0.375rem!important;
 }
 .all-around-border-radius {
-  border-radius: 12px!important;
+  border-radius: 5px!important;
 }
 /*
 select {
@@ -136,9 +136,7 @@ select {
 */
 
 #tags_hint {
-  margin-top: 5px;
-  margin-left: 20px!important;
-  color: #585c5f;
+  margin: 5px 0 15px 12px;
   display: none;
 }
 .suggested_tag {
@@ -159,6 +157,7 @@ select {
 }
 #time {
   width: 50%;
+  height: 36px;
 }
 
 #links_placeholder, #kb_placeholder {
@@ -398,30 +397,30 @@ h5 {
 
 
 /* https://codepen.io/Spemer/pen/baoKPK  */
-#container::-webkit-scrollbar {
+.custom-scroll::-webkit-scrollbar {
   background-color: transparent;
   width: 8px;
 }
 
 /* background of the scrollbar except button or resizer */
-#container::-webkit-scrollbar-track {
+.custom-scroll::-webkit-scrollbar-track {
   background-color: transparent;
 }
-#container::-webkit-scrollbar-track:hover {
+.custom-scroll::-webkit-scrollbar-track:hover {
   background-color: transparent;
 }
 
 /* scrollbar itself */
-#container::-webkit-scrollbar-thumb {
+.custom-scroll::-webkit-scrollbar-thumb {
   background-color: lightgray;
   border-radius: 15px;
   border: 1.5px solid white;
 }
-#container::-webkit-scrollbar-thumb:hover {
+.custom-scroll::-webkit-scrollbar-thumb:hover {
   background-color: #a0a0a5;
   border: 1.5px solid white;
 }
-#container::-webkit-scrollbar-button {
+.custom-scroll::-webkit-scrollbar-button {
   display: none
 }
 
@@ -519,6 +518,9 @@ label {
   border: 1.5px solid var(--bs-border-color);
 }
 
+.margin-6 {
+  margin-bottom: 12px;
+}
 
 /*.dropdown:hover .dropdown-menu {
     display: block;

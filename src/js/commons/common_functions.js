@@ -61,6 +61,6 @@ function get_hostname(link) {  // https://stackoverflow.com/questions/8498592/ex
 }
 
 function adjust_textarea_size(element) {  // https://stackoverflow.com/questions/995168/textarea-to-resize-based-on-content-length
-  element.style.height = "1px";
+  element.style.height = "0px";
   element.style.height = (element.scrollHeight) + "px";
 }

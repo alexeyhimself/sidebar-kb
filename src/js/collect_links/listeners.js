@@ -82,7 +82,7 @@ function fill_and_adjust_textareas(page_object) {
 
 async function fill_and_adjust(tab) {
   const page_object = await get_data_from_active_tab(tab);
-  open_collect_form();
+  //open_collect_form();
   fill_and_adjust_textareas(page_object);
   suggest_what_to_do(page_object.link);
   if (page_object.words_on_page)

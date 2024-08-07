@@ -18,15 +18,17 @@ function close_collect_form() {
   save_element.classList.remove("context_menu_call");
 }
 
+/*
 function switch_to_save_form() {
   document.getElementById("saved_list").style.display = 'none';
   document.getElementById("save_form").style.display = 'block';
   document.getElementById("switch_to_saved").classList.remove("btn-success");
   document.getElementById("choose_action").classList.add("btn-primary");
 }
+*/
 
 function open_collect_form() {
-  switch_to_save_form();
+  //switch_to_save_form();
   reset_form_state();
   //document.getElementById("welcome").style.display = 'none';
   //document.getElementById("form").style.display = 'block';

@@ -166,7 +166,7 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
 function draw_existing_grouped_links(grouped_links) {
   let links_html = '';
   let i = 1;
-  const what_to_do_map = {"read-": "📚", "watch-": "🖥️", "listen-": "🎧"};
+  const what_to_do_map = {"read": "📚", "watch": "🎬", "listen": "🎧"};
   //const what_to_do_map = {"read": '<i class="bi bi-book-half"></i>', "watch": '<i class="bi bi-youtube"></i>', "listen": '<i class="bi bi-earbuds"></i>'};
 
   ["read", "watch", "listen", "others"].forEach((what_to_do) => {
@@ -198,7 +198,7 @@ function draw_existing_grouped_links(grouped_links) {
 
 function days_ago(date) {
   const days_passed_since_created = calculate_days_passed_till_today(date);
-  const weekday = new Date(date).toLocaleDateString('en-US', {weekday: 'long'});
+  const weekday = new Date(date).toLocaleDateString('en-US', {weekday: 'short'});
   if (days_passed_since_created > 7)
     return '';
   if (days_passed_since_created == 0)
@@ -218,7 +218,7 @@ function draw_existing_time_based_links(links) {
     const item = links[j];
 
     const item_date_created = new Date(item.date_created).toLocaleDateString('en-US');
-    const month = new Date(item.date_created).toLocaleString('default', { month: 'long' });
+    const month = new Date(item.date_created).toLocaleString('default', { month: 'short' });
     const date = new Date(item.date_created).getDate();
     if (item_date_created != date_created) {
       if (group_started)
@@ -458,7 +458,7 @@ function enable_manage_links() {
     //"find-tab": what_to_do_on_filter_change,
     //"links_export_csv": download_as_csv,
     //"links_export_json": download_as_json,
-    "switch_to_saved": switch_to_saved_list,
+    //"switch_to_saved": switch_to_saved_list,
   });
 
   what_to_do_on_filter_change();
