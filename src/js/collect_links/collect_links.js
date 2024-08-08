@@ -30,13 +30,15 @@ function switch_to_save_form() {
 }
 */
 
+function open_empty_collect_form() {
+  open_collect_form();
+  reset_form_state();
+  clear_save_link_form();
+}
+
 function open_collect_form() {
-  //switch_to_save_form();
   var myModal = new bootstrap.Modal(document.getElementById("exampleModal"), {});
   myModal.show();
-  reset_form_state();
-  //document.getElementById("welcome").style.display = 'none';
-  //document.getElementById("form").style.display = 'block';
 }
 
 function bring_form_to_idle_state() {

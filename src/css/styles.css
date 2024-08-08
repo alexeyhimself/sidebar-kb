@@ -180,7 +180,7 @@ select {
   height: 35px;
 }
 #link {
-  margin-top: 8px;
+  margin-top: 1px;
 }
 #tags {
   overflow-y: hidden;
@@ -271,8 +271,8 @@ textarea {
 #clear, #close_collect_form {
   text-align: center;
   margin: 0;
-  padding: 5px;
-  margin-top: 8px;
+  padding-: 5px;
+  margin-top: 4px;
 }
 #welcome {
   text-align: center;
@@ -523,7 +523,10 @@ label {
 .modal-backdrop.show {
   opacity: 0.38;
   opacity-: 1;
-  background-: #f6f7f9;
+  background: #f6f7f9;
+}
+.modal-body {
+  padding: 10px;
 }
 
 #filter {
