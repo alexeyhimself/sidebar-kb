@@ -37,6 +37,7 @@ function reset_form_state() {
   bring_form_to_idle_state();
   clear_save_link_form();
   enable_tags_hint_on_any_value_only();
+  hide_move_and_delete_buttons();
 
   document.getElementById("save").innerText = "Save";
   document.getElementById("save").classList.remove("btn-success");

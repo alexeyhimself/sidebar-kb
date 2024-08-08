@@ -421,13 +421,21 @@ function enable_delete_from_queue_listeners() {
   });
 }
 
+function show_move_and_delete_buttons() {
+  document.getElementById("move_to_kb").style.display = 'block';
+  document.getElementById("delete_from_queue").style.display = 'block';
+}
+function hide_move_and_delete_buttons() {
+  document.getElementById("move_to_kb").style.display = 'none';
+  document.getElementById("delete_from_queue").style.display = 'none';
+}
+
 function enable_edit_in_queue_listeners() {
   document.querySelectorAll(".edit_in_queue").forEach((element) => {
     element.addEventListener('click', function (event) {
       const url = event.target.getAttribute("data-url");
-      //let a = document.getElementById("save-tab");
-      //bootstrap.Tab.getInstance(a).show();
       open_collect_form();
+      show_move_and_delete_buttons();
       const save_element = document.getElementById("save");
       save_element.classList.remove("context_menu_call");  // clean if left from unsaved tab
       let link = document.getElementById("link");
