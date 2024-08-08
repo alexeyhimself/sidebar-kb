@@ -1,5 +1,5 @@
 function draw_links_placeholder() {
-  return `<p id="links_placeholder"><b>You have no saved links yet.</b><br>Collect some &mdash; they will appear 👍</p>`;
+  return `<p id="links_placeholder"><b>You have no saved links yet.</b><br>Save some &mdash; they will appear 👍</p>`;
 }
 function draw_links_error_message() {
   return `<p id="links_placeholder"><span style="font-size: 2em;">😲</span><br><b>Something went wrong...</b><br>Please <a href="#" id="copy_error_message_to_clipboard">click here</a> to copy an error message to clipboard and <a href="mailto:alexeyhimself@gmail.com">let us know</a></p>`;
@@ -48,6 +48,7 @@ function draw_links_in_queue_tab(grouped_links, no_links_callback) {
   } catch (error) {
     console.error(error);
     document.getElementById("links_area").innerHTML = draw_links_error_message();
+    document.getElementById("filter").style.display = 'none';
     enable_copy_error_message_to_clipboard_listener("copy_error_message_to_clipboard", error);
   }
 }
@@ -75,10 +76,9 @@ function enable_restore_tabs_listeners() {
 
 function draw_time_based_links(links, no_links_callback) {
   const all_existing_links = load_links_from_local_storage();
-
   try {
     document.getElementById("filter").style.display = '';
-    if (links.total == 0) {
+    if (links.length == 0) {
       if (no_links_callback && all_existing_links.length > 0)
         document.getElementById("links_area").innerHTML = no_links_callback();
       else {
@@ -99,6 +99,7 @@ function draw_time_based_links(links, no_links_callback) {
   } catch (error) {
     console.error(error);
     document.getElementById("links_area").innerHTML = draw_links_error_message();
+    document.getElementById("filter").style.display = 'none';
     enable_copy_error_message_to_clipboard_listener("copy_error_message_to_clipboard", error);
   }
 }
