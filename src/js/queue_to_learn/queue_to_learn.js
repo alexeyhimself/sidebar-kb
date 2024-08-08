@@ -235,7 +235,7 @@ function draw_existing_time_based_links(links) {
       if (group_started)
         links_html += '</div>';
 
-      links_html += `<div class="bulk_saved_group"><p class="bulk_saved_group_restore"><a href="#" class="bulk_saved_group_restore_link" data-group-id="${item.group_id}">Restore this group</a></p>`;
+      links_html += `<p class="bulk_saved_group_restore"><a href="#" class="bulk_saved_group_restore_link" data-group-id="${item.group_id}">Restore this group</a></p><div class="bulk_saved_group">`;
       group_started = true;
     }
     else if (!item.group_id && group_started) {
