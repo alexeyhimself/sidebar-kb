@@ -209,7 +209,7 @@ function days_ago(date) {
   if (days_passed_since_created == 1)
     return `(yesterday) ${weekday}, `;
 
-  return `(${days_passed_since_created} days ago) ${weekday}, `;
+  return `${weekday}, `;
 }
 
 function draw_existing_time_based_links(links) {
