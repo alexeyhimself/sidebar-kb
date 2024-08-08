@@ -16,7 +16,9 @@ function close_collect_form() {
     delete save_element.dataset.callback;
   }
   save_element.classList.remove("context_menu_call");
-  document.querySelectorAll('.modal-backdrop')[0].remove(); // bug https://github.com/twbs/bootstrap/issues/16320
+  document.querySelectorAll('.modal-backdrop').forEach((e) => {
+    e.remove();
+  }); // bug https://github.com/twbs/bootstrap/issues/16320
 }
 
 /*
