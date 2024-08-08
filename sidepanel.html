@@ -33,219 +33,144 @@
     <link rel="stylesheet" href="src/css/styles.css">
   </head>
   <body>
-    <div id="container" class="custom-scroll">
+    <div id="container">
 
-      <!--div id="menu" class="margin-8" style="margin-top: 0px; margin-bottom: 4px; width: 300px;"-->
-        <div class="dropdown" style="display-: contents; padding: 0 0 4px 8px; width: calc(100% - 5px);">
-          <button id="choose_action" class="btn col-12 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 5px;">Save <img src="/images/arrow-down.png" style="width: 10px; margin-left: 3px;"></button>
-          <ul class="dropdown-menu" style="width: calc(100% - 31px); inset: 0px auto auto 16px;">
-            <li><a class="dropdown-item" href="#" id="grab_tab" data-bs-toggle="modal" data-bs-target="#exampleModal">Save active tab</a></li>
-            <li><a class="dropdown-item" href="#" id="save_all">Save and close all opened tabs</a></li>
-            <li><a class="dropdown-item disabled" href="#">Save only selected tabs</a></li>
-            
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#" id="open_collect_form" data-bs-toggle="modal" data-bs-target="#exampleModal">Open save form</a></li>
-          </ul>
-        </div>
-        <!--button id="switch_to_saved" class="btn btn-success col-3" type="button">Saved</button-->
-      <!--/div-->
-
-<!--div id="toast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; width: calc(100% - 2*16px); margin-left: 8px; top: calc(100% - 62px)">
-  <div class="d-flex">
-    <div class="toast-body">
-      Hello, world! This is a toast message.
-    </div>
-    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-  </div>
-</div-->
-  
-      <!--div id="save_form" style="display: none; padding-right-: 4px; overflow-y: hidden;">
-        <textarea class="form-control margin-8" id="link" placeholder="URL"></textarea>
-        <textarea class="form-control margin-8" id="title" placeholder="URL title"></textarea>
-        <textarea class="form-control margin-8" id="notes" placeholder="Notes" rows="1"></textarea>
-        <div class="margin-8">
-            <div class="input-group" role="group" id="what_to_do_dropdown">
-              <select class="form-select left-half-border-radius" id="what_to_do">
-                <option selected>Type</option>
-                <option value="read">Read 📚</option>
-                <option value="watch">Watch 🎬</option>
-                <option value="listen">Listen 🎧</option>
-                <option value="course">Course ✏️</option>
-                <!-option value="people">People 👤</option->
-                <option value="tool">Tool 🛠</option>
-              </select>
-              <textarea class="form-control right-half-border-radius" id="time" placeholder="Estimate time" rows="1"></textarea>
-            </div>
-        </div>
-
-        <div class="margin-8">
-          <select class="form-select" id="priority">
-            <option selected>Priority to learn</option>
-            <option value="99">High</option>
-            <option value="50">Medium</option>
-            <option value="1">Low</option>
-          </select>
-        </div>
-
-        <textarea class="form-control margin-8" id="tags" placeholder="Tags" rows="1"></textarea>
-        <p id="tags_hint"></p>
-
-        <!-input class="form-control- form-range margin-8" id="priority" type="range" title="Queue to learn priority: from Low (on the left) to High (on the right)" value="50"->
-
-        <div class="row" style="margin: 0; display: block; text-align: center;">
-          <button id="save" class="btn btn-primary margin-8 disabled" style="margin-bottom: 8px; margin-top-: 0;" type="button">Save</button>
-          <a href="#" id="clear" style="display: none;">Clear form</a>
-          <!-a href="#" id="close_collect_form">Close form</a->
-        </div>
-      </div-->
-
-        <!--label class="priority_placeholder">Low priority</label>
-        <label class="priority_placeholder" style="float: right; left: -22px;">High priority</label-->
-
-      <div id="saved_list" style="display: none; padding-right-: 4px;">
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="margin: 3px;">
-    <div class="modal-content" style="height: calc(100vh - 6px); border-radius: 14px;">
-      <!--div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div-->
-      <div class="modal-body custom-scroll" style="overflow-y: auto;">
-
-        <textarea class="form-control margin-6" id="link" placeholder="URL"></textarea>
-        <textarea class="form-control margin-6" id="title" placeholder="URL title"></textarea>
-        <textarea class="form-control margin-6" id="notes" placeholder="Notes" rows="1"></textarea>
-        <div class="margin-6">
-            <div class="input-group" role="group" id="what_to_do_dropdown">
-              <select class="form-select left-half-border-radius" id="what_to_do">
-                <option selected>Type</option>
-                <option value="read">Read 📚</option>
-                <option value="watch">Watch 🎬</option>
-                <option value="listen">Listen 🎧</option>
-                <option value="course">Course ✏️</option>
-                <!--option value="people">People 👤</option-->
-                <option value="tool">Tool 🛠</option>
-              </select>
-              <textarea class="form-control right-half-border-radius" id="time" placeholder="Estimate time" rows="1"></textarea>
-            </div>
-        </div>
-
-        <div class="margin-6">
-          <select class="form-select" id="priority">
-            <option selected>Priority to learn</option>
-            <option value="99">High</option>
-            <option value="50">Medium</option>
-            <option value="1">Low</option>
-          </select>
-        </div>
-
-        <textarea class="form-control margin-6" id="tags" placeholder="Tags" rows="1"></textarea>
-        <p id="tags_hint"></p>
-
-        <!--input class="form-control- form-range margin-6" id="priority" type="range" title="Queue to learn priority: from Low (on the left) to High (on the right)" value="50"-->
-
-        <div class="row" style="margin: 0; display: block; text-align: center;">
-          <button id="save" class="btn btn-primary margin-6 disabled" style="margin-bottom: 8px; margin-top-: 0;" type="button">Save</button>
-          <a href="#" id="clear" style="display: none;">Clear form</a>
-          <a href="#" id="close_collect_form-" data-bs-dismiss="modal">Close form</a>
-        </div>
-
+      <div class="dropdown" style="display-: contents; padding: 0 8px 0 8px; width-: calc(100% - 5px);">
+        <button id="choose_action" class="btn col-12 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 5px;">Save <img src="/images/arrow-down.png" style="width: 10px; margin-left: 3px;"></button>
+        <ul class="dropdown-menu" style="width: calc(100% - 8px);">
+          <li><a class="dropdown-item" href="#" id="grab_tab" data-bs-toggle="modal" data-bs-target="#exampleModal">Save active tab</a></li>
+          <li><a class="dropdown-item" href="#" id="save_all">Save all opened tabs & close them</a></li>
+          <li><a class="dropdown-item disabled" href="#">Save only selected tabs</a></li>
+          
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" id="open_collect_form" data-bs-toggle="modal" data-bs-target="#exampleModal">Open empty save form</a></li>
+        </ul>
       </div>
-      <!--div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div-->
-    </div>
-  </div>
-</div>
-          <div class="accordion" id="accordionPanelsStayOpenExample" style="margin-top: 8px; margin-left: 8px;">
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="margin: 3px;">
+          <div class="modal-content" style="height: calc(100vh - 6px); border-radius: 14px;">
+            <div class="modal-body custom-scroll" style="overflow-y: auto;">
 
-            <!--button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Call modal
-</button-->
-
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed-" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
-                  Queue to learn
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                <div class="accordion-body-">
-                  <div class="margin-8" style="margin-top: 0px; padding-right: 8px;">
-                    <div id="filter" class="input-group" role="group" aria-label="">
-                      <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search by anything">
-                      <input type="text" id="find_time" class="form-control" placeholder="Time limit">
-
-
-                      <div id="priority-vs-time" style="width: 100%;">
-                        <!--View by:&nbsp;&nbsp;-->
-                        <input type="radio" class="form-check-input" name="btnradio" id="priority-based" autocomplete="off" checked>
-                        <label class="form-check-label" for="priority-based" style="margin-right: 9px;">Priority</label>
-
-                        <input type="radio" class="form-check-input" name="btnradio" id="time-based" autocomplete="off" style="">
-                        <label class="form-check-label" for="time-based" style="margin-right: 9px;">Date-time</label>
-
-                        <input type="radio" class="form-check-input" name="btnradio" id="session-based" autocomplete="off" style="" disabled>
-                        <label class="form-check-label disabled" for="session-based">Session</label>
-                      </div>
-
-                      <!--div class="btn-group btn-group-sm" role="group" aria-label="Basic radio toggle button group" id="priority-vs-time">
-                        <input type="radio" class="btn-check" name="btnradio" id="priority-based" autocomplete="off" checked>
-                        <label class="btn btn-outline-primary" for="priority-based">Priority</label>
-
-                        <input type="radio" class="btn-check" name="btnradio" id="time-based" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="time-based">Date-time</label>
-                      </div-->
-                      
-                      <!--div class="btn-group btn-group-sm-" role="group" id="priority-vs-time" style="line-height: 36px; width-: 100%;">
-                        View by:&nbsp;&nbsp;&nbsp;
-                        <input type="radio" class="btn-check" name="btnradio" id="priority-based" autocomplete="off" checked>
-                        <label class="btn btn-light" for="priority-based">Priority</label>
-
-                        <input type="radio" class="btn-check" name="btnradio" id="time-based" autocomplete="off">
-                        <label class="btn btn-light" for="time-based">Date-time</label>
-                      </div-->
-                    </div>
+              <textarea class="form-control margin-6" id="link" placeholder="URL"></textarea>
+              <textarea class="form-control margin-6" id="title" placeholder="URL title"></textarea>
+              <textarea class="form-control margin-6" id="notes" placeholder="Notes" rows="1"></textarea>
+              <div class="margin-6">
+                  <div class="input-group" role="group" id="what_to_do_dropdown">
+                    <select class="form-select left-half-border-radius" id="what_to_do">
+                      <option selected>Type</option>
+                      <option value="read">Read 📖</option>
+                      <option value="watch">Watch 🎬</option>
+                      <option value="listen">Listen 🎧</option>
+                      <option value="course">Course ✏️</option>
+                      <!--option value="people">People 👤</option-->
+                      <option value="tool">Tool 🛠</option>
+                    </select>
+                    <textarea class="form-control right-half-border-radius" id="time" placeholder="Estimate time" rows="1"></textarea>
                   </div>
-                  <div id="links_area"></div>
-                </div>
               </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                  Knowledge Base
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                <div class="accordion-body-">
-                  <div id="kb_area"></div>
-                </div>
+
+              <div class="margin-6">
+                <select class="form-select" id="priority">
+                  <option selected>Priority to learn</option>
+                  <option value="99">High</option>
+                  <option value="50">Medium</option>
+                  <option value="1">Low</option>
+                </select>
               </div>
+
+              <textarea class="form-control margin-6" id="tags" placeholder="Tags" rows="1"></textarea>
+              <p id="tags_hint"></p>
+
+              <div class="row" style="margin: 0; display: block; text-align: center;">
+                <button id="save" class="btn btn-primary margin-6 disabled" style="margin-bottom: 8px; margin-top-: 0;" type="button">Save</button>
+                <a href="#" id="clear" style="display: none;">Clear form</a>
+                <a href="#" id="close_collect_form-" data-bs-dismiss="modal">Close form</a>
+              </div>
+
             </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                  Deleted
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                <div class="accordion-body-">
-                  ...
+          </div>
+        </div>
+      </div>
+
+      <div id="saved_list" style="display: none; padding-right: 8px;">
+        <div class="accordion" id="accordionExample" style="margin-top: 8px; margin-left: 8px;">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Queue to learn
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show custom-scroll" data-bs-parent="#accordionExample">
+              <div class="accordion-body-">
+                <div class="margin-8" style="margin-top: 0px;">
+                  <div id="filter" class="input-group" role="group" aria-label="">
+                    <input type="text" id="find_text" class="form-control col-sm-10" placeholder="Search by anything">
+                    <input type="text" id="find_time" class="form-control" placeholder="Time limit">
+
+
+                    <div id="priority-vs-time" style="width: 100%;">
+                      <!--View by:&nbsp;&nbsp;-->
+                      <input type="radio" class="form-check-input" name="btnradio" id="priority-based" autocomplete="off" checked>
+                      <label class="form-check-label" for="priority-based" style="margin-right: 9px;">Priority</label>
+
+                      <input type="radio" class="form-check-input" name="btnradio" id="time-based" autocomplete="off" style="">
+                      <label class="form-check-label" for="time-based" style="margin-right: 9px;">Date-time</label>
+
+                      <input type="radio" class="form-check-input" name="btnradio" id="session-based" autocomplete="off" style="" disabled>
+                      <label class="form-check-label disabled" for="session-based">Session</label>
+                    </div>
+
+                    <!--div class="btn-group btn-group-sm" role="group" aria-label="Basic radio toggle button group" id="priority-vs-time">
+                      <input type="radio" class="btn-check" name="btnradio" id="priority-based" autocomplete="off" checked>
+                      <label class="btn btn-outline-primary" for="priority-based">Priority</label>
+
+                      <input type="radio" class="btn-check" name="btnradio" id="time-based" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="time-based">Date-time</label>
+                    </div-->
+                    
+                    <!--div class="btn-group btn-group-sm-" role="group" id="priority-vs-time" style="line-height: 36px; width-: 100%;">
+                      View by:&nbsp;&nbsp;&nbsp;
+                      <input type="radio" class="btn-check" name="btnradio" id="priority-based" autocomplete="off" checked>
+                      <label class="btn btn-light" for="priority-based">Priority</label>
+
+                      <input type="radio" class="btn-check" name="btnradio" id="time-based" autocomplete="off">
+                      <label class="btn btn-light" for="time-based">Date-time</label>
+                    </div-->
+                  </div>
                 </div>
+                <div id="links_area"></div>
               </div>
             </div>
           </div>
-
-        
-
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Knowledge Base
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse custom-scroll" data-bs-parent="#accordionExample">
+              <div class="accordion-body-">
+                <div id="kb_area"></div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Deleted
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse custom-scroll" data-bs-parent="#accordionExample">
+              <div class="accordion-body-">
+                ...
+              </div>
+            </div>
+          </div>
+        </div>
         
         <!--p id="links_export" style="display: none;">💾 Export <span id="number_of_links"></span> displayed links as <a href="#" id="links_export_csv">CSV</a> | <a href="#" id="links_export_json">JSON</a><p-->
-        </div>
       </div>
     </div>
   </body>

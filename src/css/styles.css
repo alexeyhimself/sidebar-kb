@@ -34,7 +34,7 @@ body, textarea, button, label, input, select, p, a {
 
 #links_area, #kb_area {
   margin-top-: 12px;
-  padding: 12px 8px 8px 8px;
+  padding: 12px 0px 8px 8px;
   height-: calc(100vh - 164px);
   overflow-y: auto;
   overflow-x: hidden;
@@ -95,8 +95,7 @@ body {
   height: calc(100vh - 2px);
   border-radius: 15px;
   padding-top: 8px;
-  overflow-y: auto;
-  scrollbar-gutter: stable;
+  overflow-y: hidden;
 }
 
 .btn {
@@ -339,7 +338,7 @@ a {
 .accordion-collapse {
   margin-left-: 5px;
   margin-bottom-: 10px;
-  margin-top: 8px;
+  margin-top-: 8px;
 }
 
 .bulk_saved_group {
@@ -434,6 +433,7 @@ h5 {
 }
 #choose_action:not(.btn-primary) {
   background-color: #ebeff7;
+  border: 1px solid #dee2e6;
 }
 #switch_to_saved:not(.btn-success) {
   background-color: #ebeff7;
@@ -520,6 +520,27 @@ label {
 
 .margin-6 {
   margin-bottom: 12px;
+}
+
+.accordion-collapse {
+  overflow-y: auto; 
+  height: calc(100vh - 176px);
+}
+.modal-backdrop.show {
+  opacity: 0.38;
+  opacity-: 1;
+  background-: #f6f7f9;
+}
+
+#filter {
+  margin-top: 8px;
+}
+
+.badge.bg-warning {
+  background-: #faad14!important;
+  background-: #ffc53d!important;
+  background: #ffc069!important;
+  background-: #ffa940!important;
 }
 
 /*.dropdown:hover .dropdown-menu {
