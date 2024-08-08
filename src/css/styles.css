@@ -299,7 +299,7 @@ textarea {
 }
 
 #top-3-section {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   margin-top-: 3px;
 }
 
@@ -535,22 +535,27 @@ label {
 }
 
 p.bulk_saved_group_restore {
-  margin: 0 0 4.5px 0;
+  margin: 0 0 2px 0;
   text-align: right;
 }
 p.bulk_saved_group_restore a {
   background: #ebeff7;
   padding: 5px 8px;
   border-radius: 8px 8px 0 0;
-  display-: block;
+  display: block;
 }
 .bulk_saved_group {
   background: #ebeff7;
   padding: 0;
-  border-radius: 8px 0 8px 8px;
+  border-radius: 0px 0 8px 8px;
   margin-bottom: 8px;
 }
 
+.edit_in_queue i {
+  font-size: 14px;
+}
+.edit_in_queue {
+}
 
 /*.dropdown:hover .dropdown-menu {
     display: block;

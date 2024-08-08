@@ -29,7 +29,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     
-    <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="src/css/styles.css">
   </head>
   <body>
@@ -84,8 +84,23 @@
               <p id="tags_hint"></p>
 
               <div class="row" style="margin: 0; display: block; text-align: center;">
-                <button id="save" class="btn btn-primary margin-6 disabled" style="margin-bottom: 8px; margin-top-: 0;" type="button" data-bs-dismiss="modal">Save</button>
-                <!--a href="#" id="clear" style="display: none;">Clear form</a-->
+                <button id="save" class="btn btn-primary margin-6 disabled" style="margin-bottom: 8px;" type="button" data-bs-dismiss="modal">Save</button>
+
+                <button id="move_to_kb" style="display: none;" class="btn btn-light margin-6 move_to_kb" style="margin-bottom: 8px;" type="button" data-bs-dismiss="modal">Move to Knowledge Base</button>
+
+                <button id="delete_from_queue" style="display: none;" data-reason="neutral" class="btn btn-light margin-6 delete_from_queue" style="margin-bottom: 8px;" type="button" data-bs-dismiss="modal">Delete</button>
+
+                
+                <!--div class="dropdown" style="padding: 0;">
+                  <button id="choose_edit_action" class="btn btn-warning col-12 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 5px;">Action <img src="/images/arrow-down.png" style="width: 10px; margin-left: 3px;"></button>
+                  <ul class="dropdown-menu" style="width: calc(100%);">
+                    <li><a class="dropdown-item" href="#" id="grab_tab" data-bs-toggle="modal" data-bs-target="#exampleModal">Update in ...</a></li>
+                    <li><a class="dropdown-item" href="#" id="save_all">Move to Knowledge Base</a></li>
+                    <!-li><hr class="dropdown-divider"></li->
+                    <li><a class="dropdown-item" href="#">Delete</a></li>
+                  </ul>
+                </div-->
+
                 <a href="#" id="close_collect_form" data-bs-dismiss="modal">Cancel</a>
               </div>
 
@@ -112,11 +127,12 @@
 
                     <div id="priority-vs-time" style="width: 100%;">
                       View by:&nbsp;&nbsp;&nbsp;&nbsp;
-                      <input type="radio" class="form-check-input" name="btnradio" id="time-based" autocomplete="off" checked>
-                      <label class="form-check-label" for="time-based" style="margin-right: 9px;">Date</label>
 
-                      <input type="radio" class="form-check-input" name="btnradio" id="priority-based" autocomplete="off">
+                      <input type="radio" class="form-check-input" name="btnradio" id="priority-based" autocomplete="off" checked>
                       <label class="form-check-label" for="priority-based" style="margin-right: 9px;">Priority</label>
+
+                      <input type="radio" class="form-check-input" name="btnradio" id="time-based" autocomplete="off">
+                      <label class="form-check-label" for="time-based" style="margin-right: 9px;">Date</label>
 
                       <input type="radio" class="form-check-input" name="btnradio" id="session-based" autocomplete="off" style="" disabled>
                       <label class="form-check-label disabled" for="session-based">Session</label>

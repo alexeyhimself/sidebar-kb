@@ -28,6 +28,14 @@ function fix_data() {
       link = add_time_in_minutes(link);
     if (link.priority)
       link["priority"] = parseInt(link.priority);
+    if (![99, 50, 1, undefined].includes(link.priority)) {
+      if (link.priority <= 33)
+        link["priority"] = 1;
+      else if (link.priority <= 66)
+        link["priority"] = 50;
+      else if (link.priority <= 100)
+        link["priority"] = 99;
+    }
     if (link.what_to_do == "undefined")
       link["what_to_do"] = undefined;
 

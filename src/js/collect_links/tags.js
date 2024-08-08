@@ -56,7 +56,7 @@ function compose_tags(words_on_page) {
       return [];
 
     const most_recent_tags = tags.most_recent.reverse();
-    return most_recent_tags.slice(0, 30);
+    return most_recent_tags.slice(0, 10);
   }
 
   setTimeout(() => {

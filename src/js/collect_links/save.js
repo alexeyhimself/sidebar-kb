@@ -39,7 +39,7 @@ function reset_form_state() {
   enable_tags_hint_on_any_value_only();
 
   document.getElementById("save").innerText = "Save";
-  document.getElementById("save").classList.remove("btn-warning");
+  document.getElementById("save").classList.remove("btn-success");
   delete document.getElementById("save").dataset.source;
 }
 
@@ -78,7 +78,6 @@ async function save_link() {
   //  close_active_tab(link.link);
 
   close_collect_form();
-  console.log(4)
   what_to_do_on_filter_change();
 }
 

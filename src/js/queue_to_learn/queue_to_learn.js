@@ -42,8 +42,6 @@ function draw_links_in_queue_tab(grouped_links, no_links_callback) {
 
     //display_links_export(grouped_links.total);
 
-    enable_move_to_kb_listeners();
-    enable_delete_from_queue_listeners();
     enable_edit_in_queue_listeners();
   } catch (error) {
     console.error(error);
@@ -91,8 +89,6 @@ function draw_time_based_links(links, no_links_callback) {
 
     //display_links_export(links.total);
 
-    enable_move_to_kb_listeners();
-    enable_delete_from_queue_listeners();
     enable_edit_in_queue_listeners();
     enable_restore_tabs_listeners();
 
@@ -135,7 +131,7 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   }
 
   const hostname = get_hostname(item.link);
-  links_html += ` <span class="hostname">${hostname}</span> <a href="${item.link}" target="_blank">${item.title.trim()}</a> | <a href="#" data-url="${item.link}" class="edit_in_queue">Edit...</a>`;
+  links_html += ` <span class="hostname">${hostname}</span> <a href="${item.link}" target="_blank">${item.title.trim()}</a>&nbsp;| <a href="#" data-url="${item.link}" class="edit_in_queue"><i class="bi bi-pencil-square"></i>&nbsp;Edit...</a>`;
   /*
   links_html += `<a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne"><img src="images/arrow-down.png" style="width: 10px; margin-left: 7px;"></a>`;
 
@@ -170,12 +166,12 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
 function draw_existing_grouped_links(grouped_links) {
   let links_html = '';
   let i = 1;
-  const what_to_do_map = {"read": "📖", "watch": "🎬", "listen": "🎧"};
+  const what_to_do_map = {"read-": "📖", "read": '<i class="bi bi-book"></i> ', "watch": "🎬", "listen": "🎧"};
   //const what_to_do_map = {"read": '<i class="bi bi-book-half"></i>', "watch": '<i class="bi bi-youtube"></i>', "listen": '<i class="bi bi-earbuds"></i>'};
 
   ["read", "watch", "listen", "others"].forEach((what_to_do) => {
     if (what_to_do == "others" && grouped_links[what_to_do].length > 0 && (grouped_links["read"].length > 0 || grouped_links["watch"].length > 0 || grouped_links["listen"].length > 0))
-      links_html += `<p><b>Everything else matching filter (${grouped_links[what_to_do].length} items), ordered by descending priority:</b></p>`;
+      links_html += `<p style="margin-top: 0px; font-size: 17px;">Everything else matching filter ordered by descending priority (${grouped_links[what_to_do].length} items):</p>`;
     else if (what_to_do != "others" && grouped_links[what_to_do].length > 0) {
       if (i == 1)
         links_html += `<div id="top-3-section"><p style="margin-top: 0px; font-size: 17px;">`;
@@ -368,6 +364,8 @@ function what_to_do_on_filter_change(event) {
     draw_time_based_links(filtered_links, draw_no_links_found_placeholder);
   }
   adjust_scroll_margin();
+  draw_links_in_kb_tab();
+  //draw_links_in_deleted_tab();
 }
 
 function delete_link_from_queue(url) {
@@ -394,11 +392,13 @@ function get_link_from_queue(url) {
 function enable_move_to_kb_listeners() {
   document.querySelectorAll(".move_to_kb").forEach((element) => {
     element.addEventListener('click', function (event) {
-      const url = event.target.getAttribute("data-url");
+      const url = document.getElementById("link").value;
       const link = get_link_from_queue(url);
       save_link_to(link, "kb");
       delete_link_from_queue(url);
       what_to_do_on_filter_change();
+
+      console.warn("update KB!");
     });
   });
 }
@@ -406,7 +406,7 @@ function enable_move_to_kb_listeners() {
 function enable_delete_from_queue_listeners() {
   document.querySelectorAll(".delete_from_queue").forEach((element) => {
     element.addEventListener('click', async function (event) {
-      const url = event.target.getAttribute("data-url");
+      const url = document.getElementById("link").value;
       const reason = event.target.getAttribute("data-reason");
       const link = get_link_from_queue(url);
       link["reason"] = reason;
@@ -469,4 +469,7 @@ function enable_manage_links() {
   enable_textarea_listener("find_text", what_to_do_on_filter_change);
   enable_textarea_listener("find_time", what_to_do_on_filter_change);
   document.getElementById("saved_list").style.display = 'block';
+
+  enable_move_to_kb_listeners();
+  enable_delete_from_queue_listeners();
 }

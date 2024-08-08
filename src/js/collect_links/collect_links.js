@@ -184,19 +184,19 @@ function fill_the_collect_links_form_with_existing_data(existing_link) {
   });
 }
 
-const sources_map = {"links": "queue", "kb": "knowledge base", "deleted": "deleted"};
+const sources_map = {"links": "Queue", "kb": "Knowledge Base", "deleted": "Deleted"};
 
 function adjust_if_link_already_exists(link) {
   const existing_link = link_already_exists(link);
   if (existing_link) {
     fill_the_collect_links_form_with_existing_data(existing_link);
     document.getElementById("save").innerText = `Update in ${sources_map[existing_link.source]}`;
-    document.getElementById("save").classList.add("btn-warning");
+    document.getElementById("save").classList.add("btn-success");
     document.getElementById("save").dataset.source = existing_link.source;
   }
   else {
     document.getElementById("save").innerText = "Save";
-    document.getElementById("save").classList.remove("btn-warning");
+    document.getElementById("save").classList.remove("btn-success");
   }
 }
 
