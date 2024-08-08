@@ -134,7 +134,8 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   }
 
   const hostname = get_hostname(item.link);
-  links_html += ` <span class="hostname">${hostname}</span> <a href="${item.link}" target="_blank">${item.title.trim()}</a>`;
+  links_html += ` <span class="hostname">${hostname}</span> <a href="${item.link}" target="_blank">${item.title.trim()}</a> | <a href="#" data-url="${item.link}" class="edit_in_queue">Edit...</a>`;
+  /*
   links_html += `<a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne"><img src="images/arrow-down.png" style="width: 10px; margin-left: 7px;"></a>`;
 
   links_html += `<div id="collapse-${item.date_created}-${j}" class="accordion-collapse collapse" data-bs-parent="#accordionExample"><div class="accordion-body">`;
@@ -150,6 +151,7 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   links_html += `<li><span class="badge bg-secondary">negative</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="dontlike">Avoid such stuff. Don't want to waste time on such stuff</a></li>`;
   links_html += `<li><span class="badge bg-secondary">trash</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="mistake" style="margin-bottom: 8px;">Do not save such links: they're not for learning</a></li>`;
   links_html += '</ul>';
+
   //https://calendar.google.com/calendar/render?action=TEMPLATE&text=Example+Google+Calendar+Event&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=20201231T160000/20201231T170000&recur=RRULE:FREQ%3DWEEKLY
   // from: https://support.google.com/calendar/thread/81344786/how-do-i-generate-add-to-calendar-link-from-our-own-website?hl=en
 
@@ -159,7 +161,8 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
     links_html += `<b>Notes:</b> ${item.notes}<br>`;
   
   links_html += `</div></div></div>`;
-
+  */
+  links_html += '</div>';
   return links_html;
 }
 
@@ -421,8 +424,8 @@ function enable_edit_in_queue_listeners() {
   document.querySelectorAll(".edit_in_queue").forEach((element) => {
     element.addEventListener('click', function (event) {
       const url = event.target.getAttribute("data-url");
-      let a = document.getElementById("save-tab");
-      bootstrap.Tab.getInstance(a).show();
+      //let a = document.getElementById("save-tab");
+      //bootstrap.Tab.getInstance(a).show();
       open_collect_form();
       const save_element = document.getElementById("save");
       save_element.classList.remove("context_menu_call");  // clean if left from unsaved tab

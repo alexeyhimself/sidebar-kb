@@ -29,6 +29,8 @@ function switch_to_save_form() {
 
 function open_collect_form() {
   //switch_to_save_form();
+  var myModal = new bootstrap.Modal(document.getElementById("exampleModal"), {});
+  myModal.show();
   reset_form_state();
   //document.getElementById("welcome").style.display = 'none';
   //document.getElementById("form").style.display = 'block';
