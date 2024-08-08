@@ -1,21 +1,22 @@
 const collect_links_textareas_ids = ["link", "title", "notes", "time", "tags"];
 const all_input_elements_ids = collect_links_textareas_ids.concat(["priority", "what_to_do"]);
 
+/*
 function show_collect_welcome() {
   document.getElementById("form").style.display = 'none';
   document.getElementById("welcome").style.display = 'block';
 }
+*/
 function close_collect_form() {
-  show_collect_welcome();
+  //show_collect_welcome();
   const save_element = document.getElementById("save");
   let callback = save_element.dataset.callback;
   if (callback == "queue") {
-    let a = document.getElementById("find-tab");
-    bootstrap.Tab.getInstance(a).show();
     what_to_do_on_filter_change();
     delete save_element.dataset.callback;
   }
   save_element.classList.remove("context_menu_call");
+  document.querySelectorAll('.modal-backdrop')[0].remove(); // bug https://github.com/twbs/bootstrap/issues/16320
 }
 
 /*

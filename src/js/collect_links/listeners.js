@@ -160,7 +160,7 @@ function enable_collect_links_listeners() {
     "save": save_link,
     "clear": reset_form_state,
     "open_collect_form": open_collect_form,
-    //"close_collect_form": close_collect_form,
+    "close_collect_form": close_collect_form,
     "save_all": save_all_tabs_in_window,
   });
   enable_range_listener("priority");
