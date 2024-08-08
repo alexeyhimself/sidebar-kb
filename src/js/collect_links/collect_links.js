@@ -130,7 +130,7 @@ async function save_all_tabs_in_window() {
       chrome.tabs.remove(tab.id, function() {});  // close all (even empty) but not pinned and grouped
     }
     save_and_close(tab);
-    await sleep(500);
+    await sleep(420);
   }
 }
 
