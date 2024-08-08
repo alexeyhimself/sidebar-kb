@@ -47,6 +47,7 @@ function save_link_into_storage(link) {
   save_link_to_local_storage(link);
   update_tags_in_local_storage(link.tags);
   update_stats_of_what_to_do_for_links(link);
+  what_to_do_on_filter_change();
 }
 
 async function close_active_tab(url) {
@@ -68,15 +69,17 @@ async function save_link() {
     // if same link then close tab
     const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
     chrome.tabs.remove(tab.id, function() { });
-    window.close(); // really? why is this?
+    //window.close(); // really? why is this?
   }
   if (save_element.classList.contains("auto_fill"))
     save_element.classList.remove("auto_fill");
 
-  if (save_element.dataset.callback == "queue")
-    close_active_tab(link.link);
+  //if (save_element.dataset.callback == "queue")
+  //  close_active_tab(link.link);
 
   close_collect_form();
+  console.log(4)
+  what_to_do_on_filter_change();
 }
 
 function save_link_to(link, where) {
