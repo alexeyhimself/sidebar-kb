@@ -44,6 +44,7 @@ function open_collect_form() {
 function bring_form_to_idle_state() {
   document.getElementById("save").classList.add("disabled");
   //document.getElementById("priority").style.setProperty('--sliderColor', "#6ba2ff");
+  document.getElementById("priority").style.color = "gray";
   document.getElementById("what_to_do").style.color = "gray";
   //document.getElementById("clear").style.display = "none";
   //document.querySelectorAll(".priority_placeholder").forEach((element) => {
@@ -53,7 +54,8 @@ function bring_form_to_idle_state() {
 function bring_form_to_active_state() {
   document.getElementById("save").classList.remove("disabled");
   //document.getElementById("priority").style.setProperty('--sliderColor', "#0075ff");
-  document.getElementById("what_to_do").style.color = "black";
+  document.getElementById("priority").style.color = "unset";
+  document.getElementById("what_to_do").style.color = "unset";
   //document.getElementById("clear").style.display = "";
   //document.querySelectorAll(".priority_placeholder").forEach((element) => {
   //  element.style.top = "-120px";
@@ -182,13 +184,13 @@ function fill_the_collect_links_form_with_existing_data(existing_link) {
   });
 }
 
-const sources_map = {"links": "Queue", "kb": "Knowledge Base", "deleted": "Deleted"};
+const sources_map = {"links": "queue", "kb": "knowledge base", "deleted": "deleted"};
 
 function adjust_if_link_already_exists(link) {
   const existing_link = link_already_exists(link);
   if (existing_link) {
     fill_the_collect_links_form_with_existing_data(existing_link);
-    document.getElementById("save").innerText = `Update existing item in a ${sources_map[existing_link.source]}`;
+    document.getElementById("save").innerText = `Update in ${sources_map[existing_link.source]}`;
     document.getElementById("save").classList.add("btn-warning");
     document.getElementById("save").dataset.source = existing_link.source;
   }
