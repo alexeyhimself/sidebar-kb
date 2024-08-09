@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "My Knowledge Base",
+  "name": "Knowledge Base",
   "version": "1.0",
-  "description": "Shows how to call sidePanel.open() to open a global side panel.",
+  "description": "Streamline learning using Google Chrome side panel with Gemini Nano AI under the hood!",
   "minimum_chrome_version": "116",
   "background": {
     "service_worker": "service-worker.js"

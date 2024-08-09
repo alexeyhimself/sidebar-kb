@@ -25,6 +25,7 @@ chrome.runtime.onInstalled.addListener(() => {
   });
   chrome.tabs.create({ url: 'page.html' });
 });
+
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === 'openSidePanel_already_opened_tab') {
     // This will open the panel in all the pages on the current window.
