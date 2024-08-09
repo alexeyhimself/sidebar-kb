@@ -131,7 +131,7 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   }
 
   const hostname = get_hostname(item.link);
-  links_html += ` <span class="hostname">${hostname}</span> <a href="${item.link}" target="_blank">${item.title.trim()}</a>&nbsp;| <a href="#" data-url="${item.link}" class="edit_in_queue"><i class="bi bi-pencil-square"></i>&nbsp;Edit...</a>`;
+  links_html += ` <span class="hostname">${hostname}</span> <a href="${item.link}" target="_blank">${item.title.trim()}</a>&nbsp;&nbsp;| <a href="#" data-url="${item.link}" class="edit_in_queue"><i class="bi bi-pencil"></i>&nbsp;Edit...</a>`;
   /*
   links_html += `<a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne"><img src="images/arrow-down.png" style="width: 10px; margin-left: 7px;"></a>`;
 
@@ -166,12 +166,12 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
 function draw_existing_grouped_links(grouped_links) {
   let links_html = '';
   let i = 1;
-  const what_to_do_map = {"read": "📖", "read-": '<i class="bi bi-book"></i> ', "watch": "🎬", "listen": "🎧"};
+  const what_to_do_map = {"read-": "📖", "read": '<i class="bi bi-book"></i> ', "watch-": "🎬", "watch": '<i class="bi bi-laptop"></i> ', "listen-": "🎧", "listen": '<i class="bi bi-earbuds"></i> '};
   //const what_to_do_map = {"read": '<i class="bi bi-book-half"></i>', "watch": '<i class="bi bi-youtube"></i>', "listen": '<i class="bi bi-earbuds"></i>'};
 
   ["read", "watch", "listen", "others"].forEach((what_to_do) => {
     if (what_to_do == "others" && grouped_links[what_to_do].length > 0 && (grouped_links["read"].length > 0 || grouped_links["watch"].length > 0 || grouped_links["listen"].length > 0))
-      links_html += `<p style="margin-top: 0px; font-size: 17px;">Everything else matching filter ordered by descending priority (${grouped_links[what_to_do].length} items):</p>`;
+      links_html += `<p style="margin-top: 0px; font-size: 17px;">Everything else matching filter, ordered by descending priority (${grouped_links[what_to_do].length} links):</p>`;
     else if (what_to_do != "others" && grouped_links[what_to_do].length > 0) {
       if (i == 1)
         links_html += `<div id="top-3-section"><p style="margin-top: 0px; font-size: 17px;">`;
@@ -180,7 +180,8 @@ function draw_existing_grouped_links(grouped_links) {
       if (what_to_do in what_to_do_map)
         links_html += `${what_to_do_map[what_to_do]} `;
       
-      links_html += `${grouped_links[what_to_do].length} top priority to ${what_to_do}</p>`;
+      //links_html += `${grouped_links[what_to_do].length} top priority to ${what_to_do}</p>`;
+      links_html += ` Top priority to ${what_to_do}</p>`;
     }
 
     for (let j = 0; j < grouped_links[what_to_do].length; j++) {

@@ -553,7 +553,8 @@ p.bulk_saved_group_restore a {
 }
 
 .edit_in_queue i {
-  font-size: 14px;
+  font-size: 13px;
+  padding-left: 2px;
 }
 .edit_in_queue {
 }
