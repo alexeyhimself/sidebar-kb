@@ -512,7 +512,7 @@ label {
 
 .accordion-collapse {
   overflow-y: auto; 
-  height: calc(100vh - 176px);
+  height: calc(100vh - 139px);
   scrollbar-gutter: stable;
 }
 .modal-backdrop.show {
