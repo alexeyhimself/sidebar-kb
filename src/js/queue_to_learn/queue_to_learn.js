@@ -397,8 +397,6 @@ function enable_move_to_kb_listeners() {
       save_link_to(link, "kb");
       delete_link_from_queue(url);
       what_to_do_on_filter_change();
-
-      console.warn("update KB!");
     });
   });
 }

@@ -97,6 +97,7 @@ function enable_side_panel_grab_tab_click_listener() {
   var element = document.getElementById("grab_tab");
   element.addEventListener('click', async function (event) {
     const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+    open_collect_form();
     fill_and_adjust(tab);
     //document.getElementById("choose_action").innerHTML = "Save currently opened tab";
   });
@@ -107,6 +108,7 @@ function enable_side_panel_dblclick_listener() {
   element.addEventListener('dblclick', async function (event) {
     // document.getElementById("save").classList.add("context_menu_call");
     const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+    open_collect_form();
     fill_and_adjust(tab);
   });
 }
@@ -119,6 +121,7 @@ function enable_chrome_runtime_listeners() {
         document.getElementById("save").classList.add("context_menu_call");  // this is made to close tab on save
         const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
         setTimeout(() => {
+          open_collect_form();
           fill_and_adjust(tab);
         }, 2000);  // if page is loaded longer than 2s then will not work out. Need to use messaging on document ready
       }
@@ -126,6 +129,7 @@ function enable_chrome_runtime_listeners() {
         // document.getElementById("save").classList.add("context_menu_call");  // this is made to close tab on save
         const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
         setTimeout(() => {
+          open_collect_form();
           fill_and_adjust(tab);
         }, 0);  // if page is loaded longer than 2s then will not work out. Need to use messaging on document ready
       }

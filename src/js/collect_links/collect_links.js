@@ -84,6 +84,8 @@ function clear_save_link_form() {
     document.getElementById(id).value = "";
     adjust_textarea_size(document.getElementById(id));
   });
+  document.getElementById("what_to_do").value = "";
+  document.getElementById("priority").value = "";
 }
 
 /*
