@@ -139,12 +139,14 @@ async function save_selected_tabs(tabs) {
 async function save_all_selected_tabs_in_window() {
   const tabs = await chrome.tabs.query({currentWindow: true, groupId: -1, pinned: false, highlighted: true});  // do not touch pinned and grouped tabs
   await save_selected_tabs(tabs);
+  show_toast("Selected tabs have been saved to Queue");
 }
 
 async function save_all_tabs_in_window() {
   const tabs = await chrome.tabs.query({currentWindow: true, groupId: -1, pinned: false});  // do not touch pinned and grouped tabs
   chrome.tabs.create({});  // create an empty tab that will stay at the end. It has to go first in order to keep the browser opened if no tabs will remain
   await save_selected_tabs(tabs);
+  show_toast("All tabs have been saved to Queue");
 }
 
 function hide_fields_if_necessary(element) {
@@ -237,8 +239,4 @@ function enable_collect_links() {
   //draw_links_stats_chart_under_priority_bar("chart_what_to_do");
   fill_stats_of_what_to_do_for_links();
   //count_tabs_in_a_window();
-
-  var myAlert = document.getElementById('toast');//select id of toast
-  var bsAlert = new bootstrap.Toast(myAlert);//inizialize it
-  bsAlert.show();//show it
 }

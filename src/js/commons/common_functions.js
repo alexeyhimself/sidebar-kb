@@ -70,3 +70,8 @@ function adjust_textarea_size(element) {  // https://stackoverflow.com/questions
   element.style.height = "0px";
   element.style.height = (element.scrollHeight) + "px";
 }
+
+function show_toast(text) {
+  document.getElementById("toast-body").innerText = text;
+  toast.show();
+}

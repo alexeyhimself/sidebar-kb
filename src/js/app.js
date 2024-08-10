@@ -57,8 +57,13 @@ function fix_data() {
   localStorage.setItem("links", JSON.stringify(new_unique_links.reverse()));  // REVERSE BACK
 }
 
+var toast;
+
 window.onload = function() {
   fix_data();
+
+  const myAlert = document.getElementById('toast');
+  toast = new bootstrap.Toast(myAlert);
 
   enable_collect_links();
   enable_manage_links();

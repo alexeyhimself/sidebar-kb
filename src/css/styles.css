@@ -569,6 +569,10 @@ p.bulk_saved_group_restore a {
   padding-right: 3px;
 }
 
+.btn-light-custom {
+  background: #ebeff7;
+}
+
 #toast {
   position: absolute;
   z-index: 100;
@@ -590,9 +594,7 @@ p.bulk_saved_group_restore a {
   opacity: unset;
 }
 
-.btn-light-custom {
-  background: #ebeff7;
-}
+
 
 /*.dropdown:hover .dropdown-menu {
     display: block;
