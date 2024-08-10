@@ -131,7 +131,7 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   }
 
   const hostname = get_hostname(item.link);
-  links_html += ` <span class="hostname">${hostname}</span> <a href="${item.link}" target="_blank">${item.title.trim()}</a>&nbsp;&nbsp;| <a href="#" data-url="${item.link}" class="edit_in_queue"><i class="bi bi-pencil"></i>&nbsp;Edit...</a>`;
+  links_html += ` <span class="hostname">${hostname}</span> <a href="${item.link}" target="_blank">${item.title.trim()}</a>&nbsp;&nbsp;| <a href="#" data-url="${item.link}" class="edit_in_queue"><!--i class="bi bi-pencil"></i--><img src="/images/pencil.svg" style="height: 16px; padding-right: 0px; padding-bottom: 2px;">&nbsp;Edit...</a>`;
   /*
   links_html += `<a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne"><img src="images/arrow-down.png" style="width: 10px; margin-left: 7px;"></a>`;
 
@@ -166,7 +166,7 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
 function draw_existing_grouped_links(grouped_links) {
   let links_html = '';
   let i = 1;
-  const what_to_do_map = {"read-": "📖", "read": '<i class="bi bi-book"></i> ', "watch-": "🎬", "watch--": '<i class="bi bi-laptop"></i> ', "watch": '<img src="/images/camera-play.svg" style="height: 22px; padding-right: 3px; padding-bottom: 2px;"> ', "listen": '<img src="/images/headphones.svg" style="height: 22px; padding-bottom: 3px;"> ', "listen-": "🎧", "listen--": '<i class="bi bi-earbuds"></i> '};
+  const what_to_do_map = {"read-": "📖", "read--": '<i class="bi bi-book"></i> ', "read": '<img src="/images/book.svg" style="height: 21px; padding-right: 3px; padding-bottom: 2px;"> ', "watch-": "🎬", "watch--": '<i class="bi bi-laptop"></i> ', "watch": '<img src="/images/camera-play.svg" style="height: 22px; padding-right: 3px; padding-bottom: 2px;"> ', "listen": '<img src="/images/headphones.svg" style="height: 22px; padding-bottom: 3px;"> ', "listen-": "🎧", "listen--": '<i class="bi bi-earbuds"></i> '};
   //const what_to_do_map = {"read": '<i class="bi bi-book-half"></i>', "watch": '<i class="bi bi-youtube"></i>', "listen": '<i class="bi bi-earbuds"></i>'};
 
   ["read", "watch", "listen", "others"].forEach((what_to_do) => {
