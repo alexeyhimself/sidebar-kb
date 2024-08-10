@@ -559,6 +559,11 @@ p.bulk_saved_group_restore a {
 .edit_in_queue {
 }
 
+.types-icons {
+  height: 20px;
+  padding-right: 3px;
+}
+
 /*.dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 40px; /* remove the gap so it doesn't close */
