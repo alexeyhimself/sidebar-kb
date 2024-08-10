@@ -167,6 +167,7 @@ function enable_collect_links_listeners() {
     "open_empty_collect_form": open_empty_collect_form,
     "close_collect_form": close_collect_form,
     "save_all": save_all_tabs_in_window,
+    "save_all_selected": save_all_selected_tabs_in_window,
   });
   enable_range_listener("priority");
   enable_selector_listener("what_to_do");

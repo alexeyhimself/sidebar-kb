@@ -114,15 +114,13 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function save_all_tabs_in_window() {
-  const tabs = await chrome.tabs.query({currentWindow: true, groupId: -1, pinned: false});  // do not touch pinned and grouped tabs
-  chrome.tabs.create({});  // create an empty tab that will stay at the end. It has to go first in order to keep the browser opened if no tabs will remain
+async function save_selected_tabs(tabs) {
   document.getElementById('time-based').checked = true; // show how saved on time-based
   const saved_tabs_group_id = Date.now();  // to find this collapse transaction in future
   for (let i = 0; i < tabs.length; i++) {
     const tab = tabs[i];
     const hostname = get_hostname(tab.url);
-  
+
     if (tab.url) {  // do not save empty tabs
       let link = {"group_id": saved_tabs_group_id, "what_to_do": undefined, "feature": "save_all_tabs_in_window"};
       link.link = tab.url.trim().replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
@@ -136,6 +134,17 @@ async function save_all_tabs_in_window() {
 
     await sleep(420);
   }
+}
+
+async function save_all_selected_tabs_in_window() {
+  const tabs = await chrome.tabs.query({currentWindow: true, groupId: -1, pinned: false, highlighted: true});  // do not touch pinned and grouped tabs
+  await save_selected_tabs(tabs);
+}
+
+async function save_all_tabs_in_window() {
+  const tabs = await chrome.tabs.query({currentWindow: true, groupId: -1, pinned: false});  // do not touch pinned and grouped tabs
+  chrome.tabs.create({});  // create an empty tab that will stay at the end. It has to go first in order to keep the browser opened if no tabs will remain
+  await save_selected_tabs(tabs);
 }
 
 function hide_fields_if_necessary(element) {
