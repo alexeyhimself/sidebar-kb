@@ -420,11 +420,16 @@ h5 {
   background-color: #146c43;
   color: white;
 }
-#choose_action:not(.btn-primary):hover, #choose_action:hover, #choose_action:not(.btn-primary):focus, #choose_action:focus {
+.choose_action_button {
+  color: unset;
+  padding: 3px;
+}
+.choose_action_button:not(.btn-primary):hover, .choose_action_button:hover, .choose_action_button:not(.btn-primary):focus, .choose_action_button:focus {
   background-color: #0a58ca;
+  border: 1px solid #0a58ca;
   color: white;
 }
-#choose_action:not(.btn-primary) {
+.choose_action_button:not(.btn-primary) {
   background-color: #ebeff7;
   border: 1px solid #dee2e6;
 }
@@ -478,10 +483,10 @@ label {
   display: none;
 }
 
-#choose_action:hover img, #choose_action:focus img {
+.choose_action_button:hover img, .choose_action_button:focus img {
   filter: invert(1);
 }
-#choose_action.btn-primary img {
+.choose_action_button.btn-primary img {
   filter: invert(1);
 }
 
