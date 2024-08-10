@@ -56,8 +56,14 @@ function parse_time(time) {
 
 function get_hostname(link) {  // https://stackoverflow.com/questions/8498592/extract-hostname-name-from-string
   //console.log(link);
-  const { hostname } = new URL(link);
-  return hostname.replace(/^www\./g, '');  // remove starting "www."
+  try {
+    const { hostname } = new URL(link);
+    return hostname.replace(/^www\./g, '');  // remove starting "www."  
+  }
+  catch {
+    return undefined;
+  }
+  
 }
 
 function adjust_textarea_size(element) {  // https://stackoverflow.com/questions/995168/textarea-to-resize-based-on-content-length

@@ -121,18 +121,19 @@ async function save_all_tabs_in_window() {
   const saved_tabs_group_id = Date.now();  // to find this collapse transaction in future
   for (let i = 0; i < tabs.length; i++) {
     const tab = tabs[i];
-    function save_and_close(tab) {
-      if (tab.url) {  // do not save empty tabs
-        let link = {"group_id": saved_tabs_group_id, "what_to_do": undefined, "feature": "save_all_tabs_in_window"};
-        link.link = tab.url.trim().replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
-        link.title = tab.title.trim().replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
-        link.date_created = Date.now();
+    const hostname = get_hostname(tab.url);
+  
+    if (tab.url) {  // do not save empty tabs
+      let link = {"group_id": saved_tabs_group_id, "what_to_do": undefined, "feature": "save_all_tabs_in_window"};
+      link.link = tab.url.trim().replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
+      link.title = tab.title.trim().replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
+      link.date_created = Date.now();
 
-        save_link_into_storage(link);
-      }
-      chrome.tabs.remove(tab.id, function() {});  // close all (even empty) but not pinned and grouped
+      save_link_into_storage(link);
     }
-    save_and_close(tab);
+    if (!["meet.google.com"].includes(hostname))
+      chrome.tabs.remove(tab.id, function() {});  // close all (even empty) but not pinned and grouped
+
     await sleep(420);
   }
 }
