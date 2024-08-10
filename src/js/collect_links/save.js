@@ -88,6 +88,22 @@ function save_link_to(link, where) {
   localStorage.setItem(where, JSON.stringify(links));
 }
 
+function update_link_in_storage(link) {
+  let source = link.source || "links";
+
+  let links = load_links_from(source);
+  for (let i = 0; i < links.length; i++) {
+    if (links[i].link == link.link) {
+      link.date_updated = Date.now();
+      links.splice(i, 1);
+      break;
+    }
+  }
+
+  links.push(link);
+  localStorage.setItem(source, JSON.stringify(links));
+}
+
 function save_link_to_local_storage(link) {
   let source = link.source || "links";
 

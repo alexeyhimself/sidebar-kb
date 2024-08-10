@@ -51,9 +51,16 @@ function draw_links_in_queue_tab(grouped_links, no_links_callback) {
   }
 }
 
+async function visualize_ungroup(link) {
+  delete link.group_id;
+  update_link_in_storage(link);
+  what_to_do_on_filter_change();
+  await sleep(420);
+}
+
 function enable_restore_tabs_listeners() {
   document.querySelectorAll('.bulk_saved_group_restore_link').forEach((element) => {
-    element.addEventListener('click', function (event) {
+    element.addEventListener('click', async function (event) {
       group_id = event.target.dataset.groupId;
 
       const all_existing_links = load_links_from_local_storage();
@@ -63,6 +70,7 @@ function enable_restore_tabs_listeners() {
         if (link.group_id == group_id) {
           //console.log(link.title);
           chrome.tabs.create({ url: link.link });
+          await visualize_ungroup(link);
           group_id_found = true;
         }
         else if (group_id_found)
