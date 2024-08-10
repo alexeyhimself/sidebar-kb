@@ -117,9 +117,9 @@ function enable_chrome_runtime_listeners() {
   chrome.runtime.onMessage.addListener((message, sender) => {
     // The callback for runtime.onMessage must return falsy if we're not sending a response
     (async () => {
-      if (message.type == 'context_menu_call') {
-        document.getElementById("save").classList.add("context_menu_call");  // this is made to close tab on save
+      if (message.type == 'context_menu_call_hyperlink') {
         const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+        document.getElementById("save").classList.add("context_menu_call");  // this is made to close tab on save
         setTimeout(() => {
           open_collect_form();
           fill_and_adjust(tab);

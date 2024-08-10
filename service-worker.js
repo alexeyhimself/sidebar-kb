@@ -36,11 +36,14 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     });
   }
   else if (info.menuItemId === 'openSidePanel') {
+    if (!info.linkUrl)  // do not do anything if not hyperlink
+      return;
+
     // This will open the panel in all the pages on the current window.
     chrome.sidePanel.open({ windowId: tab.windowId }).then(() => {
       setTimeout(() => {
         chrome.tabs.create({ url: info.linkUrl });
-        chrome.runtime.sendMessage({ type: "context_menu_call", "link": info.linkUrl, "title": info.selectionText});
+        chrome.runtime.sendMessage({ type: "context_menu_call_hyperlink", "link": info.linkUrl, "title": info.selectionText});
       }, 300);  // a bit wait because drag&drop events pass faster than the DOM update
     });
   }
