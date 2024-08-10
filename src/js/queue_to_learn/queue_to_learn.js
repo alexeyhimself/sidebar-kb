@@ -468,7 +468,7 @@ function switch_to_saved_list() {
   document.getElementById("saved_list").style.display = 'block';
   document.getElementById("save_form").style.display = 'none';
   document.getElementById("switch_to_saved").classList.add("btn-success");
-  document.getElementById("choose_action").classList.remove("btn-primary");
+  document.querySelectorAll(".choose_action_button").forEach((e) => {e.classList.remove("btn-primary")});
   what_to_do_on_filter_change();
 }
 

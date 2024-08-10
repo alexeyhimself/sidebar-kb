@@ -422,7 +422,7 @@ h5 {
 }
 .choose_action_button {
   color: unset;
-  padding: 3px;
+  padding-: 3px;
 }
 .choose_action_button:not(.btn-primary):hover, .choose_action_button:hover, .choose_action_button:not(.btn-primary):focus, .choose_action_button:focus {
   background-color: #0a58ca;
