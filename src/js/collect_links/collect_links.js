@@ -204,12 +204,12 @@ function adjust_if_link_already_exists(link) {
   if (existing_link) {
     fill_the_collect_links_form_with_existing_data(existing_link);
     document.getElementById("save").innerText = `Update in ${sources_map[existing_link.source]}`;
-    document.getElementById("save").classList.add("btn-success");
+    //document.getElementById("save").classList.add("btn-success");
     document.getElementById("save").dataset.source = existing_link.source;
   }
   else {
     document.getElementById("save").innerText = "Save";
-    document.getElementById("save").classList.remove("btn-success");
+    //document.getElementById("save").classList.remove("btn-success");
   }
 }
 
@@ -238,7 +238,7 @@ function enable_collect_links() {
   fill_stats_of_what_to_do_for_links();
   //count_tabs_in_a_window();
 
-  //var myAlert = document.getElementById('toast');//select id of toast
-  //var bsAlert = new bootstrap.Toast(myAlert);//inizialize it
-  //bsAlert.show();//show it
+  var myAlert = document.getElementById('toast');//select id of toast
+  var bsAlert = new bootstrap.Toast(myAlert);//inizialize it
+  bsAlert.show();//show it
 }

@@ -35,6 +35,15 @@
   <body>
     <div id="container">
 
+      <div id="toast" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+          Hello, world! This is a toast message.
+         </div>
+          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+
       <div class="btn-group" style="padding: 0 8px 0 8px; ">
         <a id="grab_tab" class="btn btn-secondary choose_action_button" type="button" style="width: calc(100% - 48px); padding: 5px" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Save active tab
@@ -105,12 +114,12 @@
               <textarea class="form-control margin-6" id="tags" placeholder="Tags" rows="1"></textarea>
               <p id="tags_hint"></p>
 
-              <div class="row" style="margin: 0; display: block; text-align: center;">
+              <div class="row" style="margin: 0; display: flex; text-align: center;">
                 <button id="save" class="btn btn-primary margin-6 disabled" style="" type="button" data-bs-dismiss="modal">Save</button>
 
-                <button id="move_to_kb" style="display: none;" class="btn btn-light margin-6 move_to_kb" style="margin-bottom: 8px;" type="button" data-bs-dismiss="modal">Move to Knowledge Base</button>
+                <button id="move_to_kb" style="display: none; margin-right: 12px;" class="btn btn-light-custom margin-6 move_to_kb col-8" type="button" data-bs-dismiss="modal">Move to Knowledge Base</button>
 
-                <button id="delete_from_queue" style="display: none;" data-reason="neutral" class="btn btn-light margin-6 delete_from_queue" style="margin-bottom: 8px;" type="button" data-bs-dismiss="modal">Delete</button>
+                <button id="delete_from_queue" style="display: none; color: red;" data-reason="neutral" class="btn btn-light-custom margin-6 delete_from_queue col" type="button" data-bs-dismiss="modal">Delete</button>
 
                 
                 <!--div class="dropdown" style="padding: 0;">

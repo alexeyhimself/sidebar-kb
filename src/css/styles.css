@@ -569,6 +569,31 @@ p.bulk_saved_group_restore a {
   padding-right: 3px;
 }
 
+#toast {
+  position: absolute;
+  z-index: 100;
+  margin-left: 8px;
+  width: calc(100% - 17px);
+  font-size: 15px;
+  font-family: "Lato";
+  background: #198754; //deeppink;
+  padding: 0;
+  border: 0;
+  color: white;
+  box-shadow: none;
+}
+.toast-body {
+  padding: 7px 12px;
+}
+.btn-close {
+  filter: invert(1);
+  opacity: unset;
+}
+
+.btn-light-custom {
+  background: #ebeff7;
+}
+
 /*.dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 40px; /* remove the gap so it doesn't close */
