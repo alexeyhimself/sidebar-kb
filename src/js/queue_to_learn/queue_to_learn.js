@@ -494,6 +494,9 @@ function enable_edit_in_queue_listeners() {
       link.value = url;
       link.dispatchEvent(new InputEvent("change"));
       save_element.dataset.callback = "queue";
+
+      const lnk = get_link_from_queue(url);
+      suggest_tags({"link": url, "title": lnk.title});
     });
   });
 }
