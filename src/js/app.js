@@ -62,6 +62,9 @@ var toast;
 window.onload = function() {
   fix_data();
 
+  const toast_el = document.getElementById('toast');
+  toast = new bootstrap.Toast(toast_el);
+
   fill_available_ai_platforms_dict();
 
   enable_collect_links();
