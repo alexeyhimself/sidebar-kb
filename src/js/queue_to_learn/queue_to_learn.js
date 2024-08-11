@@ -149,7 +149,7 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
     links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span>`;
   else {
     if (!no_time_what_to_do.includes(item.what_to_do))
-      links_html += `<span class="badge bg-warning text-dark">undefined</span>`;
+      links_html += `<span class="badge bg-warning text-dark">time not set</span>`;
   }
 
   //if (what_to_do == "undefined" || what_to_do === undefined)
@@ -157,7 +157,7 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   //else if (what_to_do == "others") {
   if (what_to_do == "others" || what_to_do == undefined) {
     if (item.what_to_do == "undefined" || item.what_to_do === undefined)
-      links_html += ` <span class="badge bg-secondary">undefined</span>`;
+      links_html += ` <span class="badge bg-secondary">type not set</span>`;
     else
       links_html += ` <span class="badge bg-secondary">${item.what_to_do}</span>`;
   }
@@ -175,8 +175,8 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   <ul class="dropdown-menu"> \
     <li><a class="dropdown-item edit_in_queue" href="#" data-url="${item.link}">Edit</a></li> \
     <li><hr class="dropdown-divider"></li> \
-    <li><a class="dropdown-item disabled" href="#">Move to Knowledge Base</a></li> \
-    <li><a class="dropdown-item disabled" href="#">Delete</a></li> \
+    <li><a class="dropdown-item move_to_kb" href="#" data-url="${item.link}">Move to Knowledge Base</a></li> \
+    <li><a class="dropdown-item delete_from_queue" href="#" data-url="${item.link}" data-reason="neutral">Delete</a></li> \
   </ul> \
 </div>`;
   /*
@@ -440,7 +440,8 @@ function get_link_from_queue(url) {
 function enable_move_to_kb_listeners() {
   document.querySelectorAll(".move_to_kb").forEach((element) => {
     element.addEventListener('click', function (event) {
-      const url = document.getElementById("link").value;
+      const url = event.target.dataset.url;
+      //console.log(event.target.dataset.url);
       const link = get_link_from_queue(url);
       save_link_to(link, "kb");
       delete_link_from_queue(url);
@@ -452,15 +453,15 @@ function enable_move_to_kb_listeners() {
 function enable_delete_from_queue_listeners() {
   document.querySelectorAll(".delete_from_queue").forEach((element) => {
     element.addEventListener('click', async function (event) {
-      const url = document.getElementById("link").value;
-      const reason = event.target.getAttribute("data-reason");
+      const url = event.target.dataset.url;
+      const reason = event.target.dataset.reason;
       const link = get_link_from_queue(url);
       link["reason"] = reason;
       save_link_to(link, "deleted");
       delete_link_from_queue(url);
       what_to_do_on_filter_change();
 
-      const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+      //const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
       //if (tab.url == url)
       //  chrome.tabs.remove(tab.id, function() { });
     });
