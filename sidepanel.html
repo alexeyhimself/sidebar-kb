@@ -26,7 +26,6 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -42,11 +41,13 @@
         </div>
       </div>
 
+      <div class="onboarding" style="display: none; font-size: 20px; padding: 8px; text-align: center; margin-top: 40vh;">
+      </div>
       <div class="btn-group" style="padding: 0 8px 0 8px; ">
         <a id="grab_tab" class="btn btn-secondary choose_action_button" type="button" style="width: calc(100% - 48px); padding: 5px" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Save active tab
         </a>
-        <a type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split choose_action_button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 48px; padding: 0;">
+        <a id="choose_action_arrow_button" type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split choose_action_button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 48px; padding: 0;">
           <!--span class="visually-hidden">Save active tab</span-->
           <img src="/images/arrow-down.png" style="width: 11px; margin-left: 3px;">
         </a>
@@ -59,20 +60,12 @@
           <li><a class="dropdown-item" href="#" id="open_empty_collect_form" data-bs-toggle="modal" data-bs-target="#exampleModal">Open empty save form</a></li>
         </ul>
       </div>
-
-      <!--div class="dropdown" style="padding: 0 8px 0 8px;">
-        <button id="choose_action" class="btn col-12 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 5px;">Save <img src="/images/arrow-down.png" style="width: 10px; margin-left: 3px;"></button>
-        <ul class="dropdown-menu" style="width: calc(100% - 16px);">
-          <li><a class="dropdown-item" href="#" id="grab_tab" data-bs-toggle="modal" data-bs-target="#exampleModal">Save active tab</a></li>
-          <li><a class="dropdown-item" href="#" id="save_all">Save all opened tabs & close them</a></li>
-          <li><a class="dropdown-item disabled" href="#">Save only selected tabs</a></li>
-          
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#" id="open_empty_collect_form" data-bs-toggle="modal" data-bs-target="#exampleModal">Open empty save form</a></li>
-        </ul>
-      </div-->
       
-      <!-- Modal -->
+      <div class="onboarding" style="display: none; padding: 12px; text-align: center; margin-top-: 40vh;">
+        <p>To start working with the app switch to a tab that you'd like to save to read (or watch, or listen) later and hit "Save active tab" button.</p>
+      </div>
+
+
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="margin: 3px;">
           <div class="modal-content" style="height: calc(100vh - 6px); border-radius: 14px;">
@@ -90,11 +83,6 @@
                       <option value="listen">Listen</option>
                       <option value="course">Course</option>
                       <option value="tool">Tool</option>
-                      <!--option value="read">Read 📖</option>
-                      <option value="watch">Watch 🎬</option>
-                      <option value="listen">Listen 🎧</option>
-                      <option value="course">Course ✏️</option>
-                      <option value="tool">Tool 🛠</option-->
                     </select>
                     <textarea class="form-control right-half-border-radius" id="time" placeholder="Estimate time" rows="1"></textarea>
                   </div>
@@ -115,20 +103,9 @@
               <div class="row" style="margin: 0; display: flex; text-align: center;">
                 <button id="save" class="btn btn-primary margin-6 disabled" style="" type="button" data-bs-dismiss="modal">Save</button>
 
-                <button id="move_to_kb" style="display: none; margin-right: 12px;" class="btn btn-light-custom margin-6 move_to_kb col-8" type="button" data-bs-dismiss="modal">Move to Knowledge Base</button>
+                <button id="move_to_kb" style="display: none; margin-right: 12px;" class="btn btn-light btn-light-custom margin-6 move_to_kb col-8" type="button" data-bs-dismiss="modal">Move to Knowledge Base</button>
 
-                <button id="delete_from_queue" style="display: none; color: red;" data-reason="neutral" class="btn btn-light-custom margin-6 delete_from_queue col" type="button" data-bs-dismiss="modal">Delete</button>
-
-                
-                <!--div class="dropdown" style="padding: 0;">
-                  <button id="choose_edit_action" class="btn btn-warning col-12 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 5px;">Action <img src="/images/arrow-down.png" style="width: 10px; margin-left: 3px;"></button>
-                  <ul class="dropdown-menu" style="width: calc(100%);">
-                    <li><a class="dropdown-item" href="#" id="grab_tab" data-bs-toggle="modal" data-bs-target="#exampleModal">Update in ...</a></li>
-                    <li><a class="dropdown-item" href="#" id="save_all">Move to Knowledge Base</a></li>
-                    <!-li><hr class="dropdown-divider"></li->
-                    <li><a class="dropdown-item" href="#">Delete</a></li>
-                  </ul>
-                </div-->
+                <button id="delete_from_queue" style="display: none; color: red;" data-reason="neutral" class="btn btn-light btn-light-custom margin-6 delete_from_queue col" type="button" data-bs-dismiss="modal">Delete</button>
 
                 <a href="#" id="close_collect_form" data-bs-dismiss="modal">Cancel</a>
               </div>
@@ -166,23 +143,6 @@
                       <!--input type="radio" class="form-check-input" name="btnradio" id="session-based" autocomplete="off" style="" disabled>
                       <label class="form-check-label disabled" for="session-based">Session</label-->
                     </div>
-
-                    <!--div class="btn-group btn-group-sm" role="group" aria-label="Basic radio toggle button group" id="priority-vs-time">
-                      <input type="radio" class="btn-check" name="btnradio" id="priority-based" autocomplete="off" checked>
-                      <label class="btn btn-outline-primary" for="priority-based">Priority</label>
-
-                      <input type="radio" class="btn-check" name="btnradio" id="time-based" autocomplete="off">
-                      <label class="btn btn-outline-primary" for="time-based">Date-time</label>
-                    </div-->
-                    
-                    <!--div class="btn-group btn-group-sm-" role="group" id="priority-vs-time" style="line-height: 36px; width-: 100%;">
-                      View by:&nbsp;&nbsp;&nbsp;
-                      <input type="radio" class="btn-check" name="btnradio" id="priority-based" autocomplete="off" checked>
-                      <label class="btn btn-light" for="priority-based">Priority</label>
-
-                      <input type="radio" class="btn-check" name="btnradio" id="time-based" autocomplete="off">
-                      <label class="btn btn-light" for="time-based">Date-time</label>
-                    </div-->
                   </div>
                 </div>
                 <div id="links_area"></div>

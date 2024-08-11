@@ -80,7 +80,9 @@ async function save_link() {
 
   close_collect_form();
   what_to_do_on_filter_change();
-  show_toast("Tab has been saved to Queue");
+  show_toast("Link has been saved to Queue");
+
+  finish_onboarding_user();
 }
 
 function save_link_to(link, where) {

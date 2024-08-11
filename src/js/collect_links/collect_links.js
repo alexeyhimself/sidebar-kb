@@ -172,7 +172,8 @@ function hide_fields_if_necessary(element) {
 }
 
 function link_already_exists(link) {
-  const sources = ["links", "kb", "deleted"];
+  //const sources = ["links", "kb", "deleted"];
+  const sources = ["links", "kb"];
   for (let j = 0; j < sources.length; j++) {
     const source = sources[j];
     const links = load_links_from(source);

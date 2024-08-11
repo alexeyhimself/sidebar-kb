@@ -1,4 +1,24 @@
+function onboard_user() {
+  document.querySelectorAll(".onboarding").forEach((e) => { e.style.display = 'block'; });
+
+  document.getElementById("saved_list").style.display = 'none';
+  document.getElementById("choose_action_arrow_button").style.display = 'none';
+  document.getElementById("grab_tab").style.borderRadius = '8px';
+}
+function finish_onboarding_user() {
+  const saved_list_element = document.getElementById("saved_list");
+  if (saved_list_element.style.display == 'block')
+    return;
+
+  document.querySelectorAll(".onboarding").forEach((e) => { e.style.display = 'none'; });
+  document.getElementById("saved_list").style.display = 'block';
+  document.getElementById("choose_action_arrow_button").style.display = 'block';
+  document.getElementById("grab_tab").style.borderRadius = '8px 0 0 8px';
+}
+
+
 function draw_links_placeholder() {
+  onboard_user();
   return `<p id="links_placeholder"><b>You have no saved links yet.</b><br>Save some &mdash; they will appear 👍</p>`;
 }
 function draw_links_error_message() {
@@ -422,8 +442,8 @@ function enable_delete_from_queue_listeners() {
       what_to_do_on_filter_change();
 
       const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
-      if (tab.url == url)
-        chrome.tabs.remove(tab.id, function() { });
+      //if (tab.url == url)
+      //  chrome.tabs.remove(tab.id, function() { });
     });
   });
 }
@@ -465,7 +485,7 @@ function adjust_scroll_margin() {
 }
 
 function switch_to_saved_list() {
-  document.getElementById("saved_list").style.display = 'block';
+  //document.getElementById("saved_list").style.display = 'block';
   document.getElementById("save_form").style.display = 'none';
   document.getElementById("switch_to_saved").classList.add("btn-success");
   document.querySelectorAll(".choose_action_button").forEach((e) => {e.classList.remove("btn-primary")});
@@ -483,7 +503,7 @@ function enable_manage_links() {
   what_to_do_on_filter_change();
   enable_textarea_listener("find_text", what_to_do_on_filter_change);
   enable_textarea_listener("find_time", what_to_do_on_filter_change);
-  document.getElementById("saved_list").style.display = 'block';
+  //document.getElementById("saved_list").style.display = 'block';
 
   enable_move_to_kb_listeners();
   enable_delete_from_queue_listeners();

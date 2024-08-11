@@ -97,7 +97,8 @@ function enable_side_panel_grab_tab_click_listener() {
   var element = document.getElementById("grab_tab");
   element.addEventListener('click', async function (event) {
     const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
-    open_collect_form();
+    //open_collect_form();
+    open_empty_collect_form();
     fill_and_adjust(tab);
     //document.getElementById("choose_action").innerHTML = "Save currently opened tab";
   });
