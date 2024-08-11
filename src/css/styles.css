@@ -621,6 +621,9 @@ p.bulk_saved_group_restore a {
   display-: unset;
   visibility: unset;
 }
+.bulk_saved_group .queue-link-button:hover {
+  background: white;
+}
 
 /*.dropdown:hover .dropdown-menu {
     display: block;
