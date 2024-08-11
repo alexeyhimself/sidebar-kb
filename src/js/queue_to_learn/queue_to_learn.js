@@ -507,4 +507,5 @@ function enable_manage_links() {
 
   enable_move_to_kb_listeners();
   enable_delete_from_queue_listeners();
+  finish_onboarding_user();
 }
