@@ -62,6 +62,5 @@ async function ask_ai(payload, ai_type) {
   if (available_ai_platforms[ai_type])
     return await ask_ai_gemini_nano(payload);
 
-  console.warn(`Invalid call to AI: ${ai_type}, ${payload}. `);
   return;
 }

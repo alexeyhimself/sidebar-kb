@@ -33,7 +33,7 @@ function switch_to_save_form() {
 function open_empty_collect_form() {
   open_collect_form();
   reset_form_state();
-  clear_save_link_form();
+  //clear_save_link_form();
 }
 
 function open_collect_form() {

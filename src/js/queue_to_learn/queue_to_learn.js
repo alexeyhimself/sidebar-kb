@@ -480,7 +480,8 @@ function enable_edit_in_queue_listeners() {
   document.querySelectorAll(".edit_in_queue").forEach((element) => {
     element.addEventListener('click', function (event) {
       const url = event.target.getAttribute("data-url");
-      open_collect_form();
+      //open_collect_form();
+      open_empty_collect_form();
       show_move_and_delete_buttons();
       const save_element = document.getElementById("save");
       save_element.classList.remove("context_menu_call");  // clean if left from unsaved tab

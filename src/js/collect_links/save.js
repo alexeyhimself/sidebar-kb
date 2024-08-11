@@ -42,6 +42,7 @@ function reset_form_state() {
   document.getElementById("save").innerText = "Save";
   document.getElementById("save").classList.remove("btn-success");
   delete document.getElementById("save").dataset.source;
+  document.getElementById("tags_hint").style.display = "none";
 }
 
 function save_link_into_storage(link) {
@@ -115,19 +116,19 @@ function save_link_to_local_storage(link) {
     if (links[i].link == link.link) {
       const link_from_storage = links[i];
       link.date_created = Date.now(); //link_from_storage.date_created;
-      if (!link.group_id && link_from_storage.group_id)
+      if (link.group_id == undefined && link_from_storage.group_id)
         link.group_id = link_from_storage.group_id;
-      if (!link.time && link_from_storage.time) {
+      if (link.time == undefined && link_from_storage.time) {
         link.time = link_from_storage.time;
         link.time_minutes = link_from_storage.time_minutes;
       }
-      if (!link.what_to_do && link_from_storage.what_to_do)
+      if (link.what_to_do == undefined && link_from_storage.what_to_do)
         link.what_to_do = link_from_storage.what_to_do;
-      if (!link.notes && link_from_storage.notes)
+      if (link.notes == undefined && link_from_storage.notes)
         link.notes = link_from_storage.notes;
-      if (!link.tags && link_from_storage.tags)
+      if (link.tags == undefined && link_from_storage.tags)
         link.tags = link_from_storage.tags;
-      if (!link.priority && link_from_storage.priority)
+      if (link.priority == undefined && link_from_storage.priority)
         link.priority = link_from_storage.priority;
 
       link.date_updated = Date.now();

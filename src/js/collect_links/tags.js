@@ -86,21 +86,44 @@ function draw_tags_hint(tags) {
   tags_hint_element.innerHTML = tags_hint;
   //tags_hint_element.style.display = 'block';
   enable_tags_hint_listeners();
+
+  show_tags();
+}
+
+function show_wait_tags() {
+  document.getElementById("tags_hint").style.display = "block";
+  document.getElementById("tags_hint_content").style.display = 'none';
+  document.getElementById("dots").style.display = '';
+}
+function show_tags() {
+  document.getElementById("tags_hint_content").style.display = 'contents';
+  document.getElementById("dots").style.display = 'none';
 }
 
 async function suggest_tags(page_object) {
+  if (!page_object)
+    return;
+
+  show_wait_tags();
+  await generate_tags(page_object);
+  show_tags();
+}
+
+async function generate_tags(page_object) {
   const ai_tags = await ask_ai(page_object);
   if (ai_tags)
     return draw_tags_hint(ai_tags);
 
   const tags = compose_tags(page_object.words_on_page);
-  if (tags.length == 0)
-    return;
-
+  //if (tags.length == 0)
+  //  return;
+  //console.log(tags)
   draw_tags_hint(tags);
 }
 
 function enable_tags_hint_on_any_value_only() {
+  return;
+
   setTimeout(() => {
     if (document.getElementById("link").value || document.getElementById("title").value || document.getElementById("tags").value)
       document.getElementById("tags_hint").style.display = 'block';

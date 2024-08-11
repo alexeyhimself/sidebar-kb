@@ -626,7 +626,7 @@ p.bulk_saved_group_restore a {
 }
 
 
-.dots {
+#dots {
   width: 5.8px;
   height: 5.8px;
   background: #0060ff;
@@ -654,6 +654,10 @@ p.bulk_saved_group_restore a {
       box-shadow: 9.6px 0 rgba(0,96,255,0.13),-9.6px 0;
       background: rgba(0,96,255,0.13);
    }
+}
+
+#tags_hint_content, #tags_hint {
+  display: none;
 }
 
 /*.dropdown:hover .dropdown-menu {
