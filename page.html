@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>My Knowledge Base welcome page</title>
+    <title>Knowledge Base welcome page</title>
 
     <link href="src/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
     <!--script src="src/bootstrap/5.3.3/js/bootstrap.min.js"></script-->
@@ -23,25 +23,35 @@
         margin-top: 39vh;
       }
       .offset-pin {
-        margin-top: 30vh;
+        margin-top: 15vh;
+      }
+      body {
+        background: unset;
+      }
+      h3 {
+        margin-top: 8vh;
+        margin-bottom: 2vh;
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <div class="col-md-8 offset-md-2">
-        <div id="pin" class="center offset-pin" style="display: none;">
-          <h3>One last thing...</h3>
-          <p style="margin: 0 0 10px 0;">Pin side panel to make it 1 click away 👍</p>
+      <div class="col-md-12 offset-md-0">
+        <div id="pin" class="center offset-pin">
+          <h1>Hello and thank you for using<br> Knowledge Base side panel extension!</h1>
+
+          <h3>One important thing...</h3>
           <img src="images/to-pin.png" style="width: 360px; border-radius: 12px; margin: 0;">
-          <p style="margin-top: 25vh"><b>You may safely close this tab.</b> Knowledge Base side panel will remain opened on every tab in this browser until closed manually.</p>
+          <p style="margin: 20px 0 10px 0;">Pin side panel to make it 1 click away 👍</p>
+
+          <p style="margin-top: 20vh"><b>You may safely close this tab.</b> Knowledge Base side panel will remain opened on every tab in this browser until closed manually.</p>
         </div>
 
-        <div id="welcome" class="center offset-welcome">
-          <h1>Hello 👋</h1>
+        <!--div id="welcome" class="center offset-welcome" style="display: none;">
+          <h1>Hello!</h1>
           <p>Thank you for using Knowledge Base side panel extension!</p>
           <button class="btn btn-primary" id="openSidePanel">Open side panel</button>
-        </div>
+        </div-->
       </div>     
     </div>
     <script src="script.js" type="module"></script>
