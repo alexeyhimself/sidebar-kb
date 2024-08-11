@@ -38,6 +38,7 @@ function update_tags_in_local_storage(new_tags) {
 
 function compose_tags(words_on_page) {
   let tags = load_tags_from_local_storage();
+
   if (!tags.existing)
     return [];
 
@@ -48,12 +49,18 @@ function compose_tags(words_on_page) {
       if (existing_tag in words_on_page)
         resulting_tags[existing_tag] = words_on_page[existing_tag];
     })
-    return Object.keys(resulting_tags);
+    let composed_tags = Object.keys(resulting_tags);
+    if (composed_tags.length != 0)
+      return composed_tags;
+    else
+      return Object.keys(sort_dict_by_value_desc(tags.existing));
   }
   else {
     let save_element = document.getElementById("save");
-    if (save_element.classList.contains("auto_fill"))
+    if (save_element.classList.contains("auto_fill")) {
+      //console.log("auto-fill");
       return [];
+    }
 
     const most_recent_tags = tags.most_recent.reverse();
     return most_recent_tags.slice(0, 10);
@@ -100,6 +107,7 @@ function show_tags() {
   document.getElementById("dots").style.display = 'none';
 }
 function hide_tags() {
+  console.log("tags hidden")
   document.getElementById("tags_hint").style.display = "none";
   //document.getElementById("tags_hint_content").style.display = 'none';
   //document.getElementById("dots").style.display = '';
@@ -120,6 +128,7 @@ async function generate_tags(page_object) {
     return draw_tags_hint(ai_tags);
 
   const tags = compose_tags(page_object.words_on_page);
+  console.log(tags)
   if (tags.length == 0) {
     hide_tags();
     return;
