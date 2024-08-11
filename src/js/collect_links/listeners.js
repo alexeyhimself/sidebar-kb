@@ -86,7 +86,7 @@ async function fill_and_adjust(tab) {
   fill_and_adjust_textareas(page_object);
   suggest_what_to_do(page_object.link);
   if (page_object.words_on_page)
-    suggest_tags(page_object.words_on_page);
+    suggest_tags(page_object);
 
   adjust_if_link_already_exists(page_object.link);
   let save_element = document.getElementById("save");

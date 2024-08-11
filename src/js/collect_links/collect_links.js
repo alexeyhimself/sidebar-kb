@@ -221,15 +221,14 @@ function what_to_do_on_textareas_content_change(event) {
   enable_button_on_link_value_only();
   enable_tags_hint_on_any_value_only();
 
-  if (!document.getElementById("save").classList.contains("context_menu_call"))
-    suggest_tags();
+  //if (!document.getElementById("save").classList.contains("context_menu_call"))
+  //  suggest_tags();
 
   if (event.target.id == "link") {
     setTimeout(() => {
       const link = event.target.value;
       adjust_if_link_already_exists(link);
       suggest_what_to_do(link);
-
     }, 200);  // a bit wait because drag&drop events pass faster than the DOM update
   }
 }

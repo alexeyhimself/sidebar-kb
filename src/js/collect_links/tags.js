@@ -74,7 +74,7 @@ function draw_tags_hint(tags) {
   let most_used_tags = sort_dict_by_value_desc(load_tags_from_local_storage().existing);
   most_used_tags = Object.keys(most_used_tags).slice(0, 15);
 
-  let tags_hint = 'Tags hint: ';
+  let tags_hint = '';
   tags.forEach((tag) => {
     if (most_used_tags.includes(tag))
       tags_hint += `<a href="#" class="suggested_tag"><b>${tag}</b></a>, `;
@@ -82,14 +82,18 @@ function draw_tags_hint(tags) {
       tags_hint += `<a href="#" class="suggested_tag">${tag}</a>, `;
   });
   tags_hint = tags_hint.slice(0, -2);
-  const tags_hint_element = document.getElementById("tags_hint");
+  const tags_hint_element = document.getElementById("tags_hint_content");
   tags_hint_element.innerHTML = tags_hint;
   //tags_hint_element.style.display = 'block';
   enable_tags_hint_listeners();
 }
 
-function suggest_tags(words_on_page) {
-  const tags = compose_tags(words_on_page);
+async function suggest_tags(page_object) {
+  const ai_tags = await ask_ai(page_object);
+  if (ai_tags)
+    return draw_tags_hint(ai_tags);
+
+  const tags = compose_tags(page_object.words_on_page);
   if (tags.length == 0)
     return;
 

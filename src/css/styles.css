@@ -625,6 +625,37 @@ p.bulk_saved_group_restore a {
   background: white;
 }
 
+
+.dots {
+  width: 5.8px;
+  height: 5.8px;
+  background: #0060ff;
+  color: #0060ff;
+  border-radius: 50%;
+  box-shadow: 9.6px 0,-9.6px 0;
+  animation: dots-u8fzftmn 1.2s infinite linear alternate;
+  display: inline-block;
+  margin-left: 15px;
+  margin-bottom: 2px;
+}
+
+@keyframes dots-u8fzftmn {
+   0% {
+      box-shadow: 9.6px 0,-9.6px 0;
+      background: ;
+   }
+
+   33% {
+      box-shadow: 9.6px 0,-9.6px 0 rgba(0,96,255,0.13);
+      background: rgba(0,96,255,0.13);
+   }
+
+   66% {
+      box-shadow: 9.6px 0 rgba(0,96,255,0.13),-9.6px 0;
+      background: rgba(0,96,255,0.13);
+   }
+}
+
 /*.dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 40px; /* remove the gap so it doesn't close */
