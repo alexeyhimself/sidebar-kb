@@ -440,12 +440,14 @@ function get_link_from_queue(url) {
 function enable_move_to_kb_listeners() {
   document.querySelectorAll(".move_to_kb").forEach((element) => {
     element.addEventListener('click', function (event) {
-      const url = event.target.dataset.url;
-      //console.log(event.target.dataset.url);
+      let url = event.target.dataset.url; // queue
+      if (!url)
+        url = document.getElementById("link").value; // form
       const link = get_link_from_queue(url);
       save_link_to(link, "kb");
       delete_link_from_queue(url);
       what_to_do_on_filter_change();
+      show_toast("Link moved to Knowledge Base");
     });
   });
 }
@@ -453,14 +455,16 @@ function enable_move_to_kb_listeners() {
 function enable_delete_from_queue_listeners() {
   document.querySelectorAll(".delete_from_queue").forEach((element) => {
     element.addEventListener('click', async function (event) {
-      const url = event.target.dataset.url;
+      let url = event.target.dataset.url; // queue
+      if (!url)
+        url = document.getElementById("link").value; // form
       const reason = event.target.dataset.reason;
       const link = get_link_from_queue(url);
       link["reason"] = reason;
       save_link_to(link, "deleted");
       delete_link_from_queue(url);
       what_to_do_on_filter_change();
-
+      show_toast("Link has been deleted");
       //const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
       //if (tab.url == url)
       //  chrome.tabs.remove(tab.id, function() { });
