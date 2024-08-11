@@ -99,6 +99,11 @@ function show_tags() {
   document.getElementById("tags_hint_content").style.display = 'contents';
   document.getElementById("dots").style.display = 'none';
 }
+function hide_tags() {
+  document.getElementById("tags_hint").style.display = "none";
+  //document.getElementById("tags_hint_content").style.display = 'none';
+  //document.getElementById("dots").style.display = '';
+}
 
 async function suggest_tags(page_object) {
   if (!page_object)
@@ -115,8 +120,10 @@ async function generate_tags(page_object) {
     return draw_tags_hint(ai_tags);
 
   const tags = compose_tags(page_object.words_on_page);
-  //if (tags.length == 0)
-  //  return;
+  if (tags.length == 0) {
+    hide_tags();
+    return;
+  }
   //console.log(tags)
   draw_tags_hint(tags);
 }

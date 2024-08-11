@@ -35,7 +35,7 @@ body, textarea, button, label, input, select, p, a {
 #links_area, #kb_area {
   margin-top-: 12px;
   padding: 12px 0px 8px 8px;
-  height-: calc(100vh - 164px);
+  height: calc(100vh - 213px);
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width-: thin;
@@ -578,22 +578,27 @@ p.bulk_saved_group_restore a {
 #toast {
   position: absolute;
   z-index: 100;
-  margin-left: 8px;
+  margin-left: 7px;
   width: calc(100% - 17px);
   font-size: 15px;
   font-family: "Lato";
-  background: #198754; //deeppink;
+  background: white; // #ebeff7; //#198754; //deeppink;
   padding: 0;
-  border: 0;
-  color: white;
+  border-: 0;
+  color-: white;
   box-shadow: none;
+  border: 1px solid #dee2e6 !important;
+  border-radius: 8px;
 }
 .toast-body {
   padding: 7px 12px;
 }
 .btn-close {
-  filter: invert(1);
-  opacity: unset;
+  filter-: invert(1);
+  opacity-: unset;
+  padding: 3px;
+  width: 27px;
+  height: 3px;
 }
 
 .queue-link-a {

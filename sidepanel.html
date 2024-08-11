@@ -35,7 +35,7 @@
   <body>
     <div id="container">
 
-      <div id="toast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div id="toast" class="toast align-items-center text-bg-success- border-0" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
           <div class="toast-body" id="toast-body"></div>
           <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -82,7 +82,7 @@
               <div class="margin-6">
                   <div class="input-group" role="group" id="what_to_do_dropdown">
                     <select class="form-select left-half-border-radius" id="what_to_do">
-                      <option value selected>Type</option>
+                      <option value>Type</option>
                       <option value="read">Read</option>
                       <option value="watch">Watch</option>
                       <option value="listen">Listen</option>
@@ -95,7 +95,7 @@
 
               <div class="margin-6">
                 <select class="form-select" id="priority">
-                  <option value selected>Priority to learn</option>
+                  <option value>Priority to learn</option>
                   <option value="99">High</option>
                   <option value="50">Medium</option>
                   <option value="1">Low</option>
@@ -139,11 +139,11 @@
                     <div id="priority-vs-time" style="width: 100%;">
                       View by:&nbsp;&nbsp;&nbsp;&nbsp;
 
-                      <input type="radio" class="form-check-input" name="btnradio" id="priority-based" autocomplete="off" checked>
-                      <label class="form-check-label" for="priority-based" style="margin-right: 9px;">Priority</label>
-
-                      <input type="radio" class="form-check-input" name="btnradio" id="time-based" autocomplete="off">
+                      <input type="radio" class="form-check-input" name="btnradio" id="time-based" autocomplete="off" checked>
                       <label class="form-check-label" for="time-based" style="margin-right: 9px;">Date</label>
+
+                      <input type="radio" class="form-check-input" name="btnradio" id="priority-based" autocomplete="off">
+                      <label class="form-check-label" for="priority-based" style="margin-right: 9px;">Priority</label>
 
                       <!--input type="radio" class="form-check-input" name="btnradio" id="session-based" autocomplete="off" style="" disabled>
                       <label class="form-check-label disabled" for="session-based">Session</label-->

@@ -36,6 +36,18 @@ function open_empty_collect_form() {
   //clear_save_link_form();
 }
 
+function reset_form_state() {
+  bring_form_to_idle_state();
+  clear_save_link_form();
+  enable_tags_hint_on_any_value_only();
+  hide_move_and_delete_buttons();
+
+  document.getElementById("save").innerText = "Save";
+  document.getElementById("save").classList.remove("btn-success");
+  delete document.getElementById("save").dataset.source;
+  document.getElementById("tags_hint").style.display = "none";
+}
+
 function open_collect_form() {
   var myModal = new bootstrap.Modal(document.getElementById("exampleModal"), {});
   myModal.show();
@@ -43,23 +55,13 @@ function open_collect_form() {
 
 function bring_form_to_idle_state() {
   document.getElementById("save").classList.add("disabled");
-  //document.getElementById("priority").style.setProperty('--sliderColor', "#6ba2ff");
   document.getElementById("priority").style.color = "gray";
   document.getElementById("what_to_do").style.color = "gray";
-  //document.getElementById("clear").style.display = "none";
-  //document.querySelectorAll(".priority_placeholder").forEach((element) => {
-  //  element.style.top = "-100px";
-  //});
 }
 function bring_form_to_active_state() {
   document.getElementById("save").classList.remove("disabled");
-  //document.getElementById("priority").style.setProperty('--sliderColor', "#0075ff");
   document.getElementById("priority").style.color = "unset";
   document.getElementById("what_to_do").style.color = "unset";
-  //document.getElementById("clear").style.display = "";
-  //document.querySelectorAll(".priority_placeholder").forEach((element) => {
-  //  element.style.top = "-120px";
-  //});
 }
 
 function collect_data_from_the_save_link_form() {
@@ -87,18 +89,6 @@ function clear_save_link_form() {
   document.getElementById("what_to_do").value = "";
   document.getElementById("priority").value = "";
 }
-
-/*
-function dim_range_placeholder_in_thumb_proximity(priority) {
-  if (!priority)  // initial start of the event listener
-    priority = document.getElementById("priority").value;
-
-  if (priority < 63)  // the length of "Set priority" placeholder
-    document.getElementById("priority_placeholder").style.color = '#585c5f70';
-  else
-    document.getElementById("priority_placeholder").style.color = '#585c5fff';
-}
-*/
 
 async function count_tabs_in_a_window() {
   return;
@@ -235,8 +225,5 @@ function what_to_do_on_textareas_content_change(event) {
 
 function enable_collect_links() {
   enable_collect_links_listeners();
-  //draw_links_stats_chart_under_priority_bar("chart_total");
-  //draw_links_stats_chart_under_priority_bar("chart_what_to_do");
   fill_stats_of_what_to_do_for_links();
-  //count_tabs_in_a_window();
 }

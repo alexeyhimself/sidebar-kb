@@ -523,9 +523,7 @@ function enable_manage_links() {
   what_to_do_on_filter_change();
   enable_textarea_listener("find_text", what_to_do_on_filter_change);
   enable_textarea_listener("find_time", what_to_do_on_filter_change);
-  //document.getElementById("saved_list").style.display = 'block';
 
   enable_move_to_kb_listeners();
   enable_delete_from_queue_listeners();
-  //finish_onboarding_user();
 }

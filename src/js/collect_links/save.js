@@ -33,18 +33,6 @@ function add_time_in_minutes(link) {
   return link;
 }
 
-function reset_form_state() {
-  bring_form_to_idle_state();
-  clear_save_link_form();
-  enable_tags_hint_on_any_value_only();
-  hide_move_and_delete_buttons();
-
-  document.getElementById("save").innerText = "Save";
-  document.getElementById("save").classList.remove("btn-success");
-  delete document.getElementById("save").dataset.source;
-  document.getElementById("tags_hint").style.display = "none";
-}
-
 function save_link_into_storage(link) {
   save_link_to_local_storage(link);
   update_tags_in_local_storage(link.tags);
@@ -81,7 +69,7 @@ async function save_link() {
 
   close_collect_form();
   what_to_do_on_filter_change();
-  show_toast("Link has been saved to Queue");
+  show_toast("Link has been saved");
 
   finish_onboarding_user();
 }
