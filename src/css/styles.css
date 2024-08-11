@@ -594,7 +594,12 @@ p.bulk_saved_group_restore a {
   opacity: unset;
 }
 
-
+.queue-link-a {
+  margin-right-: 10px;
+}
+.queue-link-menus {
+  top-: -1px;
+}
 
 /*.dropdown:hover .dropdown-menu {
     display: block;

@@ -163,9 +163,9 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   }
 
   const hostname = get_hostname(item.link);
-  links_html += ` <span class="hostname">${hostname}</span> <a href="${item.link}" target="_blank">${item.title.trim()}</a><!--&nbsp;&nbsp;| <a href="#" data-url="${item.link}" class="edit_in_queue"--><!--i class="bi bi-pencil"></i--><!--img src="/images/pencil.svg" style="height: 16px; padding-right: 0px; padding-bottom: 2px;">&nbsp;Edit...</a-->`;
+  links_html += ` <span class="hostname">${hostname}</span> <a class="queue-link-a" href="${item.link}" target="_blank">${item.title.trim()}</a><!--&nbsp;&nbsp;| <a href="#" data-url="${item.link}" class="edit_in_queue"--><!--i class="bi bi-pencil"></i--><!--img src="/images/pencil.svg" style="height: 16px; padding-right: 0px; padding-bottom: 2px;">&nbsp;Edit...</a-->`;
 
-  links_html += `<div class="btn-group" style="float: right; position: relative; top: 10px; width: auto;"> \
+  links_html += `<div class="btn-group queue-link-menus" style="float: inline-end; position: relative; top: 10px; width: auto;"> \
   <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split-" data-bs-toggle="dropdown" aria-expanded="false" style="padding-: 6px;"> \
     <!--span class="visually-hidden">Toggle Dropdown</span--> \
   </button> \
