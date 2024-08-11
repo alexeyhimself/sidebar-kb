@@ -57,8 +57,10 @@ function draw_links_in_queue_tab(grouped_links, no_links_callback) {
         document.getElementById("filter").style.display = 'none';
       }
     }
-    else
+    else {
+      finish_onboarding_user();
       document.getElementById("links_area").innerHTML = draw_existing_grouped_links(grouped_links);
+    }
 
     //display_links_export(grouped_links.total);
 
@@ -112,8 +114,10 @@ function draw_time_based_links(links, no_links_callback) {
         document.getElementById("filter").style.display = 'none';
       }
     }
-    else
+    else {
+      finish_onboarding_user();
       document.getElementById("links_area").innerHTML = draw_existing_time_based_links(links);
+    }
 
     //display_links_export(links.total);
 
@@ -507,5 +511,5 @@ function enable_manage_links() {
 
   enable_move_to_kb_listeners();
   enable_delete_from_queue_listeners();
-  finish_onboarding_user();
+  //finish_onboarding_user();
 }
