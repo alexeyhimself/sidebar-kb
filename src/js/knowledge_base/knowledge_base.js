@@ -1,5 +1,5 @@
 function draw_kb_placeholder() {
-  return `<p id="kb_placeholder"><b>You have nothing saved in your <br>Knowledge Base yet.</b><br>Need some guidance for the user what they can do in this case, how they can fix the situation.</p>`;
+  return `<p id="kb_placeholder"><b>You have nothing saved in your <br>Knowledge Base yet.</b></p>`;
 }
 function draw_kb_error_message() {
   return `<p id="kb_placeholder"><span style="font-size: 2em;">😲</span><br><b>Something went wrong...</b><br>Please <a href="#" id="copy_error_message_to_clipboard">click here</a> to copy an error message to clipboard and <a href="mailto:alexeyhimself@gmail.com">let us know</a></p>`;
