@@ -51,9 +51,9 @@ function compose_tags(words_on_page) {
     })
     let composed_tags = Object.keys(resulting_tags);
     if (composed_tags.length != 0)
-      return composed_tags;
+      return composed_tags.slice(0, 15);
     else
-      return Object.keys(sort_dict_by_value_desc(tags.existing));
+      return Object.keys(sort_dict_by_value_desc(tags.existing)).slice(0, 15);
   }
   else {
     let save_element = document.getElementById("save");
@@ -107,7 +107,7 @@ function show_tags() {
   document.getElementById("dots").style.display = 'none';
 }
 function hide_tags() {
-  console.log("tags hidden")
+  //console.log("tags hidden")
   document.getElementById("tags_hint").style.display = "none";
   //document.getElementById("tags_hint_content").style.display = 'none';
   //document.getElementById("dots").style.display = '';
