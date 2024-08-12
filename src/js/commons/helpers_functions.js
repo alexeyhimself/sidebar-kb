@@ -1,4 +1,6 @@
 function sort_dict_by_value_desc(dict) {  // https://www.geeksforgeeks.org/how-to-sort-a-dictionary-by-value-in-javascript/
+  if (!dict)
+    return {};
   return Object.keys(dict)
     .sort((a, b) => dict[b] - dict[a])
     .reduce((acc, key) => {
