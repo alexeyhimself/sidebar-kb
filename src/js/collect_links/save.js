@@ -69,7 +69,10 @@ async function save_link() {
 
   close_collect_form();
   what_to_do_on_filter_change();
-  show_toast("Link has been saved");
+  if (!link.source)
+    show_toast("Link has been saved");
+  else
+    show_toast("Link has been updated");
 
   finish_onboarding_user();
 }

@@ -53,7 +53,7 @@ function compose_tags(words_on_page) {
     if (composed_tags.length != 0)
       return composed_tags.slice(0, 15);
     else
-      return Object.keys(sort_dict_by_value_desc(tags.existing)).slice(0, 15);
+      return Object.keys(tags.existing).slice(0, 15);
   }
   else {
     let save_element = document.getElementById("save");

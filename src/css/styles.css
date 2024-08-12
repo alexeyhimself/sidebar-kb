@@ -185,6 +185,7 @@ select {
 }
 #tags {
   overflow-y: hidden;
+  margin-bottom: 5px;
 }
 
 #chart_total, #chart_what_to_do {
