@@ -1,5 +1,5 @@
-# Personal Knowledge Base side panel
-This is an MVP for a Personal Knowledge Base side panel extension for Google Chrome desktop.
+# Knowledge Base side panel
+This is an MVP for a Knowledge Base side panel extension for Google Chrome desktop.
 ![image 1](https://www.dropbox.com/scl/fi/jgrdvfnfme3rho63qezsy/Screenshot-at-Jul-23-12-43-46.png?rlkey=1kcy5lcy67x8qnmryk7inq28e&raw=1)
 ![image 2](https://www.dropbox.com/scl/fi/l4z30ff2zeejpc0or5r4b/Screenshot-at-Jul-23-12-44-46.png?rlkey=gkbk1ovz0unjav1f2aadi4743&raw=1)
 
@@ -39,11 +39,9 @@ This is an MVP for a Personal Knowledge Base side panel extension for Google Chr
 3. Close and open side panel extension in your browser
 
 
-## How to use
-1. Use "Save" tab to collect links you want to read / watch / listen / etc. later
-2. Use "Queue" tab to filter links with top priority that match you current time frame to learn
-3. Use "Knowledge base" tab to access useful links moved from "Queue" into Knowledge base
-4. Use "Export links to CSV | JSON" on a "Queue" tab to backup your links at any time
+## How to enable AI
+Google Chrome Gemini Nano AI is currently available only in Canary version of Google Chrome and is disabled by default. To enable Gemini Nano AI use [this setup instruction](https://docs.google.com/document/d/1VG8HIyz361zGduWgNG7R_R8Xkv0OOJ8b5C9QKeCjU0c/edit#heading=h.5s2qlonhpm36) from the Built-in AI Early Preview Program provided by Google Chrome development team.
+
 
 ## FAQ
 ### Where the data is stored?

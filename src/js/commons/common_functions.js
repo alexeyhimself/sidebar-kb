@@ -61,9 +61,8 @@ function get_hostname(link) {  // https://stackoverflow.com/questions/8498592/ex
     return hostname.replace(/^www\./g, '');  // remove starting "www."  
   }
   catch {
-    return undefined;
+    return "Invalid URL";
   }
-  
 }
 
 function adjust_textarea_size(element) {  // https://stackoverflow.com/questions/995168/textarea-to-resize-based-on-content-length

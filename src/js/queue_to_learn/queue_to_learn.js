@@ -414,6 +414,8 @@ function what_to_do_on_filter_change(event) {
   adjust_scroll_margin();
   draw_links_in_kb_tab();
   //draw_links_in_deleted_tab();
+  enable_move_to_kb_listeners();
+  enable_delete_from_queue_listeners();
 }
 
 function delete_link_from_queue(url) {
@@ -532,6 +534,6 @@ function enable_manage_links() {
   enable_textarea_listener("find_text", what_to_do_on_filter_change);
   enable_textarea_listener("find_time", what_to_do_on_filter_change);
 
-  enable_move_to_kb_listeners();
-  enable_delete_from_queue_listeners();
+  //enable_move_to_kb_listeners();
+  //enable_delete_from_queue_listeners();
 }
