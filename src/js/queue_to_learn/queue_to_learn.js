@@ -363,6 +363,14 @@ function filter_links(sorting) {
         resulting_links.push(link);
         continue;
       }
+      if (!link.time && "time not set".includes(filtered_text) && !no_time_what_to_do.includes(link.what_to_do)) {
+        resulting_links.push(link);
+        continue;
+      }
+      if (!link.what_to_do && "type not set".includes(filtered_text) && !no_time_what_to_do.includes(link.what_to_do)) {
+        resulting_links.push(link);
+        continue;
+      }
 
       let full_text_match_found = false;
       for (let j = 0; j < fields_to_search_in.length; j++) {  // full text search
