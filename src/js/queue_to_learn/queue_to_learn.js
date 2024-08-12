@@ -244,17 +244,17 @@ function draw_existing_grouped_links(grouped_links) {
   return links_html;
 }
 
-function days_ago(date) {
+function days_ago(date, month, day) {
   const days_passed_since_created = calculate_days_passed_till_today(date);
   const weekday = new Date(date).toLocaleDateString('en-US', {weekday: 'short'});
   if (days_passed_since_created > 7)
-    return '';
+    return `${month} ${day}`;
   if (days_passed_since_created == 0)
-    return `(today) ${weekday}, `;
+    return `${weekday}, ${month} ${day} (today)`;
   if (days_passed_since_created == 1)
-    return `(yesterday) ${weekday}, `;
+    return `${weekday}, ${month} ${day} (yesterday)`;
 
-  return `${weekday}, `;
+  return `${weekday}, ${month} ${day}`;
 }
 
 function draw_existing_time_based_links(links) {
@@ -272,7 +272,7 @@ function draw_existing_time_based_links(links) {
       if (group_started)
         links_html += '</div>';
       group_started = false;
-      links_html += `<p style="font-size: 17px;">${days_ago(item.date_created)}${month} ${date}</p>`;
+      links_html += `<p style="font-size: 17px;">${days_ago(item.date_created, month, date)}</p>`;
       date_created = item_date_created;
     }
 
