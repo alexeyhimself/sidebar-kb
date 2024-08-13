@@ -1,7 +1,6 @@
-# Knowledge Base side panel
+<img width="1439" alt="Screenshot at Aug 13 02-49-22" src="https://github.com/user-attachments/assets/ad5e71b4-7729-43d8-93a2-8dbb52fa7fcc"># Knowledge Base side panel
 This is an MVP for a Knowledge Base side panel extension for Google Chrome desktop.
-![image 1](https://www.dropbox.com/scl/fi/jgrdvfnfme3rho63qezsy/Screenshot-at-Jul-23-12-43-46.png?rlkey=1kcy5lcy67x8qnmryk7inq28e&raw=1)
-![image 2](https://www.dropbox.com/scl/fi/l4z30ff2zeejpc0or5r4b/Screenshot-at-Jul-23-12-44-46.png?rlkey=gkbk1ovz0unjav1f2aadi4743&raw=1)
+![image 1]([https://www.dropbox.com/scl/fi/jgrdvfnfme3rho63qezsy/Screenshot-at-Jul-23-12-43-46.png?rlkey=1kcy5lcy67x8qnmryk7inq28e&](https://www.dropbox.com/scl/fi/7vedcaqm046ohmbttu85f/Screenshot-at-Aug-13-02-49-22.png?rlkey=tjhvvnt2245z06lg1fw0cyoco&raw=1)
 
 
 ## How to get source code
