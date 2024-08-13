@@ -129,7 +129,7 @@ async function save_selected_tabs(tabs) {
 async function save_all_selected_tabs_in_window() {
   const tabs = await chrome.tabs.query({currentWindow: true, groupId: -1, pinned: false, highlighted: true});  // do not touch pinned and grouped tabs
   await save_selected_tabs(tabs);
-  show_toast("Selected tabs have been saved to Queue");
+  show_toast("Selected tabs have been saved");
 }
 
 async function save_all_tabs_in_window() {
