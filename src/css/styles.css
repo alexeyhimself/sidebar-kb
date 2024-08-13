@@ -584,7 +584,7 @@ p.bulk_saved_group_restore a {
   width: calc(100% - 17px);
   font-size: 15px;
   font-family: "Lato";
-  background: white; // #ebeff7; //#198754; //deeppink;
+  background: #95e48b;
   padding: 0;
   border-: 0;
   color-: white;
@@ -598,9 +598,12 @@ p.bulk_saved_group_restore a {
 .btn-close {
   filter-: invert(1);
   opacity-: unset;
-  padding: 3px;
-  width: 27px;
-  height: 3px;
+  padding-: 3px;
+  width-: 27px;
+  height-: 3px;
+  scale: 70%;
+  opacity: 1;
+  padding-right: 10px;
 }
 
 .queue-link-a {
