@@ -6,8 +6,8 @@ async function try_ai_gemini_nano() {
     const session = await window.ai.createTextSession();
     available_ai_platforms["gemini_nano"] = true;
   } 
-  catch {
-    // console.warn("Gemini Nano AI is not available. ");
+  catch (error) {
+    console.warn(`Gemini Nano AI is not available due to an error: ${error}. `);
   }
 }
 
@@ -21,7 +21,7 @@ async function try_ai_gemini(key) {
   .then((response) => response.json())
   .then((data) => {
     if (data.error) {
-      // console.warn("Gemini AI is not available. ");
+      console.warn(`Gemini AI is not available due to an error: ${data.error}. `);
       return;
     }
 
