@@ -584,7 +584,7 @@ p.bulk_saved_group_restore a {
   width: calc(100% - 17px);
   font-size: 15px;
   font-family: "Lato";
-  background: #95e48b;
+  background: white; //#95e48b;
   padding: 0;
   border-: 0;
   color-: white;
