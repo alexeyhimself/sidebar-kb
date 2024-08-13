@@ -77,7 +77,7 @@ async function visualize_ungroup(link) {
   delete link.group_id;
   update_link_in_storage(link);
   what_to_do_on_filter_change();
-  await sleep(300);
+  await sleep(200);
 }
 
 function enable_restore_tabs_listeners() {
