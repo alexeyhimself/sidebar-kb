@@ -1,4 +1,4 @@
-<img width="1439" alt="Screenshot at Aug 13 02-49-22" src="https://github.com/user-attachments/assets/ad5e71b4-7729-43d8-93a2-8dbb52fa7fcc"># Knowledge Base side panel
+# Knowledge Base side panel
 This is an MVP for a Knowledge Base side panel extension for Google Chrome desktop.
 ![image 1](https://www.dropbox.com/scl/fi/6oawjuimjxr402kpgdhxh/Screenshot-at-Aug-13-19-12-32.png?rlkey=z8q8vv9p0in91lsjelqg1fmf7&raw=1)
 
