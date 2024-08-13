@@ -128,7 +128,7 @@ async function generate_tags(page_object) {
     return draw_tags_hint(ai_tags);
 
   const tags = compose_tags(page_object.words_on_page);
-  console.log(tags)
+  //console.log(tags)
   if (tags.length == 0) {
     hide_tags();
     return;
