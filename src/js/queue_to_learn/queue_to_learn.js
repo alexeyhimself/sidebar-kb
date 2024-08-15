@@ -492,7 +492,7 @@ function hide_move_and_delete_buttons() {
 
 function enable_edit_in_queue_listeners() {
   document.querySelectorAll(".edit_in_queue").forEach((element) => {
-    element.addEventListener('click', function (event) {
+    element.addEventListener('click', async function (event) {
       const url = event.target.getAttribute("data-url");
       //open_collect_form();
       open_empty_collect_form();
@@ -505,13 +505,21 @@ function enable_edit_in_queue_listeners() {
       all_input_elements_ids.forEach((element_id) => {
         let element = document.getElementById(element_id);
         //console.log(element_id, link[element_id])
-        if (link[element_id])
+        if (link[element_id]) {
           element.value = link[element_id];
-      })
+        }
+      });
+
       //let link = document.getElementById("link");
       //link.value = url;
       suggest_tags({"link": url, "title": link.title});
       bring_form_to_active_state();
+
+      await sleep(200);
+      collect_links_textareas_ids.forEach((id) => {
+        adjust_textarea_size(document.getElementById(id));
+      });
+
       //link.dispatchEvent(new InputEvent("change"));
     });
   });
