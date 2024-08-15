@@ -3,6 +3,9 @@ var available_ai_platforms = {};
 
 async function try_ai_gemini_nano() {
   try {
+    if (!window.ai)
+      return;
+
     const session = await window.ai.createTextSession();
     available_ai_platforms["gemini_nano"] = true;
   } 
