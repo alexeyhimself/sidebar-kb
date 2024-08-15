@@ -81,13 +81,22 @@ function collect_data_from_the_save_link_form() {
   return current_link;
 }
 
+function shirk_textareas_to_content() {
+  sleep(200).then(() => {
+    collect_links_textareas_ids.forEach((id) => {
+      adjust_textarea_size(document.getElementById(id));
+    });
+  });
+}
+
 function clear_save_link_form() {
   collect_links_textareas_ids.forEach((id) => {
     document.getElementById(id).value = "";
-    adjust_textarea_size(document.getElementById(id));
+    //adjust_textarea_size(document.getElementById(id));
   });
   document.getElementById("what_to_do").value = "";
   document.getElementById("priority").value = "";
+  shirk_textareas_to_content();
 }
 
 async function count_tabs_in_a_window() {
@@ -183,11 +192,12 @@ function fill_the_collect_links_form_with_existing_data(existing_link) {
       const element = document.getElementById(element_id);
       element.value = link[element_id];
 
-      if (collect_links_textareas_ids.includes(element_id)) {
-        adjust_textarea_size(element);
-      }
+      //if (collect_links_textareas_ids.includes(element_id)) {
+      //  adjust_textarea_size(element);
+      //}
     }
   });
+  //shirk_textareas_to_content();
 }
 
 const sources_map = {"links": "Queue", "kb": "Knowledge Base", "deleted": "Deleted"};

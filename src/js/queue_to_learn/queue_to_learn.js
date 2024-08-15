@@ -492,7 +492,7 @@ function hide_move_and_delete_buttons() {
 
 function enable_edit_in_queue_listeners() {
   document.querySelectorAll(".edit_in_queue").forEach((element) => {
-    element.addEventListener('click', async function (event) {
+    element.addEventListener('click', function (event) {
       const url = event.target.getAttribute("data-url");
       //open_collect_form();
       open_empty_collect_form();
@@ -515,10 +515,7 @@ function enable_edit_in_queue_listeners() {
       suggest_tags({"link": url, "title": link.title});
       bring_form_to_active_state();
 
-      await sleep(200);
-      collect_links_textareas_ids.forEach((id) => {
-        adjust_textarea_size(document.getElementById(id));
-      });
+      shirk_textareas_to_content();
 
       //link.dispatchEvent(new InputEvent("change"));
     });

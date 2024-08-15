@@ -78,9 +78,9 @@ function fill_and_adjust_textareas(page_object) {
   ["link", "title", "time"].forEach((element_id) => {
     const element = document.getElementById(element_id);
     element.value = page_object[element_id];
-    adjust_textarea_size(element);
+    //adjust_textarea_size(element);
   })
-
+  shirk_textareas_to_content();
   document.getElementById("link").dispatchEvent(new InputEvent("input"));  //  https://github.com/w3c/input-events/issues/105  
 }
 
