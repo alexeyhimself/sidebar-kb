@@ -38,12 +38,12 @@ async function fill_available_ai_platforms_dict() {
 }
 
 async function ask_ai_gemini_nano(p) {
-  //console.log("asking Gemini Nano AI");
+  console.log("asking Gemini Nano AI");
   const session = await window.ai.createTextSession();
   const question = `We have a page title: "${p.title}" on URL: "${p.link}". And we want to compose meaningful tags for this page. Advise several tags that mostly made of the words used in this title. Return a comma separated list only as a response.`;
-  //console.log(question)
+  console.log(question)
   const answer = await session.prompt(question);
-  //console.log(answer);
+  console.log(answer);
   //if (answer)
   //  console.log(answer.split(",").map(function(item) {return item.trim();}));
   const result = answer.split(",").map(function(item) {

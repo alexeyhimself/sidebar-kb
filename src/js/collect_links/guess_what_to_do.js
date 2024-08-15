@@ -1,5 +1,5 @@
 var stats_of_what_to_do_for_links = {};
-
+const default_what_to_do = ""; // "read";
 
 function fill_stats_of_what_to_do_for_links() {
   load_links_from_local_storage().forEach((link) => {
@@ -13,11 +13,11 @@ function guess_what_to_do_by_link(link) {
     let sorted_what_to_dos = sort_dict_by_value_desc(what_to_dos);
     return Object.keys(sorted_what_to_dos)[0];
   }
-  
+
   if (["youtube.com", "youtu.be"].includes(hostname))
     return "watch";
 
-  return "read";
+  return default_what_to_do;
 }
 
 function suggest_what_to_do(link) {
@@ -28,7 +28,7 @@ function suggest_what_to_do(link) {
 }
 
 function update_stats_of_what_to_do_for_links(link) {
-  if (link.what_to_do == undefined || link.what_to_do == "undefined")
+  if ([undefined, "undefined", ""].includes(link.what_to_do))
     return;
 
   let hostname = get_hostname(link.link);

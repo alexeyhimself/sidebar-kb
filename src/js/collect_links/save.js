@@ -97,6 +97,7 @@ function update_link_in_storage(link) {
 
   links.push(link);
   localStorage.setItem(source, JSON.stringify(links));
+  update_stats_of_what_to_do_for_links(link);
 }
 
 function save_link_to_local_storage(link) {

@@ -63,8 +63,7 @@ function draw_links_in_queue_tab(grouped_links, no_links_callback) {
     }
 
     //display_links_export(grouped_links.total);
-
-    enable_edit_in_queue_listeners();
+    //enable_edit_in_queue_listeners();
   } catch (error) {
     console.error(error);
     document.getElementById("links_area").innerHTML = draw_links_error_message();
@@ -120,8 +119,7 @@ function draw_time_based_links(links, no_links_callback) {
     }
 
     //display_links_export(links.total);
-
-    enable_edit_in_queue_listeners();
+    //enable_edit_in_queue_listeners();
     enable_restore_tabs_listeners();
 
   } catch (error) {
@@ -422,6 +420,7 @@ function what_to_do_on_filter_change(event) {
   adjust_scroll_margin();
   draw_links_in_kb_tab();
   //draw_links_in_deleted_tab();
+  enable_edit_in_queue_listeners();
   enable_move_to_kb_listeners();
   enable_delete_from_queue_listeners();
 }
@@ -500,13 +499,19 @@ function enable_edit_in_queue_listeners() {
       show_move_and_delete_buttons();
       const save_element = document.getElementById("save");
       save_element.classList.remove("context_menu_call");  // clean if left from unsaved tab
-      let link = document.getElementById("link");
-      link.value = url;
-      link.dispatchEvent(new InputEvent("change"));
       save_element.dataset.callback = "queue";
 
-      const lnk = get_link_from_queue(url);
-      suggest_tags({"link": url, "title": lnk.title});
+      const link = get_link_from_queue(url);
+      all_input_elements_ids.forEach((element_id) => {
+        let element = document.getElementById(element_id);
+        console.log(element_id, link[element_id])
+        element.value = link[element_id];
+      })
+      //let link = document.getElementById("link");
+      //link.value = url;
+      suggest_tags({"link": url, "title": link.title});
+      bring_form_to_active_state();
+      //link.dispatchEvent(new InputEvent("change"));
     });
   });
 }

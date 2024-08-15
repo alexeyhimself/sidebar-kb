@@ -57,11 +57,15 @@ async function get_data_from_active_tab(tab) {
             words_on_page[word] = 1;
         });
 
+        let time_to_read = parseInt(words_list.length / 220);
+        if (time_to_read == 0)
+          time_to_read = 1;
+
         return {
           "title": document.title,
           "link": document.location.href,
           "words_on_page": words_on_page,
-          "time": parseInt(words_list.length / 220) + 'm',  // assume 220 - an avg words/minute reading speed
+          "time": time_to_read + 'm',  // assume 220 - an avg words/minute reading speed
         };
       }
     }

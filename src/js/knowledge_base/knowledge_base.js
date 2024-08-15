@@ -80,7 +80,7 @@ function draw_links_in_kb_tab(links, no_links_callback) {
     else
       document.getElementById("kb_area").innerHTML = draw_existing_links_in_kb_tab(links);
 
-    enable_edit_in_queue_listeners();
+    //enable_edit_in_queue_listeners();
   } catch (error) {
     console.error(error);
     document.getElementById("kb_area").innerHTML = draw_kb_error_message();
@@ -89,6 +89,6 @@ function draw_links_in_kb_tab(links, no_links_callback) {
 }
 
 function enable_knowledge_base() {
-  draw_links_in_kb_tab();
+  //draw_links_in_kb_tab();
 }
 
