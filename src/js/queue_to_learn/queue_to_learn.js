@@ -264,7 +264,7 @@ function draw_existing_time_based_links(links) {
     const item = links[j];
 
     const item_date_created = new Date(item.date_created).toLocaleDateString('en-US');
-    const month = new Date(item.date_created).toLocaleString('default', { month: 'short' });
+    const month = new Date(item.date_created).toLocaleString('en-US', { month: 'short' });
     const date = new Date(item.date_created).getDate();
     if (item_date_created != date_created) {
       if (group_started)
