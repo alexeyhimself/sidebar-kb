@@ -504,8 +504,9 @@ function enable_edit_in_queue_listeners() {
       const link = get_link_from_queue(url);
       all_input_elements_ids.forEach((element_id) => {
         let element = document.getElementById(element_id);
-        console.log(element_id, link[element_id])
-        element.value = link[element_id];
+        //console.log(element_id, link[element_id])
+        if (link[element_id])
+          element.value = link[element_id];
       })
       //let link = document.getElementById("link");
       //link.value = url;
