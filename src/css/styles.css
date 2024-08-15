@@ -670,8 +670,9 @@ p.bulk_saved_group_restore a {
   display: none;
 }
 
-/*.dropdown:hover .dropdown-menu {
+/*
+.dropdown-toggle:hover .dropdown-menu {
     display: block;
-    margin-top: 40px; /* remove the gap so it doesn't close */
-}*/
-
+    margin-top: 40px; / * remove the gap so it doesn't close * /
+}
+*/
