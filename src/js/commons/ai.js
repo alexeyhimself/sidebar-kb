@@ -44,7 +44,7 @@ async function ask_ai_gemini_nano(p) {
   try {
     console.log("asking Gemini Nano AI");
     const session = await window.ai.createTextSession();
-    const question = `We have a page title: "${p.title}" on URL: "${p.link}". And we want to compose meaningful tags for this page. Advise several tags that mostly made of the words used in this title. Return a comma separated list only as a response.`;
+    const question = `We have a page title: "${p.title}" on URL: "${p.link}". And we want to compose meaningful tags for this page. Advise several tags (at least 3, at most 10) that mostly but not necessary made of the words used in these title and URL. Return a comma separated list only as a response.`;
     console.log(question)
     const answer = await session.prompt(question);
     console.log(answer);
@@ -52,7 +52,7 @@ async function ask_ai_gemini_nano(p) {
       return [];
 
     const result = answer.split(",").map(function(item) {
-      return item.trim().toLowerCase();
+      return item.trim().replaceAll(`"`, ``).toLowerCase();
     });
     return result;
   }
