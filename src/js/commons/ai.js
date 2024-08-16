@@ -42,17 +42,18 @@ async function fill_available_ai_platforms_dict() {
 
 async function ask_ai_gemini_nano(p) {
   try {
-    console.log("asking Gemini Nano AI");
+    //console.log("asking Gemini Nano AI");
     const session = await window.ai.createTextSession();
-    const question = `We have a page title: "${p.title}" on URL: "${p.link}". And we want to compose meaningful tags for this page. Advise several tags (at least 3, at most 10) that mostly but not necessary made of the words used in these title and URL. Return a comma separated list only as a response.`;
-    console.log(question)
-    const answer = await session.prompt(question);
-    console.log(answer);
-    if (answer.split(",").length == 0)
+    const question = `We have a page title: "${p.title}" on URL: "${p.link}". And we want to compose meaningful tags for this page. Advise several tags (at least 3, at most 10) that mostly but not necessary made of the words used in these title and URL. Tags could be made of 1 or 2 words. Return only array of comma separated tags as a response.`;
+    //console.log(question)
+    let answer = await session.prompt(question);
+    //console.log(answer);
+    answer = answer.replace(/\[|\]/g, '');
+    if (answer.split(",").length == 1)
       return [];
 
     const result = answer.split(",").map(function(item) {
-      return item.trim().replaceAll(`"`, ``).toLowerCase();
+      return item.trim().replaceAll(`"`, ``).toLowerCase();  // sometimes returns tags in "
     });
     return result;
   }
