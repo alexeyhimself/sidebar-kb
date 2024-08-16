@@ -41,18 +41,25 @@ async function fill_available_ai_platforms_dict() {
 }
 
 async function ask_ai_gemini_nano(p) {
-  console.log("asking Gemini Nano AI");
-  const session = await window.ai.createTextSession();
-  const question = `We have a page title: "${p.title}" on URL: "${p.link}". And we want to compose meaningful tags for this page. Advise several tags that mostly made of the words used in this title. Return a comma separated list only as a response.`;
-  console.log(question)
-  const answer = await session.prompt(question);
-  console.log(answer);
-  //if (answer)
-  //  console.log(answer.split(",").map(function(item) {return item.trim();}));
-  const result = answer.split(",").map(function(item) {
-    return item.trim().toLowerCase();
-  });
-  return result;
+  try {
+    console.log("asking Gemini Nano AI");
+    const session = await window.ai.createTextSession();
+    const question = `We have a page title: "${p.title}" on URL: "${p.link}". And we want to compose meaningful tags for this page. Advise several tags that mostly made of the words used in this title. Return a comma separated list only as a response.`;
+    console.log(question)
+    const answer = await session.prompt(question);
+    console.log(answer);
+    if (answer.split(",").length == 0)
+      return [];
+
+    const result = answer.split(",").map(function(item) {
+      return item.trim().toLowerCase();
+    });
+    return result;
+  }
+  catch (error) {
+    console.warn("Gemini Nano AI call ended with error: " + error);
+    return [];
+  }
 }
 
 async function ask_ai(payload, ai_type) {
@@ -65,5 +72,5 @@ async function ask_ai(payload, ai_type) {
   if (available_ai_platforms[ai_type])
     return await ask_ai_gemini_nano(payload);
 
-  return;
+  return [];
 }

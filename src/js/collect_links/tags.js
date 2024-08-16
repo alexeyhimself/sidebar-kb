@@ -132,10 +132,9 @@ async function suggest_tags(page_object) {
 
 async function generate_tags(page_object) {
   const ai_tags = await ask_ai(page_object);
-  if (ai_tags)
-    return draw_tags_hint(ai_tags);
+  const non_ai_tags = compose_tags(page_object.words_on_page);
 
-  const tags = compose_tags(page_object.words_on_page);
+  const tags = [...new Set(ai_tags.concat(non_ai_tags))];
   //console.log(tags)
   if (tags.length == 0) {
     hide_tags();
