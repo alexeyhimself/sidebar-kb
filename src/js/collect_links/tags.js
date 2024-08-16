@@ -50,17 +50,25 @@ function compose_tags(words_on_page) {
         resulting_tags[existing_tag] = words_on_page[existing_tag];
     })
     let composed_tags = Object.keys(resulting_tags);
-    if (composed_tags.length != 0)
-      return composed_tags.slice(0, 15);
+    if (composed_tags.length != 0) {
+      let result = [];
+      tags.most_recent.reverse().forEach((most_recent_tag) => {
+        if (composed_tags.includes(most_recent_tag))
+          result.push(most_recent_tag);
+      })
+      return result.slice(0, 15);
+    }
     else
-      return Object.keys(tags.existing).slice(0, 15);
+      return tags.most_recent.slice(0, 15);
   }
   else {
     let save_element = document.getElementById("save");
+    /*
     if (save_element.classList.contains("auto_fill")) {
       //console.log("auto-fill");
       return [];
     }
+    */
 
     const most_recent_tags = tags.most_recent.reverse();
     return most_recent_tags.slice(0, 10);
