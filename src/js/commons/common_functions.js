@@ -1,5 +1,6 @@
-function load_links_from_local_storage() {
-  let links = localStorage.getItem("links") || "[]";
+function load_links_from_local_storage(source) {
+  source = source || "links";
+  let links = localStorage.getItem(source) || "[]";
   return JSON.parse(links);
 }
 

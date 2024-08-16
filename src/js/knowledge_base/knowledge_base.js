@@ -28,7 +28,7 @@ function draw_link_in_kb_tab(item, j, what_to_do) {
   }
 
   const hostname = get_hostname(item.link);
-  links_html += ` <span class="hostname">${hostname}</span> <a class="queue-link-a" href="${item.link}" target="_blank">${item.title.trim()}</a><!--&nbsp;&nbsp;| <a href="#" data-url="${item.link}" class="edit_in_queue"--><!--i class="bi bi-pencil"></i--><!--img src="/images/pencil.svg" style="height: 16px; padding-right: 0px; padding-bottom: 2px;">&nbsp;Edit...</a-->`;
+  links_html += ` <span class="hostname">${hostname}</span> <a class="queue-link-a" href="${item.link}" target="_blank">${item.title.trim()}</a><!--&nbsp;&nbsp;| <a href="#" data-url="${item.link}" class="edit_in_kb"--><!--i class="bi bi-pencil"></i--><!--img src="/images/pencil.svg" style="height: 16px; padding-right: 0px; padding-bottom: 2px;">&nbsp;Edit...</a-->`;
   if (item.notes) {
     links_html += `<span><br><b>Notes: </b> ${item.notes.replace(/\n/g, '<br>')}</span>`;
   }
@@ -43,7 +43,7 @@ function draw_link_in_kb_tab(item, j, what_to_do) {
     </svg>
   </button> \
   <ul class="dropdown-menu"> \
-    <li><a class="dropdown-item edit_in_queue" href="#" data-url="${item.link}">Edit</a></li> \
+    <li><a class="dropdown-item edit_in_kb" href="#" data-url="${item.link}">Edit</a></li> \
   </ul> \
 </div>`;
 
@@ -86,6 +86,50 @@ function draw_links_in_kb_tab(links, no_links_callback) {
     document.getElementById("kb_area").innerHTML = draw_kb_error_message();
     enable_copy_error_message_to_clipboard_listener("copy_error_message_to_clipboard", error);
   }
+}
+
+function get_link_from_kb(url) {
+  let links = load_links_from_local_storage("kb");
+  for (let i = 0; i < links.length; i++) {
+    const link = links[i];
+    if (link.link == url) {
+      return link;
+    }
+  }
+}
+
+function enable_edit_in_kb_listeners() {
+  document.querySelectorAll(".edit_in_kb").forEach((element) => {
+    element.addEventListener('click', function (event) {
+      const url = event.target.getAttribute("data-url");
+      //open_collect_form();
+      open_empty_collect_form();
+      show_delete_button();
+      const save_element = document.getElementById("save");
+      save_element.classList.remove("context_menu_call");  // clean if left from unsaved tab
+      //save_element.dataset.callback = "kb";
+      save_element.dataset.source = "kb";
+
+      // adjust_if_link_already_exists(link)
+      const link = get_link_from_kb(url);
+      all_input_elements_ids.forEach((element_id) => {
+        let element = document.getElementById(element_id);
+        //console.log(element_id, link[element_id])
+        if (link[element_id]) {
+          element.value = link[element_id];
+        }
+      });
+
+      //let link = document.getElementById("link");
+      //link.value = url;
+      suggest_tags({"link": url, "title": link.title});
+      bring_form_to_active_state();
+
+      shirk_textareas_to_content();
+
+      //link.dispatchEvent(new InputEvent("change"));
+    });
+  });
 }
 
 function enable_knowledge_base() {

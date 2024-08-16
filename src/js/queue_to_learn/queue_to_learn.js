@@ -421,6 +421,7 @@ function what_to_do_on_filter_change(event) {
   draw_links_in_kb_tab();
   //draw_links_in_deleted_tab();
   enable_edit_in_queue_listeners();
+  enable_edit_in_kb_listeners();
   enable_move_to_kb_listeners();
   enable_delete_from_queue_listeners();
 }
@@ -488,6 +489,10 @@ function show_move_and_delete_buttons() {
 function hide_move_and_delete_buttons() {
   document.getElementById("move_to_kb").style.display = 'none';
   document.getElementById("delete_from_queue").style.display = 'none';
+}
+function show_delete_button() {
+  document.getElementById("move_to_kb").style.display = 'none';
+  document.getElementById("delete_from_queue").style.display = 'block';
 }
 
 function enable_edit_in_queue_listeners() {
