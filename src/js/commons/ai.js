@@ -57,8 +57,10 @@ async function ask_ai_gemini_nano(payload) {
     let answer = await session.prompt(question);
     //console.log(answer);
     answer = answer.replace(/\[|\]/g, '');  // if we ask for a "comma separated list only" then anything could be in return (; separated, \n- separated, etc). So, by now we ask for an array, but remove []
-    if (answer.split(",").length == 1)
+    if (answer.split(",").length == 1) {  // sometimes returns non-comma separated lists, or only 1 tag (1) which is indistinguishable, and (2) we asked at least 3 tags, not 1 -- so we reject it
+      console.warn(`Gemini Nano AI replied with unacceptable output: ${answer}`);
       return [];
+    }
 
     const result = answer.split(",").map(function(item) {
       return item.trim().replaceAll(`"`, ``).toLowerCase();  // we remove " because sometimes it returns tags in "
