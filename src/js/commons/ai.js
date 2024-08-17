@@ -1,5 +1,6 @@
 const GEMINI_API_KEY = undefined;
 const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
+const GEMINI_API_TIMEOUT = 5000; // do not wait for a response longer than 5 seconds
 var available_ai_platforms = {};
 
 
@@ -24,7 +25,7 @@ async function check_availability_of_gemini_ai(api_key) {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({"contents":[{"parts":[{"text": "Hi"}]}]}),
-    signal: AbortSignal.timeout(5000),  // do not wait longer than 5 seconds
+    signal: AbortSignal.timeout(GEMINI_API_TIMEOUT),
   })
   .then((response) => response.json())
   .then((data) => {
@@ -74,16 +75,16 @@ async function ask_ai_gemini(payload) {
   return [];
 }
 
-async function ask_ai(payload, ai_type) {
-  if (!ai_type)  // default to Gemini Nano
-    ai_type = "gemini_nano";
+async function ask_ai(payload, ai_platform) {
+  if (!ai_platform)  // default to Gemini Nano
+    ai_platform = "gemini_nano";
 
-  if (!available_ai_platforms[ai_type])
+  if (!available_ai_platforms[ai_platform])
     return [];
 
-  if (ai_type == "gemini_nano")
+  if (ai_platform == "gemini_nano")
     return await ask_ai_gemini_nano(payload);
-  else if (ai_type == "gemini")
+  else if (ai_platform == "gemini")
     return await ask_ai_gemini(payload);
   else
     return [];
