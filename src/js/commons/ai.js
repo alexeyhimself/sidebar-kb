@@ -37,12 +37,16 @@ async function check_availability_of_gemini_ai(api_key) {
   });
 }
 
+function display_ai_availability_icon() {
+  if ("gemini" in available_ai_platforms || "gemini_nano" in available_ai_platforms)
+    document.getElementById("ai_status").style.display = 'inline';
+}
+
 async function check_available_ai_platforms() {
   await check_availability_of_gemini_nano_ai();
   await check_availability_of_gemini_ai(GEMINI_API_KEY);
 
-  if ("gemini" in available_ai_platforms || "gemini_nano" in available_ai_platforms)
-    document.getElementById("ai_status").style.display = 'inline';
+  display_ai_availability_icon();
 }
 
 async function ask_ai_gemini_nano(payload) {
@@ -77,10 +81,10 @@ async function ask_ai(payload, ai_type) {
   if (!available_ai_platforms[ai_type])
     return [];
 
-  if (ai_type == "gemini")
-    return await ask_ai_gemini(payload);
-  else if (ai_type == "gemini_nano")
+  if (ai_type == "gemini_nano")
     return await ask_ai_gemini_nano(payload);
+  else if (ai_type == "gemini")
+    return await ask_ai_gemini(payload);
   else
     return [];
 }
