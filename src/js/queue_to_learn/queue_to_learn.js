@@ -138,10 +138,6 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
   if (!item.title)
     item.title = item.link;
   links_html += '<div class="queue-link">';
-
-  //if (what_to_do == undefined) {  // time-based view only
-  //  links_html += `${new Date(item.date_created).toDateString()} `
-  //}
   
   if (item.time)
     links_html += `<span class="badge bg-warning text-dark">${item.time.replace('m', ' min').replace('h', ' hour ')}</span>`;
@@ -150,57 +146,29 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
       links_html += `<span class="badge bg-warning text-dark">time not set</span>`;
   }
 
-  //if (what_to_do == "others" || what_to_do == undefined) {
-    if (["undefined", undefined, ""].includes(item.what_to_do))
-      links_html += ` <span class="badge bg-secondary">type not set</span>`;
-    else
-      links_html += ` <span class="badge bg-secondary">${item.what_to_do}</span>`;
-  //}
+  if (["undefined", undefined, ""].includes(item.what_to_do))
+    links_html += ` <span class="badge bg-secondary">type not set</span>`;
+  else
+    links_html += ` <span class="badge bg-secondary">${item.what_to_do}</span>`;
 
   const hostname = get_hostname(item.link);
   links_html += ` <span class="hostname">${hostname}</span> <a class="queue-link-a" href="${item.link}" target="_blank">${item.title.trim()}</a><!--&nbsp;&nbsp;| <a href="#" data-url="${item.link}" class="edit_in_queue"--><!--i class="bi bi-pencil"></i--><!--img src="/images/pencil.svg" style="height: 16px; padding-right: 0px; padding-bottom: 2px;">&nbsp;Edit...</a-->`;
 
   links_html += `<div class="btn-group queue-link-menu" style="float: inline-end; position: relative; top: 10px; width: auto;"> \
-  <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split- queue-link-button" data-bs-toggle="dropdown" aria-expanded="false" style="padding-: 6px;"> \
-    <!--span class="visually-hidden">Toggle Dropdown</span--> \
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-      <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
-    </svg>
-  </button> \
-  <ul class="dropdown-menu"> \
-    <li><a class="dropdown-item edit_in_queue" href="#" data-url="${item.link}">Edit</a></li> \
-    <li><hr class="dropdown-divider"></li> \
-    <li><a class="dropdown-item move_to_kb" href="#" data-url="${item.link}">Move to Knowledge Base</a></li> \
-    <li><a class="dropdown-item delete_from_queue" href="#" data-url="${item.link}" data-reason="neutral">Delete</a></li> \
-  </ul> \
-</div>`;
-  /*
-  links_html += `<a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-${item.date_created}-${j}" aria-expanded="false" aria-controls="collapseOne"><img src="images/arrow-down.png" style="width: 10px; margin-left: 7px;"></a>`;
-
-  links_html += `<div id="collapse-${item.date_created}-${j}" class="accordion-collapse collapse" data-bs-parent="#accordionExample"><div class="accordion-body">`;
-        
-  links_html += `<b>Actions:</b><br>`;
-  links_html += `<a href="#" data-url="${item.link}" class="edit_in_queue">Edit...</a><br>`;
-  links_html += `<a href="#" data-url="${item.link}" class="move_to_kb">Move to Knowledge Base</a><br>`;
-  links_html += `<a target="_blank" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=${item.what_to_do}: ${item.title}&details=${item.link}">Add to Google Calendar</a><br>`;
-  links_html += 'Remove from Queue with a reason:';
-  links_html += '<ul style="margin-bottom: 5px;">';
-  links_html += `<li><span class="badge bg-secondary">neutral</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="neutral">Not for saving in a Knowledge Base, not that useful</a></li>`;
-  links_html += `<li><span class="badge bg-secondary">neutral</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="duplicate">Duplicate link. Such link already exists</a></li>`;
-  links_html += `<li><span class="badge bg-secondary">negative</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="dontlike">Avoid such stuff. Don't want to waste time on such stuff</a></li>`;
-  links_html += `<li><span class="badge bg-secondary">trash</span> <a href="#" data-url="${item.link}" class="delete_from_queue" data-reason="mistake" style="margin-bottom: 8px;">Do not save such links: they're not for learning</a></li>`;
-  links_html += '</ul>';
-
-  //https://calendar.google.com/calendar/render?action=TEMPLATE&text=Example+Google+Calendar+Event&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=20201231T160000/20201231T170000&recur=RRULE:FREQ%3DWEEKLY
-  // from: https://support.google.com/calendar/thread/81344786/how-do-i-generate-add-to-calendar-link-from-our-own-website?hl=en
-
-  if (item.tags)
-    links_html += `<b>Tags:</b> ${item.tags}<br>`;
-  if (item.notes)
-    links_html += `<b>Notes:</b> ${item.notes}<br>`;
+    <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split- queue-link-button" data-bs-toggle="dropdown" aria-expanded="false" style="padding-: 6px;"> \
+      <!--span class="visually-hidden">Toggle Dropdown</span--> \
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
+      </svg>
+    </button> \
+    <ul class="dropdown-menu"> \
+      <li><a class="dropdown-item edit_in_queue" href="#" data-url="${item.link}">Edit</a></li> \
+      <li><hr class="dropdown-divider"></li> \
+      <li><a class="dropdown-item move_to_kb" href="#" data-url="${item.link}">Move to Knowledge Base</a></li> \
+      <li><a class="dropdown-item delete_from_queue" href="#" data-url="${item.link}" data-reason="neutral">Delete</a></li> \
+    </ul> \
+  </div>`;
   
-  links_html += `</div></div></div>`;
-  */
   links_html += '</div>';
   return links_html;
 }
