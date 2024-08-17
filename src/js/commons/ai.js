@@ -1,5 +1,6 @@
-var available_ai_platforms = {};
 const GEMINI_API_KEY = undefined;
+const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
+var available_ai_platforms = {};
 
 
 async function check_availability_of_gemini_nano_ai() {
@@ -19,7 +20,7 @@ async function check_availability_of_gemini_ai(api_key) {
   if (!api_key)
     return;
 
-  fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${api_key}`, {
+  fetch(`${GEMINI_API_URL}?key=${api_key}`, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({"contents":[{"parts":[{"text": "Hi"}]}]}),
