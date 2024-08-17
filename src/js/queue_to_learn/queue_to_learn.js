@@ -150,15 +150,12 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
       links_html += `<span class="badge bg-warning text-dark">time not set</span>`;
   }
 
-  //if (what_to_do == "undefined" || what_to_do === undefined)
-  //  links_html += `<span class="badge bg-secondary">undefined</span> `;
-  //else if (what_to_do == "others") {
-  if (what_to_do == "others" || what_to_do == undefined) {
-    if (item.what_to_do == "undefined" || item.what_to_do === undefined)
+  //if (what_to_do == "others" || what_to_do == undefined) {
+    if (["undefined", undefined, ""].includes(item.what_to_do))
       links_html += ` <span class="badge bg-secondary">type not set</span>`;
     else
       links_html += ` <span class="badge bg-secondary">${item.what_to_do}</span>`;
-  }
+  //}
 
   const hostname = get_hostname(item.link);
   links_html += ` <span class="hostname">${hostname}</span> <a class="queue-link-a" href="${item.link}" target="_blank">${item.title.trim()}</a><!--&nbsp;&nbsp;| <a href="#" data-url="${item.link}" class="edit_in_queue"--><!--i class="bi bi-pencil"></i--><!--img src="/images/pencil.svg" style="height: 16px; padding-right: 0px; padding-bottom: 2px;">&nbsp;Edit...</a-->`;
