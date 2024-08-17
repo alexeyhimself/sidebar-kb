@@ -53,7 +53,11 @@ async function check_available_ai_platforms() {
 async function ask_ai_gemini_nano(payload) {
   try {
     const session = await window.ai.createTextSession();
-    const question = `We have a page title: "${payload.title}" on URL: "${payload.link}". And we want to compose meaningful tags for this page. Advise several tags (at least 3, at most 10) that mostly but not necessary made of the words used in these title and URL. Tags could be made of 1 or 2 words. Return only array of comma separated tags as a response.`;
+    const question = `We have a page title: "${payload.title}" on URL: "${payload.link}". \
+                      And we want to compose meaningful tags for this page. \
+                      Advise several tags (at least 3, at most 10) that mostly (but not necessary) \
+                      made of the words used in these title and URL. \
+                      Return only array of comma separated tags as a response.`;
     let answer = await session.prompt(question);
     //console.log(answer);
     answer = answer.replace(/\[|\]/g, '');  // if we ask for a "comma separated list only" then anything could be in return (; separated, \n- separated, etc). So, by now we ask for an array, but remove []
