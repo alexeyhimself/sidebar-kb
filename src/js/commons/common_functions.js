@@ -4,6 +4,24 @@ function load_links_from_local_storage(source) {
   return JSON.parse(links);
 }
 
+function check_if_any_link_exist_in(source) {
+  if (localStorage.getItem(source))
+    if (localStorage.getItem(source) != "[]")
+      return true;
+  return false;
+}
+function check_if_any_link_exist(source) {
+  if (source)
+    return check_if_any_link_exist_in(source);
+
+  const data_sources = ["links", "kb", "deleted"];
+  for (let i = 0; i < data_sources.length; i++) {
+    if (check_if_any_link_exist_in(data_sources[i]))
+      return true; 
+  }
+  return false;
+}
+
 function load_links_from_local_storage_sorted_by(sorting) {
   let links = load_links_from_local_storage();
   if (sorting) {

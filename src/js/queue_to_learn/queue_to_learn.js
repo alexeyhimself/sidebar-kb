@@ -18,7 +18,6 @@ function finish_onboarding_user() {
 
 
 function draw_links_placeholder() {
-  onboard_user();
   return `<p id="links_placeholder"><b>You have no saved links yet.</b><br>Save some &mdash; they will appear 👍</p>`;
 }
 function draw_links_error_message() {
@@ -45,12 +44,10 @@ function display_links_export(number_of_links) {
 }
 
 function draw_links_in_queue_tab(grouped_links, no_links_callback) {
-  const all_existing_links = load_links_from_local_storage();
-
   try {
     document.getElementById("filter").style.display = '';
     if (grouped_links.total == 0) {
-      if (no_links_callback && all_existing_links.length > 0)
+      if (no_links_callback && check_if_any_link_exist("links"))
         document.getElementById("links_area").innerHTML = no_links_callback();
       else {
         document.getElementById("links_area").innerHTML = draw_links_placeholder();
@@ -58,12 +55,9 @@ function draw_links_in_queue_tab(grouped_links, no_links_callback) {
       }
     }
     else {
-      finish_onboarding_user();
       document.getElementById("links_area").innerHTML = draw_existing_grouped_links(grouped_links);
     }
 
-    //display_links_export(grouped_links.total);
-    //enable_edit_in_queue_listeners();
   } catch (error) {
     console.error(error);
     document.getElementById("links_area").innerHTML = draw_links_error_message();
@@ -102,11 +96,10 @@ function enable_restore_tabs_listeners() {
 }
 
 function draw_time_based_links(links, no_links_callback) {
-  const all_existing_links = load_links_from_local_storage();
   try {
     document.getElementById("filter").style.display = '';
     if (links.length == 0) {
-      if (no_links_callback && all_existing_links.length > 0)
+      if (no_links_callback && check_if_any_link_exist("links"))
         document.getElementById("links_area").innerHTML = no_links_callback();
       else {
         document.getElementById("links_area").innerHTML = draw_links_placeholder();
@@ -114,7 +107,6 @@ function draw_time_based_links(links, no_links_callback) {
       }
     }
     else {
-      finish_onboarding_user();
       document.getElementById("links_area").innerHTML = draw_existing_time_based_links(links);
     }
 
@@ -132,7 +124,7 @@ function draw_time_based_links(links, no_links_callback) {
 
 const no_time_what_to_do = ["tool", "course", "people"];
 
-function draw_link_in_queue_tab(item, j, what_to_do) {
+function draw_link_in_queue_tab(item, what_to_do) {
   let links_html = '';
 
   if (!item.title)
@@ -163,7 +155,7 @@ function draw_link_in_queue_tab(item, j, what_to_do) {
     </button> \
     <ul class="dropdown-menu"> \
       <li><a class="dropdown-item edit_in_queue" href="#" data-url="${item.link}">Edit</a></li> \
-      <li><hr class="dropdown-divider"></li> \
+      <!--li><hr class="dropdown-divider"></li--> \
       <li><a class="dropdown-item move_to_kb" href="#" data-url="${item.link}">Move to Knowledge Base</a></li> \
       <li><a class="dropdown-item delete_from_queue" href="#" data-url="${item.link}" data-reason="neutral">Delete</a></li> \
     </ul> \
@@ -196,7 +188,7 @@ function draw_existing_grouped_links(grouped_links) {
 
     for (let j = 0; j < grouped_links[what_to_do].length; j++) {
       const item = grouped_links[what_to_do][j];
-      links_html += draw_link_in_queue_tab(item, j, what_to_do);
+      links_html += draw_link_in_queue_tab(item, what_to_do);
     }
 
     i++;
@@ -251,7 +243,7 @@ function draw_existing_time_based_links(links) {
       group_started = false;
     }
     
-    links_html += draw_link_in_queue_tab(item, j);
+    links_html += draw_link_in_queue_tab(item);
     group_id = item.group_id;
   }
   links_html += '</div>';
@@ -373,6 +365,11 @@ function filter_links(sorting) {
 }
 
 function what_to_do_on_filter_change(event) {
+  if (!check_if_any_link_exist())
+    return onboard_user();
+  else
+    finish_onboarding_user();
+
   const radio = document.querySelector('input[name="btnradio"]:checked');
   const filtered_links = filter_links(radio.id);
   if (radio.id == 'priority-based') {
