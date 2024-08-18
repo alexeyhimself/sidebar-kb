@@ -363,8 +363,8 @@ function filter_links(sorting) {
 function what_to_do_on_filter_change(event) {
   if (!check_if_any_link_exist())
     return onboard_user();
-  else
-    finish_onboarding_user();
+
+  finish_onboarding_user();
 
   const radio = document.querySelector('input[name="btnradio"]:checked');
   const filtered_links = filter_links(radio.id);
