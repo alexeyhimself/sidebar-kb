@@ -18,7 +18,7 @@ function finish_onboarding_user() {
 
 
 function draw_links_placeholder() {
-  return `<p id="links_placeholder"><b>You have no saved links yet.</b><br>Save some &mdash; they will appear 👍</p>`;
+  return `<p id="links_placeholder"><b>No links in Queue to learn.</b></p><p style="text-align: center; margin: 0 10%;">Use "Save active tab" button to save links here.</p>`;
 }
 function draw_links_error_message() {
   return `<p id="links_placeholder"><span style="font-size: 2em;">😲</span><br><b>Something went wrong...</b><br>Please <a href="#" id="copy_error_message_to_clipboard">click here</a> to copy an error message to clipboard and <a href="mailto:alexeyhimself@gmail.com">let us know</a></p>`;
@@ -108,12 +108,8 @@ function draw_time_based_links(links, no_links_callback) {
     }
     else {
       document.getElementById("links_area").innerHTML = draw_existing_time_based_links(links);
+      enable_restore_tabs_listeners();
     }
-
-    //display_links_export(links.total);
-    //enable_edit_in_queue_listeners();
-    enable_restore_tabs_listeners();
-
   } catch (error) {
     console.error(error);
     document.getElementById("links_area").innerHTML = draw_links_error_message();
