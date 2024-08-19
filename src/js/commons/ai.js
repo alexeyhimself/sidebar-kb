@@ -9,7 +9,7 @@ async function check_availability_of_gemini_nano_ai() {
     return;
 
   try {
-    const session = await window.ai.createTextSession();
+    const session = await window.ai.assistant.create();
     available_ai_platforms["gemini_nano"] = true;
   } 
   catch (error) {
@@ -52,7 +52,7 @@ async function check_available_ai_platforms() {
 
 async function ask_ai_gemini_nano(payload) {
   try {
-    const session = await window.ai.createTextSession();
+    const session = await window.ai.assistant.create();
     const question = `We have a page title: "${payload.title}" on URL: "${payload.link}". \
                       And we want to compose meaningful tags for this page. \
                       Advise several tags (at least 3, at most 10) that mostly (but not necessary) \
