@@ -53,21 +53,21 @@ async function check_available_ai_platforms() {
 async function ask_ai_gemini_nano(payload) {
   try {
     const session = await window.ai.assistant.create();
-    const question = `We have a page title: "${payload.title}" on URL: "${payload.link}". \
+    const question = `We have a page title: "${payload.title}" located on a resource: "${payload.link}". \
                       And we want to compose meaningful tags for this page. \
-                      Advise several tags (at least 3, at most 10) that mostly (but not necessary) \
-                      made of the words used in these title and URL. \
+                      Advise several tags (at least 3, at most 10) that mostly (but not necessarily) \
+                      made of the words used in these title and resource. Do not offer resource itself as a tag. \
                       Return only array of comma separated tags as a response.`;
     let answer = await session.prompt(question);
-    //console.log(answer);
-    answer = answer.replace(/\[|\]/g, '');  // if we ask for a "comma separated list only" then anything could be in return (; separated, \n- separated, etc). So, by now we ask for an array, but remove []
+    console.log(answer);
+    answer = answer.replace(/\[|\]|```json|```/g, '');  // if we ask for a "comma separated list only" then anything could be in return (; separated, \n- separated, etc). So, by now we ask for an array, but remove []
     if (answer.split(",").length == 1) {  // sometimes returns non-comma separated lists, or only 1 tag (1) which is indistinguishable, and (2) we asked at least 3 tags, not 1 -- so we reject it
       console.warn(`Gemini Nano AI replied with unacceptable output: ${answer}`);
       return [];
     }
 
     const result = answer.split(",").map(function(item) {
-      return item.trim().replaceAll(`"`, ``).toLowerCase();  // we remove " because sometimes it returns tags in "
+      return item.trim().replaceAll(`_`, ` `).replaceAll(`"`, ``).toLowerCase();  // sometimes it returns tags in ", sometimes with _
     });
     return result;
   }
