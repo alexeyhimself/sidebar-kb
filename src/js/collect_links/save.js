@@ -108,8 +108,8 @@ function save_link_to_local_storage(link) {
     if (links[i].link == link.link) {
       const link_from_storage = links[i];
       link.date_created = Date.now(); //link_from_storage.date_created;
-      if (link.group_id == undefined && link_from_storage.group_id)
-        link.group_id = link_from_storage.group_id;
+      //if (link.group_id == undefined && link_from_storage.group_id)  // ungroup on edit
+      //  link.group_id = link_from_storage.group_id;
       if (link.time == undefined && link_from_storage.time) {
         link.time = link_from_storage.time;
         link.time_minutes = link_from_storage.time_minutes;
