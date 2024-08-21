@@ -89,7 +89,7 @@ async function fill_and_adjust(tab) {
   //open_collect_form();
   fill_and_adjust_textareas(page_object);
   suggest_what_to_do(page_object.link);
-  if (page_object.words_on_page)
+  if (page_object)
     suggest_tags(page_object);
 
   adjust_if_link_already_exists(page_object.link);
