@@ -464,6 +464,7 @@ function enable_edit_in_queue_listeners() {
       const save_element = document.getElementById("save");
       save_element.classList.remove("context_menu_call");  // clean if left from unsaved tab
       save_element.dataset.callback = "queue";
+      save_element.dataset.source = "queue";
 
       const link = get_link_from_queue(url);
       all_input_elements_ids.forEach((element_id) => {
@@ -481,6 +482,7 @@ function enable_edit_in_queue_listeners() {
 
       shirk_textareas_to_content();
 
+      //show_toast("Link has been updated");
       //link.dispatchEvent(new InputEvent("change"));
     });
   });

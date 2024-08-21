@@ -10,8 +10,6 @@ async function save_link(link) {
   update_stats_of_what_to_do_for_links(link);
   //what_to_do_on_filter_change();
 
-  reset_form_state();
-
   let save_element = document.getElementById("save");
   if (save_element.classList.contains("context_menu_call")) {
     save_element.classList.remove("context_menu_call");
@@ -25,11 +23,12 @@ async function save_link(link) {
 
   close_collect_form();
   what_to_do_on_filter_change();
-  if (!link.source)
+  if (!save_element.dataset.source)
     show_toast("Link has been saved");
   else
     show_toast("Link has been updated");
 
+  reset_form_state();
   finish_onboarding_user();
 }
 
