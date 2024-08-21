@@ -39,11 +39,8 @@ function fix_data() {
     }
     if (link.what_to_do == "undefined")
       link["what_to_do"] = undefined;
-    if (!link.date_created)
-      link["date_created"] = Date.now();
-    if (!link.date_updated)
-      link["date_updated"] = link["date_created"];
 
+    link = fix_date_created_updated(link);
     new_links.push(link);
   }
  
@@ -59,7 +56,7 @@ function fix_data() {
     }
   });
 
-  localStorage.setItem("links", JSON.stringify(new_unique_links.reverse()));  // REVERSE BACK
+  save_items_into_storage(new_unique_links.reverse(), "links");  // REVERSE BACK
 }
 
 var toast;

@@ -123,3 +123,11 @@ async function close_active_tab(url) { // not used
     chrome.tabs.remove(tab.id, function() { });
 }
 
+function fix_date_created_updated(link) {
+  if (!link.date_created)
+    link.date_created = Date.now();
+  if (!link.date_updated)
+    link.date_updated = Date.now();
+
+  return link;
+}

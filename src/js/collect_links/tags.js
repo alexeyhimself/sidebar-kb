@@ -33,7 +33,7 @@ function update_tags_in_local_storage(new_tags) {
   }
 
   tags = {"existing": existing_tags, "most_recent": most_recent_tags};
-  localStorage.setItem("tags", JSON.stringify(tags));
+  save_items_into_storage(tags, "tags");
 }
 
 function compose_tags(words_on_page) {

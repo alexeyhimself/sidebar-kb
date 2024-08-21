@@ -393,7 +393,7 @@ function delete_link_from_queue(url) {
       break;
     }
   }
-  localStorage.setItem("links", JSON.stringify(links));
+  save_items_into_storage(links, "links");
 }
 function get_link_from_queue(url) {
   let links = load_links_from_local_storage();
