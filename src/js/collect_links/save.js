@@ -65,10 +65,6 @@ function update_link_in_storage(link) {
   update_stats_of_what_to_do_for_links(link);
 }
 
-function save_items_into_storage(links, where) {
-  localStorage.setItem(where, JSON.stringify(links));
-}
-
 function save_or_update_link_in_local_storage(link) {
   let source = link.source || "links";
 

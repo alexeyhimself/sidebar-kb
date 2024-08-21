@@ -1,3 +1,7 @@
+function save_items_into_storage(links, where) {
+  localStorage.setItem(where, JSON.stringify(links));
+}
+
 function load_links_from_local_storage(source) {
   source = source || "links";
   let links = localStorage.getItem(source) || "[]";
