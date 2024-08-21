@@ -8,7 +8,7 @@ async function save_link(link) {
   save_or_update_link_in_local_storage(link);
   update_tags_in_local_storage(link.tags);
   update_stats_of_what_to_do_for_links(link);
-  what_to_do_on_filter_change();
+  //what_to_do_on_filter_change();
 
   reset_form_state();
 
