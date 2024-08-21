@@ -28,10 +28,10 @@ function load_links_from_local_storage_sorted_by(sorting) {
     if (sorting == "priority-based")
       return links.sort(sort_dicts_by_value("-priority"));
     else
-      return links.sort(sort_dicts_by_value("-date_created"));
+      return links.sort(sort_dicts_by_value("-date_updated"));
   }
   else {
-    return links.sort(sort_dicts_by_multiple_values("-priority", "-date_created"));  
+    return links.sort(sort_dicts_by_multiple_values("-priority", "-date_updated"));  
   }
 }
 
