@@ -1,12 +1,3 @@
-function bring_form_from_idle_to_active_state_on_link_value_only() {
-  setTimeout(() => {
-    if (document.getElementById("link").value)
-      return bring_form_to_active_state();
-
-    return bring_form_to_idle_state();
-  }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
-}
-
 async function save_link(link) {
   if (!link)
     link = collect_data_from_the_save_link_form();
@@ -46,23 +37,6 @@ function save_link_to(link, where) {
   let links = load_links_from(where);
   links.push(link);
   save_items_into_storage(links, where);
-}
-
-function update_link_in_storage(link) {
-  let source = link.source || "links";
-
-  let links = load_links_from(source);
-  for (let i = 0; i < links.length; i++) {
-    if (links[i].link == link.link) {
-      link.date_updated = Date.now();
-      links.splice(i, 1);
-      break;
-    }
-  }
-
-  links.push(link);
-  save_items_into_storage(links, source);
-  update_stats_of_what_to_do_for_links(link);
 }
 
 function save_or_update_link_in_local_storage(link) {

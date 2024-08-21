@@ -68,7 +68,7 @@ function draw_links_in_queue_tab(grouped_links, no_links_callback) {
 
 async function visualize_ungroup(link) {
   delete link.group_id;
-  update_link_in_storage(link);
+  save_or_update_link_in_local_storage(link);
   what_to_do_on_filter_change();
   await sleep(200);
 }
@@ -380,6 +380,7 @@ function what_to_do_on_filter_change(event) {
   //draw_links_in_deleted_tab();
   enable_edit_in_queue_listeners();
   enable_edit_in_kb_listeners();
+  enable_delete_from_kb_listeners();
   enable_move_to_kb_listeners();
   enable_delete_from_queue_listeners();
 }

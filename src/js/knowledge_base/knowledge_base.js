@@ -42,6 +42,7 @@ function draw_link_in_kb_tab(item, what_to_do) {
     </button> \
     <ul class="dropdown-menu"> \
       <li><a class="dropdown-item edit_in_kb" href="#" data-url="${item.link}">Edit</a></li> \
+      <li><a class="dropdown-item delete_from_kb" href="#" data-url="${item.link}" data-reason="neutral">Delete</a></li> \
     </ul> \
   </div>`;
 
@@ -111,6 +112,38 @@ function enable_edit_in_kb_listeners() {
       suggest_tags({"link": url, "title": link.title});
       bring_form_to_active_state();
       shirk_textareas_to_content();
+    });
+  });
+}
+
+function delete_link_from_kb(url) {
+  let links = load_links_from_local_storage("kb");
+  for (let i = 0; i < links.length; i++) {
+    const link = links[i];
+    if (link.link == url) {
+      links.splice(i, 1);
+      break;
+    }
+  }
+  save_items_into_storage(links, "kb");
+}
+
+function enable_delete_from_kb_listeners() {
+  document.querySelectorAll(".delete_from_kb").forEach((element) => {
+    element.addEventListener('click', async function (event) {
+      let url = event.target.dataset.url; // queue
+      if (!url)
+        url = document.getElementById("link").value; // form
+      const reason = event.target.dataset.reason;
+      const link = get_link_from_kb(url);
+      link["reason"] = reason;
+      save_link_to(link, "deleted");
+      delete_link_from_kb(url);
+      what_to_do_on_filter_change();
+      show_toast("Link has been deleted");
+      //const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+      //if (tab.url == url)
+      //  chrome.tabs.remove(tab.id, function() { });
     });
   });
 }

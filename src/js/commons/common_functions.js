@@ -135,3 +135,12 @@ function fix_date_created_updated(link) {
 
   return link;
 }
+
+function bring_form_from_idle_to_active_state_on_link_value_only() {
+  setTimeout(() => {
+    if (document.getElementById("link").value)
+      return bring_form_to_active_state();
+
+    return bring_form_to_idle_state();
+  }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
+}
