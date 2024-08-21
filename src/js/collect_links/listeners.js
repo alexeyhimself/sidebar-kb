@@ -162,6 +162,16 @@ function enable_radios_listener() {
   });
 }
 
+function enable_buttons_listeners(buttons) {
+  for (let button_id in buttons) {
+    //console.log(button_id);
+    var element = document.getElementById(button_id);
+    element.addEventListener('click', function (event) {
+      buttons[button_id]();
+    });
+  }
+}
+
 function enable_collect_links_listeners() {
   collect_links_textareas_ids.forEach((element_id) => { 
     enable_textarea_listener(element_id, what_to_do_on_textareas_content_change);

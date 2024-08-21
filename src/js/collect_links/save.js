@@ -1,36 +1,10 @@
-function enable_button_on_link_value_only() {
+function bring_form_from_idle_to_active_state_on_link_value_only() {
   setTimeout(() => {
-    const link = document.getElementById("link").value;
-    if (link) {
-      bring_form_to_active_state();
-      //suggest_what_to_do(link);
-    }
-    else {
-      bring_form_to_idle_state();
-    }
+    if (document.getElementById("link").value)
+      return bring_form_to_active_state();
+
+    return bring_form_to_idle_state();
   }, 100);  // a bit wait because drag&drop events pass faster than the DOM update
-}
-
-function add_time_in_minutes(link) {
-  if (!link.time)
-    return link;
-
-  const parsed_time = parse_time(link.time);
-  if (!parsed_time)
-    return link;
-
-  // rewrite format to "1h 30m"
-  link["time_minutes"] = parsed_time.hours * 60 + parsed_time.minutes;
-  let time = "";
-  if (parsed_time.hours)
-    time += parsed_time.hours + "h";
-  if (parsed_time.hours && parsed_time.minutes)
-    time += " ";
-  if (parsed_time.minutes)
-    time += parsed_time.minutes + "m";
-  link["time"] = time;
-
-  return link;
 }
 
 function save_link_into_storage(link) {
@@ -40,16 +14,10 @@ function save_link_into_storage(link) {
   what_to_do_on_filter_change();
 }
 
-async function close_active_tab(url) {
-  const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
-  if (tab.url == url)
-    chrome.tabs.remove(tab.id, function() { });
-}
-
 async function save_link() {
   let link = collect_data_from_the_save_link_form();
   get_hostname(link.link); // just validation of format to prevent saving of a broken link
-  link = add_time_in_minutes(link);
+  link = add_time_in_minutes_to_link(link);
   save_link_into_storage(link);
   reset_form_state();
 
@@ -63,9 +31,6 @@ async function save_link() {
   }
   if (save_element.classList.contains("auto_fill"))
     save_element.classList.remove("auto_fill");
-
-  //if (save_element.dataset.callback == "queue")
-  //  close_active_tab(link.link);
 
   close_collect_form();
   what_to_do_on_filter_change();
@@ -101,13 +66,16 @@ function update_link_in_storage(link) {
 }
 
 function save_link_to_local_storage(link) {
+  console.log(link)
   let source = link.source || "links";
 
   let links = load_links_from(source);
+
   for (let i = 0; i < links.length; i++) {
     if (links[i].link == link.link) {
       const link_from_storage = links[i];
-      link.date_created = Date.now(); //link_from_storage.date_created;
+      if (link.date_created == undefined && link_from_storage.date_created)
+        link.date_created = link_from_storage.date_created;
       //if (link.group_id == undefined && link_from_storage.group_id)  // ungroup on edit
       //  link.group_id = link_from_storage.group_id;
       if (link.time == undefined && link_from_storage.time) {
@@ -129,16 +97,12 @@ function save_link_to_local_storage(link) {
     }
   }
 
+  if (!link.date_created) {
+    link.date_created = Date.now();
+    link.date_updated = Date.now();
+  }
+
   links.push(link);
   localStorage.setItem(source, JSON.stringify(links));
 }
 
-function enable_buttons_listeners(buttons) {
-  for (let button_id in buttons) {
-    //console.log(button_id);
-    var element = document.getElementById(button_id);
-    element.addEventListener('click', function (event) {
-      buttons[button_id]();
-    });
-  }
-}

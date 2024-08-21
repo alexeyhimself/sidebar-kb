@@ -17,6 +17,7 @@ function fix_data() {
     }
     if (["course", "tool"].includes(link["what_to_do"])) {
       delete link["importance"];
+      delete link["urgency"];
       delete link["priority"];
       delete link["time"];
     }
@@ -25,7 +26,7 @@ function fix_data() {
       delete link["summary"];
     }
     if (!link["time_minutes"])
-      link = add_time_in_minutes(link);
+      link = add_time_in_minutes_to_link(link);
     if (link.priority)
       link["priority"] = parseInt(link.priority);
     if (![99, 50, 1, undefined].includes(link.priority)) {
@@ -38,6 +39,10 @@ function fix_data() {
     }
     if (link.what_to_do == "undefined")
       link["what_to_do"] = undefined;
+    if (!link.date_created)
+      link["date_created"] = Date.now();
+    if (!link.date_updated)
+      link["date_updated"] = link["date_created"];
 
     new_links.push(link);
   }

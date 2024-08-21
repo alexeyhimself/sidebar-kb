@@ -94,3 +94,32 @@ function show_toast(text) {
   document.getElementById("toast-body").innerHTML = check + text;
   toast.show();
 }
+
+function add_time_in_minutes_to_link(link) {
+  if (!link.time)
+    return link;
+
+  const parsed_time = parse_time(link.time);
+  if (!parsed_time)
+    return link;
+
+  // rewrite format to "1h 30m"
+  link["time_minutes"] = parsed_time.hours * 60 + parsed_time.minutes;
+  let time = "";
+  if (parsed_time.hours)
+    time += parsed_time.hours + "h";
+  if (parsed_time.hours && parsed_time.minutes)
+    time += " ";
+  if (parsed_time.minutes)
+    time += parsed_time.minutes + "m";
+  link["time"] = time;
+
+  return link;
+}
+
+async function close_active_tab(url) { // not used
+  const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+  if (tab.url == url)
+    chrome.tabs.remove(tab.id, function() { });
+}
+

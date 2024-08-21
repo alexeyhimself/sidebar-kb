@@ -66,7 +66,7 @@ function bring_form_to_active_state() {
 
 function collect_data_from_the_save_link_form() {
   let current_link = {};
-  current_link.date_created = Date.now();
+  //current_link.date_created = Date.now();
 
   for (let i in all_input_elements_ids) {
     const element_id = all_input_elements_ids[i];
@@ -124,7 +124,7 @@ async function save_selected_tabs(tabs) {
       let link = {"group_id": saved_tabs_group_id, "what_to_do": undefined, "feature": "save_all_tabs_in_window"};
       link.link = tab.url.trim().replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
       link.title = tab.title.trim().replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
-      link.date_created = Date.now();
+      //link.date_created = Date.now();
 
       save_link_into_storage(link);
     }
@@ -218,7 +218,7 @@ function adjust_if_link_already_exists(link) {
 
 function what_to_do_on_textareas_content_change(event) {
   adjust_textarea_size(event.target);
-  enable_button_on_link_value_only();
+  bring_form_from_idle_to_active_state_on_link_value_only();
   enable_tags_hint_on_any_value_only();
 
   //if (!document.getElementById("save").classList.contains("context_menu_call"))
