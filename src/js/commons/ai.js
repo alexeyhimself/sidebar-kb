@@ -53,21 +53,28 @@ async function check_available_ai_platforms() {
 async function ask_ai_gemini_nano(payload) {
   try {
     const session = await window.ai.assistant.create();
-    const question = `We have a page title: "${payload.title}" located on a resource: "${payload.link}". \
+    const question = `On a resource: "${payload.link}" we have a webpage titled: "${payload.title}". \
                       And we want to compose meaningful tags for this page. \
                       Advise several tags (at least 3, at most 10) that mostly (but not necessarily) \
-                      made of the words used in these title and resource. Do not offer resource itself as a tag. \
+                      made of the words used in these title and resource. \
+                      Each tag could be made of 1 or 2 words only. \
+                      Each tag could be only a noun. Do not use adjectives for tags. \
+                      Do not offer resource itself as a tag. \
+                      Do not use hypen to concatenate several words as 1 tag. \
+                      Do not concatenate several words without spaces as 1 tag. \
+                      Do not offer "URL" or "Title" as tags unless these words exist in the title. \
                       Return only array of comma separated tags as a response.`;
     let answer = await session.prompt(question);
     console.log(answer);
-    answer = answer.replace(/\[|\]|```json|```/g, '');  // if we ask for a "comma separated list only" then anything could be in return (; separated, \n- separated, etc). So, by now we ask for an array, but remove []
+    answer = answer.replace(/\[|\]|```json|```|- /g, '');  // if we ask for a "comma separated list only" then anything could be in return (; separated, \n- separated, etc). So, by now we ask for an array, but remove []
+    answer = answer.replace(/\n/g, ',');
     if (answer.split(",").length == 1) {  // sometimes returns non-comma separated lists, or only 1 tag (1) which is indistinguishable, and (2) we asked at least 3 tags, not 1 -- so we reject it
       console.warn(`Gemini Nano AI replied with unacceptable output: ${answer}`);
       return [];
     }
 
     const result = answer.split(",").map(function(item) {
-      return item.trim().replaceAll(`_`, ` `).replaceAll(`"`, ``).toLowerCase();  // sometimes it returns tags in ", sometimes with _
+      return item.trim().replaceAll(`_`, ` `).replace(/"|”|“/g, '').toLowerCase();  // sometimes it returns tags in ", sometimes with _
     });
     return result;
   }
