@@ -66,7 +66,6 @@ function update_link_in_storage(link) {
 }
 
 function save_link_to_local_storage(link) {
-  console.log(link)
   let source = link.source || "links";
 
   let links = load_links_from(source);
