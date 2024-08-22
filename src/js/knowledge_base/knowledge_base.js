@@ -33,7 +33,7 @@ function draw_link_in_kb_tab(item, what_to_do) {
   if (item.tags) {
     links_html += `<span style="margin-top: 20px;"><br><b>Tags: </b> ${item.tags}</span>`;
   }
-  links_html += `<div class="btn-group queue-link-menu" style="float: inline-end; position: relative; top: 10px; width: auto;"> \
+  links_html += `<div class="btn-group queue-link-menu" style="float: inline-end; position: relative; top: 6px; width: auto;"> \
     <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split- queue-link-button" data-bs-toggle="dropdown" aria-expanded="false" style="padding-: 6px;"> \
       <!--span class="visually-hidden">Toggle Dropdown</span--> \
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">

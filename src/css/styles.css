@@ -681,6 +681,6 @@ p.bulk_saved_group_restore a {
   border-radius: 0 0 8px 8px;
 }
 
-.delete_from_queue, .delete_from_queue:hover {
+.delete_from_queue, .delete_from_queue:hover, .delete_from_kb, .delete_from_kb:hover {
   color: red;
 }
