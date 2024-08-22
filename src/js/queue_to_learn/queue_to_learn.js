@@ -150,7 +150,7 @@ function draw_link_in_queue_tab(item, what_to_do) {
       </svg>
     </button> \
     <ul class="dropdown-menu"> \
-      <li><a class="dropdown-item edit_in_queue" href="#" data-url="${item.link}">Edit</a></li> \
+      <li><a class="dropdown-item edit_in_queue" href="#" data-url="${item.link}">Edit...</a></li> \
       <!--li><hr class="dropdown-divider"></li--> \
       <li><a class="dropdown-item move_to_kb" href="#" data-url="${item.link}">Move to Knowledge Base</a></li> \
       <li><a class="dropdown-item delete_from_queue" href="#" data-url="${item.link}" data-reason="neutral">Delete</a></li> \

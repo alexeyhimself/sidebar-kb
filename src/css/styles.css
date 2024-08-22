@@ -1,7 +1,7 @@
 body, textarea, button, label, input, select, p, a {
   font-weight: 400;
   font-style: normal;
-  font-size: 15px;
+  font-size: 15px !important;
   /*font-size: 0.97em!important;
   font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
@@ -619,7 +619,7 @@ p.bulk_saved_group_restore a {
   border: 0;
   visibility: hidden;
   border-radius: 100px;
-  padding: 5px;
+  padding: 1px 5px;
   top: -8px;
 
   background-: #ebeff7;
