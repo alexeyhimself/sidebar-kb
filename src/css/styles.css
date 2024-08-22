@@ -332,7 +332,7 @@ a {
 }
 .queue-link {
   border: 1px solid #dee2e6;
-  padding: 8px;
+  padding: 5px 8px 2px 8px;
   border-radius: 8px;
   margin-bottom: 8px;
   word-wrap: break-word;
@@ -679,4 +679,8 @@ p.bulk_saved_group_restore a {
 
 .accordion-item:last-of-type>.accordion-header .accordion-button.collapsed {
   border-radius: 0 0 8px 8px;
+}
+
+.delete_from_queue, .delete_from_queue:hover {
+  color: red;
 }

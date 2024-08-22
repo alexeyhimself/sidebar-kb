@@ -142,7 +142,7 @@ function draw_link_in_queue_tab(item, what_to_do) {
   const hostname = get_hostname(item.link);
   links_html += ` <span class="hostname">${hostname}</span> <a class="queue-link-a" href="${item.link}" target="_blank">${item.title.trim()}</a><!--&nbsp;&nbsp;| <a href="#" data-url="${item.link}" class="edit_in_queue"--><!--i class="bi bi-pencil"></i--><!--img src="/images/pencil.svg" style="height: 16px; padding-right: 0px; padding-bottom: 2px;">&nbsp;Edit...</a-->`;
 
-  links_html += `<div class="btn-group queue-link-menu" style="float: inline-end; position: relative; top: 10px; width: auto;"> \
+  links_html += `<div class="btn-group queue-link-menu" style="float: inline-end; position: relative; top: 6px; width: auto;"> \
     <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split- queue-link-button" data-bs-toggle="dropdown" aria-expanded="false" style="padding-: 6px;"> \
       <!--span class="visually-hidden">Toggle Dropdown</span--> \
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
@@ -169,12 +169,12 @@ function draw_existing_grouped_links(grouped_links) {
 
   ["read", "watch", "listen", "others"].forEach((what_to_do) => {
     if (what_to_do == "others" && grouped_links[what_to_do].length > 0 && (grouped_links["read"].length > 0 || grouped_links["watch"].length > 0 || grouped_links["listen"].length > 0))
-      links_html += `<p style="margin-top: 0px; font-size: 17px;">Everything else matching filter, ordered by descending priority (${grouped_links[what_to_do].length} links):</p>`;
+      links_html += `<p style="margin-top: 0px; font-size: 17px!important;">Everything else matching filter, ordered by descending priority (${grouped_links[what_to_do].length} links):</p>`;
     else if (what_to_do != "others" && grouped_links[what_to_do].length > 0) {
       if (i == 1)
-        links_html += `<div id="top-3-section"><p style="margin-top: 0px; font-size: 17px;">`;
+        links_html += `<div id="top-3-section"><p style="margin-top: 0px; font-size: 17px!important;">`;
       else
-        links_html += `<p style="margin-top: 15px; font-size: 17px;">`;
+        links_html += `<p style="margin-top: 10px; font-size: 17px!important;">`;
       if (what_to_do in what_to_do_map)
         links_html += `${what_to_do_map[what_to_do]} `;
       
@@ -223,7 +223,7 @@ function draw_existing_time_based_links(links) {
       if (group_started)
         links_html += '</div>';
       group_started = false;
-      links_html += `<p style="font-size: 17px;">${days_ago(item.date_created, month, date)}</p>`;
+      links_html += `<p style="font-size: 17px!important;">${days_ago(item.date_created, month, date)}</p>`;
       date_created = item_date_created;
     }
 
