@@ -332,7 +332,7 @@ a {
 }
 .queue-link {
   border: 1px solid #dee2e6;
-  padding: 5px 8px 2px 8px;
+  padding: 5px 8px;
   border-radius: 8px;
   margin-bottom: 8px;
   word-wrap: break-word;
