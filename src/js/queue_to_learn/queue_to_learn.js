@@ -140,12 +140,11 @@ function draw_link_in_queue_tab(item, what_to_do) {
     links_html += ` <span class="badge bg-secondary">${item.what_to_do}</span>`;
 
   const hostname = get_hostname(item.link);
-  links_html += ` <span class="hostname">${hostname}</span> <a class="queue-link-a" href="${item.link}" target="_blank">${item.title.trim()}</a><!--&nbsp;&nbsp;| <a href="#" data-url="${item.link}" class="edit_in_queue"--><!--i class="bi bi-pencil"></i--><!--img src="/images/pencil.svg" style="height: 16px; padding-right: 0px; padding-bottom: 2px;">&nbsp;Edit...</a-->`;
+  
 
   links_html += `<div class="btn-group queue-link-menu" style="float: inline-end; position: relative; top: 6px; width: auto;"> \
     <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split- queue-link-button" data-bs-toggle="dropdown" aria-expanded="false" style="padding-: 6px;"> \
-      <!--span class="visually-hidden">Toggle Dropdown</span--> \
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
         <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
       </svg>
     </button> \
@@ -156,6 +155,9 @@ function draw_link_in_queue_tab(item, what_to_do) {
       <li><a class="dropdown-item delete_from_queue" href="#" data-url="${item.link}" data-reason="neutral">Delete</a></li> \
     </ul> \
   </div>`;
+
+  links_html += ` <span class="hostname">${hostname}</span>`;
+  links_html += `<br><a class="queue-link-a" href="${item.link}" target="_blank">${item.title.trim()}</a>`;
   
   links_html += '</div>';
   return links_html;

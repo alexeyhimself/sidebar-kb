@@ -153,7 +153,7 @@ select {
 }
 #what_to_do {
   width: 50%;
-  height: 38px;
+  height: 36px;
 }
 #time {
   width: 50%;
@@ -253,7 +253,7 @@ select {
 }
 
 p {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 .badge {
   padding: 3px 5px;
@@ -530,7 +530,7 @@ label {
   background: #f6f7f9;
 }
 .modal-body {
-  padding: 10px;
+  padding: 8px;
 }
 
 #filter {
@@ -619,10 +619,15 @@ p.bulk_saved_group_restore a {
   border: 0;
   visibility: hidden;
   border-radius: 100px;
-  padding: 1px 5px;
+  padding: 0px 3px;
   top: -8px;
+  right: -4px;
 
   background-: #ebeff7;
+}
+.bi-three-dots {
+  transform: rotate(90deg);
+  padding-right: 2px;
 }
 .queue-link-button:hover {
   background: #ebeff7;
