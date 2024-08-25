@@ -29,11 +29,16 @@ function switch_to_save_form() {
   document.getElementById("choose_action").classList.add("btn-primary");
 }
 */
+function enable_url_input_field() {
+  document.getElementById("link").removeAttribute("disabled")
+}
+function disable_url_input_field() {
+  document.getElementById("link").setAttribute("disabled", "")
+}
 
 function open_empty_collect_form() {
-  open_collect_form();
   reset_form_state();
-  //clear_save_link_form();
+  open_collect_form();
 }
 
 function reset_form_state() {
@@ -41,6 +46,7 @@ function reset_form_state() {
   clear_save_link_form();
   enable_tags_hint_on_any_value_only();
   hide_move_and_delete_buttons();
+  enable_url_input_field();
 
   document.getElementById("save").innerText = "Save";
   document.getElementById("save").classList.remove("btn-success");

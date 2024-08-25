@@ -463,6 +463,7 @@ function enable_edit_in_queue_listeners() {
       const url = event.target.getAttribute("data-url");
       //open_collect_form();
       open_empty_collect_form();
+      disable_url_input_field();
       show_move_and_delete_buttons();
       const save_element = document.getElementById("save");
       save_element.classList.remove("context_menu_call");  // clean if left from unsaved tab
