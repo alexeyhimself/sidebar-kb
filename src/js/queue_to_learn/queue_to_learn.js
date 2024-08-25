@@ -214,19 +214,19 @@ function draw_existing_time_based_links(links) {
   let links_html = ''; //`<div id="top-3-section"><p><b>Most recently saved on top:</b></p>`;
   let group_id = 1;
   let group_started = false;
-  let date_created = new Date(1).toLocaleDateString('en-US');
+  let date_updated = new Date(1).toLocaleDateString('en-US');
   for (let j = 0; j < links.length; j++) {
     const item = links[j];
 
-    const item_date_created = new Date(item.date_created).toLocaleDateString('en-US');
-    const month = new Date(item.date_created).toLocaleString('en-US', { month: 'short' });
-    const date = new Date(item.date_created).getDate();
-    if (item_date_created != date_created) {
+    const item_date_updated = new Date(item.date_updated).toLocaleDateString('en-US');
+    const month = new Date(item.date_updated).toLocaleString('en-US', { month: 'short' });
+    const date = new Date(item.date_updated).getDate();
+    if (item_date_updated != date_updated) {
       if (group_started)
         links_html += '</div>';
       group_started = false;
-      links_html += `<p style="font-size: 17px!important;">${days_ago(item.date_created, month, date)}</p>`;
-      date_created = item_date_created;
+      links_html += `<p style="font-size: 17px!important;">${days_ago(item.date_updated, month, date)}</p>`;
+      date_updated = item_date_updated;
     }
 
     if (item.group_id && item.group_id != group_id) {
