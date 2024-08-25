@@ -40,6 +40,8 @@ function save_link_to(link, where) {
 
 function save_or_update_link_in_local_storage(link) {
   let source = link.source || "links";
+  if (source == "queue")
+    source = "links";
 
   let links = load_links_from(source);
   for (let i = 0; i < links.length; i++) {
