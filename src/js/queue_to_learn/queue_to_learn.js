@@ -138,10 +138,7 @@ function draw_link_in_queue_tab(item, what_to_do) {
   if (["undefined", undefined, ""].includes(item.what_to_do))
     links_html += ` <span class="badge bg-secondary">type not set</span>`;
   else
-    links_html += ` <span class="badge bg-secondary">${item.what_to_do}</span>`;
-
-  const hostname = get_hostname(item.link);
-  
+    links_html += ` <span class="badge bg-secondary">${item.what_to_do}</span>`;  
 
   links_html += `<div class="btn-group queue-link-menu" style="float: inline-end; position: relative; top: 6px; width: auto;"> \
     <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split- queue-link-button" data-bs-toggle="dropdown" aria-expanded="false" style="padding-: 6px;"> \
@@ -157,6 +154,7 @@ function draw_link_in_queue_tab(item, what_to_do) {
     </ul> \
   </div>`;
 
+  const hostname = get_hostname(item.link);
   links_html += ` <span class="hostname">${hostname}</span>`;
   links_html += `<br><a class="queue-link-a" href="${item.link}" target="_blank">${item.title.trim()}</a>`;
   
