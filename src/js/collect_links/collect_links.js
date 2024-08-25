@@ -131,7 +131,8 @@ async function save_selected_tabs(tabs) {
     if (!["meet.google.com"].includes(hostname))
       chrome.tabs.remove(tab.id, function() {});  // close all (even empty) but not pinned and grouped
 
-    await sleep(200);
+    await sleep(150 + 200 / (i + 1));  // acceleration from 300 to 150
+    //await sleep(300);
   }
 }
 

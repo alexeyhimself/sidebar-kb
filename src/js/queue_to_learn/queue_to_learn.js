@@ -66,11 +66,12 @@ function draw_links_in_queue_tab(grouped_links, no_links_callback) {
   }
 }
 
-async function visualize_ungroup(link) {
+async function visualize_ungroup(link, i) {
   delete link.group_id;
   save_or_update_link_in_local_storage(link);
   what_to_do_on_filter_change();
-  await sleep(200);
+  await sleep(150 + 200 / (i + 1));  // acceleration from 300 to 150
+  //await sleep(200);
 }
 
 function enable_restore_tabs_listeners() {
@@ -85,7 +86,7 @@ function enable_restore_tabs_listeners() {
         if (link.group_id == group_id) {
           //console.log(link.title);
           chrome.tabs.create({ url: link.link });
-          await visualize_ungroup(link);
+          await visualize_ungroup(link, i);
           group_id_found = true;
         }
         else if (group_id_found)
