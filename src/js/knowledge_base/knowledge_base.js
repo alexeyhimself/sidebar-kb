@@ -151,10 +151,10 @@ function enable_delete_from_kb_listeners() {
   });
 }
 
-function move_link_to_kb(url) {
+async function move_link_to_kb(url) {
   if (!url) {
     url = document.getElementById("link").value; // form
-    save_link();  // if changes were made in form before hitting the button
+    await save_link();  // if changes were made in form before hitting the button
   }
 
   const link = get_link_from_queue(url);
