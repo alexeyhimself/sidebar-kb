@@ -639,6 +639,9 @@ p.bulk_saved_group_restore a {
 .bulk_saved_group .queue-link-button:hover {
   background: white;
 }
+.bulk_saved_group .queue-link-button.show {
+  background-color: white;
+}
 
 
 #dots {
