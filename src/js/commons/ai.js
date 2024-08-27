@@ -82,9 +82,18 @@ async function ask_ai_gemini_nano(payload) {
       return [];
     }
 
-    const result = answer.split(",").map(function(item) {
-      return item.trim().replaceAll(`_`, ` `).replace(/"|”|“/g, '').toLowerCase();  // sometimes it returns tags in ", sometimes with _
+    const result_candidate = answer.split(",").map(function(item) {
+      let tag_candidate = item.trim().replaceAll(`_`, ` `).replace(/"|”|“|'/g, '').toLowerCase();  // sometimes it returns tags in ", sometimes with _
+      if (tag_candidate.length < 20 && tag_candidate.length > 0)  // still returns "Sure! Here are 8 relevant tags for the given ..."
+        return tag_candidate;
     });
+
+    let result = [];
+    result_candidate.forEach((tag) => {  // removing undefined tags
+      if (tag)
+        result.push(tag);
+    });
+
     return result;
   }
   catch (error) {

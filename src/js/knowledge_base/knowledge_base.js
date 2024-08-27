@@ -111,9 +111,9 @@ function enable_edit_in_kb_listeners() {
         }
       });
 
-      suggest_tags({"link": url, "title": link.title});
       bring_form_to_active_state();
       shirk_textareas_to_content();
+      suggest_tags({"link": url, "title": link.title});
       //show_toast("Link has been updated");
     });
   });

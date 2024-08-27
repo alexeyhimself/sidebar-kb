@@ -89,12 +89,12 @@ async function fill_and_adjust(tab) {
   //open_collect_form();
   fill_and_adjust_textareas(page_object);
   suggest_what_to_do(page_object.link);
-  if (page_object)
-    suggest_tags(page_object);
-
   adjust_if_link_already_exists(page_object.link);
   let save_element = document.getElementById("save");
   save_element.classList.add("auto_fill");
+
+  if (page_object)
+    suggest_tags(page_object);
 }
 
 function enable_side_panel_grab_tab_click_listener() {
