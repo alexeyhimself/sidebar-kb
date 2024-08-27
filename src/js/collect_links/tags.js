@@ -126,6 +126,7 @@ async function suggest_tags(page_object) {
     return;
 
   show_wait_tags();
+  await sleep(1000);  // popup appears slowly otherwise if AI call 
   await generate_tags(page_object);
   show_tags();
 }
