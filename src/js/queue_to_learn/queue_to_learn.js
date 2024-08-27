@@ -170,12 +170,12 @@ function draw_existing_grouped_links(grouped_links) {
 
   ["read", "watch", "listen", "others"].forEach((what_to_do) => {
     if (what_to_do == "others" && grouped_links[what_to_do].length > 0 && (grouped_links["read"].length > 0 || grouped_links["watch"].length > 0 || grouped_links["listen"].length > 0))
-      links_html += `<p style="margin-top: 0px; font-size: 17px!important;">Everything else matching filter, ordered by descending priority (${grouped_links[what_to_do].length} links):</p>`;
+      links_html += `<p style="margin-top: 0px; ">Everything else matching filter, ordered by descending priority (${grouped_links[what_to_do].length} links):</p>`;
     else if (what_to_do != "others" && grouped_links[what_to_do].length > 0) {
       if (i == 1)
-        links_html += `<div id="top-3-section"><p style="margin-top: 0px; font-size: 17px!important;">`;
+        links_html += `<div id="top-3-section"><p style="margin-top: 0px; ">`;
       else
-        links_html += `<p style="margin-top: 10px; font-size: 17px!important;">`;
+        links_html += `<p style="margin-top: 10px; ">`;
       if (what_to_do in what_to_do_map)
         links_html += `${what_to_do_map[what_to_do]} `;
       
@@ -224,7 +224,7 @@ function draw_existing_time_based_links(links) {
       if (group_started)
         links_html += '</div>';
       group_started = false;
-      links_html += `<p style="font-size: 17px!important;">${days_ago(item.date_updated, month, date)}</p>`;
+      links_html += `<p style="">${days_ago(item.date_updated, month, date)}</p>`;
       date_updated = item_date_updated;
     }
 

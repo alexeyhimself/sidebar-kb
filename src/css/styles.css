@@ -692,3 +692,8 @@ p.bulk_saved_group_restore a {
 .delete_from_queue, .delete_from_queue:hover, .delete_from_kb, .delete_from_kb:hover {
   color: red;
 }
+
+#links_area p {
+  font-size: 17px !important;
+  font-weight-: bold;
+}
