@@ -132,7 +132,7 @@ async function save_selected_tabs(tabs) {
       link.title = tab.title.trim().replace(/(?:\r\n|\r|\n|\t)/g, '').trim();
       //link.date_created = Date.now();
 
-      save_link(link);
+      save(link);
     }
     if (!["meet.google.com"].includes(hostname))
       chrome.tabs.remove(tab.id, function() {});  // close all (even empty) but not pinned and grouped

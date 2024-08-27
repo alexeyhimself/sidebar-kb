@@ -1,15 +1,14 @@
-async function save_link(link) {
-  if (!link)
-    link = collect_data_from_the_save_link_form();
-
+function save(link) {
   get_hostname(link.link); // just validation of format to prevent saving of a broken link
   link = add_time_in_minutes_to_link(link);
   
   save_or_update_link_in_local_storage(link);
   update_tags_in_local_storage(link.tags);
   update_stats_of_what_to_do_for_links(link);
-  //what_to_do_on_filter_change();
+  what_to_do_on_filter_change();
+}
 
+async function post_save_actions() {
   let save_element = document.getElementById("save");
   if (save_element.classList.contains("context_menu_call")) {
     save_element.classList.remove("context_menu_call");
@@ -22,7 +21,7 @@ async function save_link(link) {
     save_element.classList.remove("auto_fill");
 
   close_collect_form();
-  what_to_do_on_filter_change();
+  //what_to_do_on_filter_change();
   if (!save_element.dataset.source)
     show_toast("Link has been saved");
   else
@@ -30,6 +29,14 @@ async function save_link(link) {
 
   reset_form_state();
   finish_onboarding_user();
+}
+
+async function save_link(link) {
+  if (!link)
+    link = collect_data_from_the_save_link_form();
+
+  save(link);
+  await post_save_actions();
 }
 
 function save_link_to(link, where) {

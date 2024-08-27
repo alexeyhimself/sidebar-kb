@@ -407,26 +407,6 @@ function get_link_from_queue(url) {
   }
 }
 
-function move_link_to_kb(url) {
-  if (!url)
-    url = document.getElementById("link").value; // form
-
-  const link = get_link_from_queue(url);
-  save_link_to(link, "kb");
-  delete_link_from_queue(url);
-  what_to_do_on_filter_change();
-  show_toast("Link moved to Knowledge Base");
-}
-
-function enable_move_to_kb_listeners() {
-  document.querySelectorAll(".move_to_kb").forEach((element) => {
-    element.addEventListener('click', function (event) {
-      const url = event.target.dataset.url; // queue
-      move_link_to_kb(url);
-    });
-  });
-}
-
 function enable_delete_from_queue_listeners() {
   document.querySelectorAll(".delete_from_queue").forEach((element) => {
     element.addEventListener('click', async function (event) {
