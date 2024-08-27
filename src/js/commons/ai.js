@@ -113,6 +113,8 @@ async function ask_ai(payload, ai_platform) {
   if (!available_ai_platforms[ai_platform])
     return [];
 
+  await sleep(1000);  // popup appears slowly otherwise if AI call 
+
   if (ai_platform == "gemini_nano")
     return await ask_ai_gemini_nano(payload);
   else if (ai_platform == "gemini")
