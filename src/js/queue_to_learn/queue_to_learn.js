@@ -3,7 +3,7 @@ function onboard_user() {
 
   document.getElementById("saved_list").style.display = 'none';
   document.getElementById("choose_action_arrow_button").style.display = 'none';
-  document.getElementById("grab_tab").style.borderRadius = '8px';
+  document.getElementById("grab_tab").style.borderRadius = '6px';
 }
 function finish_onboarding_user() {
   const saved_list_element = document.getElementById("saved_list");
@@ -13,7 +13,7 @@ function finish_onboarding_user() {
   document.querySelectorAll(".onboarding").forEach((e) => { e.style.display = 'none'; });
   document.getElementById("saved_list").style.display = 'block';
   document.getElementById("choose_action_arrow_button").style.display = 'block';
-  document.getElementById("grab_tab").style.borderRadius = '8px 0 0 8px';
+  document.getElementById("grab_tab").style.borderRadius = '6px 0 0 6px';
 }
 
 
