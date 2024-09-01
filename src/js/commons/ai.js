@@ -10,7 +10,7 @@ var available_ai_platforms = {};
 
 
 async function check_availability_of_gemini_nano_ai() {
-  if (!ai)
+  if (!window.ai)  // window.ai == ai, but without window ai is undefined and causes exception
     return;
 
   try {
