@@ -59,7 +59,7 @@ function compose_tags(words_on_page) {
       return result.slice(0, 15);
     }
     else
-      return tags.most_recent.slice(0, 15);
+      return tags.most_recent.reverse().slice(0, 15);
   }
   else {
     let save_element = document.getElementById("save");
