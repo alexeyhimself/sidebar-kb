@@ -62,8 +62,8 @@ function compose_tags(words_on_page) {
       return tags.most_recent.reverse().slice(0, 15);
   }
   else {
-    let save_element = document.getElementById("save");
     /*
+    let save_element = document.getElementById("save");
     if (save_element.classList.contains("auto_fill")) {
       //console.log("auto-fill");
       return [];
@@ -134,11 +134,14 @@ async function generate_tags(page_object) {
   const ai_tags = await ask_ai(page_object);
   const non_ai_tags = compose_tags(page_object.words_on_page);
 
-  const tags = [...new Set(ai_tags.concat(non_ai_tags))];
+  let tags = [...new Set(ai_tags.concat(non_ai_tags))];
   //console.log(tags)
   if (tags.length == 0) {
     hide_tags();
     return;
+  }
+  else if (tags.length < 10) {
+    tags = [...new Set(tags.concat(compose_tags({})))];
   }
   //console.log(tags)
   draw_tags_hint(tags);
