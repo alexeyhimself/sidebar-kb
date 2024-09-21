@@ -1,3 +1,5 @@
+const no_time_what_to_do = ["tool", "course", "people"];
+
 // providing backward compatibilty with existing user's data
 function fix_data() {
   const links = load_links_from_local_storage().reverse();  // REVERSE TIME ORDER
@@ -15,7 +17,7 @@ function fix_data() {
       link["priority"] = link.urgency;
       delete link["urgency"];
     }
-    if (["course", "tool"].includes(link["what_to_do"])) {
+    if (no_time_what_to_do.includes(link["what_to_do"])) {
       delete link["importance"];
       delete link["urgency"];
       delete link["priority"];

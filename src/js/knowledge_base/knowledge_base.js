@@ -113,6 +113,7 @@ function enable_edit_in_kb_listeners() {
 
       bring_form_to_active_state();
       shirk_textareas_to_content();
+      hide_fields_if_necessary(document.getElementById('what_to_do'));
       suggest_tags({"link": url, "title": link.title});
       //show_toast("Link has been updated");
     });

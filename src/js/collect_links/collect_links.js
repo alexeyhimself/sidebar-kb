@@ -157,7 +157,7 @@ async function save_all_tabs_in_window() {
 
 function hide_fields_if_necessary(element) {
   let display;
-  if (["tool", "course"].includes(element.value)) {
+  if (no_time_what_to_do.includes(element.value)) {
     display = 'none';
     document.getElementById("what_to_do").classList.add("all-around-border-radius");
     document.getElementById("tags").focus();

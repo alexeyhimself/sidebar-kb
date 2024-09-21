@@ -119,8 +119,6 @@ function draw_time_based_links(links, no_links_callback) {
   }
 }
 
-const no_time_what_to_do = ["tool", "course", "people"];
-
 function draw_link_in_queue_tab(item, what_to_do) {
   let links_html = '';
 
@@ -466,6 +464,7 @@ function enable_edit_in_queue_listeners() {
       //link.value = url;
       bring_form_to_active_state();
       shirk_textareas_to_content();
+      hide_fields_if_necessary(document.getElementById('what_to_do'));
       suggest_tags({"link": url, "title": link.title});
       //show_toast("Link has been updated");
       //link.dispatchEvent(new InputEvent("change"));
