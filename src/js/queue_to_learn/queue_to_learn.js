@@ -427,11 +427,23 @@ function enable_delete_from_queue_listeners() {
 
 function show_move_and_delete_buttons() {
   document.getElementById("move_to_kb").style.display = 'block';
-  document.getElementById("delete_from_queue").style.display = 'block';
+  delete_button = document.getElementById("delete_from_queue");
+  delete_button.style.display = 'block';
+  delete_button.classList.remove('col');
+  delete_button.classList.add('col-4');
+  delete_button.style.marginLeft = '12px';
 }
 function hide_move_and_delete_buttons() {
   document.getElementById("move_to_kb").style.display = 'none';
   document.getElementById("delete_from_queue").style.display = 'none';
+}
+function show_move_button() {
+  document.getElementById("move_to_kb").style.display = 'block';
+  const delete_button = document.getElementById("delete_from_queue");
+  delete_button.style.display = 'none';
+  delete_button.classList.remove('col-4');
+  delete_button.classList.add('col');
+  delete_button.style.marginLeft = 'unset';
 }
 function show_delete_button() {
   document.getElementById("move_to_kb").style.display = 'none';

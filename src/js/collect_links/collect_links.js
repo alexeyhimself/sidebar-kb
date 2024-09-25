@@ -46,6 +46,7 @@ function reset_form_state() {
   clear_save_link_form();
   enable_tags_hint_on_any_value_only();
   hide_move_and_delete_buttons();
+  show_move_button();
   enable_url_input_field();
 
   document.getElementById("save").innerText = "Save";
