@@ -217,10 +217,14 @@ function adjust_if_link_already_exists(link) {
     document.getElementById("save").innerText = `Update in ${sources_map[existing_link.source]}`;
     //document.getElementById("save").classList.add("btn-success");
     document.getElementById("save").dataset.source = existing_link.source;
-    if (existing_link.source == "queue")
+    if (existing_link.source == "queue") {
       show_move_and_delete_buttons();
-    else if (existing_link.source == "kb")
+      disable_url_input_field();
+    }
+    else if (existing_link.source == "kb") {
       show_delete_button();
+      disable_url_input_field();
+    }
   }
 }
 
