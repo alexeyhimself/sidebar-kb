@@ -447,7 +447,11 @@ function show_move_button() {
 }
 function show_delete_button() {
   document.getElementById("move_to_kb").style.display = 'none';
-  document.getElementById("delete_from_queue").style.display = 'block';
+  delete_button = document.getElementById("delete_from_queue");
+  delete_button.style.display = 'block';
+  delete_button.classList.add('col');
+  delete_button.classList.remove('col-4');
+  delete_button.style.marginLeft = 'unset';
 }
 
 function enable_edit_in_queue_listeners() {
