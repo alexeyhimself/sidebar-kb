@@ -169,7 +169,9 @@ select {
 #links_export {
   padding: 5px 10px;
   font-size: 0.9em!important;
-  background: #ebeff7;
+  background-: #ebeff7;
+  position: absolute;
+  bottom: 0px;
 }
 #links_export a {
   font-size: 0.9em!important;
@@ -521,7 +523,7 @@ label {
 
 .accordion-collapse {
   overflow-y: auto; 
-  height: calc(100vh - 131px);
+  height: calc(100vh - 155px);
   scrollbar-gutter: stable;
 }
 .modal-backdrop.show {

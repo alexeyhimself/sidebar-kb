@@ -75,8 +75,12 @@ function download_as_csv() {
   download_as_file(csv_links, 'csv');
 }
 function download_as_json() {
-  const json_links = load_links_from_local_storage();
-  download_as_file(JSON.stringify(json_links), 'json');
+  let result = {};
+  ["links", "kb", "deleted", "tags"].forEach((source) => {
+    const json_data = load_links_from_local_storage(source);
+    result[source] = json_data;
+  });
+  download_as_file(JSON.stringify(result), 'json');
 }
 
 function calculate_days_passed_till_today(date) {  // https://stackoverflow.com/questions/2627473/how-to-calculate-the-number-of-days-between-two-dates
