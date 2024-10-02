@@ -172,6 +172,7 @@ select {
   background-: #ebeff7;
   position: absolute;
   bottom: 0px;
+  margin-bottom: 0;
 }
 #links_export a {
   font-size: 0.9em!important;
@@ -523,7 +524,7 @@ label {
 
 .accordion-collapse {
   overflow-y: auto; 
-  height: calc(100vh - 155px);
+  height: calc(100vh - 150px);
   scrollbar-gutter: stable;
 }
 .modal-backdrop.show {
