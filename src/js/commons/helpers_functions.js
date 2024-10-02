@@ -66,7 +66,7 @@ function download_as_file(content, file_type) {
 
   var pom = document.createElement('a');
   pom.href = url;
-  pom.setAttribute('download', `exported_links.${file_type}`);
+  pom.setAttribute('download', `knowledge_base.export.${file_type}`);
   pom.click();
 }
 function download_as_csv() {
