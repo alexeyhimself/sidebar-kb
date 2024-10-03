@@ -186,7 +186,7 @@ function link_already_exists(link) {
     const links = load_links_from(source);
 
     for (let i = 0; i < links.length; i++) {
-      if (links[i].link == link)
+      if (links[i].link == link || links[i].link.includes(link) || link.includes(links[i].link))
         return {"link": links[i], "source": source};
     }
   }
