@@ -14,8 +14,8 @@ async function check_availability_of_gemini_nano_ai() {
     return;
 
   try {
-    // (await ai.assistant.capabilities()).available == "readily";
-    const session = await ai.assistant.create();
+    // (await ai.languageModel.capabilities()).available == "readily";
+    const session = await ai.languageModel.create();
     available_ai_platforms["gemini_nano"] = true;
     session.destroy();
   } 
@@ -59,7 +59,7 @@ async function check_available_ai_platforms() {
 
 async function ask_ai_gemini_nano(payload) {
   try {
-    const session = await ai.assistant.create();
+    const session = await ai.languageModel.create();
     const question = `On URL: "${payload.link}" we have a webpage titled: "${payload.title}". \
                       And we want to compose meaningful tags for this webpage. \
                       Advise several tags (at least 3, at most 10) that mostly (but not necessarily) \
