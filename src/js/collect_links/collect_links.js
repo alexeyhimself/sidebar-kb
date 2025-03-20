@@ -186,7 +186,8 @@ function link_already_exists(link) {
     const links = load_links_from(source);
 
     for (let i = 0; i < links.length; i++) {
-      if (links[i].link == link || links[i].link.includes(link) || link.includes(links[i].link))
+      //if (links[i].link == link || links[i].link.includes(link) || link.includes(links[i].link))
+      if (links[i].link == link || links[i].link.includes(link))  // don't know why I had this: "link.includes(links[i].link)" - it caused a bug saving https://a.com/smth if https://a.com already exists
         return {"link": links[i], "source": source};
     }
   }
